@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>SwiftGridView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>SwiftGridViewFramework.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8A78B51E1C1E34D2006FA8AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A78B5271C1E34D2006FA8AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8A78B54B1C1E3C28006FA8AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8ACBCF881AB4BC2800940BF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8ACBCF9D1AB4BC2800940BF9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

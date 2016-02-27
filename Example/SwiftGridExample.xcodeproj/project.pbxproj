@@ -1,0 +1,526 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC31C792B0600F317DF /* AppDelegate.swift */; };
+		8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC51C792B0600F317DF /* ViewController.swift */; };
+		8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBC71C792B0600F317DF /* Main.storyboard */; };
+		8A32EBCB1C792B0600F317DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBCA1C792B0600F317DF /* Assets.xcassets */; };
+		8A32EBCE1C792B0600F317DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */; };
+		8A32EBD91C792B0600F317DF /* SwiftGridExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */; };
+		8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */; };
+		8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF21C792B6900F317DF /* BasicTextCell.swift */; };
+		8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8A32EBD51C792B0600F317DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A32EBB81C792B0600F317DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A32EBBF1C792B0600F317DF;
+			remoteInfo = SwiftGridExample;
+		};
+		8A32EBE01C792B0600F317DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8A32EBB81C792B0600F317DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A32EBBF1C792B0600F317DF;
+			remoteInfo = SwiftGridExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8A32EBC01C792B0600F317DF /* SwiftGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A32EBC31C792B0600F317DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8A32EBC51C792B0600F317DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8A32EBC81C792B0600F317DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8A32EBCA1C792B0600F317DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8A32EBCD1C792B0600F317DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8A32EBCF1C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGridExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGridExampleTests.swift; sourceTree = "<group>"; };
+		8A32EBDA1C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGridExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGridExampleUITests.swift; sourceTree = "<group>"; };
+		8A32EBE51C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A32EBF21C792B6900F317DF /* BasicTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextCell.swift; sourceTree = "<group>"; };
+		8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextReusableView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8A32EBBD1C792B0600F317DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBD11C792B0600F317DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBDC1C792B0600F317DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8A32EBB71C792B0600F317DF = {
+			isa = PBXGroup;
+			children = (
+				8A32EBC21C792B0600F317DF /* SwiftGridExample */,
+				8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */,
+				8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */,
+				8A32EBC11C792B0600F317DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8A32EBC11C792B0600F317DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8A32EBC01C792B0600F317DF /* SwiftGridExample.app */,
+				8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */,
+				8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8A32EBC21C792B0600F317DF /* SwiftGridExample */ = {
+			isa = PBXGroup;
+			children = (
+				8A32EBF11C792B6900F317DF /* Cells */,
+				8A32EBC31C792B0600F317DF /* AppDelegate.swift */,
+				8A32EBC51C792B0600F317DF /* ViewController.swift */,
+				8A32EBC71C792B0600F317DF /* Main.storyboard */,
+				8A32EBCA1C792B0600F317DF /* Assets.xcassets */,
+				8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */,
+				8A32EBCF1C792B0600F317DF /* Info.plist */,
+			);
+			path = SwiftGridExample;
+			sourceTree = "<group>";
+		};
+		8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */,
+				8A32EBDA1C792B0600F317DF /* Info.plist */,
+			);
+			path = SwiftGridExampleTests;
+			sourceTree = "<group>";
+		};
+		8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */,
+				8A32EBE51C792B0600F317DF /* Info.plist */,
+			);
+			path = SwiftGridExampleUITests;
+			sourceTree = "<group>";
+		};
+		8A32EBF11C792B6900F317DF /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8A32EBF21C792B6900F317DF /* BasicTextCell.swift */,
+				8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8A32EBBF1C792B0600F317DF /* SwiftGridExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A32EBE81C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExample" */;
+			buildPhases = (
+				8A32EBBC1C792B0600F317DF /* Sources */,
+				8A32EBBD1C792B0600F317DF /* Frameworks */,
+				8A32EBBE1C792B0600F317DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftGridExample;
+			productName = SwiftGridExample;
+			productReference = 8A32EBC01C792B0600F317DF /* SwiftGridExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8A32EBD31C792B0600F317DF /* SwiftGridExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A32EBEB1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleTests" */;
+			buildPhases = (
+				8A32EBD01C792B0600F317DF /* Sources */,
+				8A32EBD11C792B0600F317DF /* Frameworks */,
+				8A32EBD21C792B0600F317DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A32EBD61C792B0600F317DF /* PBXTargetDependency */,
+			);
+			name = SwiftGridExampleTests;
+			productName = SwiftGridExampleTests;
+			productReference = 8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8A32EBDE1C792B0600F317DF /* SwiftGridExampleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A32EBEE1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleUITests" */;
+			buildPhases = (
+				8A32EBDB1C792B0600F317DF /* Sources */,
+				8A32EBDC1C792B0600F317DF /* Frameworks */,
+				8A32EBDD1C792B0600F317DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A32EBE11C792B0600F317DF /* PBXTargetDependency */,
+			);
+			name = SwiftGridExampleUITests;
+			productName = SwiftGridExampleUITests;
+			productReference = 8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8A32EBB81C792B0600F317DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = nlampi;
+				TargetAttributes = {
+					8A32EBBF1C792B0600F317DF = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					8A32EBD31C792B0600F317DF = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8A32EBBF1C792B0600F317DF;
+					};
+					8A32EBDE1C792B0600F317DF = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 8A32EBBF1C792B0600F317DF;
+					};
+				};
+			};
+			buildConfigurationList = 8A32EBBB1C792B0600F317DF /* Build configuration list for PBXProject "SwiftGridExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8A32EBB71C792B0600F317DF;
+			productRefGroup = 8A32EBC11C792B0600F317DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8A32EBBF1C792B0600F317DF /* SwiftGridExample */,
+				8A32EBD31C792B0600F317DF /* SwiftGridExampleTests */,
+				8A32EBDE1C792B0600F317DF /* SwiftGridExampleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A32EBBE1C792B0600F317DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A32EBCE1C792B0600F317DF /* LaunchScreen.storyboard in Resources */,
+				8A32EBCB1C792B0600F317DF /* Assets.xcassets in Resources */,
+				8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBD21C792B0600F317DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBDD1C792B0600F317DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8A32EBBC1C792B0600F317DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */,
+				8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */,
+				8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */,
+				8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBD01C792B0600F317DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A32EBD91C792B0600F317DF /* SwiftGridExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A32EBDB1C792B0600F317DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8A32EBD61C792B0600F317DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A32EBBF1C792B0600F317DF /* SwiftGridExample */;
+			targetProxy = 8A32EBD51C792B0600F317DF /* PBXContainerItemProxy */;
+		};
+		8A32EBE11C792B0600F317DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A32EBBF1C792B0600F317DF /* SwiftGridExample */;
+			targetProxy = 8A32EBE01C792B0600F317DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8A32EBC71C792B0600F317DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A32EBC81C792B0600F317DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8A32EBCD1C792B0600F317DF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8A32EBE61C792B0600F317DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8A32EBE71C792B0600F317DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8A32EBE91C792B0600F317DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftGridExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		8A32EBEA1C792B0600F317DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = SwiftGridExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		8A32EBEC1C792B0600F317DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGridExample.app/SwiftGridExample";
+			};
+			name = Debug;
+		};
+		8A32EBED1C792B0600F317DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGridExample.app/SwiftGridExample";
+			};
+			name = Release;
+		};
+		8A32EBEF1C792B0600F317DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftGridExample;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		8A32EBF01C792B0600F317DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = SwiftGridExample;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8A32EBBB1C792B0600F317DF /* Build configuration list for PBXProject "SwiftGridExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A32EBE61C792B0600F317DF /* Debug */,
+				8A32EBE71C792B0600F317DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A32EBE81C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A32EBE91C792B0600F317DF /* Debug */,
+				8A32EBEA1C792B0600F317DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A32EBEB1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A32EBEC1C792B0600F317DF /* Debug */,
+				8A32EBED1C792B0600F317DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A32EBEE1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A32EBEF1C792B0600F317DF /* Debug */,
+				8A32EBF01C792B0600F317DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8A32EBB81C792B0600F317DF /* Project object */;
+}
