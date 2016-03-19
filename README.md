@@ -9,9 +9,9 @@ Swift based data grid component. Currently under development and not truly produ
 
 ## Installation with CocoaPods
 
-It is required to specify the current repo in your podfile. Since the project is written in swift it is required to include 'use_frameworks!'
+Since the project is written in swift it is required to include 'use_frameworks!'
 ```ruby
-pod 'SwiftGridView', :git => 'https://github.com/nlampi/SwiftGridView.git'
+pod 'SwiftGridView', '~> 0.1'
 
 use_frameworks!
 ```
