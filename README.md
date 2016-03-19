@@ -1,7 +1,9 @@
 SwiftGridView
 ============
 
-![CocoaPods Compatible](https://img.shields.io/badge/pod-v0.1.0-blue.svg)
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftGridView.svg?style=flat)](http://cocoapods.org/pods/SwiftGridView)
+[![License](https://img.shields.io/cocoapods/l/SwiftGridView.svg?style=flat)](http://cocoapods.org/pods/SwiftGridView)
+[![Platform](https://img.shields.io/cocoapods/p/SwiftGridView.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGridView)
 
 Swift based data grid component. Currently under development and not truly production ready. If there is interest I will continue to develop the component and build up a guide for using beyond the included example. Currently this project is iOS9+ compatible only. I have also included a podspec, but it is not yet published. I have not tested this in an Objective-C project, so if you have any issues, please let me know.
 
