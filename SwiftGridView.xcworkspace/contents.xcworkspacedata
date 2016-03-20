@@ -5,6 +5,6 @@
       location = "group:Example/SwiftGridExample.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/nlampi/Documents/AppDev/git/SwiftGrid/SwiftGridView.xcodeproj">
+      location = "group:SwiftGridView.xcodeproj">
    </FileRef>
 </Workspace>

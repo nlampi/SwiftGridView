@@ -23,23 +23,23 @@ import Foundation
 import UIKit
 
 public extension NSIndexPath {
-    convenience init(forDGRow row: Int, atColumn column: Int, inSection section: Int) {
+    convenience init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
         let indexes: [Int] = [section, column, row]
         
         self.init(indexes: indexes, length: indexes.count)
     }
     
-    var dgSection: Int { get {
+    var sgSection: Int { get {
         
             return self.indexAtPosition(0)
         }
     }
-    var dgRow: Int { get {
+    var sgRow: Int { get {
         
             return self.indexAtPosition(2)
         }
     }
-    var dgColumn: Int { get {
+    var sgColumn: Int { get {
         
             return self.indexAtPosition(1)
         }
@@ -121,16 +121,16 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     private func initDefaults() {
-        dgCollectionViewLayout = SwiftGridLayout()
+        sgCollectionViewLayout = SwiftGridLayout()
         
         // FIXME: Use constraints!
-        self.dgCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: dgCollectionViewLayout)
-        self.dgCollectionView.dataSource = self // TODO: Separate DataSource/Delegate?
-        self.dgCollectionView.delegate = self
-        self.dgCollectionView.backgroundColor = UIColor.whiteColor()
-        self.dgCollectionView.allowsMultipleSelection = true
+        self.sgCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: sgCollectionViewLayout)
+        self.sgCollectionView.dataSource = self // TODO: Separate DataSource/Delegate?
+        self.sgCollectionView.delegate = self
+        self.sgCollectionView.backgroundColor = UIColor.whiteColor()
+        self.sgCollectionView.allowsMultipleSelection = true
         
-        self.addSubview(self.dgCollectionView)
+        self.addSubview(self.sgCollectionView)
     }
     
     
@@ -141,10 +141,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     public var allowsSelection: Bool {
         set(allowsSelection) {
-            self.dgCollectionView.allowsSelection = allowsSelection
+            self.sgCollectionView.allowsSelection = allowsSelection
         }
         get {
-            return self.dgCollectionView.allowsSelection
+            return self.sgCollectionView.allowsSelection
         }
     }
     
@@ -170,55 +170,55 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     public var bounces: Bool {
         set(bounces) {
-            self.dgCollectionView.bounces = bounces
+            self.sgCollectionView.bounces = bounces
         }
         get {
-            return self.dgCollectionView.bounces
+            return self.sgCollectionView.bounces
         }
     }
     
     public var stickySectionHeaders: Bool {
         set(stickySectionHeaders) {
-            self.dgCollectionViewLayout.stickySectionHeaders = stickySectionHeaders
+            self.sgCollectionViewLayout.stickySectionHeaders = stickySectionHeaders
         }
         get {
-            return self.dgCollectionViewLayout.stickySectionHeaders
+            return self.sgCollectionViewLayout.stickySectionHeaders
         }
     }
     
     public var alwaysBounceVertical: Bool {
         set(alwaysBounceVertical) {
-            self.dgCollectionView.alwaysBounceVertical = alwaysBounceVertical
+            self.sgCollectionView.alwaysBounceVertical = alwaysBounceVertical
         }
         get {
-            return self.dgCollectionView.alwaysBounceVertical
+            return self.sgCollectionView.alwaysBounceVertical
         }
     }
     
     public var alwaysBounceHorizontal: Bool {
         set(alwaysBounceHorizontal) {
-            self.dgCollectionView.alwaysBounceHorizontal = alwaysBounceHorizontal
+            self.sgCollectionView.alwaysBounceHorizontal = alwaysBounceHorizontal
         }
         get {
-            return self.dgCollectionView.alwaysBounceHorizontal
+            return self.sgCollectionView.alwaysBounceHorizontal
         }
     }
     
     public var showsHorizontalScrollIndicator: Bool {
         set(showsHorizontalScrollIndicator) {
-            self.dgCollectionView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
+            self.sgCollectionView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
         }
         get {
-            return self.dgCollectionView.showsHorizontalScrollIndicator
+            return self.sgCollectionView.showsHorizontalScrollIndicator
         }
     }
     
     public var showsVerticalScrollIndicator: Bool {
         set(showsVerticalScrollIndicator) {
-            self.dgCollectionView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
+            self.sgCollectionView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
         }
         get {
-            return self.dgCollectionView.showsVerticalScrollIndicator
+            return self.sgCollectionView.showsVerticalScrollIndicator
         }
     }
     
@@ -227,13 +227,13 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         set(pinchExpandEnabled) {
             if(_pinchExpandEnabled) {
                 if(!pinchExpandEnabled) {
-                    self.dgCollectionView.removeGestureRecognizer(self.dgPinchGestureRecognizer)
-                    self.dgCollectionView.removeGestureRecognizer(self.dgTwoTapGestureRecognizer)
+                    self.sgCollectionView.removeGestureRecognizer(self.sgPinchGestureRecognizer)
+                    self.sgCollectionView.removeGestureRecognizer(self.sgTwoTapGestureRecognizer)
                 }
             } else {
-                self.dgCollectionView.addGestureRecognizer(self.dgPinchGestureRecognizer)
-                self.dgTwoTapGestureRecognizer.numberOfTouchesRequired = 2
-                self.dgCollectionView.addGestureRecognizer(self.dgTwoTapGestureRecognizer)
+                self.sgCollectionView.addGestureRecognizer(self.sgPinchGestureRecognizer)
+                self.sgTwoTapGestureRecognizer.numberOfTouchesRequired = 2
+                self.sgCollectionView.addGestureRecognizer(self.sgTwoTapGestureRecognizer)
             }
             
             _pinchExpandEnabled = pinchExpandEnabled
@@ -246,44 +246,44 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: - Private Variables
     
-    private var dgCollectionView: UICollectionView!
-    private var dgCollectionViewLayout: SwiftGridLayout!
-    private lazy var dgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: Selector("handlePinchGesture:"))
-    private lazy var dgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: Selector("handleTwoFingerTapGesture:"))
+    private var sgCollectionView: UICollectionView!
+    private var sgCollectionViewLayout: SwiftGridLayout!
+    private lazy var sgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: Selector("handlePinchGesture:"))
+    private lazy var sgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: Selector("handleTwoFingerTapGesture:"))
     
-    private var _dgSectionCount: Int = 0
-    private var dgSectionCount: Int {
+    private var _sgSectionCount: Int = 0
+    private var sgSectionCount: Int {
         get {
-            if(_dgSectionCount == 0) {
-                _dgSectionCount = self.dataSource!.numberOfSectionsInDataGridView(self)
+            if(_sgSectionCount == 0) {
+                _sgSectionCount = self.dataSource!.numberOfSectionsInDataGridView(self)
             }
             
-            return _dgSectionCount;
+            return _sgSectionCount;
         }
     }
     
-    private var _dgColumnCount: Int = 0
-    private var dgColumnCount: Int {
+    private var _sgColumnCount: Int = 0
+    private var sgColumnCount: Int {
         get {
-            if(_dgColumnCount == 0) {
-                _dgColumnCount = self.dataSource!.numberOfColumnsInDataGridView(self)
+            if(_sgColumnCount == 0) {
+                _sgColumnCount = self.dataSource!.numberOfColumnsInDataGridView(self)
             }
             
-            return _dgColumnCount;
+            return _sgColumnCount;
         }
     }
     
-    private var _dgColumnWidth: CGFloat = 0
-    private var dgColumnWidth: CGFloat {
+    private var _sgColumnWidth: CGFloat = 0
+    private var sgColumnWidth: CGFloat {
         get {
-            if(_dgColumnWidth == 0) {
+            if(_sgColumnWidth == 0) {
                 
-                for(var columnIndex = 0; columnIndex < self.dgColumnCount; columnIndex++) {
-                    _dgColumnWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: columnIndex);
+                for(var columnIndex = 0; columnIndex < self.sgColumnCount; columnIndex++) {
+                    _sgColumnWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: columnIndex);
                 }
             }
             
-            return _dgColumnWidth;
+            return _sgColumnWidth;
         }
     }
     
@@ -297,8 +297,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // TODO: Is this how resize should be handled?
     public override func layoutSubviews() {
-        if(self.dgCollectionView.frame != self.bounds) {
-            self.dgCollectionView.frame = self.bounds
+        if(self.sgCollectionView.frame != self.bounds) {
+            self.sgCollectionView.frame = self.bounds
         }
     }
     
@@ -306,18 +306,18 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     // MARK: - Public Methods
     
     public func reloadData() {
-        _dgSectionCount = 0
-        _dgColumnCount = 0
-        _dgColumnWidth = 0
+        _sgSectionCount = 0
+        _sgColumnCount = 0
+        _sgColumnWidth = 0
         
         self.selectedHeaders = NSMutableDictionary()
         self.selectedSectionHeaders = NSMutableDictionary()
         self.selectedSectionFooters = NSMutableDictionary()
         self.selectedFooters = NSMutableDictionary()
         
-        dgCollectionViewLayout.resetCachedParameters();
+        sgCollectionViewLayout.resetCachedParameters();
         
-        self.dgCollectionView.reloadData()
+        self.sgCollectionView.reloadData()
     }
     
     public func reloadCellsAtIndexPaths(indexPaths: [NSIndexPath], animated: Bool) {
@@ -328,13 +328,13 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         let convertedPaths = self.reverseIndexPathConversionForIndexPaths(indexPaths)
         
         if(animated) {
-            self.dgCollectionView.performBatchUpdates({
-                self.dgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
+            self.sgCollectionView.performBatchUpdates({
+                self.sgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
                 }, completion: { completed in
                     completion?(completed)
             })
         } else {
-            self.dgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
+            self.sgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
             completion?(true) // TODO: Fix!
         }
         
@@ -346,33 +346,33 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
 //        let context = UICollectionViewLayoutInvalidationContext()
 //        context.invalidateSupplementaryElementsOfKind(elementKind, atIndexPaths: convertedPaths)
 //            
-//        self.dgCollectionViewLayout.invalidateLayoutWithContext(context)
+//        self.sgCollectionViewLayout.invalidateLayoutWithContext(context)
 //    }
     
     public func registerClass(cellClass: AnyClass?, forCellWithReuseIdentifier identifier: String) {
-        self.dgCollectionView.registerClass(cellClass, forCellWithReuseIdentifier:identifier)
+        self.sgCollectionView.registerClass(cellClass, forCellWithReuseIdentifier:identifier)
     }
     
     public func registerClass(viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
-        self.dgCollectionView.registerClass(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
+        self.sgCollectionView.registerClass(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
     }
     
     public func dequeueReusableCellWithReuseIdentifier(identifier: String, forIndexPath indexPath: NSIndexPath!) -> SwiftGridCell {
         let revertedPath: NSIndexPath = self.reverseIndexPathConversion(indexPath)
         
-        return self.dgCollectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: revertedPath) as! SwiftGridCell
+        return self.sgCollectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: revertedPath) as! SwiftGridCell
     }
     
     public func dequeueReusableSupplementaryViewOfKind(elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
         let revertedPath: NSIndexPath = NSIndexPath(forItem: column, inSection: 0);
         
-        return self.dgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
+        return self.sgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
     }
     
     public func dequeueReusableSupplementaryViewOfKind(elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView {
         let revertedPath: NSIndexPath = self.reverseIndexPathConversion(indexPath);
         
-        return self.dgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
+        return self.sgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
     }
     
     public func selectCellAtIndexPath(indexPath:NSIndexPath, animated: Bool) {
@@ -380,7 +380,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             self.selectRowAtIndexPath(indexPath, animated: animated)
         } else {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            self.dgCollectionView.selectItemAtIndexPath(convertedPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
+            self.sgCollectionView.selectItemAtIndexPath(convertedPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
         }
     }
     
@@ -390,7 +390,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             self.deselectRowAtIndexPath(indexPath, animated: animated)
         } else {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            self.dgCollectionView.deselectItemAtIndexPath(convertedPath, animated: animated)
+            self.sgCollectionView.deselectItemAtIndexPath(convertedPath, animated: animated)
         }
     }
     
@@ -433,51 +433,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     public func scrollToCellAtIndexPath(indexPath: NSIndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
         
-        self.dgCollectionView.scrollToItemAtIndexPath(convertedPath, atScrollPosition: scrollPosition, animated: animated)
+        self.sgCollectionView.scrollToItemAtIndexPath(convertedPath, atScrollPosition: scrollPosition, animated: animated)
     }
-    
-    /*
-    SwiftGrid
-    - Base Class
-        - Pull To Refresh
-        - SizeOfCellAtIndexPath?
-        - RectForCellAtIndexPath?
-        - RectForSectionCellAtIndexPath?
-        - ScrollToCellAtIndexPath position
-        - Estimated Heights for performance?
-        - indexPathsForVisibleCells
-        - indexPathsForVisibleSectionCells
-        - reloadCellAtIndexPaths withAnim?
-    - Header
-        - Future: reorder/longpress-drag?
-    - Sections
-        - Delegate: canExpandSectionAtIndex
-        - DataSource: imageForCellExpansion
-        - Delegate: expansionImageLeftPaddingForSection
-        - Delegate: expansionImageRightPaddingForSection
-    - Cell Based
-        - Borders on view (bit mask?)
-        - Change border color/width
-        - Delegate: shouldHightLightCell
-        - Delegate: didHighlightCell
-        - Delegate: didUnhighlightRow
-    - Footer
-        - sticky?
-        - Delegate: didSelectFooterAtColIndex, sectionIndexPath?
-    - Freeze
-        - row/col (first n)
-        - Delegate: numberOfFrozenRows? how would that work? per section?... could be cool?
-    - Sort
-        - Sort direction dataType
-        - Indicator Image
-            - Asc
-            - Desc
-            - None
-        - Delegate: canSortColumn
-        - Delegate: sortOnColumn inDirection
-        - DataSource: sortIndicatorImageForSortDirection
-        - Delegate: didChangeToSortOnColumn inDirection
-    */
     
     
     // MARK: - Private Pinch Recognizer
@@ -490,32 +447,32 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         
         if (recognizer.scale > 0.35 && recognizer.scale < 5) {
             
-            self.dgCollectionViewLayout.zoomScale = recognizer.scale
+            self.sgCollectionViewLayout.zoomScale = recognizer.scale
         }
     }
     
     internal func handleTwoFingerTapGesture(recognizer: UITapGestureRecognizer) {
         
-        if(self.dgCollectionViewLayout.zoomScale != 1.0) {
-            self.dgCollectionViewLayout.zoomScale = 1.0
+        if(self.sgCollectionViewLayout.zoomScale != 1.0) {
+            self.sgCollectionViewLayout.zoomScale = 1.0
         }
     }
     
     
     // MARK: - Private conversion Methods
     
-    private func convertCVIndexPathToDGIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
-        let row: Int = indexPath.row / self.dgColumnCount
-        let column: Int = indexPath.row % self.dgColumnCount
+    private func convertCVIndexPathToSGIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+        let row: Int = indexPath.row / self.sgColumnCount
+        let column: Int = indexPath.row % self.sgColumnCount
         
-        let convertedPath: NSIndexPath = NSIndexPath(forDGRow: row, atColumn: column, inSection: indexPath.section)
+        let convertedPath: NSIndexPath = NSIndexPath(forSGRow: row, atColumn: column, inSection: indexPath.section)
         
         return convertedPath
     }
     
     private func reverseIndexPathConversion(indexPath: NSIndexPath) -> NSIndexPath {
-        let item: Int = indexPath.dgRow * self.dgColumnCount + indexPath.dgColumn
-        let revertedPath: NSIndexPath = NSIndexPath(forItem: item, inSection: indexPath.dgSection)
+        let item: Int = indexPath.sgRow * self.sgColumnCount + indexPath.sgColumn
+        let revertedPath: NSIndexPath = NSIndexPath(forItem: item, inSection: indexPath.sgSection)
         
         return revertedPath
     }
@@ -656,17 +613,17 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     private func toggleSelectedOnReusableViewRowOfKind(kind: String, atIndexPath indexPath: NSIndexPath, selected: Bool) {
-        for columnIndex in 0...self.dgColumnCount - 1 {
-            let dgPath = NSIndexPath.init(forDGRow: indexPath.dgRow, atColumn: columnIndex, inSection: indexPath.dgSection)
-            let itemPath = self.reverseIndexPathConversion(dgPath)
+        for columnIndex in 0...self.sgColumnCount - 1 {
+            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let itemPath = self.reverseIndexPathConversion(sgPath)
             
             if(selected) {
-                self.selectReusableViewOfKind(kind, atIndexPath: dgPath)
+                self.selectReusableViewOfKind(kind, atIndexPath: sgPath)
             } else {
-                self.deselectReusableViewOfKind(kind, atIndexPath: dgPath)
+                self.deselectReusableViewOfKind(kind, atIndexPath: sgPath)
             }
             
-            guard let reusableView = self.dgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
+            guard let reusableView = self.sgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
                 else {
                     continue;
             }
@@ -714,10 +671,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     private func toggleHighlightOnReusableViewRowOfKind(kind: String, atIndexPath indexPath: NSIndexPath, highlighted: Bool) {
-        for columnIndex in 0...self.dgColumnCount - 1 {
-            let dgPath = NSIndexPath.init(forDGRow: indexPath.dgRow, atColumn: columnIndex, inSection: indexPath.dgSection)
-            let itemPath = self.reverseIndexPathConversion(dgPath)
-            guard let reusableView = self.dgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
+        for columnIndex in 0...self.sgColumnCount - 1 {
+            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let itemPath = self.reverseIndexPathConversion(sgPath)
+            guard let reusableView = self.sgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
                 else {
                     continue;
             }
@@ -730,8 +687,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     // MARK: - SwiftGridLayoutDelegate Methods
     
     public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let convertedPath: NSIndexPath = self.convertCVIndexPathToDGIndexPath(indexPath)
-        let colWidth: CGFloat = self.delegate!.dataGridView(self, widthOfColumnAtIndex: convertedPath.dgColumn)
+        let convertedPath: NSIndexPath = self.convertCVIndexPathToSGIndexPath(indexPath)
+        let colWidth: CGFloat = self.delegate!.dataGridView(self, widthOfColumnAtIndex: convertedPath.sgColumn)
         let rowHeight: CGFloat = self.delegate!.dataGridView(self, heightOfRowAtIndexPath: convertedPath)
         
         return CGSizeMake(colWidth, rowHeight)
@@ -789,7 +746,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
-        return self.dgColumnCount
+        return self.sgColumnCount
     }
     
     func collectionView(collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
@@ -805,7 +762,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     func collectionView(collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat {
     
-        return self.dgColumnWidth
+        return self.sgColumnWidth
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
@@ -818,17 +775,17 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         
-        return self.dgSectionCount
+        return self.sgSectionCount
     }
     
     public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let numberOfCells: Int = self.dgColumnCount * self.numberOfRowsInSection(section)
+        let numberOfCells: Int = self.sgColumnCount * self.numberOfRowsInSection(section)
         
         return numberOfCells
     }
     
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = self.dataSource!.dataGridView(self, cellAtIndexPath: self.convertCVIndexPathToDGIndexPath(indexPath))
+        let cell = self.dataSource!.dataGridView(self, cellAtIndexPath: self.convertCVIndexPathToSGIndexPath(indexPath))
         
         return cell
     }
@@ -836,7 +793,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     // TODO: Make this more fail friendly?
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         var reusableView: SwiftGridReusableView
-        let convertedPath = self.convertCVIndexPathToDGIndexPath(indexPath)
+        let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         switch(kind) {
         case SwiftGridElementKindSectionHeader:
@@ -848,11 +805,11 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             reusableView.selected = self.selectedSectionFooters[convertedPath] != nil ? true : false
             break
         case SwiftGridElementKindHeader:
-            reusableView = self.dataSource!.dataGridView!(self, gridHeaderViewForColumn: convertedPath.dgColumn)
+            reusableView = self.dataSource!.dataGridView!(self, gridHeaderViewForColumn: convertedPath.sgColumn)
             reusableView.selected = self.selectedHeaders[convertedPath] != nil ? true : false
             break
         case SwiftGridElementKindFooter:
-            reusableView = self.dataSource!.dataGridView!(self, gridFooterViewForColumn: convertedPath.dgColumn)
+            reusableView = self.dataSource!.dataGridView!(self, gridFooterViewForColumn: convertedPath.sgColumn)
             reusableView.selected = self.selectedFooters[convertedPath] != nil ? true : false
             break
         default:
@@ -871,40 +828,40 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     // MARK - UICollectionView Delegate
     
     private func selectRowAtIndexPath(indexPath: NSIndexPath, animated: Bool) {
-        for columnIndex in 0...self.dgColumnCount - 1 {
-            let dgPath = NSIndexPath.init(forDGRow: indexPath.dgRow, atColumn: columnIndex, inSection: indexPath.dgSection)
-            let itemPath = self.reverseIndexPathConversion(dgPath)
-            self.dgCollectionView.selectItemAtIndexPath(itemPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
+        for columnIndex in 0...self.sgColumnCount - 1 {
+            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let itemPath = self.reverseIndexPathConversion(sgPath)
+            self.sgCollectionView.selectItemAtIndexPath(itemPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
         }
     }
     
     private func deselectRowAtIndexPath(indexPath: NSIndexPath, animated: Bool) {
-        for columnIndex in 0...self.dgColumnCount - 1 {
-            let dgPath = NSIndexPath.init(forDGRow: indexPath.dgRow, atColumn: columnIndex, inSection: indexPath.dgSection)
-            let itemPath = self.reverseIndexPathConversion(dgPath)
-            self.dgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
+        for columnIndex in 0...self.sgColumnCount - 1 {
+            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let itemPath = self.reverseIndexPathConversion(sgPath)
+            self.sgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
         }
     }
     
     private func deselectAllItemsIgnoring(indexPath: NSIndexPath, animated: Bool) {
-        for itemPath in self.dgCollectionView.indexPathsForSelectedItems() ?? [] {
+        for itemPath in self.sgCollectionView.indexPathsForSelectedItems() ?? [] {
             if(itemPath.item == indexPath.item) {
                 continue
             }
-            self.dgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
+            self.sgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
         }
     }
     
     private func toggleHighlightOnRowAtIndexPath(indexPath: NSIndexPath, highlighted: Bool) {
-        for columnIndex in 0...self.dgColumnCount - 1 {
-            let dgPath = NSIndexPath.init(forDGRow: indexPath.dgRow, atColumn: columnIndex, inSection: indexPath.dgSection)
-            let itemPath = self.reverseIndexPathConversion(dgPath)
-            self.dgCollectionView.cellForItemAtIndexPath(itemPath)?.highlighted = highlighted
+        for columnIndex in 0...self.sgColumnCount - 1 {
+            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let itemPath = self.reverseIndexPathConversion(sgPath)
+            self.sgCollectionView.cellForItemAtIndexPath(itemPath)?.highlighted = highlighted
         }
     }
     
     public func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let convertedPath = self.convertCVIndexPathToDGIndexPath(indexPath)
+        let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {
             self.toggleHighlightOnRowAtIndexPath(convertedPath, highlighted: true)
@@ -912,7 +869,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     public func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-        let convertedPath = self.convertCVIndexPathToDGIndexPath(indexPath)
+        let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {
             self.toggleHighlightOnRowAtIndexPath(convertedPath, highlighted: false)
@@ -920,7 +877,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let convertedPath = self.convertCVIndexPathToDGIndexPath(indexPath)
+        let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(!self.allowsMultipleSelection) {
             self.deselectAllItemsIgnoring(indexPath, animated: false)
@@ -934,7 +891,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     public func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
-        let convertedPath = self.convertCVIndexPathToDGIndexPath(indexPath)
+        let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {
             self.deselectRowAtIndexPath(convertedPath, animated: false)
