@@ -23,6 +23,30 @@ Then to complete the install run the following:
 $ pod install
 ```
 
+## Features
+
+Currently the Swift Grid View supports a lot of the expected features for a data grid, but it may not cover all requirements.
+
+#### Cell Types
+- Header
+- Footer
+- Section Headers
+- Section Footers
+- Standard Cells
+
+#### Cell Selection
+- Row Selection
+- Cell Selection
+- Multi selection 
+- Header/Footer selection
+
+#### Additional Functionality
+- Sticky section headers
+- Frozen Columns
+
+## Usage
+
+For an example of how to utilize, see the example project. It is pretty similar to any other view type with required data source and delegate methods.
 
 ## License
 
