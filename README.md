@@ -13,7 +13,7 @@ Swift based data grid component. Currently under development and not truly produ
 
 Since the project is written in swift it is required to include 'use_frameworks!'
 ```ruby
-pod 'SwiftGridView', '~> 0.1'
+pod 'SwiftGridView', '~> 0.2'
 
 use_frameworks!
 ```
