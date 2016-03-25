@@ -16,6 +16,8 @@
 		8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */; };
 		8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF21C792B6900F317DF /* BasicTextCell.swift */; };
 		8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */; };
+		8A9119681CA5E4B400108A69 /* SwiftGridView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9119671CA5E4B400108A69 /* SwiftGridView.framework */; };
+		8A9119691CA5E4B400108A69 /* SwiftGridView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9119671CA5E4B400108A69 /* SwiftGridView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8A91196A1CA5E4B400108A69 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8A9119691CA5E4B400108A69 /* SwiftGridView.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8A32EBC01C792B0600F317DF /* SwiftGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A32EBC31C792B0600F317DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +67,7 @@
 		8A32EBE51C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A32EBF21C792B6900F317DF /* BasicTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextCell.swift; sourceTree = "<group>"; };
 		8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextReusableView.swift; sourceTree = "<group>"; };
+		8A9119671CA5E4B400108A69 /* SwiftGridView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = SwiftGridView.framework; path = "/Users/nlampi/Library/Developer/Xcode/DerivedData/SwiftGridView-cvxfbdfxwyeinydiohsdltfggzll/Build/Products/Debug-iphoneos/SwiftGridView.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A9119681CA5E4B400108A69 /* SwiftGridView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +99,7 @@
 		8A32EBB71C792B0600F317DF = {
 			isa = PBXGroup;
 			children = (
+				8A9119671CA5E4B400108A69 /* SwiftGridView.framework */,
 				8A32EBC21C792B0600F317DF /* SwiftGridExample */,
 				8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */,
 				8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */,
@@ -149,6 +168,7 @@
 				8A32EBBC1C792B0600F317DF /* Sources */,
 				8A32EBBD1C792B0600F317DF /* Frameworks */,
 				8A32EBBE1C792B0600F317DF /* Resources */,
+				8A91196A1CA5E4B400108A69 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,6 +368,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -365,6 +387,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -393,6 +416,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -404,6 +429,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -415,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
@@ -426,6 +453,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;

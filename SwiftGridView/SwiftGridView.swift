@@ -22,23 +22,39 @@
 import Foundation
 import UIKit
 
+
+/**
+ Swift Grid View Index Path
+ */
 public extension NSIndexPath {
+    /**
+        Init Swift Grid View Index Path
+     
+        - Parameter row: Row for the data grid
+        - Parameter column: Column for the data grid
+        - Paramter section: Section for the data grid
+    */
     convenience init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
         let indexes: [Int] = [section, column, row]
         
         self.init(indexes: indexes, length: indexes.count)
     }
     
+    /// Swift Grid View Section
     var sgSection: Int { get {
         
             return self.indexAtPosition(0)
         }
     }
+    
+    /// Swift Grid View Row
     var sgRow: Int { get {
         
             return self.indexAtPosition(2)
         }
     }
+    
+    /// Swift Grid View Column
     var sgColumn: Int { get {
         
             return self.indexAtPosition(1)
@@ -56,7 +72,11 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
     func numberOfSectionsInDataGridView(dataGridView: SwiftGridView) -> Int
     func numberOfColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
     func dataGridView(dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int
+    
+    /// Cell that is returned must be dequeued and of Swift Grid Cell type
     func dataGridView(dataGridView: SwiftGridView, cellAtIndexPath indexPath: NSIndexPath) -> SwiftGridCell
+    
+    /// Provide the number of columns which will be frozen and not scroll horizontally out of view.
     optional func numberOfFrozenColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
     
     // Grid Header
@@ -74,6 +94,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
 
 
 @objc public protocol SwiftGridViewDelegate {
+    // Grid Row and Column Sizing
     func dataGridView(dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
     func dataGridView(dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     
@@ -107,7 +128,6 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: - Init
     
-    // TODO: Subclass UIView? CollectionView? ScrollView? hide init?
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -123,7 +143,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     private func initDefaults() {
         sgCollectionViewLayout = SwiftGridLayout()
         
-        // FIXME: Use constraints!
+        // FIXME: Use constraints!?
         self.sgCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: sgCollectionViewLayout)
         self.sgCollectionView.dataSource = self // TODO: Separate DataSource/Delegate?
         self.sgCollectionView.delegate = self
@@ -177,6 +197,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    /// Determines whether section headers will stick while scrolling vertically or scroll off screen.
     public var stickySectionHeaders: Bool {
         set(stickySectionHeaders) {
             self.sgCollectionViewLayout.stickySectionHeaders = stickySectionHeaders
@@ -223,6 +244,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     private var _pinchExpandEnabled: Bool = false
+    
+    /// Pinch to expand increases the size of the columns. Experimental feature.
     public var pinchExpandEnabled: Bool {
         set(pinchExpandEnabled) {
             if(_pinchExpandEnabled) {
@@ -248,8 +271,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     private var sgCollectionView: UICollectionView!
     private var sgCollectionViewLayout: SwiftGridLayout!
-    private lazy var sgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: Selector("handlePinchGesture:"))
-    private lazy var sgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: Selector("handleTwoFingerTapGesture:"))
+    private lazy var sgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handlePinchGesture(_:)))
+    private lazy var sgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handleTwoFingerTapGesture(_:)))
     
     private var _sgSectionCount: Int = 0
     private var sgSectionCount: Int {
@@ -278,7 +301,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         get {
             if(_sgColumnWidth == 0) {
                 
-                for(var columnIndex = 0; columnIndex < self.sgColumnCount; columnIndex++) {
+                for columnIndex in 0 ..< self.sgColumnCount {
                     _sgColumnWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: columnIndex);
                 }
             }
@@ -287,6 +310,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    // Cache selected items.
     private var selectedHeaders: NSMutableDictionary = NSMutableDictionary()
     private var selectedSectionHeaders: NSMutableDictionary = NSMutableDictionary()
     private var selectedSectionFooters: NSMutableDictionary = NSMutableDictionary()
@@ -297,6 +321,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // TODO: Is this how resize should be handled?
     public override func layoutSubviews() {
+        super.layoutSubviews()
+        
         if(self.sgCollectionView.frame != self.bounds) {
             self.sgCollectionView.frame = self.bounds
         }
@@ -686,7 +712,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: - SwiftGridLayoutDelegate Methods
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let convertedPath: NSIndexPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         let colWidth: CGFloat = self.delegate!.dataGridView(self, widthOfColumnAtIndex: convertedPath.sgColumn)
         let rowHeight: CGFloat = self.delegate!.dataGridView(self, heightOfRowAtIndexPath: convertedPath)
@@ -694,7 +720,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         return CGSizeMake(colWidth, rowHeight)
     }
     
-    public func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> CGSize {
+    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> CGSize {
         var colWidth: CGFloat = 0.0
         var rowHeight: CGFloat = 0
         
@@ -739,17 +765,17 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         return CGSizeMake(colWidth, rowHeight)
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int {
+    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int {
         
         return self.numberOfRowsInSection(sectionIndex)
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
+    internal func collectionView(collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         return self.sgColumnCount
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
+    internal func collectionView(collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         if let frozenCount = self.dataSource?.numberOfFrozenColumnsInDataGridView?(self) {
             
@@ -760,12 +786,12 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    func collectionView(collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat {
+    internal func collectionView(collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat {
     
         return self.sgColumnWidth
     }
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
+    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
         
         return self.delegate!.dataGridView(self, widthOfColumnAtIndex :columnIndex)
     }

@@ -61,7 +61,7 @@ class SwiftGridLayout : UICollectionViewLayout {
                 _sgLayoutSize.height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: emptyPath).height
                 
                 // Add Section Sizes
-                for(var sectionIndex: NSInteger = 0; sectionIndex < self.collectionView!.numberOfSections(); sectionIndex++) {
+                for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections() {
                     _sgLayoutSize.height += self.heightOfSectionAtIndexPath(NSIndexPath(forItem: 0, inSection: sectionIndex))
                 }
                 
@@ -152,7 +152,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         // Skip headers when height is 0
         let zeroPath = NSIndexPath(forItem: 0, inSection: 0)
         if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: zeroPath).height > 0) {
-            for(var attributeIndex:Int = 0; attributeIndex < self.numberOfColumns(); attributeIndex++) {
+            for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                 let layoutAttributes = self.layoutAttributesForSupplementaryViewOfKind(SwiftGridElementKindHeader, atIndexPath: NSIndexPath(forItem: attributeIndex, inSection: 0))!
                 
                 if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
@@ -164,14 +164,14 @@ class SwiftGridLayout : UICollectionViewLayout {
             }
         }
 
-        for (var sectionIndex:Int = 0; sectionIndex < self.collectionView!.numberOfSections(); sectionIndex++) {
+        for sectionIndex:Int in 0 ..< self.collectionView!.numberOfSections() {
             let numberOfItemsInSection: Int = self.numberOfColumns() * self.numberOfRowsInSection(sectionIndex)
             
             // Add section headers
             // Skip section headers when height is 0
             let sectionPath = NSIndexPath(forItem: 0, inSection: sectionIndex)
             if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: sectionPath).height > 0) {
-                for(var attributeIndex:Int = 0; attributeIndex < self.numberOfColumns(); attributeIndex++) {
+                for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                     let layoutAttributes = self.layoutAttributesForSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, atIndexPath: NSIndexPath(forItem: attributeIndex, inSection: sectionIndex))!
                     
                     if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
@@ -185,24 +185,29 @@ class SwiftGridLayout : UICollectionViewLayout {
             
             // Add row cells
             let attributeStartIndex = self.attributeStartAtOffset(self.collectionView!.contentOffset.y, inSection: sectionIndex, withMaxItems: numberOfItemsInSection)
-            for(var attributeIndex:Int = attributeStartIndex; attributeIndex < numberOfItemsInSection; attributeIndex++) {
+            var attributeIndex = attributeStartIndex
+            
+            while attributeIndex < numberOfItemsInSection {
                 let layoutAttributes = self.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: attributeIndex, inSection: sectionIndex))!
                 
                 if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
                     attributesArray.append(layoutAttributes)
+                    attributeIndex += 1
                 } else if(layoutAttributes.frame.origin.x > sizeMax.width) {
                     // Skip to next row.
-                    attributeIndex = (attributeIndex / self.numberOfColumns() + 1) * self.numberOfColumns() - 1
+                    attributeIndex = (attributeIndex / self.numberOfColumns() + 1) * self.numberOfColumns()
                 } else if(layoutAttributes.frame.origin.y > sizeMax.height) {
                     // All future values are not visible.
                     break;
+                } else {
+                    attributeIndex += 1
                 }
             }
             
             // Add section footers
             // Skip section footers when height is 0
             if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: sectionPath).height > 0) {
-                for(var attributeIndex:Int = 0; attributeIndex < self.numberOfColumns(); attributeIndex++) {
+                for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                     let layoutAttributes = self.layoutAttributesForSupplementaryViewOfKind(SwiftGridElementKindSectionFooter, atIndexPath: NSIndexPath(forItem: attributeIndex, inSection: sectionIndex))!
                     
                     if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
@@ -218,7 +223,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         // Add in Grid Footers
         // Skip footers when height is 0
         if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: zeroPath).height > 0) {
-            for(var attributeIndex:Int = 0; attributeIndex < self.numberOfColumns(); attributeIndex++) {
+            for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                 let layoutAttributes = self.layoutAttributesForSupplementaryViewOfKind(SwiftGridElementKindFooter, atIndexPath: NSIndexPath(forItem: attributeIndex, inSection: 0))!
                 
                 if (CGRectIntersectsRect(rect, layoutAttributes.frame)) {
@@ -327,7 +332,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let headerHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
         yOffset += headerHeight
         
-        for(var sectionIndex: Int = 0; sectionIndex < indexPath.section; sectionIndex++) {
+        for sectionIndex: Int in 0 ..< indexPath.section {
             let sectionPath = NSIndexPath(forItem: 0, inSection: sectionIndex)
             yOffset += self.heightOfSectionAtIndexPath(sectionPath)
         }
@@ -358,7 +363,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         // Add in header height
         yOffset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
         
-        for(var sectionIndex: Int = 0; sectionIndex <= indexPath.section; sectionIndex++) {
+        for sectionIndex: Int in 0 ..< indexPath.section {
             let sectionPath = NSIndexPath(forItem: 0, inSection: sectionIndex)
             yOffset += self.heightOfSectionAtIndexPath(sectionPath)
         }
@@ -424,7 +429,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     func horizontalOffsetForColumnAtIndex(column: Int) -> CGFloat {
         var offset: CGFloat = 0.0
         
-        for (var columnIndex: Int = 0; columnIndex < column; columnIndex++) {
+        for columnIndex: Int in 0 ..< column {
             offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
         }
         
@@ -441,7 +446,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             offset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
             
             // Add in previous section heights
-            for(var sectionIndex: Int = 0; sectionIndex < indexPath.section; sectionIndex++) {
+            for sectionIndex: Int in 0 ..< indexPath.section {
                 let sectionPath = NSIndexPath(forItem: 0, inSection: sectionIndex)
                 offset += self.heightOfSectionAtIndexPath(sectionPath)
             }
@@ -501,7 +506,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     func rowHeightSumToRow(maxRow:Int, atIndexPath indexPath: NSIndexPath) -> CGFloat {
         var height: CGFloat = 0.0
         
-        for(var rowIndex: Int = 0; rowIndex < maxRow; rowIndex++) {
+        for _: Int in 0 ..< maxRow {
             height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
         }
         
