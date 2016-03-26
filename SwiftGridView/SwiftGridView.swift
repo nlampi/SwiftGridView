@@ -23,16 +23,18 @@ import Foundation
 import UIKit
 
 
+// MARK: - SwiftGridView Extensions
+
 /**
- Swift Grid View Index Path
+ Swift Grid View Index Path Extension
  */
 public extension NSIndexPath {
     /**
-        Init Swift Grid View Index Path
-     
-        - Parameter row: Row for the data grid
-        - Parameter column: Column for the data grid
-        - Paramter section: Section for the data grid
+     Init Swift Grid View Index Path
+ 
+     - Parameter row: Row for the data grid
+     - Parameter column: Column for the data grid
+     - Paramter section: Section for the data grid
     */
     convenience init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
         let indexes: [Int] = [section, column, row]
@@ -68,65 +70,262 @@ public let SwiftGridElementKindFooter: String = "SwiftGridElementKindFooter"
 public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSectionFooter
 
 
+// MARK: - SwiftGridViewDataSource
+
+/**
+ The `SwiftGridViewDataSource` protocol is used much like a UICollectionView or UITableView data source for retrieving all data needed to display the data grid.
+ */
 @objc public protocol SwiftGridViewDataSource {
+    
+    // MARK: Count methods
+    
+    /**
+     Count of sections to display in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: The number of sections within the data grid.
+    */
     func numberOfSectionsInDataGridView(dataGridView: SwiftGridView) -> Int
+    
+    /**
+     Count of columns to display in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: The number of columns within the data grid.
+     */
     func numberOfColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
+    
+    /**
+     Number of rows to display in the provided data grid section.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter section: Current section index.
+     - Returns: The number of rows for the current section.
+     */
     func dataGridView(dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int
     
-    /// Cell that is returned must be dequeued and of Swift Grid Cell type
-    func dataGridView(dataGridView: SwiftGridView, cellAtIndexPath indexPath: NSIndexPath) -> SwiftGridCell
-    
-    /// Provide the number of columns which will be frozen and not scroll horizontally out of view.
+    /**
+     Number of frozen columns in the data grid. Frozen columns start from the left and will be "frozen" in place and not scroll horizontally out of view.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Count of frozen columns in the data grid.
+     */
     optional func numberOfFrozenColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
     
-    // Grid Header
+    
+    // MARK: Cell Methods
+    
+    /**
+     Return the cell content to be displayed in the data grid for the provided indexPath.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Paramter indexPath: The Swift Grid extended index path location of the cell.
+     - Returns: Cell that has been dequeued and of `SwiftGridCell` type.
+    */
+    func dataGridView(dataGridView: SwiftGridView, cellAtIndexPath indexPath: NSIndexPath) -> SwiftGridCell
+    
+    /**
+     Return the header view to be displayed in the provided column.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter column: Current column index.
+     - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView
     
-    // Grid Footer
+    /**
+     Number of sections to display in the data grid
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter column: Current column index.
+     - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView
     
-    // Section Header
+    /**
+     Number of sections to display in the data grid
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section header. Section and Column are provided values, Row is ignored.
+     - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView
     
-    // Section Footer
+    /**
+     Number of sections to display in the data grid
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section footer. Section and Column are provided values, Row is ignored.
+     - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, sectionFooterCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView
 }
 
 
+// MARK: - SwiftGridViewDelegate
+
+/**
+ The `SwiftGridViewDelegate` protocol is used much like a UICollectionView or UITableView delegate for handling interactions and sizing of the data grid.
+ */
 @objc public protocol SwiftGridViewDelegate {
-    // Grid Row and Column Sizing
+    
+    // MARK: Sizing
+    
+    /**
+     Returns the width of the specified column in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter columnIndex: Current column index.
+     - Returns: Width to be used for all views and cells in the provided column.
+     */
     func dataGridView(dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
+    
+    /**
+     Returns the height of the specified row in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the row. Section and Row are provided values, Column is ignored.
+     - Returns: Height to be used for all cells in the provided row.
+     */
     func dataGridView(dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
     
-    // Grid Header
+    
+    // MARK: Header Methods
+    
+    /**
+     Returns the height of the header views in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Height to be used for all views in the grid header.
+     */
     optional func heightForGridHeaderInDataGridView(dataGridView: SwiftGridView) -> CGFloat
+    
+    /**
+     Called when a header view is selected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when a header view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: NSIndexPath)
     
-    // Grid Footer
+    
+    // MARK: Footer Methods
+    
+    /**
+     Returns the height of the footer views in the data grid.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Height to be used for all views in the grid footer.
+     */
     optional func heightForGridFooterInDataGridView(dataGridView: SwiftGridView) -> CGFloat
+    
+    /**
+     Called when a footer view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when a footer view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: NSIndexPath)
     
-    // Section Header
+    
+    // MARK: Section Header Methods
+    
+    /**
+     Returns the height of the header views in the provided data grid section.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Height to be used for all views in the section's header.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat
+    
+    /**
+     Called when a section header view is selected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when a section header view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: NSIndexPath)
     
-    // Section Footer
+    
+    // MARK: Section Footer Methods
+    
+    /**
+     Returns the height of the footer views in the provided data grid section.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Height to be used for all views in the section's footer.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat
+    
+    /**
+     Called when a section footer view is selected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when a section footer view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: NSIndexPath)
     
-    // Cell selection
+    
+    // MARK: Cell Methods
+    
+    /**
+     Called when a cell is selected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the selected cell.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when a cell is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter indexPath: Current Swift Grid index path for the deselected cell.
+     */
     optional func dataGridView(dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: NSIndexPath)
 }
 
 
+// MARK: - SwiftGridView Class
+
+/**
+ `SwiftGridView` is the primary view class, utilizing a UICollectionView and a custom layout handler.
+ */
 public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewDelegate, SwiftGridLayoutDelegate, SwiftGridReusableViewDelegate {
     
-    // MARK: - Init
+    // MARK: Init
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -154,7 +353,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - Public Variables
+    // MARK: Public Variables
     
     public weak var dataSource: SwiftGridViewDataSource?
     public weak var delegate: SwiftGridViewDelegate?
@@ -267,7 +466,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - Private Variables
+    // MARK: Private Variables
     
     private var sgCollectionView: UICollectionView!
     private var sgCollectionViewLayout: SwiftGridLayout!
@@ -317,7 +516,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     private var selectedFooters: NSMutableDictionary = NSMutableDictionary()
     
     
-    // MARK: - Layout Subviews
+    // MARK: Layout Subviews
     
     // TODO: Is this how resize should be handled?
     public override func layoutSubviews() {
@@ -329,7 +528,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - Public Methods
+    // MARK: Public Methods
     
     public func reloadData() {
         _sgSectionCount = 0
@@ -366,7 +565,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         
     }
     
-    // Doesn't work as intended.
+    // FIXME: Doesn't work as intended.
 //    public func reloadSupplementaryViewsOfKind(elementKind: String, atIndexPaths indexPaths: [NSIndexPath]) {
 //        let convertedPaths = self.reverseIndexPathConversionForIndexPaths(indexPaths)
 //        let context = UICollectionViewLayoutInvalidationContext()
@@ -463,7 +662,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - Private Pinch Recognizer
+    // MARK: Private Pinch Recognizer
     
     internal func handlePinchGesture(recognizer: UIPinchGestureRecognizer) {
         if (recognizer.numberOfTouches() != 2) {
@@ -485,7 +684,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - Private conversion Methods
+    // MARK: Private conversion Methods
     
     private func convertCVIndexPathToSGIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
         let row: Int = indexPath.row / self.sgColumnCount
@@ -520,7 +719,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - SwiftGridReusableViewDelegate Methods
+    // MARK: SwiftGridReusableViewDelegate Methods
     
     public func swiftGridReusableView(reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: NSIndexPath) {
         switch(reusableView.elementKind) {
@@ -710,7 +909,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK: - SwiftGridLayoutDelegate Methods
+    // MARK: SwiftGridLayoutDelegate Methods
     
     internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         let convertedPath: NSIndexPath = self.convertCVIndexPathToSGIndexPath(indexPath)
@@ -797,7 +996,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
 
 
-    // MARK: - UICollectionView DataSource
+    // MARK: UICollectionView DataSource
     
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         
@@ -851,7 +1050,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     
-    // MARK - UICollectionView Delegate
+    // MARK UICollectionView Delegate
     
     private func selectRowAtIndexPath(indexPath: NSIndexPath, animated: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
