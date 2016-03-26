@@ -22,6 +22,9 @@
 import Foundation
 import UIKit
 
+/**
+ `SwiftGridCell` is the base cell type used by the `SwiftGridView` class. This class inherits from `UICollectionViewCell` and doesn't currently have much further funcitonality.
+ */
 public class SwiftGridCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +38,11 @@ public class SwiftGridCell: UICollectionViewCell {
         self.backgroundColor = UIColor.clearColor()
     }
     
+    /**
+     Returns the reuse identifier string to be used for the cell. Override to provide a custom identifier.
+     
+     - Returns: String identifier for the cell.
+    */
     public class func reuseIdentifier() -> String {
         
         return "SwiftGridCellReuseId"

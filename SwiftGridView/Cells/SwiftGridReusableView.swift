@@ -22,6 +22,9 @@
 import Foundation
 import UIKit
 
+/**
+ The `SwiftGridReusableViewDelegate` is used for passing selection and highlighting events through to the data grid.
+ */
 public protocol SwiftGridReusableViewDelegate {
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: NSIndexPath)
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: NSIndexPath)
@@ -29,7 +32,9 @@ public protocol SwiftGridReusableViewDelegate {
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: NSIndexPath)
 }
 
-
+/**
+ `SwiftGridReusableView` is the primary reusable view used for headers and footers in the `SwiftGridView`
+ */
 public class SwiftGridReusableView: UICollectionReusableView {
     public var selected:Bool = false {
         didSet {
@@ -124,6 +129,11 @@ public class SwiftGridReusableView: UICollectionReusableView {
     
     // MARK: - Public Methods
     
+    /**
+     Returns the reuse identifier string to be used for the cell. Override to provide a custom identifier.
+     
+     - Returns: String identifier for the cell.
+     */
     public class func reuseIdentifier() -> String {
         
         return "SwiftGridReusableViewReuseId"
