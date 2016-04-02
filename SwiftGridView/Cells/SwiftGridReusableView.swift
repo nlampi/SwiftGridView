@@ -22,13 +22,42 @@
 import Foundation
 import UIKit
 
+// MARK: - SwiftGridReusableViewDelegate
+
 /**
  The `SwiftGridReusableViewDelegate` is used for passing selection and highlighting events through to the data grid.
  */
 public protocol SwiftGridReusableViewDelegate {
+    /**
+     Called when the reusable view is selected.
+     
+     - Parameter reusableView: The reusable view instance.
+     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     */
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when the reusable view is deselected.
+     
+     - Parameter reusableView: The reusable view instance.
+     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     */
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when the reusable view is highlighted.
+     
+     - Parameter reusableView: The reusable view instance.
+     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     */
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didHighlightViewAtIndexPath indexPath: NSIndexPath)
+    
+    /**
+     Called when the reusable view is unhighlighted.
+     
+     - Parameter reusableView: The reusable view instance.
+     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     */
     func swiftGridReusableView(reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: NSIndexPath)
 }
 
@@ -36,40 +65,46 @@ public protocol SwiftGridReusableViewDelegate {
  `SwiftGridReusableView` is the primary reusable view used for headers and footers in the `SwiftGridView`
  */
 public class SwiftGridReusableView: UICollectionReusableView {
-    public var selected:Bool = false {
-        didSet {
-            self.selectedBackgroundView?.hidden = !selected
-        }
-    }
+    
+    // MARK: - Properties
+    
+    internal var delegate:SwiftGridReusableViewDelegate?
+    internal var elementKind: String = ""
+    internal var indexPath:NSIndexPath = NSIndexPath.init() // TODO: Is there a better way to handle this?
+    
+    /// Views become highlighted when the user touches them.
     public var highlighted:Bool = false{
         didSet {
             self.selectedBackgroundView?.hidden = !highlighted
         }
     }
-    internal var delegate:SwiftGridReusableViewDelegate?
-    internal var elementKind: String = ""
-    internal var indexPath:NSIndexPath = NSIndexPath.init() // TODO: Is there a better way to handle this?
     
+    // The selected state is toggled when the user lifts up from a highlighted view.
+    public var selected:Bool = false {
+        didSet {
+            self.selectedBackgroundView?.hidden = !selected
+        }
+    }
+    
+    /// Add custom subviews to the reusable view's content view.
     public var contentView:UIView = UIView()
     
-    private var _backgroundView: UIView?
+    /// The background view is a subview behind all other views.
     public var backgroundView:UIView? {
-        get {
-            return _backgroundView
+        willSet {
+            self.backgroundView?.removeFromSuperview()
+            self.backgroundView = nil
         }
-        set(backgroundView) {
-            _backgroundView?.removeFromSuperview()
-            _backgroundView = nil
-            _backgroundView = backgroundView!
+        didSet {
+            self.backgroundView!.translatesAutoresizingMaskIntoConstraints = false
             
-            _backgroundView!.translatesAutoresizingMaskIntoConstraints = false
             if(self.selectedBackgroundView != nil) { // TODO: Simplify this logic?
-                self.insertSubview(_backgroundView!, belowSubview: self.selectedBackgroundView!)
+                self.insertSubview(self.backgroundView!, belowSubview: self.selectedBackgroundView!)
             } else {
-                self.insertSubview(_backgroundView!, belowSubview: self.contentView)
+                self.insertSubview(self.backgroundView!, belowSubview: self.contentView)
             }
             
-            let views = ["bV": _backgroundView!]
+            let views = ["bV": self.backgroundView!]
             self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[bV]|",
                 options: NSLayoutFormatOptions.DirectionLeftToRight, metrics: nil, views: views))
             self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[bV]|",
@@ -77,29 +112,27 @@ public class SwiftGridReusableView: UICollectionReusableView {
         }
     }
     
-    
-    private var _selectedBackgroundView: UIView?
+    /// The selectedBackgroundView will be placed above the background view and displayed on view selection.
     public var selectedBackgroundView:UIView? {
-        get {
-            return _selectedBackgroundView
+        willSet {
+            self.selectedBackgroundView?.removeFromSuperview()
+            self.selectedBackgroundView = nil
         }
-        set(selectedBackgroundView) {
-            _selectedBackgroundView?.removeFromSuperview()
-            _selectedBackgroundView = nil
-            _selectedBackgroundView = selectedBackgroundView!
-            _selectedBackgroundView!.hidden = true
+        didSet {
+            self.selectedBackgroundView!.hidden = true
             
-            _selectedBackgroundView!.translatesAutoresizingMaskIntoConstraints = false
-            self.insertSubview(_selectedBackgroundView!, belowSubview: self.contentView)
+            self.selectedBackgroundView!.translatesAutoresizingMaskIntoConstraints = false
+            self.insertSubview(self.selectedBackgroundView!, belowSubview: self.contentView)
             
-            let views = ["sbV": _selectedBackgroundView!]
+            let views = ["sbV": self.selectedBackgroundView!]
             self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[sbV]|",
                 options: NSLayoutFormatOptions.DirectionLeftToRight, metrics: nil, views: views))
             self.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[sbV]|",
                 options: NSLayoutFormatOptions.DirectionLeftToRight, metrics: nil, views: views))
-            
         }
     }
+    
+    // MARK: - Init
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -178,6 +211,8 @@ public class SwiftGridReusableView: UICollectionReusableView {
     
     // MARK: - Cell Reuse
     
+    /// Called before instance is returned from the reuse queue.
+    /// Subclasses must call super.
     public override func prepareForReuse() {
         super.prepareForReuse()
         
