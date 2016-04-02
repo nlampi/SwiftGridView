@@ -22,6 +22,12 @@
 import Foundation
 import UIKit
 
+
+// MARK: - SwiftGridLayoutDelegate
+
+/**
+ The `SwiftGridLayoutDelegate` is used for retrieving extra required information to properly display and layout the data grid.
+ */
 @objc protocol SwiftGridLayoutDelegate : UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
@@ -39,7 +45,9 @@ import UIKit
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
 }
 
-
+/**
+ `SwiftGridLayout` is the layout used by the `SwiftGridView` to properly layout the UICollectionView as a data grid.
+ */
 class SwiftGridLayout : UICollectionViewLayout {
     
     // MARK: - Private vars
