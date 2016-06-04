@@ -367,25 +367,15 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private var _allowsMultipleSelection: Bool = false
-    public var allowsMultipleSelection: Bool {
-        set(allowsMultipleSelection) {
-            _allowsMultipleSelection = allowsMultipleSelection
-        }
-        get {
-            return _allowsMultipleSelection
-        }
-    }
+    /**
+     When enabled, multiple cells can be selected. If row selection is enabled, then multiple rows can be selected.
+     */
+    public var allowsMultipleSelection: Bool = false
     
-    private var _rowSelectionEnabled: Bool = false
-    public var rowSelectionEnabled: Bool {
-        set(rowSelectionEnabled) {
-            _rowSelectionEnabled = rowSelectionEnabled
-        }
-        get {
-            return _rowSelectionEnabled
-        }
-    }
+    /**
+     If row selection is enabled, then entire rows will be selected rather than individual cells. This applies to section headers/footers in addition to rows.
+     */
+    public var rowSelectionEnabled: Bool = false
     
     public var bounces: Bool {
         set(bounces) {
@@ -424,6 +414,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    /*
+     A Boolean value that controls whether the horizontal scroll indicator is visible.
+     The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
+    */
     public var showsHorizontalScrollIndicator: Bool {
         set(showsHorizontalScrollIndicator) {
             self.sgCollectionView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
@@ -433,6 +427,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
+    /*
+     A Boolean value that controls whether the vertical scroll indicator is visible.
+     The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
+     */
     public var showsVerticalScrollIndicator: Bool {
         set(showsVerticalScrollIndicator) {
             self.sgCollectionView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
@@ -442,26 +440,17 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private var _pinchExpandEnabled: Bool = false
-    
     /// Pinch to expand increases the size of the columns. Experimental feature.
-    public var pinchExpandEnabled: Bool {
-        set(pinchExpandEnabled) {
-            if(_pinchExpandEnabled) {
-                if(!pinchExpandEnabled) {
-                    self.sgCollectionView.removeGestureRecognizer(self.sgPinchGestureRecognizer)
-                    self.sgCollectionView.removeGestureRecognizer(self.sgTwoTapGestureRecognizer)
-                }
+    public var pinchExpandEnabled: Bool = false {
+        didSet {
+            if(!self.pinchExpandEnabled) {
+                self.sgCollectionView.removeGestureRecognizer(self.sgPinchGestureRecognizer)
+                self.sgCollectionView.removeGestureRecognizer(self.sgTwoTapGestureRecognizer)
             } else {
                 self.sgCollectionView.addGestureRecognizer(self.sgPinchGestureRecognizer)
                 self.sgTwoTapGestureRecognizer.numberOfTouchesRequired = 2
                 self.sgCollectionView.addGestureRecognizer(self.sgTwoTapGestureRecognizer)
             }
-            
-            _pinchExpandEnabled = pinchExpandEnabled
-        }
-        get {
-            return _pinchExpandEnabled
         }
     }
     
