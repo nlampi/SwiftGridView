@@ -21,6 +21,30 @@
 
 import Foundation
 import UIKit
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 
 // MARK: - SwiftGridView Extensions
@@ -28,7 +52,7 @@ import UIKit
 /**
  Swift Grid View Index Path Extension
  */
-public extension NSIndexPath {
+public extension IndexPath {
     /**
      Init Swift Grid View Index Path
  
@@ -36,30 +60,31 @@ public extension NSIndexPath {
      - Parameter column: Column for the data grid
      - Paramter section: Section for the data grid
     */
-    convenience init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
+    init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
         let indexes: [Int] = [section, column, row]
         
-        self.init(indexes: indexes, length: indexes.count)
+        
+        self.init(indexes: indexes)
     }
     
     /// Swift Grid View Section
     var sgSection: Int { get {
         
-            return self.indexAtPosition(0)
+            return self[0]
         }
     }
     
     /// Swift Grid View Row
     var sgRow: Int { get {
         
-            return self.indexAtPosition(2)
+            return self[2]
         }
     }
     
     /// Swift Grid View Column
     var sgColumn: Int { get {
         
-            return self.indexAtPosition(1)
+            return self[1]
         }
     }
 }
@@ -85,7 +110,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: The number of sections within the data grid.
     */
-    func numberOfSectionsInDataGridView(dataGridView: SwiftGridView) -> Int
+    func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int
     
     /**
      Count of columns to display in the data grid.
@@ -93,7 +118,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: The number of columns within the data grid.
      */
-    func numberOfColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
+    func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int
     
     /**
      Number of rows to display in the provided data grid section.
@@ -102,7 +127,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter section: Current section index.
      - Returns: The number of rows for the current section.
      */
-    func dataGridView(dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int
+    func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int
     
     /**
      Number of frozen columns in the data grid. Frozen columns start from the left and will be "frozen" in place and not scroll horizontally out of view.
@@ -110,7 +135,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Count of frozen columns in the data grid.
      */
-    optional func numberOfFrozenColumnsInDataGridView(dataGridView: SwiftGridView) -> Int
+    @objc optional func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int
     
     
     // MARK: Cell Methods
@@ -122,7 +147,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Paramter indexPath: The Swift Grid extended index path location of the cell.
      - Returns: Cell that has been dequeued and of `SwiftGridCell` type.
     */
-    func dataGridView(dataGridView: SwiftGridView, cellAtIndexPath indexPath: NSIndexPath) -> SwiftGridCell
+    func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell
     
     /**
      Return the header view to be displayed in the provided column.
@@ -131,7 +156,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter column: Current column index.
      - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView
     
     /**
      Number of sections to display in the data grid
@@ -140,7 +165,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter column: Current column index.
      - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView
     
     /**
      Number of sections to display in the data grid
@@ -149,7 +174,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter indexPath: Current Swift Grid index path for the section header. Section and Column are provided values, Row is ignored.
      - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: IndexPath) -> SwiftGridReusableView
     
     /**
      Number of sections to display in the data grid
@@ -158,7 +183,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter indexPath: Current Swift Grid index path for the section footer. Section and Column are provided values, Row is ignored.
      - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, sectionFooterCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, sectionFooterCellAtIndexPath indexPath: IndexPath) -> SwiftGridReusableView
 }
 
 
@@ -178,7 +203,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter columnIndex: Current column index.
      - Returns: Width to be used for all views and cells in the provided column.
      */
-    func dataGridView(dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
+    func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
     
     /**
      Returns the height of the specified row in the data grid.
@@ -187,7 +212,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter indexPath: Current Swift Grid index path for the row. Section and Row are provided values, Column is ignored.
      - Returns: Height to be used for all cells in the provided row.
      */
-    func dataGridView(dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat
     
     
     // MARK: Header Methods
@@ -198,7 +223,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the grid header.
      */
-    optional func heightForGridHeaderInDataGridView(dataGridView: SwiftGridView) -> CGFloat
+    @objc optional func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
     
     /**
      Called when a header view is selected.
@@ -206,7 +231,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath)
     
     /**
      Called when a header view is deselected.
@@ -214,7 +239,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath)
     
     
     // MARK: Footer Methods
@@ -225,7 +250,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the grid footer.
      */
-    optional func heightForGridFooterInDataGridView(dataGridView: SwiftGridView) -> CGFloat
+    @objc optional func heightForGridFooterInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
     
     /**
      Called when a footer view is deselected.
@@ -233,7 +258,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath)
     
     /**
      Called when a footer view is deselected.
@@ -241,7 +266,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: IndexPath)
     
     
     // MARK: Section Header Methods
@@ -252,7 +277,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the section's header.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat
     
     /**
      Called when a section header view is selected.
@@ -260,7 +285,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath)
     
     /**
      Called when a section header view is deselected.
@@ -268,7 +293,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath)
     
     
     // MARK: Section Footer Methods
@@ -279,7 +304,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the section's footer.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat
     
     /**
      Called when a section footer view is selected.
@@ -287,7 +312,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath)
     
     /**
      Called when a section footer view is deselected.
@@ -295,7 +320,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath)
     
     
     // MARK: Cell Methods
@@ -306,7 +331,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the selected cell.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath)
     
     /**
      Called when a cell is deselected.
@@ -314,7 +339,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the deselected cell.
      */
-    optional func dataGridView(dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: NSIndexPath)
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath)
 }
 
 
@@ -323,7 +348,7 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
 /**
  `SwiftGridView` is the primary view class, utilizing a UICollectionView and a custom layout handler.
  */
-public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewDelegate, SwiftGridLayoutDelegate, SwiftGridReusableViewDelegate {
+open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewDelegate, SwiftGridLayoutDelegate, SwiftGridReusableViewDelegate {
     
     // MARK: Init
     
@@ -339,14 +364,14 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         self.initDefaults()
     }
     
-    private func initDefaults() {
+    fileprivate func initDefaults() {
         sgCollectionViewLayout = SwiftGridLayout()
         
         // FIXME: Use constraints!?
         self.sgCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: sgCollectionViewLayout)
         self.sgCollectionView.dataSource = self // TODO: Separate DataSource/Delegate?
         self.sgCollectionView.delegate = self
-        self.sgCollectionView.backgroundColor = UIColor.whiteColor()
+        self.sgCollectionView.backgroundColor = UIColor.white
         self.sgCollectionView.allowsMultipleSelection = true
         
         self.addSubview(self.sgCollectionView)
@@ -355,10 +380,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: Public Variables
     
-    public weak var dataSource: SwiftGridViewDataSource?
-    public weak var delegate: SwiftGridViewDelegate?
+    open weak var dataSource: SwiftGridViewDataSource?
+    open weak var delegate: SwiftGridViewDelegate?
     
-    public var allowsSelection: Bool {
+    open var allowsSelection: Bool {
         set(allowsSelection) {
             self.sgCollectionView.allowsSelection = allowsSelection
         }
@@ -370,14 +395,14 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     /**
      When enabled, multiple cells can be selected. If row selection is enabled, then multiple rows can be selected.
      */
-    public var allowsMultipleSelection: Bool = false
+    open var allowsMultipleSelection: Bool = false
     
     /**
      If row selection is enabled, then entire rows will be selected rather than individual cells. This applies to section headers/footers in addition to rows.
      */
-    public var rowSelectionEnabled: Bool = false
+    open var rowSelectionEnabled: Bool = false
     
-    public var bounces: Bool {
+    open var bounces: Bool {
         set(bounces) {
             self.sgCollectionView.bounces = bounces
         }
@@ -387,7 +412,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     /// Determines whether section headers will stick while scrolling vertically or scroll off screen.
-    public var stickySectionHeaders: Bool {
+    open var stickySectionHeaders: Bool {
         set(stickySectionHeaders) {
             self.sgCollectionViewLayout.stickySectionHeaders = stickySectionHeaders
         }
@@ -396,7 +421,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public var alwaysBounceVertical: Bool {
+    open var alwaysBounceVertical: Bool {
         set(alwaysBounceVertical) {
             self.sgCollectionView.alwaysBounceVertical = alwaysBounceVertical
         }
@@ -405,7 +430,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public var alwaysBounceHorizontal: Bool {
+    open var alwaysBounceHorizontal: Bool {
         set(alwaysBounceHorizontal) {
             self.sgCollectionView.alwaysBounceHorizontal = alwaysBounceHorizontal
         }
@@ -418,7 +443,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
      A Boolean value that controls whether the horizontal scroll indicator is visible.
      The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
     */
-    public var showsHorizontalScrollIndicator: Bool {
+    open var showsHorizontalScrollIndicator: Bool {
         set(showsHorizontalScrollIndicator) {
             self.sgCollectionView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
         }
@@ -431,7 +456,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
      A Boolean value that controls whether the vertical scroll indicator is visible.
      The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
      */
-    public var showsVerticalScrollIndicator: Bool {
+    open var showsVerticalScrollIndicator: Bool {
         set(showsVerticalScrollIndicator) {
             self.sgCollectionView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
         }
@@ -441,7 +466,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     /// Pinch to expand increases the size of the columns. Experimental feature.
-    public var pinchExpandEnabled: Bool = false {
+    open var pinchExpandEnabled: Bool = false {
         didSet {
             if(!self.pinchExpandEnabled) {
                 self.sgCollectionView.removeGestureRecognizer(self.sgPinchGestureRecognizer)
@@ -457,13 +482,13 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: Private Variables
     
-    private var sgCollectionView: UICollectionView!
-    private var sgCollectionViewLayout: SwiftGridLayout!
-    private lazy var sgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handlePinchGesture(_:)))
-    private lazy var sgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handleTwoFingerTapGesture(_:)))
+    fileprivate var sgCollectionView: UICollectionView!
+    fileprivate var sgCollectionViewLayout: SwiftGridLayout!
+    fileprivate lazy var sgPinchGestureRecognizer:UIPinchGestureRecognizer = UIPinchGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handlePinchGesture(_:)))
+    fileprivate lazy var sgTwoTapGestureRecognizer:UITapGestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(SwiftGridView.handleTwoFingerTapGesture(_:)))
     
-    private var _sgSectionCount: Int = 0
-    private var sgSectionCount: Int {
+    fileprivate var _sgSectionCount: Int = 0
+    fileprivate var sgSectionCount: Int {
         get {
             if(_sgSectionCount == 0) {
                 _sgSectionCount = self.dataSource!.numberOfSectionsInDataGridView(self)
@@ -473,8 +498,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private var _sgColumnCount: Int = 0
-    private var sgColumnCount: Int {
+    fileprivate var _sgColumnCount: Int = 0
+    fileprivate var sgColumnCount: Int {
         get {
             if(_sgColumnCount == 0) {
                 _sgColumnCount = self.dataSource!.numberOfColumnsInDataGridView(self)
@@ -484,8 +509,8 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private var _sgColumnWidth: CGFloat = 0
-    private var sgColumnWidth: CGFloat {
+    fileprivate var _sgColumnWidth: CGFloat = 0
+    fileprivate var sgColumnWidth: CGFloat {
         get {
             if(_sgColumnWidth == 0) {
                 
@@ -499,16 +524,16 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     }
     
     // Cache selected items.
-    private var selectedHeaders: NSMutableDictionary = NSMutableDictionary()
-    private var selectedSectionHeaders: NSMutableDictionary = NSMutableDictionary()
-    private var selectedSectionFooters: NSMutableDictionary = NSMutableDictionary()
-    private var selectedFooters: NSMutableDictionary = NSMutableDictionary()
+    fileprivate var selectedHeaders: NSMutableDictionary = NSMutableDictionary()
+    fileprivate var selectedSectionHeaders: NSMutableDictionary = NSMutableDictionary()
+    fileprivate var selectedSectionFooters: NSMutableDictionary = NSMutableDictionary()
+    fileprivate var selectedFooters: NSMutableDictionary = NSMutableDictionary()
     
     
     // MARK: Layout Subviews
     
     // TODO: Is this how resize should be handled?
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         if(self.sgCollectionView.frame != self.bounds) {
@@ -519,7 +544,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: Public Methods
     
-    public func reloadData() {
+    open func reloadData() {
         _sgSectionCount = 0
         _sgColumnCount = 0
         _sgColumnWidth = 0
@@ -534,21 +559,21 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         self.sgCollectionView.reloadData()
     }
     
-    public func reloadCellsAtIndexPaths(indexPaths: [NSIndexPath], animated: Bool) {
+    open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
         self.reloadCellsAtIndexPaths(indexPaths, animated: animated, completion: nil)
     }
     
-    public func reloadCellsAtIndexPaths(indexPaths: [NSIndexPath], animated: Bool, completion: ((Bool) -> Void)?) {
+    open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool, completion: ((Bool) -> Void)?) {
         let convertedPaths = self.reverseIndexPathConversionForIndexPaths(indexPaths)
         
         if(animated) {
             self.sgCollectionView.performBatchUpdates({
-                self.sgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
+                self.sgCollectionView.reloadItems(at: convertedPaths)
                 }, completion: { completed in
                     completion?(completed)
             })
         } else {
-            self.sgCollectionView.reloadItemsAtIndexPaths(convertedPaths)
+            self.sgCollectionView.reloadItems(at: convertedPaths)
             completion?(true) // TODO: Fix!
         }
         
@@ -563,52 +588,52 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
 //        self.sgCollectionViewLayout.invalidateLayoutWithContext(context)
 //    }
     
-    public func registerClass(cellClass: AnyClass?, forCellWithReuseIdentifier identifier: String) {
-        self.sgCollectionView.registerClass(cellClass, forCellWithReuseIdentifier:identifier)
+    open func registerClass(_ cellClass: AnyClass?, forCellWithReuseIdentifier identifier: String) {
+        self.sgCollectionView.register(cellClass, forCellWithReuseIdentifier:identifier)
     }
     
-    public func registerClass(viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
-        self.sgCollectionView.registerClass(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
+    open func registerClass(_ viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
+        self.sgCollectionView.register(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
     }
     
-    public func dequeueReusableCellWithReuseIdentifier(identifier: String, forIndexPath indexPath: NSIndexPath!) -> SwiftGridCell {
-        let revertedPath: NSIndexPath = self.reverseIndexPathConversion(indexPath)
+    open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath!) -> SwiftGridCell {
+        let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
         
-        return self.sgCollectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: revertedPath) as! SwiftGridCell
+        return self.sgCollectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridCell
     }
     
-    public func dequeueReusableSupplementaryViewOfKind(elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
-        let revertedPath: NSIndexPath = NSIndexPath(forItem: column, inSection: 0);
+    open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
+        let revertedPath: IndexPath = IndexPath(item: column, section: 0);
         
-        return self.sgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
+        return self.sgCollectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
     
-    public func dequeueReusableSupplementaryViewOfKind(elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView {
-        let revertedPath: NSIndexPath = self.reverseIndexPathConversion(indexPath);
+    open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
+        let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath);
         
-        return self.sgCollectionView.dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: identifier, forIndexPath: revertedPath) as! SwiftGridReusableView
+        return self.sgCollectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
     
-    public func selectCellAtIndexPath(indexPath:NSIndexPath, animated: Bool) {
+    open func selectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
         if(self.rowSelectionEnabled) {
             self.selectRowAtIndexPath(indexPath, animated: animated)
         } else {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            self.sgCollectionView.selectItemAtIndexPath(convertedPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
+            self.sgCollectionView.selectItem(at: convertedPath, animated: animated, scrollPosition: UICollectionViewScrollPosition())
         }
     }
     
-    public func deselectCellAtIndexPath(indexPath:NSIndexPath, animated: Bool) {
+    open func deselectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
         
         if(self.rowSelectionEnabled) {
             self.deselectRowAtIndexPath(indexPath, animated: animated)
         } else {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            self.sgCollectionView.deselectItemAtIndexPath(convertedPath, animated: animated)
+            self.sgCollectionView.deselectItem(at: convertedPath, animated: animated)
         }
     }
     
-    public func selectSectionHeaderAtIndexPath(indexPath:NSIndexPath) {
+    open func selectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
         
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionHeader, atIndexPath: indexPath, selected: true)
@@ -617,7 +642,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func deselectSectionHeaderAtIndexPath(indexPath:NSIndexPath) {
+    open func deselectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
         
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionHeader, atIndexPath: indexPath, selected: false)
@@ -626,7 +651,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func selectSectionFooterAtIndexPath(indexPath:NSIndexPath) {
+    open func selectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
         
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionFooter, atIndexPath: indexPath, selected: true)
@@ -635,7 +660,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func deselectSectionFooterAtIndexPath(indexPath:NSIndexPath) {
+    open func deselectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
         
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionFooter, atIndexPath: indexPath, selected: false)
@@ -644,17 +669,17 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func scrollToCellAtIndexPath(indexPath: NSIndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
+    open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
         
-        self.sgCollectionView.scrollToItemAtIndexPath(convertedPath, atScrollPosition: scrollPosition, animated: animated)
+        self.sgCollectionView.scrollToItem(at: convertedPath, at: scrollPosition, animated: animated)
     }
     
     
     // MARK: Private Pinch Recognizer
     
-    internal func handlePinchGesture(recognizer: UIPinchGestureRecognizer) {
-        if (recognizer.numberOfTouches() != 2) {
+    internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
+        if (recognizer.numberOfTouches != 2) {
             
             return
         }
@@ -665,7 +690,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    internal func handleTwoFingerTapGesture(recognizer: UITapGestureRecognizer) {
+    internal func handleTwoFingerTapGesture(_ recognizer: UITapGestureRecognizer) {
         
         if(self.sgCollectionViewLayout.zoomScale != 1.0) {
             self.sgCollectionViewLayout.zoomScale = 1.0
@@ -675,34 +700,34 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: Private conversion Methods
     
-    private func convertCVIndexPathToSGIndexPath(indexPath: NSIndexPath) -> NSIndexPath {
+    fileprivate func convertCVIndexPathToSGIndexPath(_ indexPath: IndexPath) -> IndexPath {
         let row: Int = indexPath.row / self.sgColumnCount
         let column: Int = indexPath.row % self.sgColumnCount
         
-        let convertedPath: NSIndexPath = NSIndexPath(forSGRow: row, atColumn: column, inSection: indexPath.section)
+        let convertedPath: IndexPath = IndexPath(forSGRow: row, atColumn: column, inSection: indexPath.section)
         
         return convertedPath
     }
     
-    private func reverseIndexPathConversion(indexPath: NSIndexPath) -> NSIndexPath {
+    fileprivate func reverseIndexPathConversion(_ indexPath: IndexPath) -> IndexPath {
         let item: Int = indexPath.sgRow * self.sgColumnCount + indexPath.sgColumn
-        let revertedPath: NSIndexPath = NSIndexPath(forItem: item, inSection: indexPath.sgSection)
+        let revertedPath: IndexPath = IndexPath(item: item, section: indexPath.sgSection)
         
         return revertedPath
     }
     
-    private func reverseIndexPathConversionForIndexPaths(indexPaths: [NSIndexPath]) -> [NSIndexPath] {
+    fileprivate func reverseIndexPathConversionForIndexPaths(_ indexPaths: [IndexPath]) -> [IndexPath] {
         let convertedPaths = NSMutableArray()
         
         for indexPath in indexPaths {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            convertedPaths.addObject(convertedPath)
+            convertedPaths.add(convertedPath)
         }
         
-        return convertedPaths.copy() as! [NSIndexPath]
+        return convertedPaths.copy() as! [IndexPath]
     }
     
-    private func numberOfRowsInSection(section: Int) -> Int {
+    fileprivate func numberOfRowsInSection(_ section: Int) -> Int {
         
         return self.dataSource!.dataGridView(self, numberOfRowsInSection: section)
     }
@@ -710,10 +735,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: SwiftGridReusableViewDelegate Methods
     
-    public func swiftGridReusableView(reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: NSIndexPath) {
+    open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: IndexPath) {
         switch(reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
-            self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath)
+            self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
             
             if(self.rowSelectionEnabled) {
                 self.toggleSelectedOnReusableViewRowOfKind(reusableView.elementKind, atIndexPath: indexPath, selected: true)
@@ -722,7 +747,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             self.delegate?.dataGridView?(self, didSelectSectionHeaderAtIndexPath: indexPath)
             break
         case SwiftGridElementKindSectionFooter:
-            self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath)
+            self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
             
             if(self.rowSelectionEnabled) {
                 self.toggleSelectedOnReusableViewRowOfKind(reusableView.elementKind, atIndexPath: indexPath, selected: true)
@@ -745,10 +770,10 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func swiftGridReusableView(reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: NSIndexPath) {
+    open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: IndexPath) {
         switch(reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
-            self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath)
+            self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
             
             if(self.rowSelectionEnabled) {
                 self.toggleSelectedOnReusableViewRowOfKind(reusableView.elementKind, atIndexPath: indexPath, selected: false)
@@ -757,7 +782,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             self.delegate?.dataGridView?(self, didDeselectSectionHeaderAtIndexPath: indexPath)
             break
         case SwiftGridElementKindSectionFooter:
-            self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath)
+            self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
             
             if(self.rowSelectionEnabled) {
                 self.toggleSelectedOnReusableViewRowOfKind(reusableView.elementKind, atIndexPath: indexPath, selected: false)
@@ -780,7 +805,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func swiftGridReusableView(reusableView: SwiftGridReusableView, didHighlightViewAtIndexPath indexPath: NSIndexPath) {
+    open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didHighlightViewAtIndexPath indexPath: IndexPath) {
         switch(reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
             
@@ -803,7 +828,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func swiftGridReusableView(reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: NSIndexPath) {
+    open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: IndexPath) {
         switch(reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
             
@@ -826,9 +851,9 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private func toggleSelectedOnReusableViewRowOfKind(kind: String, atIndexPath indexPath: NSIndexPath, selected: Bool) {
+    fileprivate func toggleSelectedOnReusableViewRowOfKind(_ kind: String, atIndexPath indexPath: IndexPath, selected: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
-            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
             
             if(selected) {
@@ -837,7 +862,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
                 self.deselectReusableViewOfKind(kind, atIndexPath: sgPath)
             }
             
-            guard let reusableView = self.sgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
+            guard let reusableView = self.sgCollectionView.supplementaryView(forElementKind: kind, at: itemPath) as? SwiftGridReusableView
                 else {
                     continue;
             }
@@ -846,7 +871,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private func selectReusableViewOfKind(kind: String, atIndexPath indexPath: NSIndexPath) {
+    fileprivate func selectReusableViewOfKind(_ kind: String, atIndexPath indexPath: IndexPath) {
         switch(kind) {
         case SwiftGridElementKindSectionHeader:
             self.selectedSectionHeaders[indexPath] = true
@@ -865,30 +890,30 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    private func deselectReusableViewOfKind(kind: String, atIndexPath indexPath: NSIndexPath) {
+    fileprivate func deselectReusableViewOfKind(_ kind: String, atIndexPath indexPath: IndexPath) {
         switch(kind) {
         case SwiftGridElementKindSectionHeader:
-            self.selectedSectionHeaders.removeObjectForKey(indexPath)
+            self.selectedSectionHeaders.removeObject(forKey: indexPath)
             break
         case SwiftGridElementKindSectionFooter:
-            self.selectedSectionFooters.removeObjectForKey(indexPath)
+            self.selectedSectionFooters.removeObject(forKey: indexPath)
             break
         case SwiftGridElementKindHeader:
-            self.selectedHeaders.removeObjectForKey(indexPath)
+            self.selectedHeaders.removeObject(forKey: indexPath)
             break
         case SwiftGridElementKindFooter:
-            self.selectedFooters.removeObjectForKey(indexPath)
+            self.selectedFooters.removeObject(forKey: indexPath)
             break
         default:
             break
         }
     }
     
-    private func toggleHighlightOnReusableViewRowOfKind(kind: String, atIndexPath indexPath: NSIndexPath, highlighted: Bool) {
+    fileprivate func toggleHighlightOnReusableViewRowOfKind(_ kind: String, atIndexPath indexPath: IndexPath, highlighted: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
-            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
-            guard let reusableView = self.sgCollectionView.supplementaryViewForElementKind(kind, atIndexPath: itemPath) as? SwiftGridReusableView
+            guard let reusableView = self.sgCollectionView.supplementaryView(forElementKind: kind, at: itemPath) as? SwiftGridReusableView
                 else {
                     continue;
             }
@@ -900,19 +925,19 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK: SwiftGridLayoutDelegate Methods
     
-    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let convertedPath: NSIndexPath = self.convertCVIndexPathToSGIndexPath(indexPath)
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
+        let convertedPath: IndexPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         let colWidth: CGFloat = self.delegate!.dataGridView(self, widthOfColumnAtIndex: convertedPath.sgColumn)
         let rowHeight: CGFloat = self.delegate!.dataGridView(self, heightOfRowAtIndexPath: convertedPath)
         
-        return CGSizeMake(colWidth, rowHeight)
+        return CGSize(width: colWidth, height: rowHeight)
     }
     
-    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> CGSize {
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: IndexPath) -> CGSize {
         var colWidth: CGFloat = 0.0
         var rowHeight: CGFloat = 0
         
-        if(indexPath.length != 0) {
+        if(indexPath.count != 0) {
             colWidth = self.delegate!.dataGridView(self, widthOfColumnAtIndex: indexPath.row)
         }
         
@@ -950,20 +975,20 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             break;
         }
         
-        return CGSizeMake(colWidth, rowHeight)
+        return CGSize(width: colWidth, height: rowHeight)
     }
     
-    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int {
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int {
         
         return self.numberOfRowsInSection(sectionIndex)
     }
     
-    internal func collectionView(collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
+    internal func collectionView(_ collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         return self.sgColumnCount
     }
     
-    internal func collectionView(collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
+    internal func collectionView(_ collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         if let frozenCount = self.dataSource?.numberOfFrozenColumnsInDataGridView?(self) {
             
@@ -974,12 +999,12 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    internal func collectionView(collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat {
+    internal func collectionView(_ collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat {
     
         return self.sgColumnWidth
     }
     
-    internal func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
         
         return self.delegate!.dataGridView(self, widthOfColumnAtIndex :columnIndex)
     }
@@ -987,25 +1012,25 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
 
     // MARK: UICollectionView DataSource
     
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    open func numberOfSections(in collectionView: UICollectionView) -> Int {
         
         return self.sgSectionCount
     }
     
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    open func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let numberOfCells: Int = self.sgColumnCount * self.numberOfRowsInSection(section)
         
         return numberOfCells
     }
     
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.dataSource!.dataGridView(self, cellAtIndexPath: self.convertCVIndexPathToSGIndexPath(indexPath))
         
         return cell
     }
     
     // TODO: Make this more fail friendly?
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         var reusableView: SwiftGridReusableView
         let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
@@ -1027,7 +1052,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
             reusableView.selected = self.selectedFooters[convertedPath] != nil ? true : false
             break
         default:
-            reusableView = SwiftGridReusableView.init(frame:CGRectZero)
+            reusableView = SwiftGridReusableView.init(frame:CGRect.zero)
             break
         }
         
@@ -1041,40 +1066,40 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
     
     // MARK UICollectionView Delegate
     
-    private func selectRowAtIndexPath(indexPath: NSIndexPath, animated: Bool) {
+    fileprivate func selectRowAtIndexPath(_ indexPath: IndexPath, animated: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
-            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
-            self.sgCollectionView.selectItemAtIndexPath(itemPath, animated: animated, scrollPosition: UICollectionViewScrollPosition.None)
+            self.sgCollectionView.selectItem(at: itemPath, animated: animated, scrollPosition: UICollectionViewScrollPosition())
         }
     }
     
-    private func deselectRowAtIndexPath(indexPath: NSIndexPath, animated: Bool) {
+    fileprivate func deselectRowAtIndexPath(_ indexPath: IndexPath, animated: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
-            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
-            self.sgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
+            self.sgCollectionView.deselectItem(at: itemPath, animated: animated)
         }
     }
     
-    private func deselectAllItemsIgnoring(indexPath: NSIndexPath, animated: Bool) {
-        for itemPath in self.sgCollectionView.indexPathsForSelectedItems() ?? [] {
+    fileprivate func deselectAllItemsIgnoring(_ indexPath: IndexPath, animated: Bool) {
+        for itemPath in self.sgCollectionView.indexPathsForSelectedItems ?? [] {
             if(itemPath.item == indexPath.item) {
                 continue
             }
-            self.sgCollectionView.deselectItemAtIndexPath(itemPath, animated: animated)
+            self.sgCollectionView.deselectItem(at: itemPath, animated: animated)
         }
     }
     
-    private func toggleHighlightOnRowAtIndexPath(indexPath: NSIndexPath, highlighted: Bool) {
+    fileprivate func toggleHighlightOnRowAtIndexPath(_ indexPath: IndexPath, highlighted: Bool) {
         for columnIndex in 0...self.sgColumnCount - 1 {
-            let sgPath = NSIndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
+            let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
-            self.sgCollectionView.cellForItemAtIndexPath(itemPath)?.highlighted = highlighted
+            self.sgCollectionView.cellForItem(at: itemPath)?.isHighlighted = highlighted
         }
     }
     
-    public func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {
@@ -1082,7 +1107,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
         let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {
@@ -1090,7 +1115,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         }
     }
     
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(!self.allowsMultipleSelection) {
@@ -1104,7 +1129,7 @@ public class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionVie
         self.delegate?.dataGridView?(self, didSelectCellAtIndexPath: convertedPath)
     }
     
-    public func collectionView(collectionView: UICollectionView, didDeselectItemAtIndexPath indexPath: NSIndexPath) {
+    open func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
         
         if(self.rowSelectionEnabled) {

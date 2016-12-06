@@ -25,17 +25,17 @@ import UIKit
 /**
  `SwiftGridCell` is the base cell type used by the `SwiftGridView` class. This class inherits from `UICollectionViewCell` and doesn't currently have much further funcitonality.
  */
-public class SwiftGridCell: UICollectionViewCell {
+open class SwiftGridCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
     
     /**
@@ -43,7 +43,7 @@ public class SwiftGridCell: UICollectionViewCell {
      
      - Returns: String identifier for the cell.
     */
-    public class func reuseIdentifier() -> String {
+    open class func reuseIdentifier() -> String {
         
         return "SwiftGridCellReuseId"
     }
