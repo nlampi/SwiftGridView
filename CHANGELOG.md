@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.3.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.0) (2016-12-05)
+Updated to Swift 3.0
+
 ## [0.2.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.2.1) (2016-04-02)
 Added in some documentation/commenting.
 

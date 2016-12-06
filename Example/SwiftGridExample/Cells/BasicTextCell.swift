@@ -23,10 +23,10 @@ import Foundation
 import UIKit
 import SwiftGridView
 
-public class BasicTextCell : SwiftGridCell {
+open class BasicTextCell : SwiftGridCell {
     
-    public var textLabel : UILabel!
-    public var padding : CGFloat!
+    open var textLabel : UILabel!
+    open var padding : CGFloat!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,27 +40,27 @@ public class BasicTextCell : SwiftGridCell {
         self.initCell()
     }
     
-    private func initCell() {
+    fileprivate func initCell() {
         self.backgroundView = UIView()
         self.selectedBackgroundView = UIView()
-        self.selectedBackgroundView?.backgroundColor = UIColor.orangeColor()
+        self.selectedBackgroundView?.backgroundColor = UIColor.orange
         
         self.padding = 8.0
         self.textLabel = UILabel.init(frame: self.frame)
         
-        self.textLabel.textColor = UIColor.blackColor()
+        self.textLabel.textColor = UIColor.black
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.textLabel)
         
-        let views = ["tL": self.textLabel]
-        let metrics = ["p": self.padding]
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-p-[tL]-p-|",
-            options: NSLayoutFormatOptions.DirectionLeftToRight, metrics: metrics, views: views))
-        self.contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[tL]|",
-            options: NSLayoutFormatOptions.DirectionLeftToRight, metrics: metrics, views: views))
+        let views : [String : Any] = ["tL": self.textLabel]
+        let metrics : [String : Any] = ["p": self.padding]
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-p-[tL]-p-|",
+            options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
+        self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tL]|",
+            options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
     }
     
-    public override class func reuseIdentifier() -> String {
+    open override class func reuseIdentifier() -> String {
         
         return "BasicCellReuseId"
     }

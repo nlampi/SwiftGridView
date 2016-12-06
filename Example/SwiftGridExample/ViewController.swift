@@ -35,8 +35,8 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        self.dataGridView = SwiftGridView(frame: CGRect(x: 30, y: 30, width: 450, height: 500))
-        //        self.view.addSubview(self.dataGridView)
+//        self.dataGridView = SwiftGridView(frame: CGRect(x: 30, y: 30, width: 450, height: 500))
+//        self.view.addSubview(self.dataGridView)
         
         // Do any additional setup after loading the view, typically from a nib.
         self.dataGridView.delegate = self
@@ -67,7 +67,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     
     // MARK: - Gesture Recognizers
     
-    @IBAction func didTapChangeData(sender: AnyObject) {
+    @IBAction func didTapChangeData(_ sender: AnyObject) {
         reloadOverride = false
         sectionCount = Int(arc4random_uniform(8)) + 1
         frozenColumns = Int(arc4random_uniform(4))
@@ -77,21 +77,21 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.dataGridView.reloadData()
     }
     
-    @IBAction func didTapScrollButton(sender: AnyObject) {
-        let indexPath = NSIndexPath(forSGRow: 0, atColumn: 0, inSection: 3)
+    @IBAction func didTapScrollButton(_ sender: AnyObject) {
+        let indexPath = IndexPath(forSGRow: 0, atColumn: 0, inSection: 3)
         
-        self.dataGridView.scrollToCellAtIndexPath(indexPath, atScrollPosition: [.Top, .Left], animated: true)
+        self.dataGridView.scrollToCellAtIndexPath(indexPath, atScrollPosition: [.top, .left], animated: true)
     }
     
-    @IBAction func didTapReloadCells(sender: AnyObject) {
+    @IBAction func didTapReloadCells(_ sender: AnyObject) {
         self.reloadOverride = true
         
         // Reload Cells
         let indexPaths = [
-            NSIndexPath(forSGRow: 0, atColumn: 0, inSection: 0),
-            NSIndexPath(forSGRow: 0, atColumn: 2, inSection: 0),
-            NSIndexPath(forSGRow: 1, atColumn: 1, inSection: 0),
-            NSIndexPath(forSGRow: 1, atColumn: 3, inSection: 0)
+            IndexPath(forSGRow: 0, atColumn: 0, inSection: 0),
+            IndexPath(forSGRow: 0, atColumn: 2, inSection: 0),
+            IndexPath(forSGRow: 1, atColumn: 1, inSection: 0),
+            IndexPath(forSGRow: 1, atColumn: 3, inSection: 0)
         ]
         
         
@@ -101,60 +101,60 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         
         
         
-        //        // Reload Headers
-        //        indexPaths = [
-        //            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
-        //            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
-        //        ]
-        //        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindHeader, atIndexPaths: indexPaths)
-        //
-        //        // Reload Section Headers
-        //        indexPaths = [
-        //            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
-        //            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
-        //        ]
-        //        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindSectionHeader, atIndexPaths: indexPaths)
-        //
-        //        // Reload Section Footers
-        //        indexPaths = [
-        //            NSIndexPath(forsgRow: 0, atColumn: 0, inSection: 0),
-        //            NSIndexPath(forsgRow: 0, atColumn: 2, inSection: 0)
-        //        ]
-        //        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindSectionFooter, atIndexPaths: indexPaths)
-        //
-        //
-        //        // Reload Footers
-        //        indexPaths = [
-        //            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
-        //            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
-        //        ]
-        //        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindFooter, atIndexPaths: indexPaths)
+//        // Reload Headers
+//        indexPaths = [
+//            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
+//            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
+//        ]
+//        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindHeader, atIndexPaths: indexPaths)
+//
+//        // Reload Section Headers
+//        indexPaths = [
+//            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
+//            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
+//        ]
+//        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindSectionHeader, atIndexPaths: indexPaths)
+//
+//        // Reload Section Footers
+//        indexPaths = [
+//            NSIndexPath(forsgRow: 0, atColumn: 0, inSection: 0),
+//            NSIndexPath(forsgRow: 0, atColumn: 2, inSection: 0)
+//        ]
+//        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindSectionFooter, atIndexPaths: indexPaths)
+//
+//
+//        // Reload Footers
+//        indexPaths = [
+//            NSIndexPath(forsgRow: 0, atColumn: 1, inSection: 0),
+//            NSIndexPath(forsgRow: 0, atColumn: 3, inSection: 0)
+//        ]
+//        self.dataGridView.reloadSupplementaryViewsOfKind(SwiftGridElementKindFooter, atIndexPaths: indexPaths)
     }
     
     
     // MARK: - SwiftGridViewDataSource
     
-    func numberOfSectionsInDataGridView(dataGridView: SwiftGridView) -> Int {
+    func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
         return sectionCount
     }
     
-    func numberOfColumnsInDataGridView(dataGridView: SwiftGridView) -> Int {
+    func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
         return columnCount
     }
     
-    func dataGridView(dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
+    func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
         
         return section + rowCountIncrease
     }
     
     // Cells
-    func dataGridView(dataGridView: SwiftGridView, cellAtIndexPath indexPath: NSIndexPath) -> SwiftGridCell {
+    func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
         let cell: BasicTextCell = dataGridView.dequeueReusableCellWithReuseIdentifier(BasicTextCell.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextCell
         
         if(reloadOverride) {
-            cell.backgroundView?.backgroundColor = UIColor.cyanColor()
+            cell.backgroundView?.backgroundColor = UIColor.cyan
         } else {
             let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
             let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
@@ -169,11 +169,11 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     // Header / Footer Views
-    func dataGridView(dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: column) as! BasicTextReusableView
         
         if(reloadOverride) {
-            view.backgroundView?.backgroundColor = UIColor.cyanColor()
+            view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
             let r: CGFloat = (120 + CGFloat(column) * 5) / 255
             let g: CGFloat = (60 + CGFloat(column) * 5) / 255
@@ -187,11 +187,11 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view
     }
     
-    func dataGridView(dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: column) as! BasicTextReusableView
         
         if(reloadOverride) {
-            view.backgroundView?.backgroundColor = UIColor.cyanColor()
+            view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
             let r: CGFloat = (60 + CGFloat(column) * 5) / 255
             let g: CGFloat = (120 + CGFloat(column) * 5) / 255
@@ -206,11 +206,11 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     // Section Header / Footer Views
-    func dataGridView(dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextReusableView
         
         if(reloadOverride) {
-            view.backgroundView?.backgroundColor = UIColor.cyanColor()
+            view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
             let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
             let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
@@ -224,11 +224,11 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view
     }
     
-    func dataGridView(dataGridView: SwiftGridView, sectionFooterCellAtIndexPath indexPath: NSIndexPath) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, sectionFooterCellAtIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextReusableView
         
         if(reloadOverride) {
-            view.backgroundView?.backgroundColor = UIColor.cyanColor()
+            view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
             let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
             let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
@@ -243,7 +243,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     // Frozen Columns
-    func numberOfFrozenColumnsInDataGridView(dataGridView: SwiftGridView) -> Int {
+    func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
         return frozenColumns
     }
@@ -251,87 +251,87 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     
     // MARK: - SwiftGridViewDelegate
     
-    func dataGridView(dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
-    func dataGridView(dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath) {
         
         NSLog("Deselected header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Deselected footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
         
         //        dataGridView.deselectCellAtIndexPath(indexPath, animated: true)
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath) {
         
         NSLog("Deselected indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected section header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
         
         //        dataGridView.deselectSectionHeaderAtIndexPath(indexPath)
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath) {
         
         NSLog("Deselected section header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected section footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
         
         //        dataGridView.deselectSectionFooterAtIndexPath(indexPath)
     }
     
-    func dataGridView(dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: NSIndexPath) {
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Deselected section footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
-    func dataGridView(dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat {
         
         return 55
     }
     
-    func dataGridView(dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
+    func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
         
         return 150 + 25 * CGFloat(columnIndex)
     }
     
-    func heightForGridHeaderInDataGridView(dataGridView: SwiftGridView) -> CGFloat {
+    func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
         
         return 75.0
     }
     
-    func heightForGridFooterInDataGridView(dataGridView: SwiftGridView) -> CGFloat {
+    func heightForGridFooterInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
         
         return 55.0
     }
     
-    func dataGridView(dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat {
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat {
         
         return 75.0
     }
     
-    func dataGridView(dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat {
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat {
         
         return 75.0
     }
