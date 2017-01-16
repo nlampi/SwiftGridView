@@ -204,6 +204,7 @@
 					};
 					8A78B54B1C1E3C28006FA8AB = {
 						CreatedOnToolsVersion = 7.1.1;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -378,6 +379,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = SwiftGridView;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -385,6 +387,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = SwiftGridView;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
