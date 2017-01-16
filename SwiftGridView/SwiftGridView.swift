@@ -21,30 +21,6 @@
 
 import Foundation
 import UIKit
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l < r
-  case (nil, _?):
-    return true
-  default:
-    return false
-  }
-}
-
-// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
-// Consider refactoring the code to use the non-optional operators.
-fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
-  switch (lhs, rhs) {
-  case let (l?, r?):
-    return l > r
-  default:
-    return rhs < lhs
-  }
-}
-
 
 
 // MARK: - SwiftGridView Extensions
@@ -943,31 +919,31 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         
         switch(kind) {
         case SwiftGridElementKindHeader:
-            let delegateHeight = self.delegate?.heightForGridHeaderInDataGridView?(self)
-            
-            if(delegateHeight > 0) {
-                rowHeight = delegateHeight!
+            if let delegateHeight = self.delegate?.heightForGridHeaderInDataGridView?(self) {
+                if delegateHeight > 0 {
+                    rowHeight = delegateHeight
+                }
             }
             break;
         case SwiftGridElementKindFooter:
-            let delegateHeight = self.delegate?.heightForGridFooterInDataGridView?(self)
-            
-            if(delegateHeight > 0) {
-                rowHeight = delegateHeight!
+            if let delegateHeight = self.delegate?.heightForGridFooterInDataGridView?(self) {
+                if(delegateHeight > 0) {
+                    rowHeight = delegateHeight
+                }
             }
             break;
         case SwiftGridElementKindSectionHeader:
-            let delegateHeight = self.delegate?.dataGridView?(self, heightOfHeaderInSection: indexPath.section)
-            
-            if(delegateHeight > 0) {
-                rowHeight = delegateHeight!
+            if let delegateHeight = self.delegate?.dataGridView?(self, heightOfHeaderInSection: indexPath.section) {
+                if(delegateHeight > 0) {
+                    rowHeight = delegateHeight
+                }
             }
             break;
         case SwiftGridElementKindSectionFooter:
-            let delegateHeight = self.delegate?.dataGridView?(self, heightOfFooterInSection: indexPath.section)
-            
-            if(delegateHeight > 0) {
-                rowHeight = delegateHeight!
+            if let delegateHeight = self.delegate?.dataGridView?(self, heightOfFooterInSection: indexPath.section) {
+                if(delegateHeight > 0) {
+                    rowHeight = delegateHeight
+                }
             }
             break;
         default:
