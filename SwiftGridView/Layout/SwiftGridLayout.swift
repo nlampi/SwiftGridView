@@ -36,6 +36,8 @@ import UIKit
     
     func collectionView(_ collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int
     
+    func collectionView(_ collectionView: UICollectionView, groupedColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> [[Int]]
+    
     func collectionView(_ collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int
     
     func collectionView(_ collectionView: UICollectionView, totalColumnWidthForLayout collectionViewLayout: UICollectionViewLayout) -> CGFloat
@@ -78,6 +80,41 @@ class SwiftGridLayout : UICollectionViewLayout {
             }
             
             return _sgLayoutSize
+        }
+    }
+    
+    fileprivate var _columnGroupings: [[Int]]?
+    fileprivate var columnGroupings: [[Int]] {
+        get {
+            if(_columnGroupings == nil) {
+                _columnGroupings = self.delegate.collectionView(self.collectionView!, groupedColumnsForLayout: self)
+            }
+            
+            return _columnGroupings!
+        }
+    }
+    fileprivate var _groupedColumns: [Int]?
+    fileprivate var groupedColumns: [Int] {
+        get {
+            if(_groupedColumns == nil) {
+                _groupedColumns = [Int]()
+                
+                // TODO: Exception handling?
+                for grouping in self.columnGroupings {
+                    if grouping.count != 2 {
+                        continue; // Invalid grouping.
+                    }
+                    if grouping[0] > grouping[1] {
+                        continue; // Grouping index is wrong order
+                    }
+                    
+                    for i in grouping[0]...grouping[1] {
+                        _groupedColumns?.append(i)
+                    }
+                }
+            }
+            
+            return _groupedColumns!
         }
     }
     
@@ -124,6 +161,8 @@ class SwiftGridLayout : UICollectionViewLayout {
             _zoomScale = 1.0
             _sgLayoutSize = CGSize.zero
         }
+        _columnGroupings = nil
+        _groupedColumns = nil
         _frozenColumnsCount = -1
         horizontalOffsetCache = NSMutableDictionary()
         verticalOffsetCache = NSMutableDictionary()
@@ -296,10 +335,16 @@ class SwiftGridLayout : UICollectionViewLayout {
     func layoutAttributesForHeaderAtIndexPath(_ indexPath: IndexPath) -> UICollectionViewLayoutAttributes! {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindHeader, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: indexPath.item)
-        let yOffset: CGFloat = (self.collectionView!.contentOffset.y > 0) ?  self.collectionView!.contentOffset.y : 0.0 // Sticky grid header
-        let viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
+        var yOffset: CGFloat = (self.collectionView!.contentOffset.y > 0) ?  self.collectionView!.contentOffset.y : 0.0 // Sticky grid header
+        var viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
         
         // FIXME: Sticky header
+        
+        if self.groupedColumns.contains(indexPath.item) {
+            // Grouped Column
+            viewSize.height = viewSize.height / 2
+            yOffset += viewSize.height
+        }
         
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(viewSize.width), height: viewSize.height)
         attributes.zIndex = Int.max - indexPath.item // FIXME: Something better?

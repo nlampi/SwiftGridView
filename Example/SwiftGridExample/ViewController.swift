@@ -242,6 +242,12 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view
     }
     
+    // Grouped Headers
+    func columnGroupingsForDataGridView(_ dataGridVIew: SwiftGridView) -> [[Int]] {
+        
+        return [[2,4], [6,8]]
+    }
+    
     // Frozen Columns
     func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         

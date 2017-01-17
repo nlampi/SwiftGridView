@@ -97,6 +97,15 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
     func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int
     
     /**
+     The grouping settings to use for the data grid. Expects an array of grouped column index sets. Columns cannot overlap.
+     Example: [[1,4], [5,8]]
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Array of grouped column index sets.
+    */
+    @objc optional func columnGroupingsForDataGridView(_ dataGridVIew: SwiftGridView) -> [[Int]]
+    
+    /**
      Number of rows to display in the provided data grid section.
      
      - Parameter dataGridView: The swift grid view instance.
@@ -962,6 +971,15 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     internal func collectionView(_ collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
         
         return self.sgColumnCount
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, groupedColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> [[Int]] {
+        if let groupedColumns = self.dataSource?.columnGroupingsForDataGridView?(self) {
+            
+            return groupedColumns
+        }
+        
+        return [[Int]]()
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
