@@ -237,6 +237,22 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      */
     @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath)
     
+    /**
+     Called when a grouped header view is selected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter index: Grouped header index.
+     */
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int)
+    
+    /**
+     Called when a grouped header view is deselected.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter index: Grouped header index.
+     */
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int)
+    
     
     // MARK: Footer Methods
     
@@ -536,6 +552,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     
     // Cache selected items.
     fileprivate var selectedHeaders: NSMutableDictionary = NSMutableDictionary()
+    fileprivate var selectedGroupedHeaders: NSMutableDictionary = NSMutableDictionary()
     fileprivate var selectedSectionHeaders: NSMutableDictionary = NSMutableDictionary()
     fileprivate var selectedSectionFooters: NSMutableDictionary = NSMutableDictionary()
     fileprivate var selectedFooters: NSMutableDictionary = NSMutableDictionary()
@@ -562,6 +579,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         _groupedColumns = nil
         
         self.selectedHeaders = NSMutableDictionary()
+        self.selectedGroupedHeaders = NSMutableDictionary()
         self.selectedSectionHeaders = NSMutableDictionary()
         self.selectedSectionFooters = NSMutableDictionary()
         self.selectedFooters = NSMutableDictionary()
@@ -775,7 +793,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         case SwiftGridElementKindGroupedHeader:
             self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
             
-            // FIXME: Integrate
+            self.delegate?.dataGridView?(self, didSelectGroupedHeader: self.groupedColumns[indexPath.sgColumn], at: indexPath.sgColumn)
             break
         case SwiftGridElementKindFooter:
             self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
@@ -815,7 +833,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         case SwiftGridElementKindGroupedHeader:
             self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
             
-            // FIXME: Integrate
+            self.delegate?.dataGridView?(self, didDeselectGroupedHeader: self.groupedColumns[indexPath.sgColumn], at: indexPath.sgColumn)
             break
         case SwiftGridElementKindFooter:
             self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
@@ -909,7 +927,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             self.selectedHeaders[indexPath] = true
             break
         case SwiftGridElementKindGroupedHeader:
-            // FIXME: Integrate
+            self.selectedGroupedHeaders[indexPath] = true
             break
         case SwiftGridElementKindFooter:
             self.selectedFooters[indexPath] = true
@@ -931,7 +949,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             self.selectedHeaders.removeObject(forKey: indexPath)
             break
         case SwiftGridElementKindGroupedHeader:
-            // FIXME: Integrate
+            self.selectedGroupedHeaders.removeObject(forKey: indexPath)
             break
         case SwiftGridElementKindFooter:
             self.selectedFooters.removeObject(forKey: indexPath)
@@ -1099,7 +1117,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             break
         case SwiftGridElementKindGroupedHeader:
             reusableView = self.dataSource!.dataGridView!(self, groupedHeaderViewFor: self.groupedColumns[indexPath.item], at: indexPath.item)
-            // reusableView.selected = self.selectedHeaders[convertedPath] != nil ? true : false // FIXME: Implement
+            reusableView.selected = self.selectedGroupedHeaders[convertedPath] != nil ? true : false
             break
         case SwiftGridElementKindFooter:
             reusableView = self.dataSource!.dataGridView!(self, gridFooterViewForColumn: convertedPath.sgColumn)

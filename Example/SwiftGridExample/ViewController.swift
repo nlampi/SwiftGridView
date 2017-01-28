@@ -30,7 +30,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     var frozenColumns: Int = 1
     var reloadOverride: Bool = false
     var columnCount: Int = 10
-    var rowCountIncrease: Int = 90
+    var rowCountIncrease: Int = 40
     let columnGroupings: [[Int]] = [[2,4], [6,8]]
     
     override func viewDidLoad() {
@@ -287,6 +287,13 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         NSLog("Deselected header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int) {
+        NSLog("Selected grouped header [\(columnGrouping[0]), \(columnGrouping[1])]")
+    }
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int) {
+        NSLog("Deselected grouped header [\(columnGrouping[0]), \(columnGrouping[1])]")
+    }
+        
     func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
