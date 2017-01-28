@@ -66,6 +66,7 @@ public extension IndexPath {
 }
 
 public let SwiftGridElementKindHeader: String = "SwiftGridElementKindHeader"
+public let SwiftGridElementKindGroupedHeader: String = "SwiftGridElementKindGroupedHeader"
 public let SwiftGridElementKindSectionHeader: String = UICollectionElementKindSectionHeader
 public let SwiftGridElementKindFooter: String = "SwiftGridElementKindFooter"
 public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSectionFooter
@@ -142,6 +143,16 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
      - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
      */
     @objc optional func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView
+    
+    /**
+     Return the header view to be displayed in the provided column grouping
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Parameter columnGrouping: Current grouping.
+     - Parameter index: Current grouping index.
+     - Returns: View that has been dequeued and of `SwiftGridReusableView` type.
+     */
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, groupedHeaderViewFor columnGrouping: [Int], at index: Int) -> SwiftGridReusableView
     
     /**
      Number of sections to display in the data grid
@@ -479,7 +490,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
                 _sgSectionCount = self.dataSource!.numberOfSectionsInDataGridView(self)
             }
             
-            return _sgSectionCount;
+            return _sgSectionCount
         }
     }
     
@@ -490,7 +501,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
                 _sgColumnCount = self.dataSource!.numberOfColumnsInDataGridView(self)
             }
             
-            return _sgColumnCount;
+            return _sgColumnCount
         }
     }
     
@@ -500,11 +511,26 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             if(_sgColumnWidth == 0) {
                 
                 for columnIndex in 0 ..< self.sgColumnCount {
-                    _sgColumnWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: columnIndex);
+                    _sgColumnWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: columnIndex)
                 }
             }
             
-            return _sgColumnWidth;
+            return _sgColumnWidth
+        }
+    }
+    
+    fileprivate var _groupedColumns: [[Int]]?
+    fileprivate var groupedColumns: [[Int]] {
+        get {
+            if _groupedColumns == nil {
+                if let groupedColumns = self.dataSource?.columnGroupingsForDataGridView?(self) {
+                    _groupedColumns = groupedColumns
+                } else {
+                    _groupedColumns = [[Int]]()
+                }
+            }
+            
+            return _groupedColumns!
         }
     }
     
@@ -533,13 +559,14 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         _sgSectionCount = 0
         _sgColumnCount = 0
         _sgColumnWidth = 0
+        _groupedColumns = nil
         
         self.selectedHeaders = NSMutableDictionary()
         self.selectedSectionHeaders = NSMutableDictionary()
         self.selectedSectionFooters = NSMutableDictionary()
         self.selectedFooters = NSMutableDictionary()
         
-        sgCollectionViewLayout.resetCachedParameters();
+        sgCollectionViewLayout.resetCachedParameters()
         
         self.sgCollectionView.reloadData()
     }
@@ -588,13 +615,13 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
-        let revertedPath: IndexPath = IndexPath(item: column, section: 0);
+        let revertedPath: IndexPath = IndexPath(item: column, section: 0)
         
         return self.sgCollectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
     
     open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
-        let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath);
+        let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
         
         return self.sgCollectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
@@ -745,6 +772,11 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             
             self.delegate?.dataGridView?(self, didSelectHeaderAtIndexPath: indexPath)
             break
+        case SwiftGridElementKindGroupedHeader:
+            self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
+            
+            // FIXME: Integrate
+            break
         case SwiftGridElementKindFooter:
             self.selectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
             
@@ -780,6 +812,11 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             
             self.delegate?.dataGridView?(self, didDeselectHeaderAtIndexPath: indexPath)
             break
+        case SwiftGridElementKindGroupedHeader:
+            self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
+            
+            // FIXME: Integrate
+            break
         case SwiftGridElementKindFooter:
             self.deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: indexPath)
             
@@ -806,6 +843,8 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             break
         case SwiftGridElementKindHeader:
             break
+        case SwiftGridElementKindGroupedHeader:
+            break
         case SwiftGridElementKindFooter:
             break
         default:
@@ -829,6 +868,8 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             break
         case SwiftGridElementKindHeader:
             break
+        case SwiftGridElementKindGroupedHeader:
+            break
         case SwiftGridElementKindFooter:
             break
         default:
@@ -849,7 +890,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             
             guard let reusableView = self.sgCollectionView.supplementaryView(forElementKind: kind, at: itemPath) as? SwiftGridReusableView
                 else {
-                    continue;
+                    continue
             }
             
             reusableView.selected = selected
@@ -866,6 +907,9 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             break
         case SwiftGridElementKindHeader:
             self.selectedHeaders[indexPath] = true
+            break
+        case SwiftGridElementKindGroupedHeader:
+            // FIXME: Integrate
             break
         case SwiftGridElementKindFooter:
             self.selectedFooters[indexPath] = true
@@ -886,6 +930,9 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         case SwiftGridElementKindHeader:
             self.selectedHeaders.removeObject(forKey: indexPath)
             break
+        case SwiftGridElementKindGroupedHeader:
+            // FIXME: Integrate
+            break
         case SwiftGridElementKindFooter:
             self.selectedFooters.removeObject(forKey: indexPath)
             break
@@ -900,7 +947,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             let itemPath = self.reverseIndexPathConversion(sgPath)
             guard let reusableView = self.sgCollectionView.supplementaryView(forElementKind: kind, at: itemPath) as? SwiftGridReusableView
                 else {
-                    continue;
+                    continue
             }
             
             reusableView.highlighted = highlighted
@@ -922,7 +969,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         var colWidth: CGFloat = 0.0
         var rowHeight: CGFloat = 0
         
-        if(indexPath.count != 0) {
+        if(indexPath.count != 0 && kind != SwiftGridElementKindGroupedHeader) {
             colWidth = self.delegate!.dataGridView(self, widthOfColumnAtIndex: indexPath.row)
         }
         
@@ -933,31 +980,44 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
                     rowHeight = delegateHeight
                 }
             }
-            break;
+            break
         case SwiftGridElementKindFooter:
             if let delegateHeight = self.delegate?.heightForGridFooterInDataGridView?(self) {
                 if(delegateHeight > 0) {
                     rowHeight = delegateHeight
                 }
             }
-            break;
+            break
         case SwiftGridElementKindSectionHeader:
             if let delegateHeight = self.delegate?.dataGridView?(self, heightOfHeaderInSection: indexPath.section) {
                 if(delegateHeight > 0) {
                     rowHeight = delegateHeight
                 }
             }
-            break;
+            break
         case SwiftGridElementKindSectionFooter:
             if let delegateHeight = self.delegate?.dataGridView?(self, heightOfFooterInSection: indexPath.section) {
                 if(delegateHeight > 0) {
                     rowHeight = delegateHeight
                 }
             }
-            break;
+            break
+        case SwiftGridElementKindGroupedHeader:
+            let grouping = self.groupedColumns[indexPath.item]
+            
+            for column in grouping[0] ... grouping[1] {
+                colWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: column)
+            }
+            
+            if let delegateHeight = self.delegate?.dataGridView?(self, heightOfHeaderInSection: indexPath.section) {
+                if(delegateHeight > 0) {
+                    rowHeight = delegateHeight
+                }
+            }
+            break
         default:
             rowHeight = 0
-            break;
+            break
         }
         
         return CGSize(width: colWidth, height: rowHeight)
@@ -974,12 +1034,8 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     internal func collectionView(_ collectionView: UICollectionView, groupedColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> [[Int]] {
-        if let groupedColumns = self.dataSource?.columnGroupingsForDataGridView?(self) {
-            
-            return groupedColumns
-        }
         
-        return [[Int]]()
+        return self.groupedColumns
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfFrozenColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
@@ -1040,6 +1096,10 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         case SwiftGridElementKindHeader:
             reusableView = self.dataSource!.dataGridView!(self, gridHeaderViewForColumn: convertedPath.sgColumn)
             reusableView.selected = self.selectedHeaders[convertedPath] != nil ? true : false
+            break
+        case SwiftGridElementKindGroupedHeader:
+            reusableView = self.dataSource!.dataGridView!(self, groupedHeaderViewFor: self.groupedColumns[indexPath.item], at: indexPath.item)
+            // reusableView.selected = self.selectedHeaders[convertedPath] != nil ? true : false // FIXME: Implement
             break
         case SwiftGridElementKindFooter:
             reusableView = self.dataSource!.dataGridView!(self, gridFooterViewForColumn: convertedPath.sgColumn)
