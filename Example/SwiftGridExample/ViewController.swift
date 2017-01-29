@@ -30,7 +30,8 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     var frozenColumns: Int = 1
     var reloadOverride: Bool = false
     var columnCount: Int = 10
-    var rowCountIncrease: Int = 90
+    var rowCountIncrease: Int = 40
+    let columnGroupings: [[Int]] = [[2,4], [6,8]]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         
         self.dataGridView.registerClass(BasicTextCell.self, forCellWithReuseIdentifier:BasicTextCell.reuseIdentifier())
         self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
         self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
         self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
         self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
@@ -187,6 +189,25 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view
     }
     
+    func dataGridView(_ dataGridView: SwiftGridView, groupedHeaderViewFor columnGrouping: [Int], at index: Int) -> SwiftGridReusableView {
+        let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindGroupedHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: index) as! BasicTextReusableView
+        
+        if(reloadOverride) {
+            view.backgroundView?.backgroundColor = UIColor.cyan
+        } else {
+            let r: CGFloat = (120 + CGFloat(columnGrouping[0]) * 5) / 255
+            let g: CGFloat = (60 + CGFloat(columnGrouping[0]) * 5) / 255
+            let b: CGFloat = (60 + CGFloat(columnGrouping[0]) * 5) / 255
+            
+            view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+        }
+        
+        view.textLabel.textAlignment = .center
+        view.textLabel.text = "Grouping [\(columnGrouping[0]), \(columnGrouping[1])]"
+        
+        return view;
+    }
+    
     func dataGridView(_ dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: column) as! BasicTextReusableView
         
@@ -242,6 +263,12 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view
     }
     
+    // Grouped Headers
+    func columnGroupingsForDataGridView(_ dataGridVIew: SwiftGridView) -> [[Int]] {
+        
+        return self.columnGroupings
+    }
+    
     // Frozen Columns
     func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
@@ -260,6 +287,13 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         NSLog("Deselected header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
     }
     
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int) {
+        NSLog("Selected grouped header [\(columnGrouping[0]), \(columnGrouping[1])]")
+    }
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int) {
+        NSLog("Deselected grouped header [\(columnGrouping[0]), \(columnGrouping[1])]")
+    }
+        
     func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
