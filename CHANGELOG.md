@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.3.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.1) (2017-01-28)
+Added grouped headers. Fixed minor issues with section footers and example project paths.
+
 ## [0.3.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.0) (2016-12-05)
 Updated to Swift 3.0
 
