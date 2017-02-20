@@ -27,7 +27,7 @@ import UIKit
 /**
  The `SwiftGridReusableViewDelegate` is used for passing selection and highlighting events through to the data grid.
  */
-public protocol SwiftGridReusableViewDelegate {
+public protocol SwiftGridReusableViewDelegate: class {
     /**
      Called when the reusable view is selected.
      
@@ -68,7 +68,7 @@ open class SwiftGridReusableView: UICollectionReusableView {
     
     // MARK: - Properties
     
-    internal var delegate:SwiftGridReusableViewDelegate?
+    internal weak var delegate:SwiftGridReusableViewDelegate?
     internal var elementKind: String = ""
     internal var indexPath:IndexPath = IndexPath.init() // TODO: Is there a better way to handle this?
     
