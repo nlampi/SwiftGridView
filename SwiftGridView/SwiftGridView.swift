@@ -1027,7 +1027,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
                 colWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: column)
             }
             
-            if let delegateHeight = self.delegate?.dataGridView?(self, heightOfHeaderInSection: indexPath.section) {
+            if let delegateHeight = self.delegate?.heightForGridHeaderInDataGridView?(self) {
                 if(delegateHeight > 0) {
                     rowHeight = delegateHeight
                 }
