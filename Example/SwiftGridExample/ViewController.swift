@@ -45,6 +45,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.dataGridView.allowsSelection = true
         self.dataGridView.allowsMultipleSelection = true
         self.dataGridView.rowSelectionEnabled = true
+        self.dataGridView.isDirectionalLockEnabled = false
         self.dataGridView.bounces = true
         self.dataGridView.stickySectionHeaders = true
         self.dataGridView.showsHorizontalScrollIndicator = true

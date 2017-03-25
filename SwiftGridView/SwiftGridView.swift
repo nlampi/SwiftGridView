@@ -414,6 +414,15 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      */
     open var rowSelectionEnabled: Bool = false
     
+    open var isDirectionalLockEnabled: Bool {
+        set(isDirectionalLockEnabled) {
+            self.sgCollectionView.isDirectionalLockEnabled = isDirectionalLockEnabled
+        }
+        get {
+            return self.sgCollectionView.isDirectionalLockEnabled
+        }
+    }
+    
     open var bounces: Bool {
         set(bounces) {
             self.sgCollectionView.bounces = bounces
@@ -488,6 +497,46 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
                 self.sgTwoTapGestureRecognizer.numberOfTouchesRequired = 2
                 self.sgCollectionView.addGestureRecognizer(self.sgTwoTapGestureRecognizer)
             }
+        }
+    }
+    
+    /// returns YES if user has touched. may not yet have started draggin
+    open var isTracking: Bool {
+        get {
+            return self.sgCollectionView.isTracking
+        }
+    }
+    
+    /// returns YES if user has started scrolling. this may require some time and or distance to move to initiate dragging
+    open var isDragging: Bool {
+        get {
+            return self.sgCollectionView.isDragging
+        }
+    }
+    /// returns YES if user isn't dragging (touch up) but scroll view is still moving
+    open var isDecelerating: Bool {
+        get {
+            return self.sgCollectionView.isDecelerating
+        }
+    }
+    
+    /// default is YES.
+    open var scrollsToTop: Bool {
+        set(scrollsToTop) {
+            self.sgCollectionView.scrollsToTop = scrollsToTop
+        }
+        get {
+            return self.sgCollectionView.scrollsToTop
+        }
+    }
+    
+    @available(iOS 10.0, *)
+    open var refreshControl: UIRefreshControl? {
+        set(refreshControl) {
+            self.sgCollectionView.refreshControl = refreshControl
+        }
+        get {
+            return self.sgCollectionView.refreshControl
         }
     }
     
