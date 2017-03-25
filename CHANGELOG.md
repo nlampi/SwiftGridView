@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.3.4](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.4) (2017-03-25)
+Added some missing common functionality reported in issue #10
+
 ## [0.3.3](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.3) (2017-02-22)
 Fixed grouped header height issue reported in issue #8
 
