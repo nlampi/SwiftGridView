@@ -44,6 +44,8 @@ import UIKit
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfFrozenRowsInSection sectionIndex: Int) -> Int
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
 }
 
@@ -126,6 +128,19 @@ class SwiftGridLayout : UICollectionViewLayout {
             }
             
             return _frozenColumnsCount
+        }
+    }
+    
+    fileprivate var _frozenRowCounts: [Int] = [Int]()
+    fileprivate var frozenRowCounts: [Int] {
+        get {
+            if(_frozenRowCounts.count == 0) {
+                for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections {
+                    _frozenRowCounts.append(self.delegate.collectionView(self.collectionView!, layout: self, numberOfFrozenRowsInSection: sectionIndex))
+                }
+            }
+            
+            return _frozenRowCounts
         }
     }
     
@@ -301,6 +316,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         let currentColumn: Int = indexPath.row % self.numberOfColumns()
+        let rowNumber: Int = indexPath.row / self.numberOfColumns()
         let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: currentColumn)
         let yOffset: CGFloat = self.verticalOffsetAtIndexPath(indexPath)
@@ -308,8 +324,16 @@ class SwiftGridLayout : UICollectionViewLayout {
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(cellSize.width), height: cellSize.height)
         
         // Frozen column
-        if(currentColumn < self.frozenColumnsCount) {
-            attributes.zIndex = Int.max - currentColumn - 2 // FIXME: Something better?
+        if currentColumn < self.frozenColumnsCount {
+            // Frozen row
+            if rowNumber < self.frozenRowCounts[indexPath.section] {
+                attributes.zIndex = Int.max - currentColumn - 2 // FIXME: Something better?
+            } else {
+                attributes.zIndex = Int.max - currentColumn - 3 // FIXME: Something better?
+            }
+        } else if rowNumber < self.frozenRowCounts[indexPath.section] {
+            // Frozen row
+            attributes.zIndex = indexPath.section + 1 // FIXME: Something better?
         } else {
             attributes.zIndex = indexPath.section
         }
@@ -494,31 +518,20 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // TODO: column as key issues?
         
-        // Frozen Columns
-        if(column < self.frozenColumnsCount) {
-            if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
-                offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
-            } else {
-                if (indexPath.row > 0) {
-                    offset = self.horizontalOffsetForColumnAtIndex(column)
-                }
-                
-                self.horizontalOffsetCache[column] = offset
+        if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
+            offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
+        } else {
+            if (indexPath.row > 0) {
+                offset = self.horizontalOffsetForColumnAtIndex(column)
             }
             
+            self.horizontalOffsetCache[column] = offset
+        }
+        
+        // Frozen Columns
+        if(column < self.frozenColumnsCount) {
             if(self.collectionView!.contentOffset.x > 0) {
                 offset += self.collectionView!.contentOffset.x
-            }
-        } else {
-            // Regular Columns
-            if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
-                offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
-            } else {
-                if (indexPath.row > 0) {
-                    offset = self.horizontalOffsetForColumnAtIndex(column)
-                }
-                
-                self.horizontalOffsetCache[column] = offset
             }
         }
         
@@ -537,6 +550,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     func verticalOffsetAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
         var offset: CGFloat = 0.0
+        let rowNumber: Int = indexPath.row / self.numberOfColumns()
         
         if(self.verticalOffsetCache[indexPath] != nil) { /// Check Cache
             offset = CGFloat((self.verticalOffsetCache[indexPath] as? NSNumber)!.floatValue)
@@ -555,12 +569,17 @@ class SwiftGridLayout : UICollectionViewLayout {
             
             // Add in current section row heights
             if(indexPath.row > 0) {
-                let rowNumber: Int = indexPath.row / self.numberOfColumns()
-                
                 offset += self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
             }
             
             self.verticalOffsetCache[indexPath] = offset
+        }
+        
+        // Frozen Rows
+        if rowNumber < self.frozenRowCounts[indexPath.section] {
+            if(self.collectionView!.contentOffset.y > 0) {
+                offset += self.collectionView!.contentOffset.y
+            }
         }
         
         return offset

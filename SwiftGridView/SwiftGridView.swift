@@ -116,6 +116,14 @@ public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSe
     func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int
     
     /**
+     Number of frozen rows in the provided section. Frozen rows start from the top and will be "frozen" in place and not scroll vertically out of view.
+     
+     - Parameter dataGridView: The swift grid view instance.
+     - Returns: Count of frozen columns in the data grid.
+     */
+    @objc optional func dataGridView(_ dataGridView: SwiftGridView, numberOfFrozenRowsInSection section: Int) -> Int
+    
+    /**
      Number of frozen columns in the data grid. Frozen columns start from the left and will be "frozen" in place and not scroll horizontally out of view.
      
      - Parameter dataGridView: The swift grid view instance.
@@ -1093,6 +1101,17 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int {
         
         return self.numberOfRowsInSection(sectionIndex)
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfFrozenRowsInSection sectionIndex: Int) -> Int {
+        
+        if let frozenRows = self.dataSource?.dataGridView?(self, numberOfFrozenRowsInSection: sectionIndex) {
+            
+            return frozenRows
+        }
+        
+        
+        return 0
     }
     
     internal func collectionView(_ collectionView: UICollectionView, numberOfColumnsForLayout collectionViewLayout: UICollectionViewLayout) -> Int {
