@@ -269,10 +269,10 @@ class SwiftGridLayout : UICollectionViewLayout {
             // TODO: Possibly refactor?
             if frozenRowCount > 0 {
                 let numberOfFrozenItemsInSection:Int = self.numberOfColumns() * frozenRowCount
-                startItem = numberOfFrozenItemsInSection + 1
+                startItem = numberOfFrozenItemsInSection
                 var attributeIndex = 0
                 
-                while attributeIndex < numberOfItemsInSection {
+                while attributeIndex < numberOfFrozenItemsInSection {
                     let layoutAttributes = self.layoutAttributesForItem(at: IndexPath(item: attributeIndex, section: sectionIndex))!
                     
                     if (rect.intersects(layoutAttributes.frame)) {
@@ -620,9 +620,13 @@ class SwiftGridLayout : UICollectionViewLayout {
                 let sectionHeight = self.heightOfSectionAtIndexPath(sectionPath)
                 let sectionFooterHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
                 let rowHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
-                let frozenRowIndex = CGFloat(self.frozenRowCounts[indexPath.section])
+                var frozenRowIndex = self.frozenRowCounts[indexPath.section]
                 
-                let maxFrozenRowHeight = offset + sectionHeight - sectionHeaderHeight - sectionFooterHeight - (frozenRowIndex * rowHeight)
+                if frozenRowIndex > self.numberOfRowsInSection(indexPath.section) {
+                    frozenRowIndex = self.numberOfRowsInSection(indexPath.section)
+                }
+                
+                let maxFrozenRowHeight = offset + sectionHeight - sectionHeaderHeight - sectionFooterHeight - (CGFloat(frozenRowIndex) * rowHeight)
                 
                 if(contentOffset > maxFrozenRowHeight) {
                     offset = maxFrozenRowHeight
