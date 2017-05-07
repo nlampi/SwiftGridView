@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.3.5](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.5) (2017-05-07)
+Added the ability freeze rows. Requested in issue #13
+
 ## [0.3.4](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.4) (2017-03-25)
 Added some missing common functionality reported in issue #10
 

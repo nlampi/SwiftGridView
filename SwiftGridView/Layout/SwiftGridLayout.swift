@@ -268,7 +268,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             
             // TODO: Possibly refactor?
             if frozenRowCount > 0 {
-                var numberOfFrozenItemsInSection:Int = self.numberOfColumns() * frozenRowCount
+                let numberOfFrozenItemsInSection:Int = self.numberOfColumns() * frozenRowCount
                 startItem = numberOfFrozenItemsInSection + 1
                 var attributeIndex = 0
                 
