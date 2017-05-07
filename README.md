@@ -43,6 +43,7 @@ Currently the Swift Grid View supports a lot of the expected features for a data
 #### Additional Functionality
 - Sticky section headers
 - Frozen Columns
+- Frozen Rows
 - Grouped Headers
 - Pinch to expand size (experimental)
 

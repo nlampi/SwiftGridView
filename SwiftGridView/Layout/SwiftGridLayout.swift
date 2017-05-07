@@ -44,6 +44,8 @@ import UIKit
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfRowsInSection sectionIndex: Int) -> Int
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, numberOfFrozenRowsInSection sectionIndex: Int) -> Int
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
 }
 
@@ -129,6 +131,19 @@ class SwiftGridLayout : UICollectionViewLayout {
         }
     }
     
+    fileprivate var _frozenRowCounts: [Int] = [Int]()
+    fileprivate var frozenRowCounts: [Int] {
+        get {
+            if(_frozenRowCounts.count == 0) {
+                for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections {
+                    _frozenRowCounts.append(self.delegate.collectionView(self.collectionView!, layout: self, numberOfFrozenRowsInSection: sectionIndex))
+                }
+            }
+            
+            return _frozenRowCounts
+        }
+    }
+    
     fileprivate var horizontalOffsetCache: NSMutableDictionary = NSMutableDictionary()
     fileprivate var verticalOffsetCache: NSMutableDictionary = NSMutableDictionary()
     
@@ -164,6 +179,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         _columnGroupings = nil
         _groupedColumns = nil
         _frozenColumnsCount = -1
+        _frozenRowCounts = [Int]()
         horizontalOffsetCache = NSMutableDictionary()
         verticalOffsetCache = NSMutableDictionary()
     }
@@ -225,6 +241,7 @@ class SwiftGridLayout : UICollectionViewLayout {
 
         for sectionIndex:Int in 0 ..< self.collectionView!.numberOfSections {
             let numberOfItemsInSection: Int = self.numberOfColumns() * self.numberOfRowsInSection(sectionIndex)
+            var startItem:Int = 0
             
             // Add section headers
             // Skip section headers when height is 0
@@ -242,8 +259,39 @@ class SwiftGridLayout : UICollectionViewLayout {
                 }
             }
             
+            // Add frozen row cells
+            var frozenRowCount:Int = self.frozenRowCounts[sectionIndex]
+            
+            if frozenRowCount > self.numberOfRowsInSection(sectionIndex) {
+                frozenRowCount = self.numberOfRowsInSection(sectionIndex)
+            }
+            
+            // TODO: Possibly refactor?
+            if frozenRowCount > 0 {
+                let numberOfFrozenItemsInSection:Int = self.numberOfColumns() * frozenRowCount
+                startItem = numberOfFrozenItemsInSection + 1
+                var attributeIndex = 0
+                
+                while attributeIndex < numberOfItemsInSection {
+                    let layoutAttributes = self.layoutAttributesForItem(at: IndexPath(item: attributeIndex, section: sectionIndex))!
+                    
+                    if (rect.intersects(layoutAttributes.frame)) {
+                        attributesArray.append(layoutAttributes)
+                        attributeIndex += 1
+                    } else if(layoutAttributes.frame.origin.x > sizeMax.width) {
+                        // Skip to next row.
+                        attributeIndex = (attributeIndex / self.numberOfColumns() + 1) * self.numberOfColumns()
+                    } else if(layoutAttributes.frame.origin.y > sizeMax.height) {
+                        // All future values are not visible.
+                        break
+                    } else {
+                        attributeIndex += 1
+                    }
+                }
+            }
+            
             // Add row cells
-            let attributeStartIndex = self.attributeStartAtOffset(self.collectionView!.contentOffset.y, inSection: sectionIndex, withMaxItems: numberOfItemsInSection)
+            let attributeStartIndex = self.attributeStartAtOffset(self.collectionView!.contentOffset.y, inSection: sectionIndex, withStartItem:startItem, andMaxItems: numberOfItemsInSection)
             var attributeIndex = attributeStartIndex
             
             while attributeIndex < numberOfItemsInSection {
@@ -301,6 +349,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
         let currentColumn: Int = indexPath.row % self.numberOfColumns()
+        let rowNumber: Int = indexPath.row / self.numberOfColumns()
         let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: currentColumn)
         let yOffset: CGFloat = self.verticalOffsetAtIndexPath(indexPath)
@@ -308,8 +357,16 @@ class SwiftGridLayout : UICollectionViewLayout {
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(cellSize.width), height: cellSize.height)
         
         // Frozen column
-        if(currentColumn < self.frozenColumnsCount) {
-            attributes.zIndex = Int.max - currentColumn - 2 // FIXME: Something better?
+        if currentColumn < self.frozenColumnsCount {
+            // Frozen row
+            if rowNumber < self.frozenRowCounts[indexPath.section] {
+                attributes.zIndex = Int.max - currentColumn - 2 // FIXME: Something better?
+            } else {
+                attributes.zIndex = Int.max - currentColumn - 3 // FIXME: Something better?
+            }
+        } else if rowNumber < self.frozenRowCounts[indexPath.section] {
+            // Frozen row
+            attributes.zIndex = indexPath.section + 1 // FIXME: Something better?
         } else {
             attributes.zIndex = indexPath.section
         }
@@ -494,31 +551,20 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // TODO: column as key issues?
         
-        // Frozen Columns
-        if(column < self.frozenColumnsCount) {
-            if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
-                offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
-            } else {
-                if (indexPath.row > 0) {
-                    offset = self.horizontalOffsetForColumnAtIndex(column)
-                }
-                
-                self.horizontalOffsetCache[column] = offset
+        if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
+            offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
+        } else {
+            if (indexPath.row > 0) {
+                offset = self.horizontalOffsetForColumnAtIndex(column)
             }
             
+            self.horizontalOffsetCache[column] = offset
+        }
+        
+        // Frozen Columns
+        if(column < self.frozenColumnsCount) {
             if(self.collectionView!.contentOffset.x > 0) {
                 offset += self.collectionView!.contentOffset.x
-            }
-        } else {
-            // Regular Columns
-            if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
-                offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
-            } else {
-                if (indexPath.row > 0) {
-                    offset = self.horizontalOffsetForColumnAtIndex(column)
-                }
-                
-                self.horizontalOffsetCache[column] = offset
             }
         }
         
@@ -537,6 +583,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     func verticalOffsetAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
         var offset: CGFloat = 0.0
+        let rowNumber: Int = indexPath.row / self.numberOfColumns()
         
         if(self.verticalOffsetCache[indexPath] != nil) { /// Check Cache
             offset = CGFloat((self.verticalOffsetCache[indexPath] as? NSNumber)!.floatValue)
@@ -555,20 +602,42 @@ class SwiftGridLayout : UICollectionViewLayout {
             
             // Add in current section row heights
             if(indexPath.row > 0) {
-                let rowNumber: Int = indexPath.row / self.numberOfColumns()
-                
                 offset += self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
             }
             
             self.verticalOffsetCache[indexPath] = offset
         }
         
+        // Frozen Rows
+        if rowNumber < self.frozenRowCounts[indexPath.section] {
+            let headerHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+            let sectionHeaderHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+            let rowOffset = self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
+            let contentOffset = self.collectionView!.contentOffset.y + headerHeight + sectionHeaderHeight + rowOffset
+            
+            if(contentOffset > offset) {
+                let sectionPath = IndexPath(item: 0, section: indexPath.section)
+                let sectionHeight = self.heightOfSectionAtIndexPath(sectionPath)
+                let sectionFooterHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
+                let rowHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
+                let frozenRowIndex = CGFloat(self.frozenRowCounts[indexPath.section])
+                
+                let maxFrozenRowHeight = offset + sectionHeight - sectionHeaderHeight - sectionFooterHeight - (frozenRowIndex * rowHeight)
+                
+                if(contentOffset > maxFrozenRowHeight) {
+                    offset = maxFrozenRowHeight
+                } else {
+                    offset = contentOffset
+                }
+            }
+        }
+        
         return offset
     }
     
     // TODO: Refactor?
-    func attributeStartAtOffset(_ offset:CGFloat, inSection section:Int, withMaxItems maxItems:Int) -> Int {
-        var min:Int = 0
+    func attributeStartAtOffset(_ offset:CGFloat, inSection section:Int, withStartItem startItem:Int, andMaxItems maxItems:Int) -> Int {
+        var min:Int = startItem
         var mid:Int
         var max:Int = maxItems
         

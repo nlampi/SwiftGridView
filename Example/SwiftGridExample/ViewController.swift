@@ -30,7 +30,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     var frozenColumns: Int = 1
     var reloadOverride: Bool = false
     var columnCount: Int = 10
-    var rowCountIncrease: Int = 40
+    var rowCountIncrease: Int = 15
     let columnGroupings: [[Int]] = [[2,4], [6,8]]
     
     override func viewDidLoad() {
@@ -150,6 +150,16 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
         
         return section + rowCountIncrease
+    }
+    
+    func dataGridView(_ dataGridView: SwiftGridView, numberOfFrozenRowsInSection section: Int) -> Int {
+        
+        if section < 1 {
+            
+            return 2
+        }
+        
+        return 0
     }
     
     // Cells
