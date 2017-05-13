@@ -67,7 +67,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: Public Variables
     
-    #if TARGET_INTERFACE_BUILDER
+    #if TARGET_INTERFACE_BUILDER /// Allows IBOutlets to work properly.
     @IBOutlet open weak var dataSource: AnyObject?
     @IBOutlet open weak var delegate: AnyObject?
     #else
