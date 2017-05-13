@@ -23,48 +23,6 @@ import Foundation
 import UIKit
 
 
-// MARK: - SwiftGridView Extensions
-
-/**
- Swift Grid View Index Path Extension
- */
-public extension IndexPath {
-    /**
-     Init Swift Grid View Index Path
- 
-     - Parameter row: Row for the data grid
-     - Parameter column: Column for the data grid
-     - Paramter section: Section for the data grid
-    */
-    init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
-        let indexes: [Int] = [section, column, row]
-        
-        
-        self.init(indexes: indexes)
-    }
-    
-    /// Swift Grid View Section
-    var sgSection: Int { get {
-        
-            return self[0]
-        }
-    }
-    
-    /// Swift Grid View Row
-    var sgRow: Int { get {
-        
-            return self[2]
-        }
-    }
-    
-    /// Swift Grid View Column
-    var sgColumn: Int { get {
-        
-            return self[1]
-        }
-    }
-}
-
 public let SwiftGridElementKindHeader: String = "SwiftGridElementKindHeader"
 public let SwiftGridElementKindGroupedHeader: String = "SwiftGridElementKindGroupedHeader"
 public let SwiftGridElementKindSectionHeader: String = UICollectionElementKindSectionHeader
