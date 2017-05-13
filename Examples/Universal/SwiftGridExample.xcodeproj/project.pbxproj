@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27FC28F3F98D9C00214E8760 /* Pods_SwiftGridExample_SwiftGridExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B88D21DCB45EE346DD68FF8A /* Pods_SwiftGridExample_SwiftGridExampleUITests.framework */; };
+		55B1A9161DE481C87557FECC /* Pods_SwiftGridExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13E53FCEA1BF49A2B15BF185 /* Pods_SwiftGridExampleUITests.framework */; };
 		8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC31C792B0600F317DF /* AppDelegate.swift */; };
 		8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC51C792B0600F317DF /* ViewController.swift */; };
 		8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBC71C792B0600F317DF /* Main.storyboard */; };
@@ -16,8 +18,9 @@
 		8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */; };
 		8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF21C792B6900F317DF /* BasicTextCell.swift */; };
 		8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */; };
-		8A9119681CA5E4B400108A69 /* SwiftGridView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9119671CA5E4B400108A69 /* SwiftGridView.framework */; };
-		8A9119691CA5E4B400108A69 /* SwiftGridView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8A9119671CA5E4B400108A69 /* SwiftGridView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9456F75CB4D17508158504EB /* Pods_SwiftGridExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D756D51E7F27B3CF725A8A23 /* Pods_SwiftGridExampleTests.framework */; };
+		CDB5FB9FA111AD780D4C0CE0 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2487B27B62BB9298E02CA20 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework */; };
+		FF56C8FC6631EEE194649D14 /* Pods_SwiftGridExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +47,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8A9119691CA5E4B400108A69 /* SwiftGridView.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +54,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13E53FCEA1BF49A2B15BF185 /* Pods_SwiftGridExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample.release.xcconfig"; sourceTree = "<group>"; };
+		2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8A32EBC01C792B0600F317DF /* SwiftGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A32EBC31C792B0600F317DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A32EBC51C792B0600F317DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -67,7 +75,15 @@
 		8A32EBE51C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A32EBF21C792B6900F317DF /* BasicTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextCell.swift; sourceTree = "<group>"; };
 		8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextReusableView.swift; sourceTree = "<group>"; };
-		8A9119671CA5E4B400108A69 /* SwiftGridView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftGridView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		905F833C41FBEAB9906D1311 /* Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleUITests/Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		98BDA19EF4A20FFA80509E16 /* Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleUITests/Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		B2487B27B62BB9298E02CA20 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExample_SwiftGridExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B88D21DCB45EE346DD68FF8A /* Pods_SwiftGridExample_SwiftGridExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExample_SwiftGridExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D756D51E7F27B3CF725A8A23 /* Pods_SwiftGridExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74CFE1561A0EFC8F9F446A1 /* Pods-SwiftGridExample-SwiftGridExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleTests/Pods-SwiftGridExample-SwiftGridExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample.debug.xcconfig"; sourceTree = "<group>"; };
+		FB2FD532D4AC3E4199F5C4F2 /* Pods-SwiftGridExample-SwiftGridExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleTests/Pods-SwiftGridExample-SwiftGridExampleTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A9119681CA5E4B400108A69 /* SwiftGridView.framework in Frameworks */,
+				FF56C8FC6631EEE194649D14 /* Pods_SwiftGridExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDB5FB9FA111AD780D4C0CE0 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework in Frameworks */,
+				9456F75CB4D17508158504EB /* Pods_SwiftGridExampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,20 +108,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27FC28F3F98D9C00214E8760 /* Pods_SwiftGridExample_SwiftGridExampleUITests.framework in Frameworks */,
+				55B1A9161DE481C87557FECC /* Pods_SwiftGridExampleUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43CD20FEB9B81BF7EBB2744C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */,
+				2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */,
+				F74CFE1561A0EFC8F9F446A1 /* Pods-SwiftGridExample-SwiftGridExampleTests.debug.xcconfig */,
+				FB2FD532D4AC3E4199F5C4F2 /* Pods-SwiftGridExample-SwiftGridExampleTests.release.xcconfig */,
+				905F833C41FBEAB9906D1311 /* Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig */,
+				98BDA19EF4A20FFA80509E16 /* Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig */,
+				421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */,
+				AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */,
+				47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */,
+				2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8A32EBB71C792B0600F317DF = {
 			isa = PBXGroup;
 			children = (
-				8A9119671CA5E4B400108A69 /* SwiftGridView.framework */,
 				8A32EBC21C792B0600F317DF /* SwiftGridExample */,
 				8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */,
 				8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */,
 				8A32EBC11C792B0600F317DF /* Products */,
+				43CD20FEB9B81BF7EBB2744C /* Pods */,
+				94A07941495FBBD6A89280C5 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +196,18 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		94A07941495FBBD6A89280C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */,
+				B2487B27B62BB9298E02CA20 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework */,
+				B88D21DCB45EE346DD68FF8A /* Pods_SwiftGridExample_SwiftGridExampleUITests.framework */,
+				D756D51E7F27B3CF725A8A23 /* Pods_SwiftGridExampleTests.framework */,
+				13E53FCEA1BF49A2B15BF185 /* Pods_SwiftGridExampleUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -165,10 +215,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A32EBE81C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExample" */;
 			buildPhases = (
+				55A33866F3B0595A8B671BE3 /* [CP] Check Pods Manifest.lock */,
 				8A32EBBC1C792B0600F317DF /* Sources */,
 				8A32EBBD1C792B0600F317DF /* Frameworks */,
 				8A32EBBE1C792B0600F317DF /* Resources */,
 				8A91196A1CA5E4B400108A69 /* Embed Frameworks */,
+				EF3001B6E2AFFE07DF57094F /* [CP] Embed Pods Frameworks */,
+				E77E8F4716F39A9AF0A2EA39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -183,9 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A32EBEB1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleTests" */;
 			buildPhases = (
+				8D867139B429AFA7AD252E77 /* [CP] Check Pods Manifest.lock */,
 				8A32EBD01C792B0600F317DF /* Sources */,
 				8A32EBD11C792B0600F317DF /* Frameworks */,
 				8A32EBD21C792B0600F317DF /* Resources */,
+				8604A0DD192FBCA005AF34A2 /* [CP] Embed Pods Frameworks */,
+				E1552342DD7D0F9E5927C2A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -201,9 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A32EBEE1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleUITests" */;
 			buildPhases = (
+				6A62286BC2BC9146CBC481F1 /* [CP] Check Pods Manifest.lock */,
 				8A32EBDB1C792B0600F317DF /* Sources */,
 				8A32EBDC1C792B0600F317DF /* Frameworks */,
 				8A32EBDD1C792B0600F317DF /* Resources */,
+				595E104E29F61AD557872171 /* [CP] Embed Pods Frameworks */,
+				C2A94037AC0D9445157D35E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -227,7 +286,6 @@
 				TargetAttributes = {
 					8A32EBBF1C792B0600F317DF = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = J8C9CQ3TY2;
 						LastSwiftMigration = 0810;
 					};
 					8A32EBD31C792B0600F317DF = {
@@ -288,6 +346,144 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		55A33866F3B0595A8B671BE3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		595E104E29F61AD557872171 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A62286BC2BC9146CBC481F1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8604A0DD192FBCA005AF34A2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D867139B429AFA7AD252E77 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C2A94037AC0D9445157D35E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1552342DD7D0F9E5927C2A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E77E8F4716F39A9AF0A2EA39 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EF3001B6E2AFFE07DF57094F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A32EBBC1C792B0600F317DF /* Sources */ = {
@@ -448,10 +644,11 @@
 		};
 		8A32EBE91C792B0600F317DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J8C9CQ3TY2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
@@ -462,10 +659,11 @@
 		};
 		8A32EBEA1C792B0600F317DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J8C9CQ3TY2;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
@@ -476,6 +674,7 @@
 		};
 		8A32EBEC1C792B0600F317DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
@@ -489,6 +688,7 @@
 		};
 		8A32EBED1C792B0600F317DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
@@ -502,6 +702,7 @@
 		};
 		8A32EBEF1C792B0600F317DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -515,6 +716,7 @@
 		};
 		8A32EBF01C792B0600F317DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

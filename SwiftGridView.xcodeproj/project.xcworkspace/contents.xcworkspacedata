@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:/Users/nlampi/Documents/AppDev/git/NLDataGrid/SwiftGrid.xcodeproj">
+      location = "self:SwiftGridView.xcodeproj">
    </FileRef>
 </Workspace>

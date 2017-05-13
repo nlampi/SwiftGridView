@@ -1,0 +1,17 @@
+project 'SwiftGridExample.xcodeproj/'
+platform :ios, '9.0'
+
+target 'SwiftGridExample' do
+  use_frameworks!
+  
+  pod 'SwiftGridView', :path => '../../SwiftGridView.podspec'
+
+  target 'SwiftGridExampleTests' do
+    inherit! :search_paths
+  end
+
+  target 'SwiftGridExampleUITests' do
+    inherit! :search_paths
+  end
+
+end

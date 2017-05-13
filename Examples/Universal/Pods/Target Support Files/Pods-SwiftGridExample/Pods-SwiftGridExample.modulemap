@@ -1,0 +1,6 @@
+framework module Pods_SwiftGridExample {
+  umbrella header "Pods-SwiftGridExample-umbrella.h"
+
+  export *
+  module * { export * }
+}
