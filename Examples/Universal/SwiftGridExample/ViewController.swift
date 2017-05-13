@@ -37,8 +37,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.dataGridView.delegate = self
-        self.dataGridView.dataSource = self
         self.dataGridView.allowsSelection = true
         self.dataGridView.allowsMultipleSelection = true
         self.dataGridView.rowSelectionEnabled = true

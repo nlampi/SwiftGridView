@@ -400,8 +400,13 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: Public Variables
     
+    #if TARGET_INTERFACE_BUILDER
+    @IBOutlet open weak var dataSource: AnyObject?
+    @IBOutlet open weak var delegate: AnyObject?
+    #else
     open weak var dataSource: SwiftGridViewDataSource?
     open weak var delegate: SwiftGridViewDelegate?
+    #endif
     
     open var allowsSelection: Bool {
         set(allowsSelection) {
