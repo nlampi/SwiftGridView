@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.4.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.4.0) (2017-05-13)
+Updated the project structure to be cleaner and allow for further optimization.
+
 ## [0.3.6](https://github.com/nlampi/SwiftGridView/releases/tag/0.3.6) (2017-05-07)
 Fixed some logic issues with frozen rows.
 

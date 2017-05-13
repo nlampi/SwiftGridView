@@ -36,9 +36,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.dataGridView = SwiftGridView(frame: CGRect(x: 30, y: 30, width: 450, height: 500))
-//        self.view.addSubview(self.dataGridView)
-        
         // Do any additional setup after loading the view, typically from a nib.
         self.dataGridView.delegate = self
         self.dataGridView.dataSource = self
