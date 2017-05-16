@@ -58,7 +58,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         self.sgCollectionView = UICollectionView(frame: self.bounds, collectionViewLayout: sgCollectionViewLayout)
         self.sgCollectionView.dataSource = self // TODO: Separate DataSource/Delegate?
         self.sgCollectionView.delegate = self
-        self.sgCollectionView.backgroundColor = UIColor.white
+        self.sgCollectionView.backgroundColor = self.backgroundColor
         self.sgCollectionView.allowsMultipleSelection = true
         
         self.addSubview(self.sgCollectionView)
