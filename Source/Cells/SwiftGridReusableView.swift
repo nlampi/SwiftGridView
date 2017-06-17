@@ -61,6 +61,7 @@ public protocol SwiftGridReusableViewDelegate: class {
     func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: IndexPath)
 }
 
+
 /**
  `SwiftGridReusableView` is the primary reusable view used for headers and footers in the `SwiftGridView`
  */
@@ -73,7 +74,7 @@ open class SwiftGridReusableView: UICollectionReusableView {
     internal var indexPath:IndexPath = IndexPath.init() // TODO: Is there a better way to handle this?
     
     /// Views become highlighted when the user touches them.
-    open var highlighted:Bool = false{
+    open var highlighted:Bool = false {
         didSet {
             self.selectedBackgroundView?.isHidden = !highlighted
         }
@@ -90,7 +91,7 @@ open class SwiftGridReusableView: UICollectionReusableView {
     open var contentView:UIView = UIView()
     
     /// The background view is a subview behind all other views.
-    open var backgroundView:UIView? {
+    @IBOutlet open var backgroundView:UIView? {
         willSet {
             self.backgroundView?.removeFromSuperview()
             self.backgroundView = nil
@@ -102,6 +103,7 @@ open class SwiftGridReusableView: UICollectionReusableView {
                 self.insertSubview(self.backgroundView!, belowSubview: self.selectedBackgroundView!)
             } else {
                 self.insertSubview(self.backgroundView!, belowSubview: self.contentView)
+                self.sendSubview(toBack: self.backgroundView!)
             }
             
             let views = ["bV": self.backgroundView!]
@@ -113,7 +115,7 @@ open class SwiftGridReusableView: UICollectionReusableView {
     }
     
     /// The selectedBackgroundView will be placed above the background view and displayed on view selection.
-    open var selectedBackgroundView:UIView? {
+    @IBOutlet open var selectedBackgroundView:UIView? {
         willSet {
             self.selectedBackgroundView?.removeFromSuperview()
             self.selectedBackgroundView = nil
@@ -123,6 +125,11 @@ open class SwiftGridReusableView: UICollectionReusableView {
             
             self.selectedBackgroundView!.translatesAutoresizingMaskIntoConstraints = false
             self.insertSubview(self.selectedBackgroundView!, belowSubview: self.contentView)
+            self.sendSubview(toBack: self.selectedBackgroundView!)
+            
+            if self.backgroundView != nil {
+                self.sendSubview(toBack: self.backgroundView!)
+            }
             
             let views = ["sbV": self.selectedBackgroundView!]
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[sbV]|",
