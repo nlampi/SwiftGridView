@@ -37,8 +37,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
-        self.dataGridView.delegate = self
-        self.dataGridView.dataSource = self
         self.dataGridView.allowsSelection = true
         self.dataGridView.allowsMultipleSelection = true
         self.dataGridView.rowSelectionEnabled = true
@@ -51,12 +49,21 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.dataGridView.alwaysBounceVertical = false
         self.dataGridView.pinchExpandEnabled = true
         
-        self.dataGridView.registerClass(BasicTextCell.self, forCellWithReuseIdentifier:BasicTextCell.reuseIdentifier())
-        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
-        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
-        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
-        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
-        self.dataGridView.registerClass(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        // Register Basic Cell types
+        self.dataGridView.register(BasicTextCell.self, forCellWithReuseIdentifier:BasicTextCell.reuseIdentifier())
+        self.dataGridView.register(UINib(nibName: "BasicNibCell", bundle:nil), forCellWithReuseIdentifier: BasicNibCell.reuseIdentifier())
+        
+        // Register Basic View for Header supplementary views
+        self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        
+        // Register Section header Views
+        self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        self.dataGridView.register(UINib(nibName: "BasicNibReusableView", bundle:nil), forSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicNibReusableView.reuseIdentifier())
+        
+        // Register Footer views
+        self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
     }
     
     override func didReceiveMemoryWarning() {
@@ -161,19 +168,41 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     
     // Cells
     func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
-        let cell: BasicTextCell = dataGridView.dequeueReusableCellWithReuseIdentifier(BasicTextCell.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextCell
+        let cell: SwiftGridCell
         
-        if(reloadOverride) {
-            cell.backgroundView?.backgroundColor = UIColor.cyan
-        } else {
-            let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
-            let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
-            let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+        if(indexPath.sgColumn > 0) {
+            let textCell: BasicTextCell = dataGridView.dequeueReusableCellWithReuseIdentifier(BasicTextCell.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextCell
             
-            cell.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            if(reloadOverride) {
+                textCell.backgroundView?.backgroundColor = UIColor.cyan
+            } else {
+                let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
+                let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
+                let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+                
+                textCell.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            }
+            
+            textCell.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
+            
+            cell = textCell
+        } else {
+            let nibCell: BasicNibCell = dataGridView.dequeueReusableCellWithReuseIdentifier(BasicNibCell.reuseIdentifier(), forIndexPath: indexPath) as! BasicNibCell
+            
+            if(reloadOverride) {
+                nibCell.backgroundView?.backgroundColor = UIColor.cyan
+            } else {
+                let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
+                let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
+                let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+                
+                nibCell.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            }
+            
+            nibCell.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
+            
+            cell = nibCell
         }
-        
-        cell.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
         
         return cell
     }
@@ -236,19 +265,41 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     
     // Section Header / Footer Views
     func dataGridView(_ dataGridView: SwiftGridView, sectionHeaderCellAtIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
-        let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextReusableView
+        let view: SwiftGridReusableView
         
-        if(reloadOverride) {
-            view.backgroundView?.backgroundColor = UIColor.cyan
-        } else {
-            let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
-            let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
-            let b: CGFloat = (60 + CGFloat(indexPath.sgColumn) * 5) / 255
+        if(indexPath.sgColumn > 0) {
+            let textView: BasicTextReusableView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicTextReusableView
             
-            view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            if(reloadOverride) {
+                textView.backgroundView?.backgroundColor = UIColor.cyan
+            } else {
+                let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
+                let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
+                let b: CGFloat = (60 + CGFloat(indexPath.sgColumn) * 5) / 255
+                
+                textView.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            }
+            
+            textView.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
+            
+            view = textView
+        } else {
+            let nibView: BasicNibReusableView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicNibReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicNibReusableView
+            
+            if(reloadOverride) {
+                nibView.backgroundView?.backgroundColor = UIColor.cyan
+            } else {
+                let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
+                let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
+                let b: CGFloat = (60 + CGFloat(indexPath.sgColumn) * 5) / 255
+                
+                nibView.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
+            }
+            
+            nibView.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
+            
+            view = nibView
         }
-        
-        view.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
         
         return view
     }

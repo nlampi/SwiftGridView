@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "SwiftGridView"
-  s.version = "0.4.0"
+  s.version = "0.5.0"
   s.summary = "A Swift based iOS Data Grid component."
   s.description = <<-DESC
 			Swift UICollectionView based data grid component for fast implementation of  Currently only supports iOS9+ and Swift 3.0
@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
   s.platform = :ios, '9.0'
   s.requires_arc = true
 
-  s.source_files = 'Source/**/*'
+  s.source_files = 'Source/**/*.swift'
 
   s.frameworks = 'UIKit'
 end
