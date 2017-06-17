@@ -458,6 +458,7 @@
 				8A31D88B1ECA983C003C447C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8A5263EB1EC798390069325A /* Build configuration list for PBXProject "SwiftGridView" */ = {
 			isa = XCConfigurationList;
