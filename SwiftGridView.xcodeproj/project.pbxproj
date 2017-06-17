@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8A31D8871ECA983C003C447C /* SwiftGridView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A52640E1EC79BAB0069325A /* SwiftGridView.framework */; };
 		8A31D8991ECA9CBC003C447C /* SwiftGridViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A31D88E1ECA985A003C447C /* SwiftGridViewTests.swift */; };
+		8A31D89C1ED0F583003C447C /* SwiftGridTestNibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A31D89B1ED0F583003C447C /* SwiftGridTestNibCell.xib */; };
 		8A3A84621EC7B56300B22B02 /* SwiftGridViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A84611EC7B56300B22B02 /* SwiftGridViewDataSource.swift */; };
 		8A3A84641EC7B59E00B22B02 /* SwiftGridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A84631EC7B59E00B22B02 /* SwiftGridViewDelegate.swift */; };
 		8A3A84671EC7B82500B22B02 /* IndexPath+SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3A84661EC7B82500B22B02 /* IndexPath+SwiftGridView.swift */; };
@@ -33,6 +34,7 @@
 		8A31D8821ECA983C003C447C /* SwiftGridViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGridViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A31D88D1ECA985A003C447C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A31D88E1ECA985A003C447C /* SwiftGridViewTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridViewTests.swift; sourceTree = "<group>"; };
+		8A31D89B1ED0F583003C447C /* SwiftGridTestNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SwiftGridTestNibCell.xib; sourceTree = "<group>"; };
 		8A3A84611EC7B56300B22B02 /* SwiftGridViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridViewDataSource.swift; sourceTree = "<group>"; };
 		8A3A84631EC7B59E00B22B02 /* SwiftGridViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridViewDelegate.swift; sourceTree = "<group>"; };
 		8A3A84661EC7B82500B22B02 /* IndexPath+SwiftGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IndexPath+SwiftGridView.swift"; sourceTree = "<group>"; };
@@ -64,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A31D89A1ED0F541003C447C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				8A31D89B1ED0F583003C447C /* SwiftGridTestNibCell.xib */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		8A3A84651EC7B80B00B22B02 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		8A5264071EC79ADB0069325A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8A31D89A1ED0F541003C447C /* Assets */,
 				8A31D88E1ECA985A003C447C /* SwiftGridViewTests.swift */,
 				8A31D88D1ECA985A003C447C /* Info.plist */,
 			);
@@ -225,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A31D89C1ED0F583003C447C /* SwiftGridTestNibCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

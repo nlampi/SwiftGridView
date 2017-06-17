@@ -347,12 +347,22 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
 //        self.sgCollectionViewLayout.invalidateLayoutWithContext(context)
 //    }
     
-    open func registerClass(_ cellClass: AnyClass?, forCellWithReuseIdentifier identifier: String) {
+    @objc(registerClass:forCellReuseIdentifier:)
+    open func register(_ cellClass: Swift.AnyClass?, forCellWithReuseIdentifier identifier: String) {
         self.sgCollectionView.register(cellClass, forCellWithReuseIdentifier:identifier)
     }
     
-    open func registerClass(_ viewClass: AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
+    open func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
+        self.sgCollectionView.register(nib, forCellWithReuseIdentifier: identifier)
+    }
+    
+    @objc(registerClass:forSupplementaryViewOfKind:withReuseIdentifier:)
+    open func register(_ viewClass: Swift.AnyClass?, forSupplementaryViewOfKind elementKind: String, withReuseIdentifier identifier: String) {
         self.sgCollectionView.register(viewClass, forSupplementaryViewOfKind: elementKind, withReuseIdentifier: identifier)
+    }
+    
+    open func register(_ nib: UINib?, forSupplementaryViewOfKind kind: String, withReuseIdentifier identifier: String) {
+        self.sgCollectionView.register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
     }
     
     open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath!) -> SwiftGridCell {

@@ -18,6 +18,10 @@
 		8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */; };
 		8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF21C792B6900F317DF /* BasicTextCell.swift */; };
 		8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */; };
+		8A6BFFBD1EF5B41F0094F3A8 /* BasicNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */; };
+		8A6BFFBF1EF5B42F0094F3A8 /* BasicNibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */; };
+		8A6BFFC11EF5BA5D0094F3A8 /* BasicNibReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */; };
+		8A6BFFC31EF5BA710094F3A8 /* BasicNibReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */; };
 		9456F75CB4D17508158504EB /* Pods_SwiftGridExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D756D51E7F27B3CF725A8A23 /* Pods_SwiftGridExampleTests.framework */; };
 		CDB5FB9FA111AD780D4C0CE0 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2487B27B62BB9298E02CA20 /* Pods_SwiftGridExample_SwiftGridExampleTests.framework */; };
 		FF56C8FC6631EEE194649D14 /* Pods_SwiftGridExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */; };
@@ -75,6 +79,10 @@
 		8A32EBE51C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A32EBF21C792B6900F317DF /* BasicTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextCell.swift; sourceTree = "<group>"; };
 		8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextReusableView.swift; sourceTree = "<group>"; };
+		8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNibCell.swift; sourceTree = "<group>"; };
+		8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicNibCell.xib; sourceTree = "<group>"; };
+		8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicNibReusableView.xib; sourceTree = "<group>"; };
+		8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNibReusableView.swift; sourceTree = "<group>"; };
 		905F833C41FBEAB9906D1311 /* Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleUITests/Pods-SwiftGridExample-SwiftGridExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		98BDA19EF4A20FFA80509E16 /* Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample-SwiftGridExampleUITests/Pods-SwiftGridExample-SwiftGridExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -192,6 +200,10 @@
 			children = (
 				8A32EBF21C792B6900F317DF /* BasicTextCell.swift */,
 				8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */,
+				8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */,
+				8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */,
+				8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */,
+				8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -325,7 +337,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6BFFBF1EF5B42F0094F3A8 /* BasicNibCell.xib in Resources */,
 				8A32EBCE1C792B0600F317DF /* LaunchScreen.storyboard in Resources */,
+				8A6BFFC11EF5BA5D0094F3A8 /* BasicNibReusableView.xib in Resources */,
 				8A32EBCB1C792B0600F317DF /* Assets.xcassets in Resources */,
 				8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */,
 			);
@@ -490,7 +504,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A6BFFC31EF5BA710094F3A8 /* BasicNibReusableView.swift in Sources */,
 				8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */,
+				8A6BFFBD1EF5B41F0094F3A8 /* BasicNibCell.swift in Sources */,
 				8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */,
 				8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */,
 				8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */,

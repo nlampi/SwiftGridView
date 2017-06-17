@@ -35,6 +35,66 @@ class SwiftGridViewTests: XCTestCase {
     }
     
     
+    // MARK: - SwiftGridCell 
+    
+    func testSwiftGridCell() {
+        XCTAssert(SwiftGridCell.reuseIdentifier() == "SwiftGridCellReuseId")
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: 125, height: 35)
+        let cell:SwiftGridCell = SwiftGridCell(frame: rect)
+        
+        XCTAssert(cell.frame.equalTo(rect))
+        XCTAssert(cell.backgroundColor == UIColor.clear)
+        
+        //SwiftGridTestNibCell.xib
+    }
+    
+    // MARK: - SwiftGridReusableView
+    
+    func testSwiftGridReusableView() {
+        XCTAssert(SwiftGridReusableView.reuseIdentifier() == "SwiftGridReusableViewReuseId")
+        
+        let rect:CGRect = CGRect(x: 0, y: 0, width: 125, height: 35)
+        let view:SwiftGridReusableView = SwiftGridReusableView(frame: rect)
+        let redView = UIView()
+        redView.backgroundColor = UIColor.red
+        view.backgroundView = redView
+        let blueView = UIView()
+        blueView.backgroundColor = UIColor.blue
+        view.selectedBackgroundView = blueView
+        
+        view.layoutIfNeeded()
+        
+        XCTAssert(view.frame.equalTo(rect))
+        XCTAssert(view.contentView.frame.equalTo(rect))
+        XCTAssert(view.backgroundView!.frame.equalTo(rect))
+        XCTAssert(view.selectedBackgroundView!.frame.equalTo(rect))
+        XCTAssert(view.backgroundColor == UIColor.clear)
+        
+        view.highlighted = true
+        XCTAssert(view.selectedBackgroundView?.isHidden == false)
+        view.highlighted = false
+        XCTAssert(view.selectedBackgroundView?.isHidden == true)
+        view.selected = true
+        XCTAssert(view.selectedBackgroundView?.isHidden == false)
+        view.selected = false
+        XCTAssert(view.selectedBackgroundView?.isHidden == true)
+        
+        let greenView = UIView()
+        greenView.backgroundColor = UIColor.green
+        view.backgroundView = greenView
+        
+        // Verify that the Background is behind the Selected Background
+        XCTAssert(view.subviews.index(of: view.backgroundView!)! < view.subviews.index(of: view.selectedBackgroundView!)!)
+        
+        
+        view.prepareForReuse()
+        XCTAssert(view.highlighted == false)
+        XCTAssert(view.selected == false)
+        XCTAssert(view.selectedBackgroundView?.isHidden == true)
+    }
+    
+    
     // MARK: - IndexPath+SwiftGridView
     
     func testIndexPathExtension() {
