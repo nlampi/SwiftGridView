@@ -722,6 +722,12 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         return CGSize(width: colWidth, height: rowHeight)
     }
     
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, heightFor row: Int, at indexPath:IndexPath) -> CGFloat {
+        let convertedPath: IndexPath = IndexPath(forSGRow: row, atColumn: 0, inSection: indexPath.section)
+        
+        return self.delegate!.dataGridView(self, heightOfRowAtIndexPath: convertedPath)
+    }
+    
     internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: IndexPath) -> CGSize {
         var colWidth: CGFloat = 0.0
         var rowHeight: CGFloat = 0

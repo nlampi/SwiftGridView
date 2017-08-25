@@ -322,8 +322,8 @@ class SwiftGridLayout : UICollectionViewLayout {
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
-        let currentColumn: Int = indexPath.row % self.numberOfColumns()
-        let rowNumber: Int = indexPath.row / self.numberOfColumns()
+        let currentColumn: Int = indexPath.item % self.numberOfColumns()
+        let rowNumber: Int = indexPath.item / self.numberOfColumns()
         let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: currentColumn)
         let yOffset: CGFloat = self.verticalOffsetAtIndexPath(indexPath)
@@ -528,7 +528,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
             offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
         } else {
-            if (indexPath.row > 0) {
+            if (indexPath.item > 0) {
                 offset = self.horizontalOffsetForColumnAtIndex(column)
             }
             
@@ -557,7 +557,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     func verticalOffsetAtIndexPath(_ indexPath: IndexPath) -> CGFloat {
         var offset: CGFloat = 0.0
-        let rowNumber: Int = indexPath.row / self.numberOfColumns()
+        let rowNumber: Int = indexPath.item / self.numberOfColumns()
         
         if(self.verticalOffsetCache[indexPath] != nil) { /// Check Cache
             offset = CGFloat((self.verticalOffsetCache[indexPath] as? NSNumber)!.floatValue)
@@ -575,7 +575,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             offset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
             
             // Add in current section row heights
-            if(indexPath.row > 0) {
+            if(indexPath.item > 0) {
                 offset += self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
             }
             
@@ -652,8 +652,8 @@ class SwiftGridLayout : UICollectionViewLayout {
     func rowHeightSumToRow(_ maxRow:Int, atIndexPath indexPath: IndexPath) -> CGFloat {
         var height: CGFloat = 0.0
         
-        for _: Int in 0 ..< maxRow {
-            height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
+        for row: Int in 0 ..< maxRow {
+            height += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: row, at: indexPath)
         }
         
         return height

@@ -366,8 +366,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
-        
-        //        dataGridView.deselectCellAtIndexPath(indexPath, animated: true)
     }
     
     func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath) {
@@ -378,8 +376,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected section header indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
-        
-        //        dataGridView.deselectSectionHeaderAtIndexPath(indexPath)
     }
     
     func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath) {
@@ -390,8 +386,6 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected section footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
-        
-        //        dataGridView.deselectSectionFooterAtIndexPath(indexPath)
     }
     
     func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath) {
@@ -418,7 +412,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         
         return 55.0
     }
-    
+
     func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat {
         
         return 75.0
