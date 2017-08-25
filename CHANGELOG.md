@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.5.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.5.1) (2017-08-24)
+Fixed problem where row heights were not properly used when calculating row position. (Issue #24) 
+
 ## [0.5.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.5.0) (2017-06-17)
 Added the ability to use NIBs for cells and reusable views (Issue #17). Improved the ability to use IB. Separated classes to improve readability. Note: Swift cell registration methods have been renamed to be cleaner.
 
