@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.5.2](https://github.com/nlampi/SwiftGridView/releases/tag/0.5.2) (2017-09-18)
+Fixed issues with scrolling to cells. All cell based scrolling will position correctly now (Issue #27) 
+
 ## [0.5.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.5.1) (2017-08-24)
 Fixed problem where row heights were not properly used when calculating row position. (Issue #24) 
 
