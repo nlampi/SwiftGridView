@@ -319,6 +319,15 @@ class SwiftGridLayout : UICollectionViewLayout {
         return attributesArray
     }
     
+    func rectForItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGRect {
+        let currentColumn: Int = indexPath.item % self.numberOfColumns()
+        let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+        let xOffset: CGFloat = self.horizontalOffset(for: indexPath, atColumn: currentColumn, atScrollPosition: scrollPosition)
+        let yOffset: CGFloat = self.verticalOffset(for: indexPath, atScrollPosition: scrollPosition)
+        
+        return CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(cellSize.width), height: cellSize.height)
+    }
+    
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
         
@@ -520,6 +529,24 @@ class SwiftGridLayout : UICollectionViewLayout {
         return self.delegate.collectionView(self.collectionView!, layout: self, numberOfRowsInSection: sectionIndex)
     }
     
+    func horizontalOffset(for indexPath: IndexPath, atColumn column: Int, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
+        var offset: CGFloat = 0.0
+        
+        if (column > 0) {
+            for columnIndex: Int in self.frozenColumnsCount ..< column {
+                offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
+            }
+        }
+        
+        if scrollPosition.contains(.right) {
+            offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column))
+        } else if scrollPosition.contains(.centeredHorizontally) {
+            offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column)) / 2
+        }
+        
+        return offset
+    }
+    
     func horizontalOffsetAtIndexPath(_ indexPath: IndexPath, atColumn column: Int) -> CGFloat {
         var offset: CGFloat = 0.0
         
@@ -528,7 +555,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         if(self.horizontalOffsetCache[column] != nil) { /// Check Cache
             offset = CGFloat((self.horizontalOffsetCache[column] as? NSNumber)!.floatValue)
         } else {
-            if (indexPath.item > 0) {
+            if (column > 0) {
                 offset = self.horizontalOffsetForColumnAtIndex(column)
             }
             
@@ -550,6 +577,31 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         for columnIndex: Int in 0 ..< column {
             offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
+        }
+        
+        return offset
+    }
+    
+    func verticalOffset(for indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
+        var offset: CGFloat = 0.0
+        let rowNumber: Int = indexPath.item / self.numberOfColumns()
+        
+        // Add in previous section heights
+        for sectionIndex: Int in 0 ..< indexPath.section {
+            let sectionPath = IndexPath(item: 0, section: sectionIndex)
+            offset += self.heightOfSectionAtIndexPath(sectionPath)
+        }
+        
+        // Add in current section row heights
+        if(indexPath.item > 0) {
+            offset += self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
+        }
+        
+        // Adjust for item scroll position
+        if scrollPosition.contains(.bottom) {
+            offset += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath)
+        } else if scrollPosition.contains(.centeredVertically) {
+            offset += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath) / 2
         }
         
         return offset
