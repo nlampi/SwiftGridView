@@ -18,6 +18,11 @@
 		8A52641D1EC79C270069325A /* SwiftGridReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A5264181EC79C270069325A /* SwiftGridReusableView.swift */; };
 		8A52641E1EC79C270069325A /* SwiftGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A52641A1EC79C270069325A /* SwiftGridLayout.swift */; };
 		8A52641F1EC79C270069325A /* SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A52641B1EC79C270069325A /* SwiftGridView.swift */; };
+		8AA247E31F538833005814F6 /* SwiftGridTestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA247E21F538833005814F6 /* SwiftGridTestCell.swift */; };
+		8AA247E41F53896A005814F6 /* SGMockBasicDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA247E01F538698005814F6 /* SGMockBasicDataSource.swift */; };
+		8AA247E61F538998005814F6 /* SGMockBasicDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA247E51F538998005814F6 /* SGMockBasicDelegate.swift */; };
+		8AA247EA1F538B40005814F6 /* SGBasicDataGridTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA247E91F538B40005814F6 /* SGBasicDataGridTests.swift */; };
+		8AA247EC1F538BBC005814F6 /* SGBasicDataGridUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AA247EB1F538BBC005814F6 /* SGBasicDataGridUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		8A5264181EC79C270069325A /* SwiftGridReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridReusableView.swift; sourceTree = "<group>"; };
 		8A52641A1EC79C270069325A /* SwiftGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridLayout.swift; sourceTree = "<group>"; };
 		8A52641B1EC79C270069325A /* SwiftGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridView.swift; sourceTree = "<group>"; };
+		8AA247E01F538698005814F6 /* SGMockBasicDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGMockBasicDataSource.swift; sourceTree = "<group>"; };
+		8AA247E21F538833005814F6 /* SwiftGridTestCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGridTestCell.swift; sourceTree = "<group>"; };
+		8AA247E51F538998005814F6 /* SGMockBasicDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGMockBasicDelegate.swift; sourceTree = "<group>"; };
+		8AA247E91F538B40005814F6 /* SGBasicDataGridTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGBasicDataGridTests.swift; sourceTree = "<group>"; };
+		8AA247EB1F538BBC005814F6 /* SGBasicDataGridUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGBasicDataGridUITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				8A31D89B1ED0F583003C447C /* SwiftGridTestNibCell.xib */,
+				8AA247E21F538833005814F6 /* SwiftGridTestCell.swift */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -118,7 +129,10 @@
 			isa = PBXGroup;
 			children = (
 				8A31D89A1ED0F541003C447C /* Assets */,
+				8AA247DF1F538554005814F6 /* Mocks */,
 				8A31D88E1ECA985A003C447C /* SwiftGridViewTests.swift */,
+				8AA247E91F538B40005814F6 /* SGBasicDataGridTests.swift */,
+				8AA247EB1F538BBC005814F6 /* SGBasicDataGridUITests.swift */,
 				8A31D88D1ECA985A003C447C /* Info.plist */,
 			);
 			path = Tests;
@@ -140,6 +154,15 @@
 				8A3A84681EC7B95500B22B02 /* SwiftGridLayoutDelegate.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		8AA247DF1F538554005814F6 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				8AA247E01F538698005814F6 /* SGMockBasicDataSource.swift */,
+				8AA247E51F538998005814F6 /* SGMockBasicDelegate.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +277,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8AA247EC1F538BBC005814F6 /* SGBasicDataGridUITests.swift in Sources */,
 				8A31D8991ECA9CBC003C447C /* SwiftGridViewTests.swift in Sources */,
+				8AA247E61F538998005814F6 /* SGMockBasicDelegate.swift in Sources */,
+				8AA247E31F538833005814F6 /* SwiftGridTestCell.swift in Sources */,
+				8AA247E41F53896A005814F6 /* SGMockBasicDataSource.swift in Sources */,
+				8AA247EA1F538B40005814F6 /* SGBasicDataGridTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
