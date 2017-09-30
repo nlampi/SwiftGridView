@@ -1,5 +1,5 @@
 // SwiftGridView.swift
-// Copyright (c) 2016 Nathan Lampi (http://nathanlampi.com/)
+// Copyright (c) 2016 - Present Nathan Lampi (http://nathanlampi.com/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -71,8 +71,8 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     @IBOutlet open weak var dataSource: AnyObject?
     @IBOutlet open weak var delegate: AnyObject?
     #else
-    open weak var dataSource: SwiftGridViewDataSource?
-    open weak var delegate: SwiftGridViewDelegate?
+    @objc open weak var dataSource: SwiftGridViewDataSource?
+    @objc open weak var delegate: SwiftGridViewDelegate?
     #endif
     
     open var allowsSelection: Bool {
@@ -454,7 +454,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     
     // MARK: Private Pinch Recognizer
     
-    internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
+    @objc internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
         if (recognizer.numberOfTouches != 2) {
             
             return
@@ -466,7 +466,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         }
     }
     
-    internal func handleTwoFingerTapGesture(_ recognizer: UITapGestureRecognizer) {
+    @objc internal func handleTwoFingerTapGesture(_ recognizer: UITapGestureRecognizer) {
         
         if(self.sgCollectionViewLayout.zoomScale != 1.0) {
             self.sgCollectionViewLayout.zoomScale = 1.0
