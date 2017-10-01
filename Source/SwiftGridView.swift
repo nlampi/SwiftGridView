@@ -441,7 +441,6 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
         let absolutePostion = self.sgCollectionViewLayout.rectForItem(at: convertedPath, atScrollPosition: scrollPosition)
-        print("***\(absolutePostion)")
         
         self.sgCollectionView.setContentOffset(absolutePostion.origin, animated: animated)
     }
