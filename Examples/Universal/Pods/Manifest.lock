@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../../SwiftGridView.podspec
 
 SPEC CHECKSUMS:
-  SwiftGridView: e51fa430b7384e31f80eab41851cabe0e1c363f4
+  SwiftGridView: ee5b0daf76aeeb15e7743009b033cbe5643ff39c
 
 PODFILE CHECKSUM: bdd301c855a0cc8866109efd5e22fbc056825f08
 
