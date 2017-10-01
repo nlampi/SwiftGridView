@@ -1,6 +1,6 @@
 {
   "name": "SwiftGridView",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "summary": "A Swift based iOS Data Grid component.",
   "description": "Swift UICollectionView based data grid component for fast implementation of  Currently only supports iOS9+ and Swift 3.0",
   "homepage": "https://github.com/nlampi/SwiftGridView",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/nlampi/SwiftGridView.git",
-    "tag": "0.5.1"
+    "tag": "0.6.0"
   },
   "platforms": {
     "ios": "9.0"
