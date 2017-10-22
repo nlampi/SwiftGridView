@@ -335,7 +335,33 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             self.sgCollectionView.reloadItems(at: convertedPaths)
             completion?(true) // TODO: Fix!
         }
+    }
+    
+    open func indexPathForItem(at point: CGPoint) -> IndexPath? {
+        if let cvIndexPath: IndexPath = self.sgCollectionView.indexPathForItem(at: point) {
+            let convertedPath: IndexPath = self.convertCVIndexPathToSGIndexPath(cvIndexPath)
+            
+            return convertedPath
+        }
         
+        return nil
+    }
+    
+    open func indexPath(for cell: SwiftGridCell) -> IndexPath? {
+        if let cvIndexPath: IndexPath = self.sgCollectionView.indexPath(for: cell) {
+            let convertedPath: IndexPath = self.convertCVIndexPathToSGIndexPath(cvIndexPath)
+            
+            return convertedPath
+        }
+        
+        return nil
+    }
+    
+    open func cellForItem(at indexPath: IndexPath) -> SwiftGridCell? {
+        let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
+        let cell = self.sgCollectionView.cellForItem(at: revertedPath) as? SwiftGridCell
+        
+        return cell
     }
     
     // FIXME: Doesn't work as intended.
