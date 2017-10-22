@@ -364,6 +364,26 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         return cell
     }
     
+    open var visibleCells: [SwiftGridCell] {
+        get {
+            let cells = self.sgCollectionView.visibleCells as! [SwiftGridCell]
+        
+            return cells
+        }
+    }
+    
+    open var indexPathsForVisibleItems: [IndexPath] {
+        get {
+            var indexPaths = [IndexPath]()
+            for indexPath in self.sgCollectionView.indexPathsForVisibleItems {
+                let convertedPath = self.convertCVIndexPathToSGIndexPath(indexPath)
+                indexPaths.append(convertedPath)
+            }
+            
+            return indexPaths
+        }
+    }
+    
     // FIXME: Doesn't work as intended.
 //    public func reloadSupplementaryViewsOfKind(elementKind: String, atIndexPaths indexPaths: [NSIndexPath]) {
 //        let convertedPaths = self.reverseIndexPathConversionForIndexPaths(indexPaths)
