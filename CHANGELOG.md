@@ -3,8 +3,11 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.6.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.1) (2017-10-22)
+Added methods and properties around getting cells and index paths for visible cells.
+
 ## [0.6.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.0) (2017-10-01)
-Updated to use Swift 4 settings. 
+Updated to use Swift 4 settings.
 
 ## [0.5.2](https://github.com/nlampi/SwiftGridView/releases/tag/0.5.2) (2017-09-18)
 Fixed issues with scrolling to cells. All cell based scrolling will position correctly now (Issue #27)
