@@ -31,7 +31,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     var reloadOverride: Bool = false
     var columnCount: Int = 10
     var rowCountIncrease: Int = 15
-    let columnGroupings: [[Int]] = [[2,4], [6,8]]
+    let columnGroupings: [[Int]] = [[2,4], [6,9]] /// Columns are grouped by start and end column index.
     
     override func viewDidLoad() {
         super.viewDidLoad()
