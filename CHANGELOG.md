@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.6.2](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.2) (2018-02-19)
+Built using cocoapods 1.4.0. Slight update to documentation/example.
+
 ## [0.6.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.1) (2017-10-22)
 Added methods and properties around getting cells and index paths for visible cells.
 

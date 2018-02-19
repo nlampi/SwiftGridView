@@ -48,7 +48,8 @@ import Foundation
     func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int
     
     /**
-     The grouping settings to use for the data grid. Expects an array of grouped column index sets. Columns cannot overlap.
+     The grouping settings to use for the data grid. Expects an array of grouped column index sets for the first and last column index
+     in each grouping. Columns cannot be included in multiple groupings.
      Example: [[1,4], [5,8]]
      
      - Parameter dataGridView: The swift grid view instance.
