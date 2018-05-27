@@ -597,6 +597,13 @@ class SwiftGridLayout : UICollectionViewLayout {
             offset += self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
         }
         
+        // Frozen Rows
+        if self.frozenRowCounts[indexPath.section] > 0 {
+            let sumRowNumber = (rowNumber < self.frozenRowCounts[indexPath.section]) ? rowNumber : self.frozenRowCounts[indexPath.section]
+            // If the section has frozen rows, subtract from the offset to make sure the row is visible.
+            offset -= self.rowHeightSumToRow(sumRowNumber, atIndexPath: indexPath)
+        }
+        
         // Adjust for item scroll position
         if scrollPosition.contains(.bottom) {
             offset += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath)
