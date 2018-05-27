@@ -316,6 +316,18 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         sgCollectionViewLayout.resetCachedParameters()
         
         self.sgCollectionView.reloadData()
+        
+        // Adjust offset to not overflow content area based on viewsize
+        var contentOffset = self.sgCollectionView.contentOffset
+        if self.sgCollectionViewLayout.collectionViewContentSize.height - contentOffset.y < self.sgCollectionView.frame.size.height {
+            contentOffset.y = self.sgCollectionViewLayout.collectionViewContentSize.height - self.sgCollectionView.frame.size.height
+            
+            if contentOffset.y < 0 {
+                contentOffset.y = 0
+            }
+            
+            self.sgCollectionView.setContentOffset(contentOffset, animated: false)
+        }
     }
     
     open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
@@ -486,7 +498,16 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     
     open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
-        let absolutePostion = self.sgCollectionViewLayout.rectForItem(at: convertedPath, atScrollPosition: scrollPosition)
+        var absolutePostion = self.sgCollectionViewLayout.rectForItem(at: convertedPath, atScrollPosition: scrollPosition)
+        
+        // Adjust offset to not overflow content area based on viewsize
+        if self.sgCollectionViewLayout.collectionViewContentSize.height - absolutePostion.origin.y < self.sgCollectionView.frame.size.height {
+            absolutePostion.origin.y = self.sgCollectionViewLayout.collectionViewContentSize.height - self.sgCollectionView.frame.size.height
+            
+            if absolutePostion.origin.y < 0 {
+                absolutePostion.origin.y = 0
+            }
+        }
         
         self.sgCollectionView.setContentOffset(absolutePostion.origin, animated: animated)
     }
