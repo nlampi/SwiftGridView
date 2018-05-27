@@ -76,10 +76,10 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     
     @IBAction func didTapChangeData(_ sender: AnyObject) {
         reloadOverride = false
-        sectionCount = Int(arc4random_uniform(8)) + 1
+        sectionCount = Int(arc4random_uniform(5)) + 3
         frozenColumns = Int(arc4random_uniform(4))
-        columnCount = Int(arc4random_uniform(40)) + 1
-        rowCountIncrease = Int(arc4random_uniform(90))
+        columnCount = Int(arc4random_uniform(30)) + 1
+        rowCountIncrease = Int(arc4random_uniform(50))
         
         self.dataGridView.reloadData()
     }
@@ -352,7 +352,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int) {
         NSLog("Deselected grouped header [\(columnGrouping[0]), \(columnGrouping[1])]")
     }
-        
+    
     func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath) {
         
         NSLog("Selected footer indexPath: (\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))")
