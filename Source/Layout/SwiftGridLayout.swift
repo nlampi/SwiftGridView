@@ -30,21 +30,27 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     // MARK: - Private vars
     
-    fileprivate lazy var delegate: SwiftGridLayoutDelegate = {
-        
-        return self.collectionView!.delegate as! SwiftGridLayoutDelegate
-    }()
+    fileprivate weak var _delegate: SwiftGridLayoutDelegate?
+    fileprivate var layoutDelegate:SwiftGridLayoutDelegate {
+        get {
+            if _delegate == nil {
+                _delegate = self.collectionView!.delegate as? SwiftGridLayoutDelegate
+            }
+            
+            return _delegate!
+        }
+    }
     
     fileprivate var _sgLayoutSize: CGSize = CGSize.zero
     fileprivate var sgLayoutSize: CGSize {
         get {
             if(_sgLayoutSize.equalTo(CGSize.zero)) {
-                let totalWidth: CGFloat = self.delegate.collectionView(self.collectionView!, totalColumnWidthForLayout: self)
+                let totalWidth: CGFloat = self.layoutDelegate.collectionView(self.collectionView!, totalColumnWidthForLayout: self)
                 _sgLayoutSize = CGSize(width: totalWidth, height: 0.0)
                 let emptyPath: IndexPath = IndexPath()
                 
                 // Add in header height
-                _sgLayoutSize.height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: emptyPath).height
+                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: emptyPath).height
                 
                 // Add Section Sizes
                 for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections {
@@ -52,7 +58,7 @@ class SwiftGridLayout : UICollectionViewLayout {
                 }
                 
                 // Add in footer height
-                _sgLayoutSize.height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: emptyPath).height
+                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: emptyPath).height
             }
             
             return _sgLayoutSize
@@ -63,7 +69,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     fileprivate var columnGroupings: [[Int]] {
         get {
             if(_columnGroupings == nil) {
-                _columnGroupings = self.delegate.collectionView(self.collectionView!, groupedColumnsForLayout: self)
+                _columnGroupings = self.layoutDelegate.collectionView(self.collectionView!, groupedColumnsForLayout: self)
             }
             
             return _columnGroupings!
@@ -98,7 +104,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     fileprivate var frozenColumnsCount: Int {
         get {
             if(_frozenColumnsCount < 0) {
-                _frozenColumnsCount = self.delegate.collectionView(self.collectionView!, numberOfFrozenColumnsForLayout: self)
+                _frozenColumnsCount = self.layoutDelegate.collectionView(self.collectionView!, numberOfFrozenColumnsForLayout: self)
             }
             
             return _frozenColumnsCount
@@ -110,7 +116,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         get {
             if(_frozenRowCounts.count == 0) {
                 for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections {
-                    _frozenRowCounts.append(self.delegate.collectionView(self.collectionView!, layout: self, numberOfFrozenRowsInSection: sectionIndex))
+                    _frozenRowCounts.append(self.layoutDelegate.collectionView(self.collectionView!, layout: self, numberOfFrozenRowsInSection: sectionIndex))
                 }
             }
             
@@ -133,7 +139,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         }
         set (zoomScale) {
             _zoomScale = zoomScale
-            let totalWidth: CGFloat = self.delegate.collectionView(self.collectionView!, totalColumnWidthForLayout: self) * zoomScale
+            let totalWidth: CGFloat = self.layoutDelegate.collectionView(self.collectionView!, totalColumnWidthForLayout: self) * zoomScale
             _sgLayoutSize = CGSize(width: totalWidth, height: self.sgLayoutSize.height)
             
             
@@ -188,7 +194,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         // Add in Grid Headers
         // Skip headers when height is 0
         let zeroPath = IndexPath(item: 0, section: 0)
-        if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: zeroPath).height > 0) {
+        if(self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: zeroPath).height > 0) {
             for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                 let layoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindHeader, at: IndexPath(item: attributeIndex, section: 0))!
                 
@@ -220,7 +226,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             // Add section headers
             // Skip section headers when height is 0
             let sectionPath = IndexPath(item: 0, section: sectionIndex)
-            if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: sectionPath).height > 0) {
+            if(self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: sectionPath).height > 0) {
                 for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                     let layoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindSectionHeader, at: IndexPath(item: attributeIndex, section: sectionIndex))!
                     
@@ -287,7 +293,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             
             // Add section footers
             // Skip section footers when height is 0
-            if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: sectionPath).height > 0) {
+            if(self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: sectionPath).height > 0) {
                 for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                     let layoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindSectionFooter, at: IndexPath(item: attributeIndex, section: sectionIndex))!
                     
@@ -303,7 +309,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // Add in Grid Footers
         // Skip footers when height is 0
-        if(self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: zeroPath).height > 0) {
+        if(self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: zeroPath).height > 0) {
             for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                 let layoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindFooter, at: IndexPath(item: attributeIndex, section: 0))!
                 
@@ -321,7 +327,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     func rectForItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGRect {
         let currentColumn: Int = indexPath.item % self.numberOfColumns()
-        let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+        let cellSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffset(for: indexPath, atColumn: currentColumn, atScrollPosition: scrollPosition)
         let yOffset: CGFloat = self.verticalOffset(for: indexPath, atScrollPosition: scrollPosition)
         
@@ -333,7 +339,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         let currentColumn: Int = indexPath.item % self.numberOfColumns()
         let rowNumber: Int = indexPath.item / self.numberOfColumns()
-        let cellSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
+        let cellSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: currentColumn)
         let yOffset: CGFloat = self.verticalOffsetAtIndexPath(indexPath)
         
@@ -391,7 +397,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindHeader, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: indexPath.item)
         var yOffset: CGFloat = (self.collectionView!.contentOffset.y > 0) ?  self.collectionView!.contentOffset.y : 0.0 // Sticky grid header
-        var viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
+        var viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
         
         // FIXME: Sticky header
         
@@ -411,15 +417,15 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: self.columnGroupings[indexPath.item][0])
         let yOffset: CGFloat = (self.collectionView!.contentOffset.y > 0) ?  self.collectionView!.contentOffset.y : 0.0 // Sticky grid header
-        var viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, atIndexPath: indexPath)
+        var viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindGroupedHeader, atIndexPath: indexPath)
         viewSize.height = viewSize.height / 2
         
         // Adjust Grouping width based on frozen columns
         if self.frozenColumnsCount > 0 && self.frozenColumnsCount > self.columnGroupings[indexPath.item][0] && self.frozenColumnsCount <= self.columnGroupings[indexPath.item][1] {
             let groupingMin = self.horizontalOffsetAtIndexPath(indexPath, atColumn: self.frozenColumnsCount - 1)
             let groupingMax = self.horizontalOffsetAtIndexPath(indexPath, atColumn: self.columnGroupings[indexPath.item][1])
-            let frozenMinWidth = self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: self.frozenColumnsCount - 1)
-            let frozenMaxWidth = self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: self.columnGroupings[indexPath.item][1])
+            let frozenMinWidth = self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: self.frozenColumnsCount - 1)
+            let frozenMaxWidth = self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: self.columnGroupings[indexPath.item][1])
             
             if xOffset + viewSize.width > groupingMax + frozenMaxWidth {
                 viewSize.width = groupingMax + frozenMaxWidth - xOffset
@@ -442,7 +448,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindFooter, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: indexPath.item)
         var yOffset: CGFloat = self.sgLayoutSize.height // Not sticky footer
-        let viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath)
+        let viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath)
         
         if(self.collectionView!.frame.size.height > self.sgLayoutSize.height) {
             yOffset = self.sgLayoutSize.height
@@ -453,7 +459,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         yOffset += self.collectionView!.contentOffset.y // Sticky footer
         
         // FIXME: Seems to be off by a pixel at times
-        yOffset -= self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath).height
+        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath).height
         
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(viewSize.width), height: viewSize.height)
         attributes.zIndex = Int.max - indexPath.item // FIXME: Something better?
@@ -465,10 +471,10 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: indexPath.item)
         var yOffset: CGFloat = 0.0
-        let viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
+        let viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
         
         // Add in header height
-        let headerHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+        let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
         yOffset += headerHeight
         
         for sectionIndex: Int in 0 ..< indexPath.section {
@@ -497,17 +503,17 @@ class SwiftGridLayout : UICollectionViewLayout {
         let attributes: UICollectionViewLayoutAttributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, with: indexPath)
         let xOffset: CGFloat = self.horizontalOffsetAtIndexPath(indexPath, atColumn: indexPath.item)
         var yOffset: CGFloat = 0.0
-        let viewSize: CGSize = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath)
+        let viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath)
         
         // Add in header height
-        yOffset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+        yOffset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
         
         for sectionIndex: Int in 0 ... indexPath.section {
             let sectionPath = IndexPath(item: 0, section: sectionIndex)
             yOffset += self.heightOfSectionAtIndexPath(sectionPath)
         }
         
-        yOffset -= self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height // subtract footer height
+        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height // subtract footer height
         
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(viewSize.width), height: viewSize.height)
         
@@ -521,12 +527,12 @@ class SwiftGridLayout : UICollectionViewLayout {
     
     func numberOfColumns() -> Int {
     
-        return self.delegate.collectionView(self.collectionView!, numberOfColumnsForLayout: self)
+        return self.layoutDelegate.collectionView(self.collectionView!, numberOfColumnsForLayout: self)
     }
     
     func numberOfRowsInSection(_ sectionIndex:Int) -> Int {
         
-        return self.delegate.collectionView(self.collectionView!, layout: self, numberOfRowsInSection: sectionIndex)
+        return self.layoutDelegate.collectionView(self.collectionView!, layout: self, numberOfRowsInSection: sectionIndex)
     }
     
     func horizontalOffset(for indexPath: IndexPath, atColumn column: Int, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
@@ -534,14 +540,14 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         if (column > 0) {
             for columnIndex: Int in self.frozenColumnsCount ..< column {
-                offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
+                offset += self.zoomModifiedValue(self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
             }
         }
         
         if scrollPosition.contains(.right) {
-            offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column))
+            offset += self.zoomModifiedValue(self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column))
         } else if scrollPosition.contains(.centeredHorizontally) {
-            offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column)) / 2
+            offset += self.zoomModifiedValue(self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: column)) / 2
         }
         
         return offset
@@ -576,7 +582,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         var offset: CGFloat = 0.0
         
         for columnIndex: Int in 0 ..< column {
-            offset += self.zoomModifiedValue(self.delegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
+            offset += self.zoomModifiedValue(self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
         }
         
         return offset
@@ -606,9 +612,9 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // Adjust for item scroll position
         if scrollPosition.contains(.bottom) {
-            offset += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath)
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath)
         } else if scrollPosition.contains(.centeredVertically) {
-            offset += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath) / 2
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightFor: rowNumber, at: indexPath) / 2
         }
         
         return offset
@@ -622,7 +628,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             offset = CGFloat((self.verticalOffsetCache[indexPath] as? NSNumber)!.floatValue)
         } else {
             // Add in header height
-            offset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
             
             // Add in previous section heights
             for sectionIndex: Int in 0 ..< indexPath.section {
@@ -631,7 +637,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             }
             
             // Add in section header height
-            offset += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
             
             // Add in current section row heights
             if(indexPath.item > 0) {
@@ -643,16 +649,16 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // Frozen Rows
         if rowNumber < self.frozenRowCounts[indexPath.section] {
-            let headerHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
-            let sectionHeaderHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+            let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+            let sectionHeaderHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
             let rowOffset = self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
             let contentOffset = self.collectionView!.contentOffset.y + headerHeight + sectionHeaderHeight + rowOffset
             
             if(contentOffset > offset) {
                 let sectionPath = IndexPath(item: 0, section: indexPath.section)
                 let sectionHeight = self.heightOfSectionAtIndexPath(sectionPath)
-                let sectionFooterHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
-                let rowHeight = self.delegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
+                let sectionFooterHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
+                let rowHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
                 var frozenRowIndex = self.frozenRowCounts[indexPath.section]
                 
                 if frozenRowIndex > self.numberOfRowsInSection(indexPath.section) {
@@ -697,13 +703,13 @@ class SwiftGridLayout : UICollectionViewLayout {
         let rowCount: Int = self.numberOfRowsInSection(indexPath.section)
         
         // Add in section header height
-        height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+        height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
         
         // Add content Row Heights
         height += self.rowHeightSumToRow(rowCount, atIndexPath:indexPath)
         
         // Add in section footer height
-        height += self.delegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
+        height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
         
         return height
     }
@@ -712,7 +718,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         var height: CGFloat = 0.0
         
         for row: Int in 0 ..< maxRow {
-            height += self.delegate.collectionView(self.collectionView!, layout: self, heightFor: row, at: indexPath)
+            height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightFor: row, at: indexPath)
         }
         
         return height

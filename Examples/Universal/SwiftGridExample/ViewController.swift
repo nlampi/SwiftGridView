@@ -24,6 +24,7 @@ import SwiftGridView
 
 class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDelegate {
     
+    @IBOutlet weak var dataGridContainerView: UIView!
     @IBOutlet weak var dataGridView: SwiftGridView! /// Data Grid IBOutlet
     
     var sectionCount: Int = 5
