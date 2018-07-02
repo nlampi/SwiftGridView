@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,16 +21,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiB-XM-TB4" customClass="SwiftGridView" customModule="SwiftGridView">
-                                <rect key="frame" x="10" y="70" width="1004" height="688"/>
-                                <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="eHr-ty-6XV"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Gm8-F5-M1a"/>
-                                </connections>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7z-v1-hLu">
-                                <rect key="frame" x="10" y="25" width="115" height="35"/>
+                                <rect key="frame" x="15" y="35" width="115" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="115" id="4XL-BT-n3q"/>
                                     <constraint firstAttribute="height" constant="35" id="8X0-Vd-GOg"/>
@@ -43,7 +36,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ej4-ZI-DAF">
-                                <rect key="frame" x="205" y="25" width="107" height="35"/>
+                                <rect key="frame" x="210" y="35" width="107" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="107" id="Pdt-hE-nsI"/>
                                 </constraints>
@@ -55,7 +48,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="awf-3h-0Yy">
-                                <rect key="frame" x="117" y="25" width="80" height="35"/>
+                                <rect key="frame" x="122" y="35" width="80" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="OqP-KK-ElS"/>
                                 </constraints>
@@ -66,22 +59,42 @@
                                     <action selector="didTapScrollButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="r8U-6P-rxP"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff3-rn-myF">
+                                <rect key="frame" x="15" y="85" width="994" height="623"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiB-XM-TB4" customClass="SwiftGridView" customModule="SwiftGridView">
+                                        <rect key="frame" x="0.0" y="0.0" width="994" height="623"/>
+                                        <color key="backgroundColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="eHr-ty-6XV"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="Gm8-F5-M1a"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="LiB-XM-TB4" firstAttribute="leading" secondItem="ff3-rn-myF" secondAttribute="leading" id="2rH-Hr-sXn"/>
+                                    <constraint firstAttribute="bottom" secondItem="LiB-XM-TB4" secondAttribute="bottom" id="IA2-5v-sQ1"/>
+                                    <constraint firstAttribute="trailing" secondItem="LiB-XM-TB4" secondAttribute="trailing" id="dY9-66-0zQ"/>
+                                    <constraint firstItem="LiB-XM-TB4" firstAttribute="top" secondItem="ff3-rn-myF" secondAttribute="top" id="hHV-lO-Les"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ej4-ZI-DAF" firstAttribute="height" secondItem="I7z-v1-hLu" secondAttribute="height" id="0Ff-B3-KgA"/>
-                            <constraint firstItem="LiB-XM-TB4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="50" id="5aT-Py-khL"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LiB-XM-TB4" secondAttribute="bottom" constant="10" id="Cjm-PR-euu"/>
+                            <constraint firstItem="I7z-v1-hLu" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="15" id="9bP-Cc-Ndw"/>
+                            <constraint firstItem="ff3-rn-myF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="DMF-zL-XYC"/>
                             <constraint firstItem="Ej4-ZI-DAF" firstAttribute="top" secondItem="I7z-v1-hLu" secondAttribute="top" id="ETU-Pn-eEM"/>
+                            <constraint firstItem="I7z-v1-hLu" firstAttribute="leading" secondItem="ff3-rn-myF" secondAttribute="leading" id="Jcp-Gu-jhI"/>
                             <constraint firstItem="awf-3h-0Yy" firstAttribute="top" secondItem="I7z-v1-hLu" secondAttribute="top" id="LwA-oI-DX6"/>
-                            <constraint firstItem="LiB-XM-TB4" firstAttribute="top" secondItem="I7z-v1-hLu" secondAttribute="bottom" constant="10" id="LyN-q6-zSX"/>
                             <constraint firstItem="I7z-v1-hLu" firstAttribute="trailing" secondItem="awf-3h-0Yy" secondAttribute="leading" constant="8" id="O3e-rv-y0e"/>
+                            <constraint firstItem="ff3-rn-myF" firstAttribute="top" secondItem="I7z-v1-hLu" secondAttribute="bottom" constant="15" id="P7W-5h-zHb"/>
                             <constraint firstItem="Ej4-ZI-DAF" firstAttribute="leading" secondItem="awf-3h-0Yy" secondAttribute="trailing" constant="8" id="Rrp-ba-3Zd"/>
+                            <constraint firstAttribute="trailing" secondItem="ff3-rn-myF" secondAttribute="trailing" constant="15" id="XR0-qK-7Lx"/>
                             <constraint firstItem="I7z-v1-hLu" firstAttribute="leading" secondItem="awf-3h-0Yy" secondAttribute="trailing" constant="-76" id="a9p-j4-WJw"/>
-                            <constraint firstItem="LiB-XM-TB4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="aaU-tx-CGT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ff3-rn-myF" secondAttribute="bottom" constant="60" id="bDo-P6-gvk"/>
                             <constraint firstItem="awf-3h-0Yy" firstAttribute="height" secondItem="I7z-v1-hLu" secondAttribute="height" id="sfy-ol-Hp2"/>
-                            <constraint firstAttribute="trailing" secondItem="LiB-XM-TB4" secondAttribute="trailing" constant="10" id="siO-aD-DAa"/>
-                            <constraint firstItem="I7z-v1-hLu" firstAttribute="leading" secondItem="LiB-XM-TB4" secondAttribute="leading" id="wLv-WZ-ncc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -90,6 +103,7 @@
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="dataGridContainerView" destination="ff3-rn-myF" id="f3T-Jc-6s1"/>
                         <outlet property="dataGridView" destination="LiB-XM-TB4" id="425-rw-7wG"/>
                     </connections>
                 </viewController>
