@@ -538,7 +538,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     func horizontalOffset(for indexPath: IndexPath, atColumn column: Int, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
         var offset: CGFloat = 0.0
         
-        if (column > 0) {
+        if (column > self.frozenColumnsCount) {
             for columnIndex: Int in self.frozenColumnsCount ..< column {
                 offset += self.zoomModifiedValue(self.layoutDelegate.collectionView(self.collectionView!, layout: self, widthOfColumnAtIndex: columnIndex))
             }
