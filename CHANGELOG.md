@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.6.5](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.5) (2018-08-29)
+Fixed an issue when scrolling to frozen columns. (Issue #39)
+
 ## [0.6.4](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.4) (2018-07-01)
 Fixed a memory leak. (Issue #37)
 
