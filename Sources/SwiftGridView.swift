@@ -355,7 +355,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             
             return convertedPath
         }
-        
+        // Look at nearest path?
         return nil
     }
     
@@ -515,6 +515,11 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     open func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {
         
         self.sgCollectionView.setContentOffset(contentOffset, animated: animated)
+    }
+    
+    open func location(for gestureRecognizer:UIGestureRecognizer) -> CGPoint {
+
+        return gestureRecognizer.location(in: self.sgCollectionView)
     }
     
     

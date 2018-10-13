@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.6.6](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.6) (2018-10-13)
+Added ability to get gesture locations for internal collectionView. (Issue #41) Renamed Source folder. 
+
 ## [0.6.5](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.5) (2018-08-29)
 Fixed an issue when scrolling to frozen columns. (Issue #39)
 

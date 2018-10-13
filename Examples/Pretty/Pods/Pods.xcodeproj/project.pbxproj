@@ -7,20 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1656BB5B124805ED1F84783EFD5A896E /* SwiftGridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744C10F13E8C2E1374B13828318A2338 /* SwiftGridViewDelegate.swift */; };
 		18FBE2E5052812A8533E9D16601E1C87 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */; };
-		1C1674DD267A7786566157F06DB5635E /* SwiftGridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A22B839C98D2080790A726E96F9024E /* SwiftGridViewDelegate.swift */; };
-		2E8C78A4CF3831AE33E645F31F7D5DBF /* SwiftGridViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1473790C4E890507C5E4538ADD83E4 /* SwiftGridViewDataSource.swift */; };
-		37BBD0C3F4490323110098C3A88DC629 /* SwiftGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04A64CB57244D2F193343F803844E41 /* SwiftGridCell.swift */; };
-		4384367CCC889116EEB5034AB0A10057 /* SwiftGridReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FAB5C383F660F47B5A3CD39096FB4E /* SwiftGridReusableView.swift */; };
-		4E05DC25CB26AE79946EE964FF680A27 /* IndexPath+SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB1744E626374F3C933AB14AD74F712 /* IndexPath+SwiftGridView.swift */; };
-		5DAD8C67A281E3C29A2023D99C0D0989 /* SwiftGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08634282D58D205E3322C4B25E93594D /* SwiftGridLayout.swift */; };
-		6E4DF5CCB1199CC5E2DA39AAA0C0D431 /* SwiftGridView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B7B711B76BBF874EB09C0BA764304399 /* SwiftGridView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		368C6E049D8F93AF71A69E88B0B10FD6 /* SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B1E725E12197220355C46CA376F981 /* SwiftGridView.swift */; };
+		37BBD0C3F4490323110098C3A88DC629 /* SwiftGridCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DCCF69CF8F1D06113BB9AA47EFC7B8 /* SwiftGridCell.swift */; };
+		4384367CCC889116EEB5034AB0A10057 /* SwiftGridReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF871C1B7A38FF24942044DDE26C54 /* SwiftGridReusableView.swift */; };
+		4E05DC25CB26AE79946EE964FF680A27 /* IndexPath+SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784417081AC1BE01E8592B1101605BA3 /* IndexPath+SwiftGridView.swift */; };
+		5DAD8C67A281E3C29A2023D99C0D0989 /* SwiftGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EBF8F1B2F966EAD689895329870AB1 /* SwiftGridLayout.swift */; };
+		6E4DF5CCB1199CC5E2DA39AAA0C0D431 /* SwiftGridView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A701C7669BA7E825A406F06E4BDE3A37 /* SwiftGridView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		75A2C711392F3A66030E2E8007B37B72 /* SwiftGridViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80F95CCD40ECAA2E447774F935E5CFA7 /* SwiftGridViewDataSource.swift */; };
 		8BA3F3E52B9C7FFF7993DF8F3F0B2CF4 /* Pods-PrettyExample-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 38C536208A4580B53E126E49A5A359A7 /* Pods-PrettyExample-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		97A0185F71BFFED4DD17EB9CD48BB539 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
 		9E926E025BC3240246D01D7C9F22BAC0 /* Pods-PrettyExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC630CF3D84B10D9B193F704B8739D4E /* Pods-PrettyExample-dummy.m */; };
-		B402969BE9DB9C67517B0A8F24F0DCF2 /* SwiftGridLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97ACEBB43B250E6F828F7E8E4AB44EC /* SwiftGridLayoutDelegate.swift */; };
-		C588A85F9477275D33D3AF5C0161F98A /* SwiftGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A16FF8B08E7903329A3BEB27C1F34D4 /* SwiftGridView.swift */; };
-		D6EBD5B45B1FE28E10F163E46F0F6703 /* SwiftGridView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 418FDB516CE31CCD7768F35E61BCD0F8 /* SwiftGridView-dummy.m */; };
+		B402969BE9DB9C67517B0A8F24F0DCF2 /* SwiftGridLayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AD18A64F3FD199991EEFC944863DBC /* SwiftGridLayoutDelegate.swift */; };
+		D6EBD5B45B1FE28E10F163E46F0F6703 /* SwiftGridView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BB7D7F26DC6DF71ACF0785698351550C /* SwiftGridView-dummy.m */; };
 		E7FADB09104AD1BAD95DE546C5B2B4C9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 908E902E026C5C22904CF9014A5604AD /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,38 +35,38 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		08634282D58D205E3322C4B25E93594D /* SwiftGridLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridLayout.swift; sourceTree = "<group>"; };
 		0CDADAF99C0E7B4C716CDB53FD3B5489 /* Pods-PrettyExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PrettyExample.release.xcconfig"; sourceTree = "<group>"; };
+		101D5DBDF2EC0E0E039EC3483B71A9C0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		1509039CE1633F743283CC02BFC49D62 /* Pods-PrettyExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PrettyExample-frameworks.sh"; sourceTree = "<group>"; };
+		249A5F2E992744B268D490A333660A57 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D436F6EDDFCB3D5688EE5BC971AB2B /* Pods-PrettyExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PrettyExample.debug.xcconfig"; sourceTree = "<group>"; };
+		309C75DD3A311D8AD8BBB26942C85413 /* SwiftGridView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SwiftGridView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3448AA4843BD9D12D36B2253712F1440 /* SwiftGridView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftGridView.framework; path = SwiftGridView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36B1E725E12197220355C46CA376F981 /* SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridView.swift; path = Sources/SwiftGridView.swift; sourceTree = "<group>"; };
 		38C536208A4580B53E126E49A5A359A7 /* Pods-PrettyExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PrettyExample-umbrella.h"; sourceTree = "<group>"; };
-		3D1473790C4E890507C5E4538ADD83E4 /* SwiftGridViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDataSource.swift; path = Source/SwiftGridViewDataSource.swift; sourceTree = "<group>"; };
-		418FDB516CE31CCD7768F35E61BCD0F8 /* SwiftGridView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftGridView-dummy.m"; sourceTree = "<group>"; };
-		42FAB5C383F660F47B5A3CD39096FB4E /* SwiftGridReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridReusableView.swift; sourceTree = "<group>"; };
-		4A6B6D90D58268A1723EEB94AF406470 /* SwiftGridView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGridView.xcconfig; sourceTree = "<group>"; };
-		5A22B839C98D2080790A726E96F9024E /* SwiftGridViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDelegate.swift; path = Source/SwiftGridViewDelegate.swift; sourceTree = "<group>"; };
-		619D39D76A781F5EE3526618460E03E1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		714FEE1415BA68A7EC1DDE1F9D1B5450 /* SwiftGridView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-prefix.pch"; sourceTree = "<group>"; };
+		46EBF8F1B2F966EAD689895329870AB1 /* SwiftGridLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridLayout.swift; sourceTree = "<group>"; };
+		4CDF871C1B7A38FF24942044DDE26C54 /* SwiftGridReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridReusableView.swift; sourceTree = "<group>"; };
+		744C10F13E8C2E1374B13828318A2338 /* SwiftGridViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDelegate.swift; path = Sources/SwiftGridViewDelegate.swift; sourceTree = "<group>"; };
+		784417081AC1BE01E8592B1101605BA3 /* IndexPath+SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IndexPath+SwiftGridView.swift"; sourceTree = "<group>"; };
 		7917AB68595B505944267CD76C8CE08D /* Pods_PrettyExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PrettyExample.framework; path = "Pods-PrettyExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A16FF8B08E7903329A3BEB27C1F34D4 /* SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridView.swift; path = Source/SwiftGridView.swift; sourceTree = "<group>"; };
+		7B758FB45C146452E62CECFF8679048F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		80F95CCD40ECAA2E447774F935E5CFA7 /* SwiftGridViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDataSource.swift; path = Sources/SwiftGridViewDataSource.swift; sourceTree = "<group>"; };
 		81B70EF14068BC4D411A0BFB9D835AEF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		908E902E026C5C22904CF9014A5604AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		98C09A943754092140C809CEF01288F8 /* SwiftGridView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SwiftGridView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A07737CAB48B3C83F43CD841536D9AF4 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		B5AF7BF2B4B7A22DD1079B88BDFD0C85 /* SwiftGridView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftGridView.modulemap; sourceTree = "<group>"; };
-		B7B711B76BBF874EB09C0BA764304399 /* SwiftGridView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-umbrella.h"; sourceTree = "<group>"; };
+		A701C7669BA7E825A406F06E4BDE3A37 /* SwiftGridView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-umbrella.h"; sourceTree = "<group>"; };
+		AFCB5CDE641DF3FEB19406ADD0BB5CA4 /* SwiftGridView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-prefix.pch"; sourceTree = "<group>"; };
+		B8DCCF69CF8F1D06113BB9AA47EFC7B8 /* SwiftGridCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridCell.swift; sourceTree = "<group>"; };
+		BB7D7F26DC6DF71ACF0785698351550C /* SwiftGridView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftGridView-dummy.m"; sourceTree = "<group>"; };
 		BC2C02191C153C1554B35DEE8B2D09D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		BC630CF3D84B10D9B193F704B8739D4E /* Pods-PrettyExample-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-PrettyExample-dummy.m"; sourceTree = "<group>"; };
-		BF4E718A695AEC2722E1E40818B4F589 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
-		CCB1744E626374F3C933AB14AD74F712 /* IndexPath+SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IndexPath+SwiftGridView.swift"; sourceTree = "<group>"; };
+		BE5D5965A04D76BF8C7F082400ACA916 /* SwiftGridView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SwiftGridView.modulemap; sourceTree = "<group>"; };
+		C4752EECD8E83FECB2F3119F55F1CA53 /* SwiftGridView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftGridView.xcconfig; sourceTree = "<group>"; };
 		D11CF6D4E5BE9FC487D989E80A8333F4 /* Pods-PrettyExample-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-PrettyExample-acknowledgements.plist"; sourceTree = "<group>"; };
 		DAABFDCA97B45709E6DC2B7C2B797E59 /* Pods-PrettyExample-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-PrettyExample-acknowledgements.markdown"; sourceTree = "<group>"; };
-		E04A64CB57244D2F193343F803844E41 /* SwiftGridCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridCell.swift; sourceTree = "<group>"; };
 		E46625B27204809C962B724BF259D42A /* Pods-PrettyExample-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PrettyExample-resources.sh"; sourceTree = "<group>"; };
+		F0AD18A64F3FD199991EEFC944863DBC /* SwiftGridLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridLayoutDelegate.swift; sourceTree = "<group>"; };
 		F34C840F837E4B6F6114E83B0EF6F05E /* Pods-PrettyExample.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-PrettyExample.modulemap"; sourceTree = "<group>"; };
-		F97ACEBB43B250E6F828F7E8E4AB44EC /* SwiftGridLayoutDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridLayoutDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +99,16 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		161AD2EF23F03E9EFE82BDCDE8CEA8AC /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				46EBF8F1B2F966EAD689895329870AB1 /* SwiftGridLayout.swift */,
+				F0AD18A64F3FD199991EEFC944863DBC /* SwiftGridLayoutDelegate.swift */,
+			);
+			name = Layout;
+			path = Sources/Layout;
+			sourceTree = "<group>";
+		};
 		2B8367D2CB8436C5233F5278ED7FE5EF /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,16 +116,6 @@
 				3448AA4843BD9D12D36B2253712F1440 /* SwiftGridView.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		2C14A518372F1CDF1C05B18B39AAF7EE /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				E04A64CB57244D2F193343F803844E41 /* SwiftGridCell.swift */,
-				42FAB5C383F660F47B5A3CD39096FB4E /* SwiftGridReusableView.swift */,
-			);
-			name = Cells;
-			path = Source/Cells;
 			sourceTree = "<group>";
 		};
 		3013BECF59189CCCE9475EC3715E25C2 /* Pods-PrettyExample */ = {
@@ -136,30 +136,6 @@
 			path = "Target Support Files/Pods-PrettyExample";
 			sourceTree = "<group>";
 		};
-		37DE0F5172CE79599C618758BEEEA44F /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				BF4E718A695AEC2722E1E40818B4F589 /* LICENSE */,
-				A07737CAB48B3C83F43CD841536D9AF4 /* README.md */,
-				98C09A943754092140C809CEF01288F8 /* SwiftGridView.podspec */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
-		3CFE0E2AB0C55FDC0E20B694AC2282EC /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				619D39D76A781F5EE3526618460E03E1 /* Info.plist */,
-				B5AF7BF2B4B7A22DD1079B88BDFD0C85 /* SwiftGridView.modulemap */,
-				4A6B6D90D58268A1723EEB94AF406470 /* SwiftGridView.xcconfig */,
-				418FDB516CE31CCD7768F35E61BCD0F8 /* SwiftGridView-dummy.m */,
-				714FEE1415BA68A7EC1DDE1F9D1B5450 /* SwiftGridView-prefix.pch */,
-				B7B711B76BBF874EB09C0BA764304399 /* SwiftGridView-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Examples/Pretty/Pods/Target Support Files/SwiftGridView";
-			sourceTree = "<group>";
-		};
 		433CD3331B6C3787F473C941B61FC68F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,23 +144,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4B409D657360D627F26AF561160F18B8 /* Layout */ = {
+		553554221B066DA28B1F5A67A91CA44B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				08634282D58D205E3322C4B25E93594D /* SwiftGridLayout.swift */,
-				F97ACEBB43B250E6F828F7E8E4AB44EC /* SwiftGridLayoutDelegate.swift */,
+				249A5F2E992744B268D490A333660A57 /* Info.plist */,
+				BE5D5965A04D76BF8C7F082400ACA916 /* SwiftGridView.modulemap */,
+				C4752EECD8E83FECB2F3119F55F1CA53 /* SwiftGridView.xcconfig */,
+				BB7D7F26DC6DF71ACF0785698351550C /* SwiftGridView-dummy.m */,
+				AFCB5CDE641DF3FEB19406ADD0BB5CA4 /* SwiftGridView-prefix.pch */,
+				A701C7669BA7E825A406F06E4BDE3A37 /* SwiftGridView-umbrella.h */,
 			);
-			name = Layout;
-			path = Source/Layout;
+			name = "Support Files";
+			path = "Examples/Pretty/Pods/Target Support Files/SwiftGridView";
 			sourceTree = "<group>";
 		};
-		6B19A5F070F02833DEC0D974F6700040 /* Common */ = {
+		5F68BD4470BEA32ED76CF518A7D84206 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				CCB1744E626374F3C933AB14AD74F712 /* IndexPath+SwiftGridView.swift */,
+				7B758FB45C146452E62CECFF8679048F /* LICENSE */,
+				101D5DBDF2EC0E0E039EC3483B71A9C0 /* README.md */,
+				309C75DD3A311D8AD8BBB26942C85413 /* SwiftGridView.podspec */,
 			);
-			name = Common;
-			path = Source/Common;
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -198,17 +179,17 @@
 			);
 			sourceTree = "<group>";
 		};
-		8BE2647E1B7AC36D9881C1BE691C4175 /* SwiftGridView */ = {
+		8B0450796180051CD874981D5947619A /* SwiftGridView */ = {
 			isa = PBXGroup;
 			children = (
-				7A16FF8B08E7903329A3BEB27C1F34D4 /* SwiftGridView.swift */,
-				3D1473790C4E890507C5E4538ADD83E4 /* SwiftGridViewDataSource.swift */,
-				5A22B839C98D2080790A726E96F9024E /* SwiftGridViewDelegate.swift */,
-				2C14A518372F1CDF1C05B18B39AAF7EE /* Cells */,
-				6B19A5F070F02833DEC0D974F6700040 /* Common */,
-				4B409D657360D627F26AF561160F18B8 /* Layout */,
-				37DE0F5172CE79599C618758BEEEA44F /* Pod */,
-				3CFE0E2AB0C55FDC0E20B694AC2282EC /* Support Files */,
+				36B1E725E12197220355C46CA376F981 /* SwiftGridView.swift */,
+				80F95CCD40ECAA2E447774F935E5CFA7 /* SwiftGridViewDataSource.swift */,
+				744C10F13E8C2E1374B13828318A2338 /* SwiftGridViewDelegate.swift */,
+				FCA8534353F81219B7274CA25401A1B7 /* Cells */,
+				D2E557F03EBD5990D3C5A3B267B98C6D /* Common */,
+				161AD2EF23F03E9EFE82BDCDE8CEA8AC /* Layout */,
+				5F68BD4470BEA32ED76CF518A7D84206 /* Pod */,
+				553554221B066DA28B1F5A67A91CA44B /* Support Files */,
 			);
 			name = SwiftGridView;
 			path = ../../..;
@@ -225,9 +206,28 @@
 		CC80DB44E112D4605EA9564869585A30 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8BE2647E1B7AC36D9881C1BE691C4175 /* SwiftGridView */,
+				8B0450796180051CD874981D5947619A /* SwiftGridView */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		D2E557F03EBD5990D3C5A3B267B98C6D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				784417081AC1BE01E8592B1101605BA3 /* IndexPath+SwiftGridView.swift */,
+			);
+			name = Common;
+			path = Sources/Common;
+			sourceTree = "<group>";
+		};
+		FCA8534353F81219B7274CA25401A1B7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B8DCCF69CF8F1D06113BB9AA47EFC7B8 /* SwiftGridCell.swift */,
+				4CDF871C1B7A38FF24942044DDE26C54 /* SwiftGridReusableView.swift */,
+			);
+			name = Cells;
+			path = Sources/Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -325,9 +325,9 @@
 				B402969BE9DB9C67517B0A8F24F0DCF2 /* SwiftGridLayoutDelegate.swift in Sources */,
 				4384367CCC889116EEB5034AB0A10057 /* SwiftGridReusableView.swift in Sources */,
 				D6EBD5B45B1FE28E10F163E46F0F6703 /* SwiftGridView-dummy.m in Sources */,
-				C588A85F9477275D33D3AF5C0161F98A /* SwiftGridView.swift in Sources */,
-				2E8C78A4CF3831AE33E645F31F7D5DBF /* SwiftGridViewDataSource.swift in Sources */,
-				1C1674DD267A7786566157F06DB5635E /* SwiftGridViewDelegate.swift in Sources */,
+				368C6E049D8F93AF71A69E88B0B10FD6 /* SwiftGridView.swift in Sources */,
+				75A2C711392F3A66030E2E8007B37B72 /* SwiftGridViewDataSource.swift in Sources */,
+				1656BB5B124805ED1F84783EFD5A896E /* SwiftGridViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,7 +416,7 @@
 		};
 		2A6BAB1DFAAF0B4943824F01F376FF32 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A6B6D90D58268A1723EEB94AF406470 /* SwiftGridView.xcconfig */;
+			baseConfigurationReference = C4752EECD8E83FECB2F3119F55F1CA53 /* SwiftGridView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -449,7 +449,7 @@
 		};
 		2BBB5818CEFE569EA7066CE9BEC02AAA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A6B6D90D58268A1723EEB94AF406470 /* SwiftGridView.xcconfig */;
+			baseConfigurationReference = C4752EECD8E83FECB2F3119F55F1CA53 /* SwiftGridView.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";

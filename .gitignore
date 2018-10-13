@@ -17,7 +17,23 @@ xcuserdata
 *.xcuserstate
 profile
 *.moved-aside
+*.xcscmblueprint
 *.hmap
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+# Playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+# Swift Package Manager
+.build/
+# Package.pins
+# Package.resolved
+
+# CocoaPods
+# Pods/
+
+# Carthage
+Carthage/Build
