@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -60,11 +61,23 @@
                         <constraint firstAttribute="width" constant="0.5" id="ftz-4u-Upx"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Sl-ng-hHc" userLabel="leftBorder">
+                    <rect key="frame" x="-0.5" y="0.0" width="0.5" height="50"/>
+                    <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                    <accessibility key="accessibilityConfiguration">
+                        <accessibilityTraits key="traits" notEnabled="YES"/>
+                    </accessibility>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="0.5" id="89Z-Ms-72k"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="2Sl-ng-hHc" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4ih-mt-UF3"/>
                 <constraint firstAttribute="bottom" secondItem="YkE-yc-hI8" secondAttribute="bottom" id="D5p-Fa-0ec"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uKj-CQ-eUt" secondAttribute="trailing" id="EBl-kd-te8"/>
+                <constraint firstAttribute="bottom" secondItem="2Sl-ng-hHc" secondAttribute="bottom" id="EZ7-La-Ecl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YkE-yc-hI8" secondAttribute="trailing" id="GFA-kZ-0mp"/>
                 <constraint firstItem="s7e-zz-PrF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ICO-Nc-720"/>
                 <constraint firstItem="uKj-CQ-eUt" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="JM9-w4-Npw"/>
@@ -72,6 +85,7 @@
                 <constraint firstItem="uKj-CQ-eUt" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Mpa-ad-Fwk"/>
                 <constraint firstItem="gkr-Td-ngH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="O70-Vg-Wac"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FL6-7N-vYU" secondAttribute="trailing" id="QhD-iC-TaU"/>
+                <constraint firstItem="2Sl-ng-hHc" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Qif-wz-whA"/>
                 <constraint firstItem="FL6-7N-vYU" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="S4B-vQ-oaq"/>
                 <constraint firstAttribute="bottom" secondItem="uKj-CQ-eUt" secondAttribute="bottom" id="Z2Y-wJ-8Jh"/>
                 <constraint firstAttribute="bottom" secondItem="gkr-Td-ngH" secondAttribute="bottom" id="ZOs-fR-nXj"/>
