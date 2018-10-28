@@ -19,7 +19,7 @@
 		8A3910E11F8BF55500F260FC /* PrettyRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A3910E01F8BF55500F260FC /* PrettyRowCell.xib */; };
 		8A3910E31F8BF56000F260FC /* PrettyRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3910E21F8BF56000F260FC /* PrettyRowCell.swift */; };
 		8A3910E71F92D09C00F260FC /* PECountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3910E61F92D09C00F260FC /* PECountry.swift */; };
-		8A3910E81F92D4FD00F260FC /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A3910E51F92CE3A00F260FC /* countries.plist */; };
+		8ADDBF702185006A0058976D /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8ADDBF6F2185006A0058976D /* countries.plist */; };
 		C19B235F60DD6373D366F100 /* Pods_PrettyExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 464DAC104F53E65550CBEBB4 /* Pods_PrettyExample.framework */; };
 /* End PBXBuildFile section */
 
@@ -38,8 +38,8 @@
 		8A3910DE1F8BEFBC00F260FC /* PrettyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyHeaderView.swift; sourceTree = "<group>"; };
 		8A3910E01F8BF55500F260FC /* PrettyRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrettyRowCell.xib; sourceTree = "<group>"; };
 		8A3910E21F8BF56000F260FC /* PrettyRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyRowCell.swift; sourceTree = "<group>"; };
-		8A3910E51F92CE3A00F260FC /* countries.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = countries.plist; path = ../../../../../../Desktop/countries.plist; sourceTree = "<group>"; };
 		8A3910E61F92D09C00F260FC /* PECountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PECountry.swift; sourceTree = "<group>"; };
+		8ADDBF6F2185006A0058976D /* countries.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = countries.plist; sourceTree = "<group>"; };
 		A70DC8CF0D7D47CFDBEF0D03 /* Pods-PrettyExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrettyExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-PrettyExample/Pods-PrettyExample.release.xcconfig"; sourceTree = "<group>"; };
 		CAFA3BA2F7906E4C8BFE82CF /* Pods-PrettyExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PrettyExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PrettyExample/Pods-PrettyExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,7 +122,7 @@
 		8A3910E41F92CE2100F260FC /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8A3910E51F92CE3A00F260FC /* countries.plist */,
+				8ADDBF6F2185006A0058976D /* countries.plist */,
 				8A3910E61F92D09C00F260FC /* PECountry.swift */,
 			);
 			path = Data;
@@ -194,7 +194,7 @@
 				8A3910CD1F8BE91E00F260FC /* Assets.xcassets in Resources */,
 				8A3910CB1F8BE91E00F260FC /* Main.storyboard in Resources */,
 				8A3910E11F8BF55500F260FC /* PrettyRowCell.xib in Resources */,
-				8A3910E81F92D4FD00F260FC /* countries.plist in Resources */,
+				8ADDBF702185006A0058976D /* countries.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -41,7 +42,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w6-zA-Fax" userLabel="bottomBorder">
-                    <rect key="frame" x="0.0" y="118.5" width="491" height="0.5"/>
+                    <rect key="frame" x="0.0" y="118" width="491" height="1"/>
                     <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
                     <accessibility key="accessibilityConfiguration">
                         <accessibilityTraits key="traits" notEnabled="YES"/>
@@ -50,24 +51,57 @@
                         <constraint firstAttribute="height" constant="1" id="Skc-nr-t2O"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eBf-jI-T8V" userLabel="rightBorder">
+                    <rect key="frame" x="490.5" y="0.0" width="0.5" height="119"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="0.5" id="QVL-Dn-N9D"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="fpD-Yn-Csq"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YsP-EY-cig" userLabel="leftBorder">
+                    <rect key="frame" x="-0.5" y="0.0" width="0.5" height="119"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="0.5" id="mXY-EX-VIh"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="hPG-WI-krt"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PHg-vT-R4a" userLabel="topBorder">
+                    <rect key="frame" x="0.0" y="-0.5" width="490.5" height="0.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="tr7-Hi-bXY"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="XEA-en-6Ui"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.36078431370000003" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="DSu-9y-epI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="5ar-Ag-dwA"/>
+                <constraint firstItem="eBf-jI-T8V" firstAttribute="leading" secondItem="PHg-vT-R4a" secondAttribute="trailing" id="7gt-7w-InC"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eBf-jI-T8V" secondAttribute="trailing" id="9kw-wU-XgA"/>
+                <constraint firstItem="eBf-jI-T8V" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Fje-Em-4JO"/>
+                <constraint firstItem="PHg-vT-R4a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="HbE-6i-cVx"/>
                 <constraint firstItem="bK0-a2-fqH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Qp0-gt-uNR"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bK0-a2-fqH" secondAttribute="trailing" id="Rbh-0Z-ya3"/>
+                <constraint firstItem="YsP-EY-cig" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="leading" id="U30-55-V7C"/>
                 <constraint firstAttribute="bottom" secondItem="610-CQ-V17" secondAttribute="bottom" id="V71-s9-NJB"/>
                 <constraint firstAttribute="bottom" secondItem="DSu-9y-epI" secondAttribute="bottom" id="XRE-MQ-7Kk"/>
                 <constraint firstAttribute="bottom" secondItem="bK0-a2-fqH" secondAttribute="bottom" id="Y79-S4-o9L"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="DSu-9y-epI" secondAttribute="trailing" id="Yyz-Fn-tba"/>
                 <constraint firstItem="0w6-zA-Fax" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZLi-K6-q77"/>
                 <constraint firstItem="DSu-9y-epI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dpH-oY-14Z"/>
+                <constraint firstItem="YsP-EY-cig" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eGw-bm-iKy"/>
                 <constraint firstAttribute="bottom" secondItem="0w6-zA-Fax" secondAttribute="bottom" id="eZr-9k-Wt0"/>
+                <constraint firstItem="PHg-vT-R4a" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="top" id="gIb-zt-8Bv"/>
                 <constraint firstItem="bK0-a2-fqH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ggX-ti-r8P"/>
                 <constraint firstItem="610-CQ-V17" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="kMA-mA-4Vn"/>
                 <constraint firstItem="610-CQ-V17" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="l4b-SX-sE7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0w6-zA-Fax" secondAttribute="trailing" id="o27-nP-NQJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="610-CQ-V17" secondAttribute="trailing" id="q0e-j9-eMP"/>
+                <constraint firstAttribute="bottom" secondItem="eBf-jI-T8V" secondAttribute="bottom" id="sQ4-iv-Sb1"/>
+                <constraint firstAttribute="bottom" secondItem="YsP-EY-cig" secondAttribute="bottom" id="yYI-IX-dIM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

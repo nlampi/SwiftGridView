@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.6.7](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.7) (2018-10-28)
+Exposed get for internal collectionview. Cleaned up Pretty Example.
+
 ## [0.6.6](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.6) (2018-10-13)
 Added ability to get gesture locations for internal collectionView. (Issue #41) Renamed Source folder. 
 
