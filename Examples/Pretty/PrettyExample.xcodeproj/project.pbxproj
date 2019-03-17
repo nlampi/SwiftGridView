@@ -208,7 +208,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PrettyExample/Pods-PrettyExample-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PrettyExample/Pods-PrettyExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/SwiftGridView/SwiftGridView.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -217,7 +217,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PrettyExample/Pods-PrettyExample-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PrettyExample/Pods-PrettyExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F07A5E747326CA4583BEFEE9 /* [CP] Check Pods Manifest.lock */ = {

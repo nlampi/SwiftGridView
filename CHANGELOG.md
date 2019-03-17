@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 --- 
 
+## [0.7.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.0) (2019-03-17)
+Updated build to Swift 4.2. Added sorting demo to Pretty Example.
+
 ## [0.6.7](https://github.com/nlampi/SwiftGridView/releases/tag/0.6.7) (2018-10-28)
 Exposed get for internal collectionview. Cleaned up Pretty Example.
 
