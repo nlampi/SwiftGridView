@@ -22,7 +22,14 @@
 import Foundation
 import SwiftGridView
 
+protocol PrettyDelegateProtocol : class {
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath)
+}
+
+
 class PrettyDelegate : SwiftGridViewDelegate {
+    
+    weak var delegate:PrettyDelegateProtocol?
     
     func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
         var returnValue:CGFloat
@@ -33,7 +40,9 @@ class PrettyDelegate : SwiftGridViewDelegate {
         case 1:
             returnValue = 200.0
         case 2:
-            returnValue = 110.0
+            returnValue = 140.0
+        case 3:
+            returnValue = 120.0
         case 5:
             returnValue = 150.0
         case 6:
@@ -53,5 +62,10 @@ class PrettyDelegate : SwiftGridViewDelegate {
     func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
         
         return 70.0
+    }
+    
+    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath) {
+        self.delegate?.dataGridView(dataGridView, didSelectHeaderAtIndexPath: indexPath)
     }
 }

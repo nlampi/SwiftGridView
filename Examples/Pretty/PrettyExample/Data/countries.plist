@@ -521,7 +521,7 @@
 	},
 	{
 		name = Curacao;
-		capital = " Willemstad";
+		capital = Willemstad;
 		area = "";
 		population = 141766;
 		continent = NA;

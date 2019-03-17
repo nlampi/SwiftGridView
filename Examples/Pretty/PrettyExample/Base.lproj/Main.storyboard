@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,20 +30,18 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gx-93-Na1">
                                         <rect key="frame" x="0.0" y="50" width="1024" height="45"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VuA-8S-abm">
-                                                <rect key="frame" x="20" y="0.0" width="49" height="45"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zh-8n-1mJ">
+                                                <rect key="frame" x="20" y="22.5" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
-                                                <state key="normal" title="By TLD">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.0" green="0.33713162858197365" blue="0.65227641188055552" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="VuA-8S-abm" secondAttribute="bottom" id="6JD-6M-XcF"/>
-                                            <constraint firstItem="VuA-8S-abm" firstAttribute="top" secondItem="0gx-93-Na1" secondAttribute="top" id="HJd-4e-dl0"/>
-                                            <constraint firstItem="VuA-8S-abm" firstAttribute="leading" secondItem="0gx-93-Na1" secondAttribute="leading" constant="20" id="RfD-4E-tuR"/>
-                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VuA-8S-abm" secondAttribute="trailing" constant="20" symbolic="YES" id="cVP-nP-Bfn"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2zh-8n-1mJ" secondAttribute="trailing" constant="20" id="0em-F3-BR0"/>
+                                            <constraint firstItem="2zh-8n-1mJ" firstAttribute="leading" secondItem="0gx-93-Na1" secondAttribute="leading" constant="20" id="Vr9-Dd-fUj"/>
+                                            <constraint firstItem="2zh-8n-1mJ" firstAttribute="centerY" secondItem="0gx-93-Na1" secondAttribute="centerY" id="sX1-DS-Lri"/>
                                             <constraint firstAttribute="height" constant="45" id="udi-Uz-oP1"/>
                                         </constraints>
                                     </view>
@@ -100,6 +98,7 @@
                     </view>
                     <connections>
                         <outlet property="prettyGridView" destination="LYO-sE-dI4" id="0bK-A4-2Ut"/>
+                        <outlet property="sortingDetailLabel" destination="2zh-8n-1mJ" id="1kZ-Zd-530"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

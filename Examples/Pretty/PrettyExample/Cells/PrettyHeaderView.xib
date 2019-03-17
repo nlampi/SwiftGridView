@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,17 +28,27 @@
                     <rect key="frame" x="0.0" y="0.0" width="491" height="119"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCN-aR-duX">
-                            <rect key="frame" x="8" y="49" width="475" height="21"/>
+                            <rect key="frame" x="8" y="49" width="430" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button hidden="YES" opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDm-Gy-CLS">
+                            <rect key="frame" x="446" y="37" width="45" height="45"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="ozk-BB-HnI"/>
+                                <constraint firstAttribute="width" constant="45" id="zDA-tb-Ijl"/>
+                            </constraints>
+                            <state key="normal" image="Sort_Ascending"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="oCN-aR-duX" firstAttribute="centerY" secondItem="bK0-a2-fqH" secondAttribute="centerY" id="094-XY-3KP"/>
                         <constraint firstItem="oCN-aR-duX" firstAttribute="leading" secondItem="bK0-a2-fqH" secondAttribute="leading" constant="8" id="OYR-0N-mdh"/>
-                        <constraint firstAttribute="trailing" secondItem="oCN-aR-duX" secondAttribute="trailing" constant="8" id="Wyq-59-Xvp"/>
+                        <constraint firstItem="aDm-Gy-CLS" firstAttribute="leading" secondItem="oCN-aR-duX" secondAttribute="trailing" constant="8" id="Phy-Ko-4ti"/>
+                        <constraint firstAttribute="trailing" secondItem="aDm-Gy-CLS" secondAttribute="trailing" id="PlN-RF-mDU"/>
+                        <constraint firstItem="aDm-Gy-CLS" firstAttribute="centerY" secondItem="oCN-aR-duX" secondAttribute="centerY" id="ziA-su-fn0"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0w6-zA-Fax" userLabel="bottomBorder">
@@ -109,8 +119,12 @@
                 <outlet property="backgroundView" destination="DSu-9y-epI" id="Mgi-GW-7Co"/>
                 <outlet property="mainLabel" destination="oCN-aR-duX" id="7Sr-bo-aKC"/>
                 <outlet property="selectedBackgroundView" destination="610-CQ-V17" id="ZSb-ei-wUr"/>
+                <outlet property="sortingButton" destination="aDm-Gy-CLS" id="N4h-cR-mUH"/>
             </connections>
             <point key="canvasLocation" x="91.5" y="-220.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="Sort_Ascending" width="17.5" height="17.5"/>
+    </resources>
 </document>

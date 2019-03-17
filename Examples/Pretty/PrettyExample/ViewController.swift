@@ -22,8 +22,9 @@
 import UIKit
 import SwiftGridView
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PrettyDelegateProtocol {
 
+    @IBOutlet weak var sortingDetailLabel: UILabel!
     var gridDataSource = PrettyDataSource()
     var gridDelegate = PrettyDelegate()
     
@@ -39,14 +40,19 @@ class ViewController: UIViewController {
         // Initialize Data
         self.prettyGridView.rowSelectionEnabled = true
         self.prettyGridView.delegate = self.gridDelegate
+        self.gridDelegate.delegate = self
         self.prettyGridView.dataSource = self.gridDataSource
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
         
+        self.sortingDetailLabel.text = self.gridDataSource.sortDisplayString()
     }
-
+    
+    
+    // MARK: - PrettyDelegateProtocol Methods
+    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath) {
+        self.gridDataSource.sortUsing(dataGridView, column: indexPath.sgColumn)
+        self.sortingDetailLabel.text = self.gridDataSource.sortDisplayString()
+    }
 
 }
 
