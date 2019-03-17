@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,24 +36,24 @@
 
 /* Begin PBXFileReference section */
 		0CDADAF99C0E7B4C716CDB53FD3B5489 /* Pods-PrettyExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PrettyExample.release.xcconfig"; sourceTree = "<group>"; };
-		101D5DBDF2EC0E0E039EC3483B71A9C0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		101D5DBDF2EC0E0E039EC3483B71A9C0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		1509039CE1633F743283CC02BFC49D62 /* Pods-PrettyExample-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-PrettyExample-frameworks.sh"; sourceTree = "<group>"; };
 		249A5F2E992744B268D490A333660A57 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25D436F6EDDFCB3D5688EE5BC971AB2B /* Pods-PrettyExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-PrettyExample.debug.xcconfig"; sourceTree = "<group>"; };
-		309C75DD3A311D8AD8BBB26942C85413 /* SwiftGridView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = SwiftGridView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		3448AA4843BD9D12D36B2253712F1440 /* SwiftGridView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftGridView.framework; path = SwiftGridView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		309C75DD3A311D8AD8BBB26942C85413 /* SwiftGridView.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; path = SwiftGridView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		3448AA4843BD9D12D36B2253712F1440 /* SwiftGridView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftGridView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		36B1E725E12197220355C46CA376F981 /* SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridView.swift; path = Sources/SwiftGridView.swift; sourceTree = "<group>"; };
 		38C536208A4580B53E126E49A5A359A7 /* Pods-PrettyExample-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-PrettyExample-umbrella.h"; sourceTree = "<group>"; };
 		46EBF8F1B2F966EAD689895329870AB1 /* SwiftGridLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridLayout.swift; sourceTree = "<group>"; };
 		4CDF871C1B7A38FF24942044DDE26C54 /* SwiftGridReusableView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridReusableView.swift; sourceTree = "<group>"; };
 		744C10F13E8C2E1374B13828318A2338 /* SwiftGridViewDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDelegate.swift; path = Sources/SwiftGridViewDelegate.swift; sourceTree = "<group>"; };
 		784417081AC1BE01E8592B1101605BA3 /* IndexPath+SwiftGridView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "IndexPath+SwiftGridView.swift"; sourceTree = "<group>"; };
-		7917AB68595B505944267CD76C8CE08D /* Pods_PrettyExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_PrettyExample.framework; path = "Pods-PrettyExample.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7B758FB45C146452E62CECFF8679048F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		7917AB68595B505944267CD76C8CE08D /* Pods_PrettyExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PrettyExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B758FB45C146452E62CECFF8679048F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		80F95CCD40ECAA2E447774F935E5CFA7 /* SwiftGridViewDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftGridViewDataSource.swift; path = Sources/SwiftGridViewDataSource.swift; sourceTree = "<group>"; };
 		81B70EF14068BC4D411A0BFB9D835AEF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		908E902E026C5C22904CF9014A5604AD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A701C7669BA7E825A406F06E4BDE3A37 /* SwiftGridView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-umbrella.h"; sourceTree = "<group>"; };
 		AFCB5CDE641DF3FEB19406ADD0BB5CA4 /* SwiftGridView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftGridView-prefix.pch"; sourceTree = "<group>"; };
 		B8DCCF69CF8F1D06113BB9AA47EFC7B8 /* SwiftGridCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftGridCell.swift; sourceTree = "<group>"; };
@@ -295,6 +295,11 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
+				TargetAttributes = {
+					A7D3B631ACD09B87A48ED1914C10D5ED = {
+						LastSwiftMigration = 1010;
+					};
+				};
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -439,7 +444,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -472,7 +477,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

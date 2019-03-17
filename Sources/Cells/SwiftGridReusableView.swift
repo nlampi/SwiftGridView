@@ -103,14 +103,14 @@ open class SwiftGridReusableView: UICollectionReusableView {
                 self.insertSubview(self.backgroundView!, belowSubview: self.selectedBackgroundView!)
             } else {
                 self.insertSubview(self.backgroundView!, belowSubview: self.contentView)
-                self.sendSubview(toBack: self.backgroundView!)
+                self.sendSubviewToBack(self.backgroundView!)
             }
             
             let views = ["bV": self.backgroundView!]
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[bV]|",
-                options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+                options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[bV]|",
-                options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+                options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
         }
     }
     
@@ -125,17 +125,17 @@ open class SwiftGridReusableView: UICollectionReusableView {
             
             self.selectedBackgroundView!.translatesAutoresizingMaskIntoConstraints = false
             self.insertSubview(self.selectedBackgroundView!, belowSubview: self.contentView)
-            self.sendSubview(toBack: self.selectedBackgroundView!)
+            self.sendSubviewToBack(self.selectedBackgroundView!)
             
             if self.backgroundView != nil {
-                self.sendSubview(toBack: self.backgroundView!)
+                self.sendSubviewToBack(self.backgroundView!)
             }
             
             let views = ["sbV": self.selectedBackgroundView!]
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[sbV]|",
-                options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+                options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
             self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[sbV]|",
-                options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+                options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
         }
     }
     
@@ -161,9 +161,9 @@ open class SwiftGridReusableView: UICollectionReusableView {
         
         let views = ["cV": self.contentView]
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[cV]|",
-            options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+            options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[cV]|",
-            options: NSLayoutFormatOptions.directionLeftToRight, metrics: nil, views: views))
+            options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: nil, views: views))
     }
     
     

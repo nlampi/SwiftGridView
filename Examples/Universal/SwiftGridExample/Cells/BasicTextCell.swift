@@ -55,9 +55,9 @@ open class BasicTextCell : SwiftGridCell {
         let views : [String : Any] = ["tL": self.textLabel]
         let metrics : [String : Any] = ["p": self.padding]
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-p-[tL]-p-|",
-            options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
+            options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: metrics, views: views))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tL]|",
-            options: NSLayoutFormatOptions.directionLeftToRight, metrics: metrics, views: views))
+            options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: metrics, views: views))
     }
     
     open override class func reuseIdentifier() -> String {
