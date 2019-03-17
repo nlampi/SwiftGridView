@@ -325,7 +325,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         return attributesArray
     }
     
-    func rectForItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGRect {
+    func rectForItem(at indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition) -> CGRect {
         let currentColumn: Int = indexPath.item % self.numberOfColumns()
         let cellSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath)
         let xOffset: CGFloat = self.horizontalOffset(for: indexPath, atColumn: currentColumn, atScrollPosition: scrollPosition)
@@ -535,7 +535,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         return self.layoutDelegate.collectionView(self.collectionView!, layout: self, numberOfRowsInSection: sectionIndex)
     }
     
-    func horizontalOffset(for indexPath: IndexPath, atColumn column: Int, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
+    func horizontalOffset(for indexPath: IndexPath, atColumn column: Int, atScrollPosition scrollPosition: UICollectionView.ScrollPosition) -> CGFloat {
         var offset: CGFloat = 0.0
         
         if (column > self.frozenColumnsCount) {
@@ -588,7 +588,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         return offset
     }
     
-    func verticalOffset(for indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition) -> CGFloat {
+    func verticalOffset(for indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition) -> CGFloat {
         var offset: CGFloat = 0.0
         let rowNumber: Int = indexPath.item / self.numberOfColumns()
         

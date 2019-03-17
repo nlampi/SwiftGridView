@@ -22,11 +22,29 @@
 import Foundation
 import SwiftGridView
 
+struct PrettyDataPoint {
+    var title:String
+    var alignment:NSTextAlignment = .left
+    var order:PrettyHeaderSortOrder = .none
+}
+
 class PrettyDataSource : SwiftGridViewDataSource {
     
+    var headers = [PrettyDataPoint]()
+    var sortingColumn = 4
     var countries = [PECountry]()
     
     init() {
+        // Init Header Data
+        headers.append(PrettyDataPoint(title: "Country", alignment: .left, order: .none))
+        headers.append(PrettyDataPoint(title: "Capital", alignment: .left, order: .none))
+        headers.append(PrettyDataPoint(title: "Currency", alignment: .left, order: .none))
+        headers.append(PrettyDataPoint(title: "Phone", alignment: .left, order: .none))
+        headers.append(PrettyDataPoint(title: "TLD", alignment: .left, order: .ascending))
+        headers.append(PrettyDataPoint(title: "Population", alignment: .right, order: .none))
+        headers.append(PrettyDataPoint(title: "Area", alignment: .right, order: .none))
+        
+        // Init Row Data
         let plistFile = Bundle.main.path(forResource: "countries", ofType: "plist")!
         let countriesData = NSArray(contentsOfFile: plistFile)!
         
@@ -35,6 +53,114 @@ class PrettyDataSource : SwiftGridViewDataSource {
         }
     }
     
+    
+    // MARK: - Public Methods
+    
+    func sortDisplayString() -> String {
+        let orderString = headers[sortingColumn].order == .ascending ? "Ascending" : "Descending"
+        
+        return "By \(headers[sortingColumn].title) \(orderString)"
+    }
+    
+    func sortUsing(_ dataGridView: SwiftGridView, column:NSInteger) {
+        // Set new Sorting
+        switch headers[column].order {
+        case .ascending:
+            headers[column].order = .descending
+        case .descending:
+            headers[column].order = .ascending
+        case .none:
+            headers[column].order = .ascending
+        }
+        
+        if column != sortingColumn {
+            // Reset Old Column
+            headers[sortingColumn].order = .none
+        }
+        
+        sortingColumn = column
+        
+        sortCountryData()
+        dataGridView.reloadData()
+    }
+    
+    
+    // MARK: - Private Data Methods
+    
+    /// Quick and Dirty Sorting
+    func sortCountryData() {
+        if headers[sortingColumn].order == .ascending {
+            switch sortingColumn {
+            case 0:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.name < country2.name
+                }
+            case 1:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.capital < country2.capital
+                }
+            case 2:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.currency < country2.currency
+                }
+            case 3:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.phone < country2.phone
+                }
+            case 4:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.tld < country2.tld
+                }
+            case 5:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.population < country2.population
+                }
+            case 6:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.area < country2.area
+                }
+            default:
+                print("ERROR: Unknown Sort Column")
+            }
+        } else {
+            switch sortingColumn {
+            case 0:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.name > country2.name
+                }
+            case 1:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.capital > country2.capital
+                }
+            case 2:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.currency > country2.currency
+                }
+            case 3:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.phone > country2.phone
+                }
+            case 4:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.tld > country2.tld
+                }
+            case 5:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.population > country2.population
+                }
+            case 6:
+                self.countries.sort { (country1, country2) -> Bool in
+                    country1.area > country2.area
+                }
+            default:
+                print("ERROR: Unknown Sort Column")
+            }
+        }
+    }
+    
+    
+    // MARK: - SwiftGridViewDataSource Methods
+    
     func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
         return 1
@@ -42,7 +168,7 @@ class PrettyDataSource : SwiftGridViewDataSource {
     
     func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
         
-        return 7
+        return self.headers.count
     }
     
     func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
@@ -94,27 +220,9 @@ class PrettyDataSource : SwiftGridViewDataSource {
     func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView {
         let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: PrettyHeaderView.reuseIdentifier(), atColumn: column) as! PrettyHeaderView
         
-        switch column {
-        case 0:
-            headerView.mainLabel.text = "Country"
-        case 1:
-            headerView.mainLabel.text = "Capital"
-        case 2:
-            headerView.mainLabel.text = "Currency"
-        case 3:
-            headerView.mainLabel.text = "Phone"
-        case 4:
-            headerView.mainLabel.text = "TLD"
-        case 5:
-            headerView.mainLabel.text = "Population"
-            headerView.mainLabel.textAlignment = .right
-        case 6:
-            headerView.mainLabel.text = "Area"
-            headerView.mainLabel.textAlignment = .right
-        default:
-            headerView.mainLabel.text = "Unknown"
-        }
+        headerView.configureFor(dataPoint: self.headers[column])
         
         return headerView
     }
+    
 }

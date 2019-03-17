@@ -22,18 +22,54 @@
 import Foundation
 import SwiftGridView
 
+enum PrettyHeaderSortOrder {
+    case none
+    case ascending
+    case descending
+}
+
+
 class PrettyHeaderView : SwiftGridReusableView {
     
     @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var sortingButton: UIButton!
+    
+    var sortOrder:PrettyHeaderSortOrder = .none
     
     override open class func reuseIdentifier() -> String {
         
         return "prettyHeaderViewReuseID"
     }
     
+    
+    // MARK: - Public Methods
+    
+    func configureFor(dataPoint:PrettyDataPoint) {
+        self.mainLabel.text = dataPoint.title
+        self.mainLabel.textAlignment = dataPoint.alignment
+        self.sortOrder = dataPoint.order
+
+        switch self.sortOrder {
+        case .none:
+            self.sortingButton.isHidden = true
+        case .ascending:
+            self.sortingButton.isHidden = false
+            self.sortingButton.setImage(UIImage(named: "Sort_Ascending"), for: .normal)
+        case .descending:
+            self.sortingButton.isHidden = false
+            self.sortingButton.setImage(UIImage(named: "Sort_Descending"), for: .normal)
+        }
+    }
+    
+    
+    // MARK: - Reuse
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         
+        self.sortingButton.isHidden = true
         self.mainLabel.textAlignment = .left
+        self.sortOrder = .none
     }
 }
+

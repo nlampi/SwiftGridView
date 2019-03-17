@@ -13,7 +13,7 @@ Swift based data grid component. Currently this project is iOS9+ compatible only
 
 Since the project is written in swift it is required to include 'use_frameworks!'
 ```ruby
-pod 'SwiftGridView', '~> 0.6'
+pod 'SwiftGridView', '~> 0.7'
 ```
 
 ## Features

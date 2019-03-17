@@ -25,9 +25,9 @@ import UIKit
 
 public let SwiftGridElementKindHeader: String = "SwiftGridElementKindHeader"
 public let SwiftGridElementKindGroupedHeader: String = "SwiftGridElementKindGroupedHeader"
-public let SwiftGridElementKindSectionHeader: String = UICollectionElementKindSectionHeader
+public let SwiftGridElementKindSectionHeader: String = UICollectionView.elementKindSectionHeader
 public let SwiftGridElementKindFooter: String = "SwiftGridElementKindFooter"
-public let SwiftGridElementKindSectionFooter: String = UICollectionElementKindSectionFooter
+public let SwiftGridElementKindSectionFooter: String = UICollectionView.elementKindSectionFooter
 
 
 // MARK: - SwiftGridView Class
@@ -450,7 +450,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             self.selectRowAtIndexPath(indexPath, animated: animated)
         } else {
             let convertedPath = self.reverseIndexPathConversion(indexPath)
-            self.collectionView.selectItem(at: convertedPath, animated: animated, scrollPosition: UICollectionViewScrollPosition())
+            self.collectionView.selectItem(at: convertedPath, animated: animated, scrollPosition: UICollectionView.ScrollPosition())
         }
     }
     
@@ -500,7 +500,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         }
     }
     
-    open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool) {
+    open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
         var absolutePostion = self.sgCollectionViewLayout.rectForItem(at: convertedPath, atScrollPosition: scrollPosition)
         
@@ -980,7 +980,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         for columnIndex in 0...self.sgColumnCount - 1 {
             let sgPath = IndexPath.init(forSGRow: indexPath.sgRow, atColumn: columnIndex, inSection: indexPath.sgSection)
             let itemPath = self.reverseIndexPathConversion(sgPath)
-            self.collectionView.selectItem(at: itemPath, animated: animated, scrollPosition: UICollectionViewScrollPosition())
+            self.collectionView.selectItem(at: itemPath, animated: animated, scrollPosition: UICollectionView.ScrollPosition())
         }
     }
     
