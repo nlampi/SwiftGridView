@@ -86,7 +86,7 @@ class SwiftGridViewTests: XCTestCase {
         view.backgroundView = greenView
         
         // Verify that the Background is behind the Selected Background
-        XCTAssert(view.subviews.index(of: view.backgroundView!)! < view.subviews.index(of: view.selectedBackgroundView!)!)
+        XCTAssert(view.subviews.firstIndex(of: view.backgroundView!)! < view.subviews.firstIndex(of: view.selectedBackgroundView!)!)
         
         
         view.prepareForReuse()
