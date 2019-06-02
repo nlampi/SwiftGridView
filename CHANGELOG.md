@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [0.7.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.1) (2019-06-02)
+Updated build to Swift 5.0. Separated Height gathering from size to prevent odd width requests.
 
 ## [0.7.0](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.0) (2019-03-17)
 Updated build to Swift 4.2. Added sorting demo to Pretty Example.

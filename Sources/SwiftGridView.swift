@@ -810,13 +810,8 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         return self.delegate!.dataGridView(self, heightOfRowAtIndexPath: convertedPath)
     }
     
-    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: IndexPath) -> CGSize {
-        var colWidth: CGFloat = 0.0
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, heightForSupplementaryViewOfKind kind: String, atIndexPath indexPath: IndexPath) -> CGFloat {
         var rowHeight: CGFloat = 0
-        
-        if(indexPath.count != 0 && kind != SwiftGridElementKindGroupedHeader) {
-            colWidth = self.delegate!.dataGridView(self, widthOfColumnAtIndex: indexPath.row)
-        }
         
         switch(kind) {
         case SwiftGridElementKindHeader:
@@ -848,12 +843,6 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
             }
             break
         case SwiftGridElementKindGroupedHeader:
-            let grouping = self.groupedColumns[indexPath.item]
-            
-            for column in grouping[0] ... grouping[1] {
-                colWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: column)
-            }
-            
             if let delegateHeight = self.delegate?.heightForGridHeaderInDataGridView?(self) {
                 if(delegateHeight > 0) {
                     rowHeight = delegateHeight
@@ -863,6 +852,23 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         default:
             rowHeight = 0
             break
+        }
+        
+        return rowHeight
+    }
+    
+    internal func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForSupplementaryViewOfKind kind: String, atIndexPath indexPath: IndexPath) -> CGSize {
+        var colWidth: CGFloat = 0.0
+        let rowHeight: CGFloat = self.collectionView(collectionView, layout: collectionViewLayout, heightForSupplementaryViewOfKind: kind, atIndexPath: indexPath)
+        
+        if(indexPath.count != 0 && kind != SwiftGridElementKindGroupedHeader) {
+            colWidth = self.delegate!.dataGridView(self, widthOfColumnAtIndex: indexPath.row)
+        } else if kind == SwiftGridElementKindGroupedHeader {
+            let grouping = self.groupedColumns[indexPath.item]
+            
+            for column in grouping[0] ... grouping[1] {
+                colWidth += self.delegate!.dataGridView(self, widthOfColumnAtIndex: column)
+            }
         }
         
         return CGSize(width: colWidth, height: rowHeight)

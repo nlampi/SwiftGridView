@@ -31,7 +31,7 @@ class SwiftGridLayout : UICollectionViewLayout {
     // MARK: - Private vars
     
     fileprivate weak var _delegate: SwiftGridLayoutDelegate?
-    fileprivate var layoutDelegate:SwiftGridLayoutDelegate {
+    fileprivate var layoutDelegate: SwiftGridLayoutDelegate {
         get {
             if _delegate == nil {
                 _delegate = self.collectionView!.delegate as? SwiftGridLayoutDelegate
@@ -50,7 +50,7 @@ class SwiftGridLayout : UICollectionViewLayout {
                 let emptyPath: IndexPath = IndexPath()
                 
                 // Add in header height
-                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: emptyPath).height
+                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: emptyPath)
                 
                 // Add Section Sizes
                 for sectionIndex: NSInteger in 0 ..< self.collectionView!.numberOfSections {
@@ -58,7 +58,7 @@ class SwiftGridLayout : UICollectionViewLayout {
                 }
                 
                 // Add in footer height
-                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: emptyPath).height
+                _sgLayoutSize.height += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: emptyPath)
             }
             
             return _sgLayoutSize
@@ -459,7 +459,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         yOffset += self.collectionView!.contentOffset.y // Sticky footer
         
         // FIXME: Seems to be off by a pixel at times
-        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath).height
+        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindFooter, atIndexPath: indexPath)
         
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(viewSize.width), height: viewSize.height)
         attributes.zIndex = Int.max - indexPath.item // FIXME: Something better?
@@ -474,7 +474,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         let viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
         
         // Add in header height
-        let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+        let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
         yOffset += headerHeight
         
         for sectionIndex: Int in 0 ..< indexPath.section {
@@ -506,14 +506,14 @@ class SwiftGridLayout : UICollectionViewLayout {
         let viewSize: CGSize = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath)
         
         // Add in header height
-        yOffset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+        yOffset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
         
         for sectionIndex: Int in 0 ... indexPath.section {
             let sectionPath = IndexPath(item: 0, section: sectionIndex)
             yOffset += self.heightOfSectionAtIndexPath(sectionPath)
         }
         
-        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height // subtract footer height
+        yOffset -= self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath) // subtract footer height
         
         attributes.frame = CGRect(x: xOffset, y: yOffset, width: self.zoomModifiedValue(viewSize.width), height: viewSize.height)
         
@@ -628,7 +628,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             offset = CGFloat((self.verticalOffsetCache[indexPath] as? NSNumber)!.floatValue)
         } else {
             // Add in header height
-            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
             
             // Add in previous section heights
             for sectionIndex: Int in 0 ..< indexPath.section {
@@ -637,7 +637,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             }
             
             // Add in section header height
-            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+            offset += self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
             
             // Add in current section row heights
             if(indexPath.item > 0) {
@@ -649,15 +649,15 @@ class SwiftGridLayout : UICollectionViewLayout {
         
         // Frozen Rows
         if rowNumber < self.frozenRowCounts[indexPath.section] {
-            let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath).height
-            let sectionHeaderHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath).height
+            let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
+            let sectionHeaderHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
             let rowOffset = self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
             let contentOffset = self.collectionView!.contentOffset.y + headerHeight + sectionHeaderHeight + rowOffset
             
             if(contentOffset > offset) {
                 let sectionPath = IndexPath(item: 0, section: indexPath.section)
                 let sectionHeight = self.heightOfSectionAtIndexPath(sectionPath)
-                let sectionFooterHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath).height
+                let sectionFooterHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, atIndexPath: indexPath)
                 let rowHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForItemAtIndexPath: indexPath).height
                 var frozenRowIndex = self.frozenRowCounts[indexPath.section]
                 
