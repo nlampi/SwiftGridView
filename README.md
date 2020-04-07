@@ -5,7 +5,7 @@ SwiftGridView
 [![License](https://img.shields.io/cocoapods/l/SwiftGridView.svg?style=flat)](http://cocoapods.org/pods/SwiftGridView)
 [![Platform](https://img.shields.io/cocoapods/p/SwiftGridView.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGridView)
 
-Swift based data grid component. Currently this project is iOS9+ compatible only. SwiftGridView allows for quick and easy data grids that are customizable with datasource and delegate methods similar to a UITableView or UICollectionView.
+Swift based data grid component. Currently this project is iOS10+ compatible only. SwiftGridView allows for quick and easy data grids that are customizable with datasource and delegate methods similar to a UITableView or UICollectionView.
 
 ![Demo](http://giant.gfycat.com/IllAmbitiousBackswimmer.gif)
 
