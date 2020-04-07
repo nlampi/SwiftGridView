@@ -28,6 +28,9 @@ timeline.xctimeline
 playground.xcworkspace
 
 # Swift Package Manager
+# Packages/
+# *.xcodeproj
+.swiftpm
 .build/
 # Package.pins
 # Package.resolved
