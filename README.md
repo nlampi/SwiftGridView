@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/docs/SwiftGridViewLogo@2x.png" width=420 />
+    <img src="/docs/SwiftGridViewLogo@2x.png" width=420 style="padding-bottom:20px" />
 </p>
 
 <p align="center">
