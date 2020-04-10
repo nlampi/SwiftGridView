@@ -1,5 +1,3 @@
-# SwiftGridView
-
 <p align="center">
     <img src="/docs/SwiftGridViewLogo@2x.png" width=420 />
 </p>
