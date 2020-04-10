@@ -1,7 +1,9 @@
 <p align="center">
     <img src="/docs/SwiftGridViewLogo@2x.png" width=420 />
 </p>
-<p></p>
+<p>
+    &nbsp;
+</p>
 <p align="center">
     <a href="https://github.com/nlampi/SwiftGridView/releases">
         <img src="https://img.shields.io/github/release/nlampi/SwiftGridView.svg?style=flat"
