@@ -1,20 +1,35 @@
-SwiftGridView
-============
+# SwiftGridView
 
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftGridView.svg?style=flat)](http://cocoapods.org/pods/SwiftGridView)
-[![License](https://img.shields.io/cocoapods/l/SwiftGridView.svg?style=flat)](http://cocoapods.org/pods/SwiftGridView)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftGridView.svg?style=flat)](http://cocoadocs.org/docsets/SwiftGridView)
+<p align="center">
+    <img src="/docs/SwiftGridViewLogo@2x.png" width=420 />
+</p>
 
-Swift based data grid component. Currently this project is iOS10+ compatible only. SwiftGridView allows for quick and easy data grids that are customizable with datasource and delegate methods similar to a UITableView or UICollectionView.
+<p align="center">
+    <a href="https://github.com/nlampi/SwiftGridView/releases">
+        <img src="https://img.shields.io/github/release/nlampi/SwiftGridView.svg?style=flat"
+            alt="Releases">
+    </a>
+    <a href="https://github.com/apple/swift-package-manager">
+        <img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg"
+            alt="Swift Package Manager" />
+    </a>
+    <a href="https://cocoapods.org/pods/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/v/SwiftGridView.svg?style=flat"
+            alt="CocoaPods Compatible">
+    </a>
+    <a href="https://cocoapods.org/pods/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/l/SwiftGridView.svg?style=flat"
+            alt="License">
+    </a>
+    <a href="https://cocoadocs.org/docsets/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/p/SwiftGridView.svg?style=flat"
+            alt="Platform">
+    </a>
+</p>
 
-![Demo](http://giant.gfycat.com/IllAmbitiousBackswimmer.gif)
+----------------
 
-## Installation with CocoaPods
-
-Since the project is written in swift it is required to include 'use_frameworks!'
-```ruby
-pod 'SwiftGridView', '~> 0.7'
-```
+Swift based data grid component based on `UICollectionView`. SwiftGridView allows for quick and easy data grids that are fully customizable with powerful built in functionality.
 
 ## Features
 
@@ -40,10 +55,28 @@ Currently the Swift Grid View supports a lot of the expected features for a data
 - Grouped Headers
 - Pinch to expand size (experimental)
 
+## Requirements
+
+- Xcode 10.0+
+- iOS 10.0+
+
+## Installation 
+
+### CocoaPods
+
+Since the project is written in swift it is required to include 'use_frameworks!'
+```ruby
+pod 'SwiftGridView', '~> 0.7'
+```
+
 ## Usage
 
-For an example of how to utilize, see the example project. It is pretty similar to any other view type with required data source and delegate methods.
+For detailed examples of how to utilize, see the [example projects](./Examples). 
+
+
 
 ## License
 
-SwiftGridView is released under the MIT license. See LICENSE for details.
+Copyright 2016 Nathan Lampi
+
+SwiftGridView is released under the [MIT license](./LICENSE).
