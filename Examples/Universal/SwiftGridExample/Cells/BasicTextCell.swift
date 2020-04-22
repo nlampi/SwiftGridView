@@ -52,8 +52,8 @@ open class BasicTextCell : SwiftGridCell {
         self.textLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(self.textLabel)
         
-        let views : [String : Any] = ["tL": self.textLabel]
-        let metrics : [String : Any] = ["p": self.padding]
+        let views : [String : Any] = ["tL": self.textLabel!]
+        let metrics : [String : Any] = ["p": self.padding!]
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-p-[tL]-p-|",
             options: NSLayoutConstraint.FormatOptions.directionLeftToRight, metrics: metrics, views: views))
         self.contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[tL]|",

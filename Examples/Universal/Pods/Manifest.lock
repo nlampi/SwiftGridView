@@ -1,5 +1,5 @@
 PODS:
-  - SwiftGridView (0.7.2)
+  - SwiftGridView (0.7.3)
 
 DEPENDENCIES:
   - SwiftGridView (from `../../SwiftGridView.podspec`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../../SwiftGridView.podspec"
 
 SPEC CHECKSUMS:
-  SwiftGridView: 4268c65918af49a52b8415b69b28460f7cbc8378
+  SwiftGridView: cb89201667c52e8437141e266e3858cb87327e28
 
-PODFILE CHECKSUM: bdd301c855a0cc8866109efd5e22fbc056825f08
+PODFILE CHECKSUM: c96824ce34803b80bcd206c4891b3ec17d930349
 
 COCOAPODS: 1.9.1

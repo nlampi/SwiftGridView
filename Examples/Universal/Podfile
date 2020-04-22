@@ -1,5 +1,5 @@
 project 'SwiftGridExample.xcodeproj/'
-platform :ios, '9.0'
+platform :ios, '10.0'
 
 target 'SwiftGridExample' do
   use_frameworks!

@@ -1,3 +1,4 @@
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/nlampi/SwiftGridView/master/docs/SwiftGridViewLogo@2x.png" width=420 />
 </p>
@@ -40,16 +41,25 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Section Headers and Footers
 - Row Cells
 
+<img src="https://nlampi.github.io/SwiftGridView/BasicDemo.gif" width=600 />
+
+
 #### Cell Selection
 - Full Row or Single Cell Selection
 - Multi selection
 - Header or Footer Selection
+
+<img src="https://nlampi.github.io/SwiftGridView/SelectionDemo.gif" width=600 />
+
 
 #### Additional Functionality
 - Sticky section headers
 - Frozen Columns and Rows
 - Grouped Headers
 - Pinch to expand size (experimental)
+
+<img src="https://nlampi.github.io/SwiftGridView/FrozenColRowDemo.gif" width=600 />
+
 
 ## Requirements
 
