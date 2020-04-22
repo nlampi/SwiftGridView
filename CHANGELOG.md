@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [0.7.3](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.3) (2020-04-10)
+Added Demo project using SwiftUI
+
+## [0.7.2](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.2) (2020-04-07)
+Added SPM compatibility
+
 ## [0.7.1](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.1) (2019-06-02)
 Updated build to Swift 5.0. Separated Height gathering from size to prevent odd width requests.
 

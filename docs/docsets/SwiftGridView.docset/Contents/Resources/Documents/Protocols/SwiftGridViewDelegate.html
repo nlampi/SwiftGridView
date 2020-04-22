@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SwiftGridViewDelegate Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/SwiftGridViewDelegate" class="dashAnchor"></a>
+    <a title="SwiftGridViewDelegate Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">SwiftGridView Docs</a> (90% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">SwiftGridView Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        SwiftGridViewDelegate Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/SwiftGridCell.html">SwiftGridCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwiftGridReusableView.html">SwiftGridReusableView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SwiftGridView.html">SwiftGridView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:13SwiftGridView0aB17ElementKindFooterSSvp">SwiftGridElementKindFooter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindGroupedHeaderSSvp">SwiftGridElementKindGroupedHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:13SwiftGridView0aB17ElementKindHeaderSSvp">SwiftGridElementKindHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindSectionFooterSSvp">SwiftGridElementKindSectionFooter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindSectionHeaderSSvp">SwiftGridElementKindSectionHeader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/IndexPath.html">IndexPath</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/SwiftGridReusableViewDelegate.html">SwiftGridReusableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SwiftGridViewDataSource.html">SwiftGridViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SwiftGridViewDelegate.html">SwiftGridViewDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>SwiftGridViewDelegate</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SwiftGridViewDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>The <code>SwiftGridViewDelegate</code> protocol is used much like a UICollectionView or UITableView delegate for handling interactions and sizing of the data grid.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Sizing"></a>
+                <a name="//apple_ref/swift/Section/Sizing" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Sizing"></a>
+                  <h3 class="section-name"><p>Sizing</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:widthOfColumnAtIndex:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:widthOfColumnAtIndex:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:widthOfColumnAtIndex:">dataGridView(_:<wbr>widthOfColumnAtIndex:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the width of the specified column in the data grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">widthOfColumnAtIndex</span> <span class="nv">columnIndex</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>columnIndex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current column index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Width to be used for all views and cells in the provided column.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:heightOfRowAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfRowAtIndexPath:">dataGridView(_:<wbr>heightOfRowAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the height of the specified row in the data grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">heightOfRowAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the row. Section and Row are provided values, Column is ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Height to be used for all cells in the provided row.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Header%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Header Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Header%20Methods"></a>
+                  <h3 class="section-name"><p>Header Methods</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)heightForGridHeaderInDataGridView:"></a>
+                    <a name="//apple_ref/swift/Method/heightForGridHeaderInDataGridView(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)heightForGridHeaderInDataGridView:">heightForGridHeaderInDataGridView(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the height of the header views in the data grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">heightForGridHeaderInDataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Height to be used for all views in the grid header.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectHeaderAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectHeaderAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectHeaderAtIndexPath:">dataGridView(_:<wbr>didSelectHeaderAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a header view is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectHeaderAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectHeaderAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectHeaderAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectHeaderAtIndexPath:">dataGridView(_:<wbr>didDeselectHeaderAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a header view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectHeaderAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectGroupedHeader:at:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectGroupedHeader:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectGroupedHeader:at:">dataGridView(_:<wbr>didSelectGroupedHeader:<wbr>at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a grouped header view is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectGroupedHeader</span> <span class="nv">columnGrouping</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Grouped header index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectGroupedHeader:at:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectGroupedHeader:at:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectGroupedHeader:at:">dataGridView(_:<wbr>didDeselectGroupedHeader:<wbr>at:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a grouped header view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectGroupedHeader</span> <span class="nv">columnGrouping</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">],</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>index</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Grouped header index.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Footer%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Footer Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Footer%20Methods"></a>
+                  <h3 class="section-name"><p>Footer Methods</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)heightForGridFooterInDataGridView:"></a>
+                    <a name="//apple_ref/swift/Method/heightForGridFooterInDataGridView(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)heightForGridFooterInDataGridView:">heightForGridFooterInDataGridView(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the height of the footer views in the data grid.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">heightForGridFooterInDataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Height to be used for all views in the grid footer.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectFooterAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectFooterAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectFooterAtIndexPath:">dataGridView(_:<wbr>didSelectFooterAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a footer view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectFooterAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectFooterAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectFooterAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectFooterAtIndexPath:">dataGridView(_:<wbr>didDeselectFooterAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a footer view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectFooterAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Section%20Header%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Section Header Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Section%20Header%20Methods"></a>
+                  <h3 class="section-name"><p>Section Header Methods</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfHeaderInSection:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:heightOfHeaderInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfHeaderInSection:">dataGridView(_:<wbr>heightOfHeaderInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the height of the header views in the provided data grid section.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">heightOfHeaderInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Height to be used for all views in the section&rsquo;s header.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectSectionHeaderAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectSectionHeaderAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectSectionHeaderAtIndexPath:">dataGridView(_:<wbr>didSelectSectionHeaderAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a section header view is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectSectionHeaderAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectSectionHeaderAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectSectionHeaderAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectSectionHeaderAtIndexPath:">dataGridView(_:<wbr>didDeselectSectionHeaderAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a section header view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectSectionHeaderAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Section%20Footer%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Section Footer Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Section%20Footer%20Methods"></a>
+                  <h3 class="section-name"><p>Section Footer Methods</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfFooterInSection:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:heightOfFooterInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:heightOfFooterInSection:">dataGridView(_:<wbr>heightOfFooterInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the height of the footer views in the provided data grid section.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">heightOfFooterInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>Height to be used for all views in the section&rsquo;s footer.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectSectionFooterAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectSectionFooterAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectSectionFooterAtIndexPath:">dataGridView(_:<wbr>didSelectSectionFooterAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a section footer view is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectSectionFooterAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectSectionFooterAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectSectionFooterAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectSectionFooterAtIndexPath:">dataGridView(_:<wbr>didDeselectSectionFooterAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a section footer view is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectSectionFooterAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Cell%20Methods"></a>
+                <a name="//apple_ref/swift/Section/Cell Methods" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Cell%20Methods"></a>
+                  <h3 class="section-name"><p>Cell Methods</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectCellAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didSelectCellAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didSelectCellAtIndexPath:">dataGridView(_:<wbr>didSelectCellAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a cell is selected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didSelectCellAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the selected cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectCellAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/dataGridView(_:didDeselectCellAtIndexPath:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(pl)SwiftGridViewDelegate(im)dataGridView:didDeselectCellAtIndexPath:">dataGridView(_:<wbr>didDeselectCellAtIndexPath:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when a cell is deselected.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">optional</span> <span class="kd">func</span> <span class="nf">dataGridView</span><span class="p">(</span><span class="n">_</span> <span class="nv">dataGridView</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridView.html">SwiftGridView</a></span><span class="p">,</span> <span class="n">didDeselectCellAtIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dataGridView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The swift grid view instance.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>indexPath</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Current Swift Grid index path for the deselected cell.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="https://github.com/nlampi/SwiftGridView" target="_blank" rel="external">Nathan Lampi</a>. All rights reserved. (Last updated: 2020-04-15)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

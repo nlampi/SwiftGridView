@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SwiftGridView  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="SwiftGridView  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">SwiftGridView Docs</a> (90% documented)</p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">SwiftGridView Reference</a>
+        <img id="carat" src="img/carat.png" />
+        SwiftGridView  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/SwiftGridCell.html">SwiftGridCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SwiftGridReusableView.html">SwiftGridReusableView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/SwiftGridView.html">SwiftGridView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Global%20Variables.html">Global Variables</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:13SwiftGridView0aB17ElementKindFooterSSvp">SwiftGridElementKindFooter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindGroupedHeaderSSvp">SwiftGridElementKindGroupedHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:13SwiftGridView0aB17ElementKindHeaderSSvp">SwiftGridElementKindHeader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindSectionFooterSSvp">SwiftGridElementKindSectionFooter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Global%20Variables.html#/s:13SwiftGridView0aB24ElementKindSectionHeaderSSvp">SwiftGridElementKindSectionHeader</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/IndexPath.html">IndexPath</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/SwiftGridReusableViewDelegate.html">SwiftGridReusableViewDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SwiftGridViewDataSource.html">SwiftGridViewDataSource</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SwiftGridViewDelegate.html">SwiftGridViewDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p align="center">
+    <img src="https://raw.githubusercontent.com/nlampi/SwiftGridView/master/docs/SwiftGridViewLogo@2x.png" width=420 />
+</p>
+
+<p>
+    &nbsp;
+</p>
+
+<p align="center">
+    <a href="https://github.com/nlampi/SwiftGridView/releases">
+        <img src="https://img.shields.io/github/release/nlampi/SwiftGridView.svg?style=flat"
+            alt="Releases">
+    </a>
+    <a href="https://github.com/apple/swift-package-manager">
+        <img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg"
+            alt="Swift Package Manager" />
+    </a>
+    <a href="https://cocoapods.org/pods/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/v/SwiftGridView.svg?style=flat"
+            alt="CocoaPods Compatible">
+    </a>
+    <a href="https://cocoapods.org/pods/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/l/SwiftGridView.svg?style=flat"
+            alt="License">
+    </a>
+    <a href="https://cocoadocs.org/docsets/SwiftGridView">
+        <img src="https://img.shields.io/cocoapods/p/SwiftGridView.svg?style=flat"
+            alt="Platform">
+    </a>
+</p>
+
+<hr>
+
+<p>Swift based data grid component based on <code>UICollectionView</code>. <code><a href="Classes/SwiftGridView.html">SwiftGridView</a></code> allows for quick and easy data grids that are fully customizable with powerful built in functionality.</p>
+<h2 id='features' class='heading'>Features</h2>
+
+<p>Swift Grid View supports many of the expected features for a data grid in an easy to use package. If you are familiar with UICollectionView or UITableView</p>
+<h4 id='cell-types' class='heading'>Cell Types</h4>
+
+<ul>
+<li>Header</li>
+<li>Footer</li>
+<li>Section Headers</li>
+<li>Section Footers</li>
+<li>Standard Cells</li>
+</ul>
+<h4 id='cell-selection' class='heading'>Cell Selection</h4>
+
+<ul>
+<li>Row Selection</li>
+<li>Cell Selection</li>
+<li>Multi selection</li>
+<li>Header/Footer selection</li>
+</ul>
+<h4 id='additional-functionality' class='heading'>Additional Functionality</h4>
+
+<ul>
+<li>Sticky section headers</li>
+<li>Frozen Columns</li>
+<li>Frozen Rows</li>
+<li>Grouped Headers</li>
+<li>Pinch to expand size (experimental)</li>
+</ul>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>Xcode 10.0+</li>
+<li>iOS 10.0+</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>For installation with <a href="https://cocoapods.org">CocoaPods</a>, add the pod information to your <code>Podfile</code>:</p>
+<pre class="highlight ruby"><code><span class="n">pod</span> <span class="s1">'SwiftGridView'</span><span class="p">,</span> <span class="s1">'~&gt; 0.7'</span>
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>For detailed examples of how to utilize, see the <a href="./Examples">example projects</a>. </p>
+<h2 id='license' class='heading'>License</h2>
+
+<p>Copyright 2016 - 2020 Nathan Lampi</p>
+
+<p>SwiftGridView is released under the <a href="./LICENSE">MIT license</a>.</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2020 <a class="link" href="https://github.com/nlampi/SwiftGridView" target="_blank" rel="external">Nathan Lampi</a>. All rights reserved. (Last updated: 2020-04-15)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
