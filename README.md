@@ -41,7 +41,7 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Section Headers and Footers
 - Row Cells
 
-<img src="https://nlampi.github.io/SwiftGridView/BasicDemo.gif" width=400 />
+<img src="https://nlampi.github.io/SwiftGridView/BasicDemo.gif" width=600 />
 
 
 #### Cell Selection
@@ -49,7 +49,7 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Multi selection
 - Header or Footer Selection
 
-<img src="https://nlampi.github.io/SwiftGridView/SelectionDemo.gif" width=400 />
+<img src="https://nlampi.github.io/SwiftGridView/SelectionDemo.gif" width=600 />
 
 
 #### Additional Functionality
@@ -58,7 +58,7 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Grouped Headers
 - Pinch to expand size (experimental)
 
-<img src="https://nlampi.github.io/SwiftGridView/FrozenColRowDemo.gif" width=400 />
+<img src="https://nlampi.github.io/SwiftGridView/FrozenColRowDemo.gif" width=600 />
 
 
 ## Requirements
