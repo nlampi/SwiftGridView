@@ -177,9 +177,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             if(reloadOverride) {
                 textCell.backgroundView?.backgroundColor = UIColor.cyan
             } else {
-                let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
-                let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
-                let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+                let r: CGFloat = (147 + CGFloat(indexPath.sgSection) * 10) / 255
+                let g: CGFloat = (173 + CGFloat(indexPath.sgRow) * 2) / 255
+                let b: CGFloat = (207 + CGFloat(indexPath.sgColumn) * 2) / 255
                 
                 textCell.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
             }
@@ -193,9 +193,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             if(reloadOverride) {
                 nibCell.backgroundView?.backgroundColor = UIColor.cyan
             } else {
-                let r: CGFloat = (60 + CGFloat(indexPath.sgSection) * 33) / 255
-                let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
-                let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+                let r: CGFloat = (147 + CGFloat(indexPath.sgSection) * 10) / 255
+                let g: CGFloat = (173 + CGFloat(indexPath.sgRow) * 2) / 255
+                let b: CGFloat = (207 + CGFloat(indexPath.sgColumn) * 2) / 255
                 
                 nibCell.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
             }
@@ -215,9 +215,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         if(reloadOverride) {
             view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
-            let r: CGFloat = (120 + CGFloat(column) * 5) / 255
-            let g: CGFloat = (60 + CGFloat(column) * 5) / 255
-            let b: CGFloat = (60 + CGFloat(column) * 5) / 255
+            let r: CGFloat = (159 + CGFloat(column) * 3) / 255
+            let g: CGFloat = (159 + CGFloat(column) * 3) / 255
+            let b: CGFloat = (160 + CGFloat(column) * 3) / 255
             
             view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
         }
@@ -233,9 +233,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         if(reloadOverride) {
             view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
-            let r: CGFloat = (120 + CGFloat(columnGrouping[0]) * 5) / 255
-            let g: CGFloat = (60 + CGFloat(columnGrouping[0]) * 5) / 255
-            let b: CGFloat = (60 + CGFloat(columnGrouping[0]) * 5) / 255
+            let r: CGFloat = (159 + CGFloat(columnGrouping[0]) * 3) / 255
+            let g: CGFloat = (159 + CGFloat(columnGrouping[0]) * 3) / 255
+            let b: CGFloat = (160 + CGFloat(columnGrouping[0]) * 3) / 255
             
             view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
         }
@@ -252,9 +252,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         if(reloadOverride) {
             view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
-            let r: CGFloat = (60 + CGFloat(column) * 5) / 255
-            let g: CGFloat = (120 + CGFloat(column) * 5) / 255
-            let b: CGFloat = (60 + CGFloat(column) * 5) / 255
+            let r: CGFloat = (104 + CGFloat(column) * 3) / 255
+            let g: CGFloat = (153 + CGFloat(column) * 3) / 255
+            let b: CGFloat = (71 + CGFloat(column) * 3) / 255
             
             view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
         }
@@ -274,9 +274,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             if(reloadOverride) {
                 textView.backgroundView?.backgroundColor = UIColor.cyan
             } else {
-                let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
-                let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
-                let b: CGFloat = (60 + CGFloat(indexPath.sgColumn) * 5) / 255
+                let r: CGFloat = (71 + CGFloat(indexPath.sgSection) * 3) / 255
+                let g: CGFloat = (101 + CGFloat(indexPath.sgRow) * 3) / 255
+                let b: CGFloat = (198 + CGFloat(indexPath.sgColumn) * 3) / 255
                 
                 textView.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
             }
@@ -290,9 +290,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             if(reloadOverride) {
                 nibView.backgroundView?.backgroundColor = UIColor.cyan
             } else {
-                let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
-                let g: CGFloat = (190 + CGFloat(indexPath.sgRow) * 5) / 255
-                let b: CGFloat = (60 + CGFloat(indexPath.sgColumn) * 5) / 255
+                let r: CGFloat = (71 + CGFloat(indexPath.sgSection) * 3) / 255
+                let g: CGFloat = (101 + CGFloat(indexPath.sgRow) * 3) / 255
+                let b: CGFloat = (198 + CGFloat(indexPath.sgColumn) * 3) / 255
                 
                 nibView.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
             }
@@ -311,9 +311,9 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         if(reloadOverride) {
             view.backgroundView?.backgroundColor = UIColor.cyan
         } else {
-            let r: CGFloat = (190 + CGFloat(indexPath.sgSection) * 5) / 255
-            let g: CGFloat = (60 + CGFloat(indexPath.sgRow) * 5) / 255
-            let b: CGFloat = (190 + CGFloat(indexPath.sgColumn) * 5) / 255
+            let r: CGFloat = (196 + CGFloat(indexPath.sgSection) * 3) / 255
+            let g: CGFloat = (102 + CGFloat(indexPath.sgRow) * 3) / 255
+            let b: CGFloat = (137 + CGFloat(indexPath.sgColumn) * 3) / 255
             
             view.backgroundView?.backgroundColor = UIColor(red: r, green: g, blue: b, alpha: 1.0)
         }

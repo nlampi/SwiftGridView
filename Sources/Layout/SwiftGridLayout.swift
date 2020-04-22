@@ -86,6 +86,7 @@ class SwiftGridLayout : UICollectionViewLayout {
                     if grouping.count != 2 {
                         continue // Invalid grouping.
                     }
+                    
                     if grouping[0] > grouping[1] {
                         continue // Grouping index is wrong order
                     }
@@ -156,6 +157,7 @@ class SwiftGridLayout : UICollectionViewLayout {
             _zoomScale = 1.0
             _sgLayoutSize = CGSize.zero
         }
+        
         _columnGroupings = nil
         _groupedColumns = nil
         _frozenColumnsCount = -1
@@ -194,6 +196,7 @@ class SwiftGridLayout : UICollectionViewLayout {
         // Add in Grid Headers
         // Skip headers when height is 0
         let zeroPath = IndexPath(item: 0, section: 0)
+        
         if(self.layoutDelegate.collectionView(self.collectionView!, layout: self, sizeForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: zeroPath).height > 0) {
             for attributeIndex:Int in 0 ..< self.numberOfColumns() {
                 let layoutAttributes = self.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindHeader, at: IndexPath(item: attributeIndex, section: 0))!

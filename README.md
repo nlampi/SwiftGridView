@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="/docs/SwiftGridViewLogo@2x.png" width=420 />
+    <img src="https://raw.githubusercontent.com/nlampi/SwiftGridView/master/docs/SwiftGridViewLogo@2x.png" width=420 />
 </p>
 <p>
     &nbsp;
@@ -29,29 +29,25 @@
 
 ----------------
 
-Swift based data grid component based on `UICollectionView`. SwiftGridView allows for quick and easy data grids that are fully customizable with powerful built in functionality.
+Swift based data grid component based on `UICollectionView`. `SwiftGridView` allows for quick and easy data grids that are fully customizable with powerful built in functionality.
 
 ## Features
 
-Currently the Swift Grid View supports a lot of the expected features for a data grid, but it may not cover all requirements.
+Swift Grid View supports many of the expected features for a data grid in an easy to use package. 
 
-#### Cell Types
-- Header
-- Footer
-- Section Headers
-- Section Footers
-- Standard Cells
+#### DataGrid Cell Types
+- Headers and Footers
+- Section Headers and Footers
+- Row Cells
 
 #### Cell Selection
-- Row Selection
-- Cell Selection
-- Multi selection 
-- Header/Footer selection
+- Full Row or Single Cell Selection
+- Multi selection
+- Header or Footer Selection
 
 #### Additional Functionality
 - Sticky section headers
-- Frozen Columns
-- Frozen Rows
+- Frozen Columns and Rows
 - Grouped Headers
 - Pinch to expand size (experimental)
 
@@ -64,7 +60,8 @@ Currently the Swift Grid View supports a lot of the expected features for a data
 
 ### CocoaPods
 
-Since the project is written in swift it is required to include 'use_frameworks!'
+For installation with [CocoaPods](https://cocoapods.org), add the pod information to your `Podfile`:
+
 ```ruby
 pod 'SwiftGridView', '~> 0.7'
 ```
@@ -73,10 +70,12 @@ pod 'SwiftGridView', '~> 0.7'
 
 For detailed examples of how to utilize, see the [example projects](./Examples). 
 
+## Documentation
 
+Full documentation can be [found here](https://nlampi.github.io/SwiftGridView). Documentation generated using [jazzy](https://github.com/realm/jazzy).
 
 ## License
 
-Copyright 2016 Nathan Lampi
+Copyright 2016 - 2020 Nathan Lampi
 
 SwiftGridView is released under the [MIT license](./LICENSE).
