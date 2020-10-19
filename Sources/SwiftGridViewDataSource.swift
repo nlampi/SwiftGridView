@@ -55,7 +55,7 @@ import Foundation
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Array of grouped column index sets.
      */
-    @objc optional func columnGroupingsForDataGridView(_ dataGridVIew: SwiftGridView) -> [[Int]]
+    @objc optional func columnGroupingsForDataGridView(_ dataGridView: SwiftGridView) -> [[Int]]
     
     /**
      Number of rows to display in the provided data grid section.

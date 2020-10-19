@@ -324,7 +324,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     // Grouped Headers
-    func columnGroupingsForDataGridView(_ dataGridVIew: SwiftGridView) -> [[Int]] {
+    func columnGroupingsForDataGridView(_ dataGridView: SwiftGridView) -> [[Int]] {
         
         return self.columnGroupings
     }
