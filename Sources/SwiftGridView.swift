@@ -319,7 +319,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     /**
      Reloads all data for the `SwiftGridView`
      */
-    @objc open func reloadData() {
+    @objc open func reloadData(_ resetSize:Bool = true) {
         _sgSectionCount = 0
         _sgColumnCount = 0
         _sgColumnWidth = 0
@@ -331,7 +331,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
         self.selectedSectionFooters = NSMutableDictionary()
         self.selectedFooters = NSMutableDictionary()
         
-        sgCollectionViewLayout.resetCachedParameters()
+        sgCollectionViewLayout.resetCachedParameters(resetSize)
         
         self.collectionView.reloadData()
         
