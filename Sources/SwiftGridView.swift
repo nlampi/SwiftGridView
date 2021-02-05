@@ -91,7 +91,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     #endif
     
     /// Enable or disable selection for the entire gridview.
-    open var allowsSelection: Bool {
+    @objc open var allowsSelection: Bool {
         set(allowsSelection) {
             self.collectionView.allowsSelection = allowsSelection
         }
@@ -101,13 +101,13 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// When enabled, multiple cells can be selected. If row selection is enabled, then multiple rows can be selected.
-    open var allowsMultipleSelection: Bool = false
+    @objc open var allowsMultipleSelection: Bool = false
     
     /// If row selection is enabled, then entire rows will be selected rather than individual cells. This applies to section headers/footers in addition to rows.
-    open var rowSelectionEnabled: Bool = false
+    @objc open var rowSelectionEnabled: Bool = false
     
     /// When directional lock is enabled, the grid is only scrollable in one direction at a time (vertically or horizontally)
-    open var isDirectionalLockEnabled: Bool {
+    @objc open var isDirectionalLockEnabled: Bool {
         set(isDirectionalLockEnabled) {
             self.collectionView.isDirectionalLockEnabled = isDirectionalLockEnabled
         }
@@ -117,7 +117,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Enables bouncing for the gridvies
-    open var bounces: Bool {
+    @objc open var bounces: Bool {
         set(bounces) {
             self.collectionView.bounces = bounces
         }
@@ -127,7 +127,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Determines whether section headers will stick while scrolling vertically or scroll off screen.
-    open var stickySectionHeaders: Bool {
+    @objc open var stickySectionHeaders: Bool {
         set(stickySectionHeaders) {
             self.sgCollectionViewLayout.stickySectionHeaders = stickySectionHeaders
         }
@@ -137,7 +137,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// default NO. if YES and bounces is YES, even if content is smaller than bounds, allow drag vertically
-    open var alwaysBounceVertical: Bool {
+    @objc open var alwaysBounceVertical: Bool {
         set(alwaysBounceVertical) {
             self.collectionView.alwaysBounceVertical = alwaysBounceVertical
         }
@@ -147,7 +147,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// default NO. if YES and bounces is YES, even if content is smaller than bounds, allow drag horizontally
-    open var alwaysBounceHorizontal: Bool {
+    @objc open var alwaysBounceHorizontal: Bool {
         set(alwaysBounceHorizontal) {
             self.collectionView.alwaysBounceHorizontal = alwaysBounceHorizontal
         }
@@ -160,7 +160,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      A Boolean value that controls whether the horizontal scroll indicator is visible.
      The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
     */
-    open var showsHorizontalScrollIndicator: Bool {
+    @objc open var showsHorizontalScrollIndicator: Bool {
         set(showsHorizontalScrollIndicator) {
             self.collectionView.showsHorizontalScrollIndicator = showsHorizontalScrollIndicator
         }
@@ -173,7 +173,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      A Boolean value that controls whether the vertical scroll indicator is visible.
      The default value is true. The indicator is visible while tracking is underway and fades out after tracking.
      */
-    open var showsVerticalScrollIndicator: Bool {
+    @objc open var showsVerticalScrollIndicator: Bool {
         set(showsVerticalScrollIndicator) {
             self.collectionView.showsVerticalScrollIndicator = showsVerticalScrollIndicator
         }
@@ -183,7 +183,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Pinch to expand increases the size of the columns. Experimental feature.
-    open var pinchExpandEnabled: Bool = false {
+    @objc open var pinchExpandEnabled: Bool = false {
         didSet {
             if(!self.pinchExpandEnabled) {
                 self.collectionView.removeGestureRecognizer(self.sgPinchGestureRecognizer)
@@ -197,27 +197,27 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// - Returns: YES if user has touched. may not yet have started draggin
-    open var isTracking: Bool {
+    @objc open var isTracking: Bool {
         get {
             return self.collectionView.isTracking
         }
     }
     
     /// - Returns: YES if user has started scrolling. this may require some time and or distance to move to initiate dragging
-    open var isDragging: Bool {
+    @objc open var isDragging: Bool {
         get {
             return self.collectionView.isDragging
         }
     }
     /// - Returns: YES if user isn't dragging (touch up) but scroll view is still moving
-    open var isDecelerating: Bool {
+    @objc open var isDecelerating: Bool {
         get {
             return self.collectionView.isDecelerating
         }
     }
     
     /// Whether or not the gridView will automatically scroll to top when the status bar is tapped. Default is YES.
-    open var scrollsToTop: Bool {
+    @objc open var scrollsToTop: Bool {
         set(scrollsToTop) {
             self.collectionView.scrollsToTop = scrollsToTop
         }
@@ -227,7 +227,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     @available(iOS 10.0, *)
-    open var refreshControl: UIRefreshControl? {
+    @objc open var refreshControl: UIRefreshControl? {
         set(refreshControl) {
             self.collectionView.refreshControl = refreshControl
         }
@@ -305,7 +305,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     // MARK: - Layout Subviews
     
     // TODO: Is this how resize should be handled?
-    open override func layoutSubviews() {
+    @objc open override func layoutSubviews() {
         super.layoutSubviews()
         
         if(self.collectionView.frame != self.bounds) {
@@ -319,7 +319,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     /**
      Reloads all data for the `SwiftGridView`
      */
-    open func reloadData(_ resetSize:Bool = true) {
+    @objc open func reloadData(_ resetSize:Bool = true) {
         _sgSectionCount = 0
         _sgColumnCount = 0
         _sgColumnWidth = 0
@@ -353,7 +353,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter indexPaths: Array of `IndexPath` to reload
      - Parameter animated: Whether to animate the change or not
      */
-    open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
+    @objc open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
         self.reloadCellsAtIndexPaths(indexPaths, animated: animated, completion: nil)
     }
     
@@ -363,7 +363,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter animated: Whether to animate the change or not
      - Parameter completion: Completion handler executed upon reload
     */
-    open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool, completion: ((Bool) -> Void)?) {
+    @objc open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool, completion: ((Bool) -> Void)?) {
         let convertedPaths = self.reverseIndexPathConversionForIndexPaths(indexPaths)
         
         if(animated) {
@@ -383,7 +383,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter point: `CGPoint` to search for
      - Returns: The indexPath for the appropriate item if it exists
      */
-    open func indexPathForItem(at point: CGPoint) -> IndexPath? {
+    @objc open func indexPathForItem(at point: CGPoint) -> IndexPath? {
         if let cvIndexPath: IndexPath = self.collectionView.indexPathForItem(at: point) {
             let convertedPath: IndexPath = self.convertCVIndexPathToSGIndexPath(cvIndexPath)
             
@@ -398,7 +398,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter cell: Instance of `SwiftGridCell`
      - Returns: The indexPath for the appropriate item if it exists
      */
-    open func indexPath(for cell: SwiftGridCell) -> IndexPath? {
+    @objc open func indexPath(for cell: SwiftGridCell) -> IndexPath? {
         if let cvIndexPath: IndexPath = self.collectionView.indexPath(for: cell) {
             let convertedPath: IndexPath = self.convertCVIndexPathToSGIndexPath(cvIndexPath)
             
@@ -413,7 +413,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter indexPath: IndexPath to search for.
      - Returns: The `SwiftGridCell` instance for the provided indexPath
      */
-    open func cellForItem(at indexPath: IndexPath) -> SwiftGridCell? {
+    @objc open func cellForItem(at indexPath: IndexPath) -> SwiftGridCell? {
         let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
         let cell = self.collectionView.cellForItem(at: revertedPath) as? SwiftGridCell
         
@@ -423,7 +423,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     /**
      - Returns: Array of `SwiftGridCell` for all visibile cells.
      */
-    open var visibleCells: [SwiftGridCell] {
+    @objc open var visibleCells: [SwiftGridCell] {
         get {
             let cells = self.collectionView.visibleCells as! [SwiftGridCell]
         
@@ -434,7 +434,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     /**
     - Returns: Array of `IndexPath` for all visibile cells.
     */
-    open var indexPathsForVisibleItems: [IndexPath] {
+    @objc open var indexPathsForVisibleItems: [IndexPath] {
         get {
             var indexPaths = [IndexPath]()
             for indexPath in self.collectionView.indexPathsForVisibleItems {
@@ -462,7 +462,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Register the provided nib for row cell reuse within the `SwiftGridView`
-    open func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
+    @objc open func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String) {
         self.collectionView.register(nib, forCellWithReuseIdentifier: identifier)
     }
     
@@ -473,33 +473,33 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Register the provided class for supplementary cell reuse within the `SwiftGridView`
-    open func register(_ nib: UINib?, forSupplementaryViewOfKind kind: String, withReuseIdentifier identifier: String) {
+    @objc open func register(_ nib: UINib?, forSupplementaryViewOfKind kind: String, withReuseIdentifier identifier: String) {
         self.collectionView.register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
     }
     
     /// Dequeue Row Cell
-    open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath!) -> SwiftGridCell {
+    @objc open func dequeueReusableCellWithReuseIdentifier(_ identifier: String, forIndexPath indexPath: IndexPath!) -> SwiftGridCell {
         let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
         
         return self.collectionView.dequeueReusableCell(withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridCell
     }
     
     /// Dequeue Supplementary Cell  by column
-    open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
+    @objc open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, atColumn column: NSInteger) -> SwiftGridReusableView {
         let revertedPath: IndexPath = IndexPath(item: column, section: 0)
         
         return self.collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
     
     /// Dequeue Supplementary Cell  by `IndexPath`
-    open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
+    @objc open func dequeueReusableSupplementaryViewOfKind(_ elementKind: String, withReuseIdentifier identifier: String, forIndexPath indexPath: IndexPath) -> SwiftGridReusableView {
         let revertedPath: IndexPath = self.reverseIndexPathConversion(indexPath)
         
         return self.collectionView.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: identifier, for: revertedPath) as! SwiftGridReusableView
     }
     
     /// Selects the cell at the provided indexPath
-    open func selectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
+    @objc open func selectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
         if(self.rowSelectionEnabled) {
             self.selectRowAtIndexPath(indexPath, animated: animated)
         } else {
@@ -509,7 +509,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Deselects the cell at the provided indexPath
-    open func deselectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
+    @objc open func deselectCellAtIndexPath(_ indexPath:IndexPath, animated: Bool) {
         if(self.rowSelectionEnabled) {
             self.deselectRowAtIndexPath(indexPath, animated: animated)
         } else {
@@ -519,7 +519,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Select the section header at the provided indexPath
-    open func selectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
+    @objc open func selectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionHeader, atIndexPath: indexPath, selected: true)
         } else {
@@ -528,7 +528,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Deselect the section header at the provided indexPath
-    open func deselectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
+    @objc open func deselectSectionHeaderAtIndexPath(_ indexPath:IndexPath) {
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionHeader, atIndexPath: indexPath, selected: false)
         } else {
@@ -537,7 +537,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Select the section footer at the provided indexPath
-    open func selectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
+    @objc open func selectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionFooter, atIndexPath: indexPath, selected: true)
         } else {
@@ -546,7 +546,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Deselect the section footer at the provided indexPath
-    open func deselectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
+    @objc open func deselectSectionFooterAtIndexPath(_ indexPath:IndexPath) {
         if(self.rowSelectionEnabled) {
             self.toggleSelectedOnReusableViewRowOfKind(SwiftGridElementKindSectionFooter, atIndexPath: indexPath, selected: false)
         } else {
@@ -560,7 +560,7 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
      - Parameter scrollPosition: Position to use when scrolling.
      - Parameter animated: Whether to animate the scroll action
      */
-    open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool) {
+    @objc open func scrollToCellAtIndexPath(_ indexPath: IndexPath, atScrollPosition scrollPosition: UICollectionView.ScrollPosition, animated: Bool) {
         let convertedPath = self.reverseIndexPathConversion(indexPath)
         var absolutePostion = self.sgCollectionViewLayout.rectForItem(at: convertedPath, atScrollPosition: scrollPosition)
         
@@ -577,13 +577,13 @@ open class SwiftGridView : UIView, UICollectionViewDataSource, UICollectionViewD
     }
     
     /// Manually set the content offset for the gridview
-    open func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {
+    @objc open func setContentOffset(_ contentOffset: CGPoint, animated: Bool) {
         
         self.collectionView.setContentOffset(contentOffset, animated: animated)
     }
     
     /// - Returns: The `CGPoint` location for the provided gesture in the gridview context
-    open func location(for gestureRecognizer:UIGestureRecognizer) -> CGPoint {
+    @objc open func location(for gestureRecognizer:UIGestureRecognizer) -> CGPoint {
 
         return gestureRecognizer.location(in: self.collectionView)
     }

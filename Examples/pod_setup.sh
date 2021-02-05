@@ -12,5 +12,11 @@ pod install
 echo ''
 cd ..
 
+echo 'Setting up ObjC example...'
+cd ObjCExample/
+pod install
+echo ''
+cd ..
+
 echo 'Done!'
 echo ''

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "SwiftGridView"
-  s.version = "0.7.3"
+  s.version = "0.7.4"
   s.summary = "A Swift based iOS Data Grid component."
   s.description = <<-DESC
 			Swift UICollectionView based data grid component for fast implementation of advanced table / datagrid layouts. Supports iOS10+.
