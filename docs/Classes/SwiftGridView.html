@@ -8,13 +8,21 @@
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
     <a name="//apple_ref/swift/Class/SwiftGridView" class="dashAnchor"></a>
     <a title="SwiftGridView Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">SwiftGridView Docs</a> (90% documented)</p>
+        <p><a href="../index.html">SwiftGridView 0.7.4 Docs</a> (90% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -91,6 +99,7 @@
             <h1>SwiftGridView</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">SwiftGridView</span> <span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="kt">UICollectionViewDataSource</span><span class="p">,</span> <span class="kt">UICollectionViewDelegate</span><span class="p">,</span> <span class="kt">SwiftGridLayoutDelegate</span><span class="p">,</span> <span class="kt"><a href="../Protocols/SwiftGridReusableViewDelegate.html">SwiftGridReusableViewDelegate</a></span></code></pre>
 
                 </div>
@@ -304,9 +313,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC15allowsSelectionSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)allowsSelection"></a>
                     <a name="//apple_ref/swift/Property/allowsSelection" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC15allowsSelectionSbvp">allowsSelection</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)allowsSelection">allowsSelection</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -321,7 +330,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">allowsSelection</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">allowsSelection</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -331,9 +341,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC23allowsMultipleSelectionSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)allowsMultipleSelection"></a>
                     <a name="//apple_ref/swift/Property/allowsMultipleSelection" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC23allowsMultipleSelectionSbvp">allowsMultipleSelection</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)allowsMultipleSelection">allowsMultipleSelection</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -348,7 +358,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">allowsMultipleSelection</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">allowsMultipleSelection</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -358,9 +369,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC19rowSelectionEnabledSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)rowSelectionEnabled"></a>
                     <a name="//apple_ref/swift/Property/rowSelectionEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC19rowSelectionEnabledSbvp">rowSelectionEnabled</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)rowSelectionEnabled">rowSelectionEnabled</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -375,7 +386,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">rowSelectionEnabled</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">rowSelectionEnabled</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -385,9 +397,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC24isDirectionalLockEnabledSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDirectionalLockEnabled"></a>
                     <a name="//apple_ref/swift/Property/isDirectionalLockEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC24isDirectionalLockEnabledSbvp">isDirectionalLockEnabled</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDirectionalLockEnabled">isDirectionalLockEnabled</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -402,7 +414,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isDirectionalLockEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">isDirectionalLockEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -412,9 +425,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC7bouncesSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)bounces"></a>
                     <a name="//apple_ref/swift/Property/bounces" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC7bouncesSbvp">bounces</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)bounces">bounces</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -429,7 +442,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">bounces</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">bounces</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -439,9 +453,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC20stickySectionHeadersSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)stickySectionHeaders"></a>
                     <a name="//apple_ref/swift/Property/stickySectionHeaders" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC20stickySectionHeadersSbvp">stickySectionHeaders</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)stickySectionHeaders">stickySectionHeaders</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -456,7 +470,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">stickySectionHeaders</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">stickySectionHeaders</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -466,9 +481,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC20alwaysBounceVerticalSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)alwaysBounceVertical"></a>
                     <a name="//apple_ref/swift/Property/alwaysBounceVertical" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC20alwaysBounceVerticalSbvp">alwaysBounceVertical</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)alwaysBounceVertical">alwaysBounceVertical</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -483,7 +498,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">alwaysBounceVertical</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">alwaysBounceVertical</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -493,9 +509,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC22alwaysBounceHorizontalSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)alwaysBounceHorizontal"></a>
                     <a name="//apple_ref/swift/Property/alwaysBounceHorizontal" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC22alwaysBounceHorizontalSbvp">alwaysBounceHorizontal</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)alwaysBounceHorizontal">alwaysBounceHorizontal</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -510,7 +526,8 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">alwaysBounceHorizontal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">alwaysBounceHorizontal</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -520,9 +537,9 @@ Required delegate link of type <code><a href="../Protocols/SwiftGridViewDelegate
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC30showsHorizontalScrollIndicatorSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)showsHorizontalScrollIndicator"></a>
                     <a name="//apple_ref/swift/Property/showsHorizontalScrollIndicator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC30showsHorizontalScrollIndicatorSbvp">showsHorizontalScrollIndicator</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)showsHorizontalScrollIndicator">showsHorizontalScrollIndicator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -538,7 +555,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">showsHorizontalScrollIndicator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">showsHorizontalScrollIndicator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -548,9 +566,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC28showsVerticalScrollIndicatorSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)showsVerticalScrollIndicator"></a>
                     <a name="//apple_ref/swift/Property/showsVerticalScrollIndicator" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC28showsVerticalScrollIndicatorSbvp">showsVerticalScrollIndicator</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)showsVerticalScrollIndicator">showsVerticalScrollIndicator</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -566,7 +584,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">showsVerticalScrollIndicator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">showsVerticalScrollIndicator</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -576,9 +595,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC18pinchExpandEnabledSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)pinchExpandEnabled"></a>
                     <a name="//apple_ref/swift/Property/pinchExpandEnabled" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC18pinchExpandEnabledSbvp">pinchExpandEnabled</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)pinchExpandEnabled">pinchExpandEnabled</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -593,7 +612,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">pinchExpandEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">pinchExpandEnabled</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -603,9 +623,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC10isTrackingSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isTracking"></a>
                     <a name="//apple_ref/swift/Property/isTracking" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC10isTrackingSbvp">isTracking</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isTracking">isTracking</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -619,7 +639,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isTracking</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">isTracking</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -633,9 +654,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC10isDraggingSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDragging"></a>
                     <a name="//apple_ref/swift/Property/isDragging" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC10isDraggingSbvp">isDragging</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDragging">isDragging</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -649,7 +670,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isDragging</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">isDragging</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -663,9 +685,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC14isDeceleratingSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDecelerating"></a>
                     <a name="//apple_ref/swift/Property/isDecelerating" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC14isDeceleratingSbvp">isDecelerating</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)isDecelerating">isDecelerating</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -679,7 +701,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">isDecelerating</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">isDecelerating</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -693,9 +716,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC12scrollsToTopSbvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)scrollsToTop"></a>
                     <a name="//apple_ref/swift/Property/scrollsToTop" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC12scrollsToTopSbvp">scrollsToTop</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)scrollsToTop">scrollsToTop</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -710,7 +733,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">scrollsToTop</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">scrollsToTop</span><span class="p">:</span> <span class="kt">Bool</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -720,9 +744,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC14refreshControlSo09UIRefreshE0CSgvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)refreshControl"></a>
                     <a name="//apple_ref/swift/Property/refreshControl" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC14refreshControlSo09UIRefreshE0CSgvp">refreshControl</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)refreshControl">refreshControl</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -737,7 +761,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">refreshControl</span><span class="p">:</span> <span class="kt">UIRefreshControl</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">refreshControl</span><span class="p">:</span> <span class="kt">UIRefreshControl</span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -777,7 +802,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">layoutSubviews</span><span class="p">()</span></code></pre>
 
                         </div>
                       </div>
@@ -800,9 +826,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC10reloadDatayyF"></a>
-                    <a name="//apple_ref/swift/Method/reloadData()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC10reloadDatayyF">reloadData()</a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadData:"></a>
+                    <a name="//apple_ref/swift/Method/reloadData(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadData:">reloadData(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -817,7 +843,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadData</span><span class="p">()</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadData</span><span class="p">(</span><span class="n">_</span> <span class="nv">resetSize</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">true</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -827,9 +854,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC23reloadCellsAtIndexPaths_8animatedySay10Foundation0G4PathVG_SbtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadCellsAtIndexPaths:animated:"></a>
                     <a name="//apple_ref/swift/Method/reloadCellsAtIndexPaths(_:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC23reloadCellsAtIndexPaths_8animatedySay10Foundation0G4PathVG_SbtF">reloadCellsAtIndexPaths(_:<wbr>animated:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadCellsAtIndexPaths:animated:">reloadCellsAtIndexPaths(_:<wbr>animated:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -844,7 +871,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadCellsAtIndexPaths</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">],</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadCellsAtIndexPaths</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">],</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -885,9 +913,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC23reloadCellsAtIndexPaths_8animated10completionySay10Foundation0G4PathVG_SbySbcSgtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadCellsAtIndexPaths:animated:completion:"></a>
                     <a name="//apple_ref/swift/Method/reloadCellsAtIndexPaths(_:animated:completion:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC23reloadCellsAtIndexPaths_8animated10completionySay10Foundation0G4PathVG_SbySbcSgtF">reloadCellsAtIndexPaths(_:<wbr>animated:<wbr>completion:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)reloadCellsAtIndexPaths:animated:completion:">reloadCellsAtIndexPaths(_:<wbr>animated:<wbr>completion:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -902,7 +930,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadCellsAtIndexPaths</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">],</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">reloadCellsAtIndexPaths</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPaths</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">],</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">((</span><span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)?)</span></code></pre>
 
                         </div>
                       </div>
@@ -955,9 +984,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC16indexPathForItem2at10Foundation05IndexE0VSgSo7CGPointV_tF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)indexPathForItemAt:"></a>
                     <a name="//apple_ref/swift/Method/indexPathForItem(at:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC16indexPathForItem2at10Foundation05IndexE0VSgSo7CGPointV_tF">indexPathForItem(at:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)indexPathForItemAt:">indexPathForItem(at:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -972,7 +1001,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">indexPathForItem</span><span class="p">(</span><span class="n">at</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">indexPathForItem</span><span class="p">(</span><span class="n">at</span> <span class="nv">point</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1005,9 +1035,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC9indexPath3for10Foundation05IndexE0VSgAA0aB4CellC_tF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)indexPathFor:"></a>
                     <a name="//apple_ref/swift/Method/indexPath(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC9indexPath3for10Foundation05IndexE0VSgAA0aB4CellC_tF">indexPath(for:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)indexPathFor:">indexPath(for:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1022,7 +1052,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">indexPath</span><span class="p">(</span><span class="k">for</span> <span class="nv">cell</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">indexPath</span><span class="p">(</span><span class="k">for</span> <span class="nv">cell</span><span class="p">:</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">IndexPath</span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1055,9 +1086,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC11cellForItem2atAA0aB4CellCSg10Foundation9IndexPathV_tF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)cellForItemAt:"></a>
                     <a name="//apple_ref/swift/Method/cellForItem(at:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC11cellForItem2atAA0aB4CellCSg10Foundation9IndexPathV_tF">cellForItem(at:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)cellForItemAt:">cellForItem(at:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1072,7 +1103,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">cellForItem</span><span class="p">(</span><span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">?</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">cellForItem</span><span class="p">(</span><span class="n">at</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">?</span></code></pre>
 
                         </div>
                       </div>
@@ -1105,9 +1137,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC12visibleCellsSayAA0aB4CellCGvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)visibleCells"></a>
                     <a name="//apple_ref/swift/Property/visibleCells" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC12visibleCellsSayAA0aB4CellCGvp">visibleCells</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)visibleCells">visibleCells</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1121,7 +1153,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">visibleCells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">visibleCells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1135,9 +1168,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC25indexPathsForVisibleItemsSay10Foundation9IndexPathVGvp"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)indexPathsForVisibleItems"></a>
                     <a name="//apple_ref/swift/Property/indexPathsForVisibleItems" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC25indexPathsForVisibleItemsSay10Foundation9IndexPathVGvp">indexPathsForVisibleItems</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(py)indexPathsForVisibleItems">indexPathsForVisibleItems</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1151,7 +1184,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="k">var</span> <span class="nv">indexPathsForVisibleItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="k">var</span> <span class="nv">indexPathsForVisibleItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">IndexPath</span><span class="p">]</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>
@@ -1193,9 +1227,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC8register_26forCellWithReuseIdentifierySo5UINibCSg_SStF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)register:forCellWithReuseIdentifier:"></a>
                     <a name="//apple_ref/swift/Method/register(_:forCellWithReuseIdentifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC8register_26forCellWithReuseIdentifierySo5UINibCSg_SStF">register(_:<wbr>forCellWithReuseIdentifier:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)register:forCellWithReuseIdentifier:">register(_:<wbr>forCellWithReuseIdentifier:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1210,7 +1244,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">_</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?,</span> <span class="n">forCellWithReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">_</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?,</span> <span class="n">forCellWithReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1248,9 +1283,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC8register_016forSupplementaryC6OfKind19withReuseIdentifierySo5UINibCSg_S2StF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)register:forSupplementaryViewOfKind:withReuseIdentifier:"></a>
                     <a name="//apple_ref/swift/Method/register(_:forSupplementaryViewOfKind:withReuseIdentifier:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC8register_016forSupplementaryC6OfKind19withReuseIdentifierySo5UINibCSg_S2StF">register(_:<wbr>forSupplementaryViewOfKind:<wbr>withReuseIdentifier:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)register:forSupplementaryViewOfKind:withReuseIdentifier:">register(_:<wbr>forSupplementaryViewOfKind:<wbr>withReuseIdentifier:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1265,7 +1300,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">_</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?,</span> <span class="n">forSupplementaryViewOfKind</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="n">_</span> <span class="nv">nib</span><span class="p">:</span> <span class="kt">UINib</span><span class="p">?,</span> <span class="n">forSupplementaryViewOfKind</span> <span class="nv">kind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1275,9 +1311,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC38dequeueReusableCellWithReuseIdentifier_12forIndexPathAA0abF0CSS_10Foundation0kL0VSgtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableCellWithReuseIdentifier:forIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/dequeueReusableCellWithReuseIdentifier(_:forIndexPath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC38dequeueReusableCellWithReuseIdentifier_12forIndexPathAA0abF0CSS_10Foundation0kL0VSgtF">dequeueReusableCellWithReuseIdentifier(_:<wbr>forIndexPath:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableCellWithReuseIdentifier:forIndexPath:">dequeueReusableCellWithReuseIdentifier(_:<wbr>forIndexPath:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1292,7 +1328,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableCellWithReuseIdentifier</span><span class="p">(</span><span class="n">_</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">forIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableCellWithReuseIdentifier</span><span class="p">(</span><span class="n">_</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">forIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="o">!</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridCell.html">SwiftGridCell</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1302,9 +1339,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC028dequeueReusableSupplementaryC6OfKind_19withReuseIdentifier8atColumnAA0abeC0CSS_SSSitF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:atColumn:"></a>
                     <a name="//apple_ref/swift/Method/dequeueReusableSupplementaryViewOfKind(_:withReuseIdentifier:atColumn:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC028dequeueReusableSupplementaryC6OfKind_19withReuseIdentifier8atColumnAA0abeC0CSS_SSSitF">dequeueReusableSupplementaryViewOfKind(_:<wbr>withReuseIdentifier:<wbr>atColumn:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:atColumn:">dequeueReusableSupplementaryViewOfKind(_:<wbr>withReuseIdentifier:<wbr>atColumn:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1319,7 +1356,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableSupplementaryViewOfKind</span><span class="p">(</span><span class="n">_</span> <span class="nv">elementKind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atColumn</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">NSInteger</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridReusableView.html">SwiftGridReusableView</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableSupplementaryViewOfKind</span><span class="p">(</span><span class="n">_</span> <span class="nv">elementKind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">atColumn</span> <span class="nv">column</span><span class="p">:</span> <span class="kt">NSInteger</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridReusableView.html">SwiftGridReusableView</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1329,9 +1367,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC028dequeueReusableSupplementaryC6OfKind_19withReuseIdentifier12forIndexPathAA0abeC0CSS_SS10Foundation0mN0VtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/dequeueReusableSupplementaryViewOfKind(_:withReuseIdentifier:forIndexPath:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC028dequeueReusableSupplementaryC6OfKind_19withReuseIdentifier12forIndexPathAA0abeC0CSS_SS10Foundation0mN0VtF">dequeueReusableSupplementaryViewOfKind(_:<wbr>withReuseIdentifier:<wbr>forIndexPath:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:">dequeueReusableSupplementaryViewOfKind(_:<wbr>withReuseIdentifier:<wbr>forIndexPath:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1346,7 +1384,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableSupplementaryViewOfKind</span><span class="p">(</span><span class="n">_</span> <span class="nv">elementKind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">forIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridReusableView.html">SwiftGridReusableView</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">dequeueReusableSupplementaryViewOfKind</span><span class="p">(</span><span class="n">_</span> <span class="nv">elementKind</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">withReuseIdentifier</span> <span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="n">forIndexPath</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/SwiftGridReusableView.html">SwiftGridReusableView</a></span></code></pre>
 
                         </div>
                       </div>
@@ -1356,9 +1395,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC21selectCellAtIndexPath_8animatedy10Foundation0gH0V_SbtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectCellAtIndexPath:animated:"></a>
                     <a name="//apple_ref/swift/Method/selectCellAtIndexPath(_:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC21selectCellAtIndexPath_8animatedy10Foundation0gH0V_SbtF">selectCellAtIndexPath(_:<wbr>animated:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectCellAtIndexPath:animated:">selectCellAtIndexPath(_:<wbr>animated:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1373,7 +1412,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1383,9 +1423,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC23deselectCellAtIndexPath_8animatedy10Foundation0gH0V_SbtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectCellAtIndexPath:animated:"></a>
                     <a name="//apple_ref/swift/Method/deselectCellAtIndexPath(_:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC23deselectCellAtIndexPath_8animatedy10Foundation0gH0V_SbtF">deselectCellAtIndexPath(_:<wbr>animated:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectCellAtIndexPath:animated:">deselectCellAtIndexPath(_:<wbr>animated:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1400,7 +1440,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1410,9 +1451,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC30selectSectionHeaderAtIndexPathyy10Foundation0hI0VF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectSectionHeaderAtIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/selectSectionHeaderAtIndexPath(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC30selectSectionHeaderAtIndexPathyy10Foundation0hI0VF">selectSectionHeaderAtIndexPath(_:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectSectionHeaderAtIndexPath:">selectSectionHeaderAtIndexPath(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1427,7 +1468,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectSectionHeaderAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectSectionHeaderAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1437,9 +1479,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC32deselectSectionHeaderAtIndexPathyy10Foundation0hI0VF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectSectionHeaderAtIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/deselectSectionHeaderAtIndexPath(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC32deselectSectionHeaderAtIndexPathyy10Foundation0hI0VF">deselectSectionHeaderAtIndexPath(_:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectSectionHeaderAtIndexPath:">deselectSectionHeaderAtIndexPath(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1454,7 +1496,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectSectionHeaderAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectSectionHeaderAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1464,9 +1507,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC30selectSectionFooterAtIndexPathyy10Foundation0hI0VF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectSectionFooterAtIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/selectSectionFooterAtIndexPath(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC30selectSectionFooterAtIndexPathyy10Foundation0hI0VF">selectSectionFooterAtIndexPath(_:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)selectSectionFooterAtIndexPath:">selectSectionFooterAtIndexPath(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1481,7 +1524,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectSectionFooterAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">selectSectionFooterAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1491,9 +1535,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC32deselectSectionFooterAtIndexPathyy10Foundation0hI0VF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectSectionFooterAtIndexPath:"></a>
                     <a name="//apple_ref/swift/Method/deselectSectionFooterAtIndexPath(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC32deselectSectionFooterAtIndexPathyy10Foundation0hI0VF">deselectSectionFooterAtIndexPath(_:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)deselectSectionFooterAtIndexPath:">deselectSectionFooterAtIndexPath(_:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1508,7 +1552,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectSectionFooterAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">deselectSectionFooterAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1518,9 +1563,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC23scrollToCellAtIndexPath_16atScrollPosition8animatedy10Foundation0hI0V_So012UICollectionckL0VSbtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)scrollToCellAtIndexPath:atScrollPosition:animated:"></a>
                     <a name="//apple_ref/swift/Method/scrollToCellAtIndexPath(_:atScrollPosition:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC23scrollToCellAtIndexPath_16atScrollPosition8animatedy10Foundation0hI0V_So012UICollectionckL0VSbtF">scrollToCellAtIndexPath(_:<wbr>atScrollPosition:<wbr>animated:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)scrollToCellAtIndexPath:atScrollPosition:animated:">scrollToCellAtIndexPath(_:<wbr>atScrollPosition:<wbr>animated:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1535,7 +1580,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">scrollToCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="n">atScrollPosition</span> <span class="nv">scrollPosition</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="o">.</span><span class="kt">ScrollPosition</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">scrollToCellAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span> <span class="n">atScrollPosition</span> <span class="nv">scrollPosition</span><span class="p">:</span> <span class="kt">UICollectionView</span><span class="o">.</span><span class="kt">ScrollPosition</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1588,9 +1634,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC16setContentOffset_8animatedySo7CGPointV_SbtF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)setContentOffset:animated:"></a>
                     <a name="//apple_ref/swift/Method/setContentOffset(_:animated:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC16setContentOffset_8animatedySo7CGPointV_SbtF">setContentOffset(_:<wbr>animated:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)setContentOffset:animated:">setContentOffset(_:<wbr>animated:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1605,7 +1651,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">setContentOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">contentOffset</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">setContentOffset</span><span class="p">(</span><span class="n">_</span> <span class="nv">contentOffset</span><span class="p">:</span> <span class="kt">CGPoint</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1615,9 +1662,9 @@ The default value is true. The indicator is visible while tracking is underway a
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13SwiftGridViewAAC8location3forSo7CGPointVSo19UIGestureRecognizerC_tF"></a>
+                    <a name="/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)locationFor:"></a>
                     <a name="//apple_ref/swift/Method/location(for:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13SwiftGridViewAAC8location3forSo7CGPointVSo19UIGestureRecognizerC_tF">location(for:<wbr>)</a>
+                    <a class="token" href="#/c:@M@SwiftGridView@objc(cs)SwiftGridView(im)locationFor:">location(for:<wbr>)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1631,7 +1678,8 @@ The default value is true. The indicator is visible while tracking is underway a
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">func</span> <span class="nf">location</span><span class="p">(</span><span class="k">for</span> <span class="nv">gestureRecognizer</span><span class="p">:</span> <span class="kt">UIGestureRecognizer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="nf">location</span><span class="p">(</span><span class="k">for</span> <span class="nv">gestureRecognizer</span><span class="p">:</span> <span class="kt">UIGestureRecognizer</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGPoint</span></code></pre>
 
                         </div>
                       </div>
@@ -2010,8 +2058,8 @@ The default value is true. The indicator is visible while tracking is underway a
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2020 <a class="link" href="https://github.com/nlampi/SwiftGridView" target="_blank" rel="external">Nathan Lampi</a>. All rights reserved. (Last updated: 2020-04-22)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.2</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2021 <a class="link" href="https://github.com/nlampi/SwiftGridView" target="_blank" rel="external">Nathan Lampi</a>. All rights reserved. (Last updated: 2021-02-05)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

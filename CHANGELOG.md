@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [0.7.4](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.4) (2021-02-05)
+Updated functionality and demos for ObjC usage.
+Included pull request #57
+
 ## [0.7.3](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.3) (2020-04-10)
 Added Demo project using SwiftUI
 
