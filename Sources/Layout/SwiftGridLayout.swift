@@ -655,7 +655,8 @@ class SwiftGridLayout : UICollectionViewLayout {
             let headerHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindHeader, atIndexPath: indexPath)
             let sectionHeaderHeight = self.layoutDelegate.collectionView(self.collectionView!, layout: self, heightForSupplementaryViewOfKind: SwiftGridElementKindSectionHeader, atIndexPath: indexPath)
             let rowOffset = self.rowHeightSumToRow(rowNumber, atIndexPath: indexPath)
-            let contentOffset = self.collectionView!.contentOffset.y + headerHeight + sectionHeaderHeight + rowOffset
+            let sectionHeaderOffset = self.stickySectionHeaders ? sectionHeaderHeight : 0.0 /// If sticky headers are disabled, don't offset for their height
+            let contentOffset = self.collectionView!.contentOffset.y + headerHeight + sectionHeaderOffset + rowOffset
             
             if(contentOffset > offset) {
                 let sectionPath = IndexPath(item: 0, section: indexPath.section)
