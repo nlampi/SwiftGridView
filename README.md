@@ -68,6 +68,16 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 
 ## Installation 
 
+### Swift Package Manager
+
+SwiftGridView is easily installed and managed using SPM. 
+
+1. In Xcode navigate to **File** → **Swift Packages** → **Add Package Dependency...**
+2. Paste the repo URL (`https://github.com/nlampi/SwiftGridView.git`) and click **Next**
+3. For the **Rules** either choose **Up to Next Major** for stable compatible releases or **Branch** `master` to remain up to date with the latest
+4. Click **Finish**
+
+
 ### CocoaPods
 
 For installation with [CocoaPods](https://cocoapods.org), add the pod information to your `Podfile`:
@@ -86,6 +96,6 @@ Full documentation can be [found here](https://nlampi.github.io/SwiftGridView). 
 
 ## License
 
-Copyright 2016 - 2020 Nathan Lampi
+Copyright 2016 - 2021 Nathan Lampi
 
 SwiftGridView is released under the [MIT license](./LICENSE).

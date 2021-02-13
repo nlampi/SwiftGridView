@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [0.7.5](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.4) (2021-02-13)
+Fixed issue where sticky rows are not offset correctly when scrolling and section headers are not sticky. Issue #61
+
 ## [0.7.4](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.4) (2021-02-05)
 Updated functionality and demos for ObjC usage.
 Included pull request #57
