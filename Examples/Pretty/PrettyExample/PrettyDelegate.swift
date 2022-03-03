@@ -22,7 +22,7 @@
 import Foundation
 import SwiftGridView
 
-protocol PrettyDelegateProtocol : class {
+protocol PrettyDelegateProtocol : AnyObject {
     func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath)
 }
 

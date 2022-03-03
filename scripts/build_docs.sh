@@ -12,7 +12,10 @@ command -v jazzy >/dev/null 2>&1 || {
 # Document via jazzy
 
 jazzy \
-    -- clean \
-    -- author 'Nathan Lampi' \
-    -- author_url 'https://nathanlampi.com' \
-    -- github_url 'https://github.com/nlampi/SwiftGridView'
+    --clean \
+    --author 'Nathan Lampi' \
+    --author_url https://nathanlampi.com \
+    --source-host github \
+    --source-host-url https://github.com/nlampi/SwiftGridView \
+    --source-host-files-url https://github.com/nlampi/SwiftGridView/tree/0.7.6 \
+    --module-version 0.7.6
