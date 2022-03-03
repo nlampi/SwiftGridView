@@ -64,7 +64,7 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 ## Requirements
 
 - Xcode 10.0+
-- iOS 10.0+
+- iOS 12.0+
 
 ## Installation 
 
@@ -96,6 +96,6 @@ Full documentation can be [found here](https://nlampi.github.io/SwiftGridView). 
 
 ## License
 
-Copyright 2016 - 2021 Nathan Lampi
+Copyright 2016 - 2022 Nathan Lampi
 
 SwiftGridView is released under the [MIT license](./LICENSE).

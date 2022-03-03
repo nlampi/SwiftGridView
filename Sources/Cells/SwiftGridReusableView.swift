@@ -27,7 +27,7 @@ import UIKit
 /**
  The `SwiftGridReusableViewDelegate` is used for passing selection and highlighting events through to the data grid.
  */
-public protocol SwiftGridReusableViewDelegate: class {
+public protocol SwiftGridReusableViewDelegate: AnyObject {
     /**
      Called when the reusable view is selected.
      
