@@ -96,6 +96,6 @@ Full documentation can be [found here](https://nlampi.github.io/SwiftGridView). 
 
 ## License
 
-Copyright 2016 - 2022 Nathan Lampi
+Copyright 2016 - 2025∑ Nathan Lampi
 
 SwiftGridView is released under the [MIT license](./LICENSE).

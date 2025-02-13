@@ -1,89 +1,117 @@
 {
   "warnings": [
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridCell.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridCell.swift",
       "line": 29,
       "symbol": "SwiftGridCell.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridCell.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridCell.swift",
       "line": 35,
       "symbol": "SwiftGridCell.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 84,
       "symbol": "SwiftGridReusableView.selected",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 144,
       "symbol": "SwiftGridReusableView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 150,
       "symbol": "SwiftGridReusableView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 185,
       "symbol": "SwiftGridReusableView.touchesBegan(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 189,
       "symbol": "SwiftGridReusableView.touchesCancelled(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/Cells/SwiftGridReusableView.swift",
       "line": 193,
       "symbol": "SwiftGridReusableView.touchesEnded(_:with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/SwiftGridView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
       "line": 46,
       "symbol": "SwiftGridView.init(coder:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/SwiftGridView.swift",
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
       "line": 52,
       "symbol": "SwiftGridView.init(frame:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/SwiftGridView.swift",
-      "line": 230,
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 324,
       "symbol": "SwiftGridView.refreshControl",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/nlampi/Documents/GitHub/SwiftGridView/Sources/SwiftGridView.swift",
-      "line": 308,
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 336,
       "symbol": "SwiftGridView.layoutSubviews()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 1105,
+      "symbol": "SwiftGridView.selectColumnAtIndexPath(_:animated:includeHeader:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 1122,
+      "symbol": "SwiftGridView.deselectColumnAtIndexPath(_:animated:includeHeader:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 1139,
+      "symbol": "SwiftGridView.selectRowAtIndexPath(_:animated:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/nlampi/LocalDocuments/github/SwiftGridView/Sources/SwiftGridView.swift",
+      "line": 1152,
+      "symbol": "SwiftGridView.deselectRowAtIndexPath(_:animated:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/nlampi/Documents/GitHub/SwiftGridView"
+  "source_directory": "/Users/nlampi/LocalDocuments/github/SwiftGridView"
 }

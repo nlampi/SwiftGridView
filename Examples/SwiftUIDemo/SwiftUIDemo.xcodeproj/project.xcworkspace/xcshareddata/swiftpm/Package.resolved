@@ -1,16 +1,15 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "SwiftGridView",
-        "repositoryURL": "https://github.com/nlampi/SwiftGridView.git",
-        "state": {
-          "branch": null,
-          "revision": "f3d4e76283aa194b2d76d79c1ad06c2426d8c5db",
-          "version": "0.7.5"
-        }
+  "originHash" : "c0048e969bc5bc9f608fe0edfd9e44f750544c6d31b08a185dcb65bd2ccd36e6",
+  "pins" : [
+    {
+      "identity" : "swiftgridview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nlampi/SwiftGridView.git",
+      "state" : {
+        "revision" : "65ecbc3dd843e39ae0302427a378c9d600a32e47",
+        "version" : "0.7.6"
       }
-    ]
-  },
-  "version": 1
+    }
+  ],
+  "version" : 3
 }
