@@ -17,5 +17,5 @@ jazzy \
     --author_url https://nathanlampi.com \
     --source-host github \
     --source-host-url https://github.com/nlampi/SwiftGridView \
-    --source-host-files-url https://github.com/nlampi/SwiftGridView/tree/0.7.7 \
-    --module-version 0.7.7
+    --source-host-files-url https://github.com/nlampi/SwiftGridView/tree/0.7.8 \
+    --module-version 0.7.8
