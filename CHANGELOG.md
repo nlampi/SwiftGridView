@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [0.7.7](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.6) (2025-02-13)
+Updated methods to allow retrieval of selected indexPaths for cells and supplementary views.
+
 ## [0.7.6](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.6) (2022-03-02)
 Fixed minor deprecation warning. Updated deployment target to 12.0.
 

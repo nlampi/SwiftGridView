@@ -20,7 +20,7 @@
 // SOFTWARE.
 
 import XCTest
-import SwiftGridView
+@testable import SwiftGridView
 
 class SwiftGridViewTests: XCTestCase {
     
@@ -35,7 +35,7 @@ class SwiftGridViewTests: XCTestCase {
     }
     
     
-    // MARK: - SwiftGridCell 
+    // MARK: - SwiftGridCell
     
     func testSwiftGridCell() {
         XCTAssert(SwiftGridCell.reuseIdentifier() == "SwiftGridCellReuseId")

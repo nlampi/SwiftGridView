@@ -13,6 +13,11 @@ let package = Package(
         .target(
             name: "SwiftGridView",
             path: "Sources"
+        ),
+        .testTarget(
+            name: "SwiftGridViewTests",
+            dependencies: ["SwiftGridView"],
+            path: "Tests"
         )
     ]
 )
