@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nlampi/SwiftGridView.git",
       "state" : {
-        "revision" : "65ecbc3dd843e39ae0302427a378c9d600a32e47",
-        "version" : "0.7.6"
+        "revision" : "359b9ff7ef01acaaa920c150953009ca5abeaea0",
+        "version" : "0.7.7"
       }
     }
   ],
