@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    name: Build & Test (iOS Simulator)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select simulator
+        run: |
+          UDID=$(xcrun simctl list devices available --json \
+            | jq -r '[.devices | to_entries[] | select(.key | contains("iOS")) | .value[] | select(.name | startswith("iPhone"))][0].udid')
+          if [ -z "$UDID" ] || [ "$UDID" = "null" ]; then
+            echo "No available iPhone simulator found" >&2
+            exit 1
+          fi
+          echo "SIMULATOR_UDID=$UDID" >> "$GITHUB_ENV"
+
+      - name: Build and test
+        run: |
+          set -o pipefail
+          xcodebuild test \
+            -scheme SwiftGridView \
+            -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+            | tail -100
+
+  lint:
+    name: swift-format (strict)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache Tools build
+        uses: actions/cache@v4
+        with:
+          path: Tools/.build
+          key: tools-${{ runner.os }}-${{ hashFiles('Tools/Package.swift') }}
+
+      - name: Lint
+        run: |
+          swift run --package-path Tools -c release swift-format lint \
+            --strict --recursive --parallel \
+            Sources Tests Package.swift

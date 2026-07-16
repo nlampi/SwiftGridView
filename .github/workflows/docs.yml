@@ -1,0 +1,63 @@
+name: Docs
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build DocC
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # DocC via xcodebuild docbuild + docc process-archive, per ADR 0004:
+      # no swift-docc-plugin in the published manifest.
+      - name: Build documentation archive
+        run: |
+          set -o pipefail
+          xcodebuild docbuild \
+            -scheme SwiftGridView \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath .docc-build \
+            | tail -20
+
+      - name: Transform for static hosting
+        run: |
+          ARCHIVE=$(find .docc-build -type d -name 'SwiftGridView.doccarchive' | head -1)
+          "$(xcrun --find docc)" process-archive transform-for-static-hosting "$ARCHIVE" \
+            --output-path site \
+            --hosting-base-path SwiftGridView
+
+      # The site root has no index.html; land direct visitors on the module page.
+      - name: Add root redirect
+        run: |
+          cat > site/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html><head><meta http-equiv="refresh" content="0; url=/SwiftGridView/documentation/swiftgridview/"></head></html>
+          EOF
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
