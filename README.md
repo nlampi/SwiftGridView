@@ -123,7 +123,6 @@ For complete examples see the [example projects](./Examples).
 ## Communication
 
 - Found a bug or have a feature request? [Open an issue](https://github.com/nlampi/SwiftGridView/issues).
-- Pull requests are welcome.
 
 ## Documentation
 
