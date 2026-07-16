@@ -14,12 +14,14 @@
         <img src="https://img.shields.io/github/release/nlampi/SwiftGridView.svg?style=flat"
             alt="Releases">
     </a>
-    <a href="https://github.com/apple/swift-package-manager">
-        <img src="https://img.shields.io/badge/Swift%20Package%20Manager-compatible-brightgreen.svg"
-            alt="Swift Package Manager" />
+    <a href="https://swiftpackageindex.com/nlampi/SwiftGridView">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fnlampi%2FSwiftGridView%2Fbadge%3Ftype%3Dswift-versions"
+            alt="Swift Versions">
     </a>
-    <img src="https://img.shields.io/badge/Swift-6-orange.svg" alt="Swift 6">
-    <img src="https://img.shields.io/badge/platform-iOS%2015%2B-blue.svg" alt="iOS 15+">
+    <a href="https://swiftpackageindex.com/nlampi/SwiftGridView">
+        <img src="https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fnlampi%2FSwiftGridView%2Fbadge%3Ftype%3Dplatforms"
+            alt="Platforms">
+    </a>
     <a href="./LICENSE">
         <img src="https://img.shields.io/badge/license-MIT-lightgrey.svg" alt="License">
     </a>
@@ -54,6 +56,7 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Frozen Columns and Rows
 - Grouped Headers
 - SwiftUI support via the `SwiftGrid` view
+- Swift 6 strict-concurrency ready: pure-Swift, `@MainActor`-isolated API
 - Pinch to expand size (experimental)
 
 <img src="docs/assets/FrozenColRowDemo.gif" width=600 />
@@ -81,6 +84,16 @@ dependencies: [
 ]
 ```
 
+## Migrating from 0.7.x
+
+Version 1.0 is a breaking release:
+
+- **CocoaPods is no longer supported.** Remove `pod 'SwiftGridView'` from your Podfile and add the package via SPM instead.
+- **The protocols are pure Swift.** Remove `@objc` from your conformances. Formerly-`optional` methods now have default implementations — delete any you implemented only to satisfy the compiler. View-providing methods (`gridHeaderViewForColumn`, `sectionHeaderCellAtIndexPath`, ...) crash with a clear message if you enable a feature without implementing them, matching the old behavior.
+- **The minimum deployment target is iOS 15** and the API is `@MainActor`-isolated. Objective-C consumers are not supported.
+
+See the [1.0.0 changelog entry](./CHANGELOG.md) for the full list.
+
 ## Usage
 
 In UIKit, `SwiftGridView` works much like a `UICollectionView` or `UITableView`: provide a datasource and delegate.
@@ -107,12 +120,18 @@ SwiftGrid(dataSource: model, delegate: model) { gridView in
 
 For complete examples see the [example projects](./Examples).
 
-## Development
+## Communication
 
+- Found a bug or have a feature request? [Open an issue](https://github.com/nlampi/SwiftGridView/issues).
+- Want to contribute? Pull requests are welcome — see below.
+
+## Contributing
+
+- Open the package in Xcode (`Package.swift`) — no workspace or project generation needed.
 - Run tests: `xcodebuild test -scheme SwiftGridView -destination 'platform=iOS Simulator,name=<device>'`
 - Format code before committing: `swift run --package-path Tools swift-format format --in-place --recursive Sources Tests Package.swift`
 
-Formatting is enforced by CI (`swift-format lint --strict`), using the swift-format version pinned in [Tools/Package.swift](./Tools/Package.swift).
+CI must pass on pull requests: build & test on an iOS Simulator plus `swift-format lint --strict`, using the swift-format version pinned in [Tools/Package.swift](./Tools/Package.swift).
 
 ## Documentation
 
