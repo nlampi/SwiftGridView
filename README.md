@@ -123,15 +123,7 @@ For complete examples see the [example projects](./Examples).
 ## Communication
 
 - Found a bug or have a feature request? [Open an issue](https://github.com/nlampi/SwiftGridView/issues).
-- Want to contribute? Pull requests are welcome — see below.
-
-## Contributing
-
-- Open the package in Xcode (`Package.swift`) — no workspace or project generation needed.
-- Run tests: `xcodebuild test -scheme SwiftGridView -destination 'platform=iOS Simulator,name=<device>'`
-- Format code before committing: `swift run --package-path Tools swift-format format --in-place --recursive Sources Tests Package.swift`
-
-CI must pass on pull requests: build & test on an iOS Simulator plus `swift-format lint --strict`, using the swift-format version pinned in [Tools/Package.swift](./Tools/Package.swift).
+- Pull requests are welcome.
 
 ## Documentation
 
