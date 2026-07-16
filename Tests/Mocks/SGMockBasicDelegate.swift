@@ -23,7 +23,8 @@ import Foundation
 import UIKit
 import SwiftGridView
 
-class SGMockBasicDelegate : SwiftGridViewDelegate {
+@MainActor
+final class SGMockBasicDelegate: SwiftGridViewDelegate {
     let columnWidth: CGFloat = 100
     let rowHeight: CGFloat = 50
     

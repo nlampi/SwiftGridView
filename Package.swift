@@ -1,10 +1,10 @@
-// swift-tools-version:5.0
+// swift-tools-version:6.0
 import PackageDescription
 
 let package = Package(
     name: "SwiftGridView",
     platforms: [
-        .iOS(.v10)
+        .iOS(.v15)
     ],
     products: [
         .library(name: "SwiftGridView", targets: ["SwiftGridView"])
@@ -17,7 +17,11 @@ let package = Package(
         .testTarget(
             name: "SwiftGridViewTests",
             dependencies: ["SwiftGridView"],
-            path: "Tests"
-        )
-    ]
+            path: "Tests",
+            resources: [
+                .process("Assets/SwiftGridTestNibCell.xib")
+            ]
+        ),
+    ],
+    swiftLanguageModes: [.v6]
 )

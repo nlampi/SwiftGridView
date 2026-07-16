@@ -33,7 +33,7 @@ public extension IndexPath {
      
      - Parameter row: Row for the data grid
      - Parameter column: Column for the data grid
-     - Paramter section: Section for the data grid
+     - Parameter section: Section for the data grid
      */
     init(forSGRow row: Int, atColumn column: Int, inSection section: Int) {
         let indexes: [Int] = [section, column, row]

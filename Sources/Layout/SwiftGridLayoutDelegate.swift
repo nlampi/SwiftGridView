@@ -28,7 +28,8 @@ import UIKit
 /**
  The `SwiftGridLayoutDelegate` is used for retrieving extra required information to properly display and layout the data grid.
  */
-@objc protocol SwiftGridLayoutDelegate : UICollectionViewDelegate {
+@MainActor
+protocol SwiftGridLayoutDelegate: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize
     
