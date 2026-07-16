@@ -20,15 +20,15 @@
 // SOFTWARE.
 
 import Foundation
-import UIKit
 import SwiftGridView
+import UIKit
 
-class SwiftGridTestCell : SwiftGridCell {
-    
+class SwiftGridTestCell: SwiftGridCell {
+
     @IBOutlet weak var mainLabel: UILabel!
-    
+
     open override class func reuseIdentifier() -> String {
-        
+
         return "SwiftGridTestCellReuseId"
     }
 }

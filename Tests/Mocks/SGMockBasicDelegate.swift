@@ -20,21 +20,21 @@
 // SOFTWARE.
 
 import Foundation
-import UIKit
 import SwiftGridView
+import UIKit
 
 @MainActor
 final class SGMockBasicDelegate: SwiftGridViewDelegate {
     let columnWidth: CGFloat = 100
     let rowHeight: CGFloat = 50
-    
+
     func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
-        
+
         return self.columnWidth
     }
-    
+
     func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-        
+
         return self.rowHeight
     }
 }
