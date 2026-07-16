@@ -3,336 +3,123 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 77;
 	objects = {
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		SG00000000000000000000E1 /* Exceptions for "SwiftGridExample" folder in "SwiftGridExample" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = SG00000000000000000000T1 /* SwiftGridExample */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		SG00000000000000000000G1 /* SwiftGridExample */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				SG00000000000000000000E1 /* Exceptions for "SwiftGridExample" folder in "SwiftGridExample" target */,
+			);
+			path = SwiftGridExample;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXBuildFile section */
-		5C0575767E18345F01FB4239 /* Pods_SwiftGridExampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07C13B8F01E68AB6ABB232D2 /* Pods_SwiftGridExampleUITests.framework */; };
-		64E93DFF6AAF802B70D33E65 /* Pods_SwiftGridExampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB157AB64E4BBDFCB1735704 /* Pods_SwiftGridExampleTests.framework */; };
-		8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC31C792B0600F317DF /* AppDelegate.swift */; };
-		8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBC51C792B0600F317DF /* ViewController.swift */; };
-		8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBC71C792B0600F317DF /* Main.storyboard */; };
-		8A32EBCB1C792B0600F317DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBCA1C792B0600F317DF /* Assets.xcassets */; };
-		8A32EBCE1C792B0600F317DF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */; };
-		8A32EBD91C792B0600F317DF /* SwiftGridExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */; };
-		8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */; };
-		8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF21C792B6900F317DF /* BasicTextCell.swift */; };
-		8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */; };
-		8A6BFFBD1EF5B41F0094F3A8 /* BasicNibCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */; };
-		8A6BFFBF1EF5B42F0094F3A8 /* BasicNibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */; };
-		8A6BFFC11EF5BA5D0094F3A8 /* BasicNibReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */; };
-		8A6BFFC31EF5BA710094F3A8 /* BasicNibReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */; };
-		FF56C8FC6631EEE194649D14 /* Pods_SwiftGridExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */; };
+		SG00000000000000000000B1 /* SwiftGridView in Frameworks */ = {isa = PBXBuildFile; productRef = SG00000000000000000000P1 /* SwiftGridView */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		8A32EBD51C792B0600F317DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A32EBB81C792B0600F317DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A32EBBF1C792B0600F317DF;
-			remoteInfo = SwiftGridExample;
-		};
-		8A32EBE01C792B0600F317DF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 8A32EBB81C792B0600F317DF /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 8A32EBBF1C792B0600F317DF;
-			remoteInfo = SwiftGridExample;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		8A91196A1CA5E4B400108A69 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		07C13B8F01E68AB6ABB232D2 /* Pods_SwiftGridExampleUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExampleUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample.release.xcconfig"; sourceTree = "<group>"; };
-		2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleUITests/Pods-SwiftGridExampleUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		8A32EBC01C792B0600F317DF /* SwiftGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A32EBC31C792B0600F317DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A32EBC51C792B0600F317DF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8A32EBC81C792B0600F317DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8A32EBCA1C792B0600F317DF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8A32EBCD1C792B0600F317DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8A32EBCF1C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGridExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGridExampleTests.swift; sourceTree = "<group>"; };
-		8A32EBDA1C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGridExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGridExampleUITests.swift; sourceTree = "<group>"; };
-		8A32EBE51C792B0600F317DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A32EBF21C792B6900F317DF /* BasicTextCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextCell.swift; sourceTree = "<group>"; };
-		8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicTextReusableView.swift; sourceTree = "<group>"; };
-		8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNibCell.swift; sourceTree = "<group>"; };
-		8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicNibCell.xib; sourceTree = "<group>"; };
-		8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BasicNibReusableView.xib; sourceTree = "<group>"; };
-		8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicNibReusableView.swift; sourceTree = "<group>"; };
-		AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExampleTests/Pods-SwiftGridExampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		CB157AB64E4BBDFCB1735704 /* Pods_SwiftGridExampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftGridExampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftGridExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample.debug.xcconfig"; sourceTree = "<group>"; };
+		SG00000000000000000000F1 /* SwiftGridExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftGridExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		8A32EBBD1C792B0600F317DF /* Frameworks */ = {
+		SG00000000000000000000W1 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF56C8FC6631EEE194649D14 /* Pods_SwiftGridExample.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBD11C792B0600F317DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				64E93DFF6AAF802B70D33E65 /* Pods_SwiftGridExampleTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBDC1C792B0600F317DF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5C0575767E18345F01FB4239 /* Pods_SwiftGridExampleUITests.framework in Frameworks */,
+				SG00000000000000000000B1 /* SwiftGridView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43CD20FEB9B81BF7EBB2744C /* Pods */ = {
+		SG00000000000000000000R1 = {
 			isa = PBXGroup;
 			children = (
-				FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */,
-				2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */,
-				421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */,
-				AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */,
-				47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */,
-				2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		8A32EBB71C792B0600F317DF = {
-			isa = PBXGroup;
-			children = (
-				8A32EBC21C792B0600F317DF /* SwiftGridExample */,
-				8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */,
-				8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */,
-				8A32EBC11C792B0600F317DF /* Products */,
-				43CD20FEB9B81BF7EBB2744C /* Pods */,
-				94A07941495FBBD6A89280C5 /* Frameworks */,
+				SG00000000000000000000G1 /* SwiftGridExample */,
+				SG00000000000000000000R2 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		8A32EBC11C792B0600F317DF /* Products */ = {
+		SG00000000000000000000R2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8A32EBC01C792B0600F317DF /* SwiftGridExample.app */,
-				8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */,
-				8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */,
+				SG00000000000000000000F1 /* SwiftGridExample.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		8A32EBC21C792B0600F317DF /* SwiftGridExample */ = {
-			isa = PBXGroup;
-			children = (
-				8A32EBF11C792B6900F317DF /* Cells */,
-				8A32EBC31C792B0600F317DF /* AppDelegate.swift */,
-				8A32EBC51C792B0600F317DF /* ViewController.swift */,
-				8A32EBC71C792B0600F317DF /* Main.storyboard */,
-				8A32EBCA1C792B0600F317DF /* Assets.xcassets */,
-				8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */,
-				8A32EBCF1C792B0600F317DF /* Info.plist */,
-			);
-			path = SwiftGridExample;
-			sourceTree = "<group>";
-		};
-		8A32EBD71C792B0600F317DF /* SwiftGridExampleTests */ = {
-			isa = PBXGroup;
-			children = (
-				8A32EBD81C792B0600F317DF /* SwiftGridExampleTests.swift */,
-				8A32EBDA1C792B0600F317DF /* Info.plist */,
-			);
-			path = SwiftGridExampleTests;
-			sourceTree = "<group>";
-		};
-		8A32EBE21C792B0600F317DF /* SwiftGridExampleUITests */ = {
-			isa = PBXGroup;
-			children = (
-				8A32EBE31C792B0600F317DF /* SwiftGridExampleUITests.swift */,
-				8A32EBE51C792B0600F317DF /* Info.plist */,
-			);
-			path = SwiftGridExampleUITests;
-			sourceTree = "<group>";
-		};
-		8A32EBF11C792B6900F317DF /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				8A32EBF21C792B6900F317DF /* BasicTextCell.swift */,
-				8A32EBF31C792B6900F317DF /* BasicTextReusableView.swift */,
-				8A6BFFBC1EF5B41F0094F3A8 /* BasicNibCell.swift */,
-				8A6BFFBE1EF5B42F0094F3A8 /* BasicNibCell.xib */,
-				8A6BFFC21EF5BA710094F3A8 /* BasicNibReusableView.swift */,
-				8A6BFFC01EF5BA5D0094F3A8 /* BasicNibReusableView.xib */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
-		94A07941495FBBD6A89280C5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3563E2A7A006AD0F650DF6DA /* Pods_SwiftGridExample.framework */,
-				CB157AB64E4BBDFCB1735704 /* Pods_SwiftGridExampleTests.framework */,
-				07C13B8F01E68AB6ABB232D2 /* Pods_SwiftGridExampleUITests.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8A32EBBF1C792B0600F317DF /* SwiftGridExample */ = {
+		SG00000000000000000000T1 /* SwiftGridExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8A32EBE81C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExample" */;
+			buildConfigurationList = SG00000000000000000000L2 /* Build configuration list for PBXNativeTarget "SwiftGridExample" */;
 			buildPhases = (
-				55A33866F3B0595A8B671BE3 /* [CP] Check Pods Manifest.lock */,
-				8A32EBBC1C792B0600F317DF /* Sources */,
-				8A32EBBD1C792B0600F317DF /* Frameworks */,
-				8A32EBBE1C792B0600F317DF /* Resources */,
-				8A91196A1CA5E4B400108A69 /* Embed Frameworks */,
-				8F2C0877AAEDEC776FF89032 /* [CP] Embed Pods Frameworks */,
+				SG00000000000000000000S1 /* Sources */,
+				SG00000000000000000000W1 /* Frameworks */,
+				SG00000000000000000000X1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				SG00000000000000000000G1 /* SwiftGridExample */,
 			);
 			name = SwiftGridExample;
+			packageProductDependencies = (
+				SG00000000000000000000P1 /* SwiftGridView */,
+			);
 			productName = SwiftGridExample;
-			productReference = 8A32EBC01C792B0600F317DF /* SwiftGridExample.app */;
+			productReference = SG00000000000000000000F1 /* SwiftGridExample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		8A32EBD31C792B0600F317DF /* SwiftGridExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8A32EBEB1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleTests" */;
-			buildPhases = (
-				8D867139B429AFA7AD252E77 /* [CP] Check Pods Manifest.lock */,
-				8A32EBD01C792B0600F317DF /* Sources */,
-				8A32EBD11C792B0600F317DF /* Frameworks */,
-				8A32EBD21C792B0600F317DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8A32EBD61C792B0600F317DF /* PBXTargetDependency */,
-			);
-			name = SwiftGridExampleTests;
-			productName = SwiftGridExampleTests;
-			productReference = 8A32EBD41C792B0600F317DF /* SwiftGridExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		8A32EBDE1C792B0600F317DF /* SwiftGridExampleUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 8A32EBEE1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleUITests" */;
-			buildPhases = (
-				6A62286BC2BC9146CBC481F1 /* [CP] Check Pods Manifest.lock */,
-				8A32EBDB1C792B0600F317DF /* Sources */,
-				8A32EBDC1C792B0600F317DF /* Frameworks */,
-				8A32EBDD1C792B0600F317DF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				8A32EBE11C792B0600F317DF /* PBXTargetDependency */,
-			);
-			name = SwiftGridExampleUITests;
-			productName = SwiftGridExampleUITests;
-			productReference = 8A32EBDF1C792B0600F317DF /* SwiftGridExampleUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		8A32EBB81C792B0600F317DF /* Project object */ = {
+		SG00000000000000000000J1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 1320;
-				ORGANIZATIONNAME = nlampi;
-				TargetAttributes = {
-					8A32EBBF1C792B0600F317DF = {
-						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = J8C9CQ3TY2;
-						LastSwiftMigration = 1140;
-					};
-					8A32EBD31C792B0600F317DF = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 1140;
-						TestTargetID = 8A32EBBF1C792B0600F317DF;
-					};
-					8A32EBDE1C792B0600F317DF = {
-						CreatedOnToolsVersion = 7.2.1;
-						LastSwiftMigration = 1140;
-						TestTargetID = 8A32EBBF1C792B0600F317DF;
-					};
-				};
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
 			};
-			buildConfigurationList = 8A32EBBB1C792B0600F317DF /* Build configuration list for PBXProject "SwiftGridExample" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = SG00000000000000000000L1 /* Build configuration list for PBXProject "SwiftGridExample" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 8A32EBB71C792B0600F317DF;
-			productRefGroup = 8A32EBC11C792B0600F317DF /* Products */;
+			mainGroup = SG00000000000000000000R1;
+			packageReferences = (
+				SG00000000000000000000K1 /* XCLocalSwiftPackageReference "../.." */,
+			);
+			productRefGroup = SG00000000000000000000R2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8A32EBBF1C792B0600F317DF /* SwiftGridExample */,
-				8A32EBD31C792B0600F317DF /* SwiftGridExampleTests */,
-				8A32EBDE1C792B0600F317DF /* SwiftGridExampleUITests */,
+				SG00000000000000000000T1 /* SwiftGridExample */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8A32EBBE1C792B0600F317DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A6BFFBF1EF5B42F0094F3A8 /* BasicNibCell.xib in Resources */,
-				8A32EBCE1C792B0600F317DF /* LaunchScreen.storyboard in Resources */,
-				8A6BFFC11EF5BA5D0094F3A8 /* BasicNibReusableView.xib in Resources */,
-				8A32EBCB1C792B0600F317DF /* Assets.xcassets in Resources */,
-				8A32EBC91C792B0600F317DF /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBD21C792B0600F317DF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBDD1C792B0600F317DF /* Resources */ = {
+		SG00000000000000000000X1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -341,388 +128,119 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		55A33866F3B0595A8B671BE3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftGridExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A62286BC2BC9146CBC481F1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftGridExampleUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8D867139B429AFA7AD252E77 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SwiftGridExampleTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8F2C0877AAEDEC776FF89032 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SwiftGridView/SwiftGridView.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGridView.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SwiftGridExample/Pods-SwiftGridExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		8A32EBBC1C792B0600F317DF /* Sources */ = {
+		SG00000000000000000000S1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A6BFFC31EF5BA710094F3A8 /* BasicNibReusableView.swift in Sources */,
-				8A32EBC61C792B0600F317DF /* ViewController.swift in Sources */,
-				8A6BFFBD1EF5B41F0094F3A8 /* BasicNibCell.swift in Sources */,
-				8A32EBF41C792B6900F317DF /* BasicTextCell.swift in Sources */,
-				8A32EBC41C792B0600F317DF /* AppDelegate.swift in Sources */,
-				8A32EBF51C792B6900F317DF /* BasicTextReusableView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBD01C792B0600F317DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A32EBD91C792B0600F317DF /* SwiftGridExampleTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		8A32EBDB1C792B0600F317DF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				8A32EBE41C792B0600F317DF /* SwiftGridExampleUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		8A32EBD61C792B0600F317DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8A32EBBF1C792B0600F317DF /* SwiftGridExample */;
-			targetProxy = 8A32EBD51C792B0600F317DF /* PBXContainerItemProxy */;
-		};
-		8A32EBE11C792B0600F317DF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 8A32EBBF1C792B0600F317DF /* SwiftGridExample */;
-			targetProxy = 8A32EBE01C792B0600F317DF /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		8A32EBC71C792B0600F317DF /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A32EBC81C792B0600F317DF /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		8A32EBCC1C792B0600F317DF /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8A32EBCD1C792B0600F317DF /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		8A32EBE61C792B0600F317DF /* Debug */ = {
+		SG00000000000000000000C1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		8A32EBE71C792B0600F317DF /* Release */ = {
+		SG00000000000000000000C2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		8A32EBE91C792B0600F317DF /* Debug */ = {
+		SG00000000000000000000C3 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FA691E064481B8B7C5D96A8B /* Pods-SwiftGridExample.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J8C9CQ3TY2;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		8A32EBEA1C792B0600F317DF /* Release */ = {
+		SG00000000000000000000C4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2B05116DC7BD0A2F26F20151 /* Pods-SwiftGridExample.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = J8C9CQ3TY2;
+				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = SwiftGridExample/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		8A32EBEC1C792B0600F317DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 421183FC306EA35F749A8D14 /* Pods-SwiftGridExampleTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGridExample.app/SwiftGridExample";
-			};
-			name = Debug;
-		};
-		8A32EBED1C792B0600F317DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AFB9D5CEFE0BFCBAE925C820 /* Pods-SwiftGridExampleTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftGridExampleTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftGridExample.app/SwiftGridExample";
-			};
-			name = Release;
-		};
-		8A32EBEF1C792B0600F317DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47F4B240A99758F850B9271D /* Pods-SwiftGridExampleUITests.debug.xcconfig */;
-			buildSettings = {
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftGridExample;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		8A32EBF01C792B0600F317DF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D2F6EC513BF340C3B929F3D /* Pods-SwiftGridExampleUITests.release.xcconfig */;
-			buildSettings = {
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = SwiftGridExampleUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridExampleUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TEST_TARGET_NAME = SwiftGridExample;
-				USES_XCTRUNNER = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8A32EBBB1C792B0600F317DF /* Build configuration list for PBXProject "SwiftGridExample" */ = {
+		SG00000000000000000000L1 /* Build configuration list for PBXProject "SwiftGridExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8A32EBE61C792B0600F317DF /* Debug */,
-				8A32EBE71C792B0600F317DF /* Release */,
+				SG00000000000000000000C1 /* Debug */,
+				SG00000000000000000000C2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8A32EBE81C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExample" */ = {
+		SG00000000000000000000L2 /* Build configuration list for PBXNativeTarget "SwiftGridExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				8A32EBE91C792B0600F317DF /* Debug */,
-				8A32EBEA1C792B0600F317DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8A32EBEB1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8A32EBEC1C792B0600F317DF /* Debug */,
-				8A32EBED1C792B0600F317DF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		8A32EBEE1C792B0600F317DF /* Build configuration list for PBXNativeTarget "SwiftGridExampleUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8A32EBEF1C792B0600F317DF /* Debug */,
-				8A32EBF01C792B0600F317DF /* Release */,
+				SG00000000000000000000C3 /* Debug */,
+				SG00000000000000000000C4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		SG00000000000000000000K1 /* XCLocalSwiftPackageReference "../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = "../..";
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		SG00000000000000000000P1 /* SwiftGridView */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftGridView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
-	rootObject = 8A32EBB81C792B0600F317DF /* Project object */;
+	rootObject = SG00000000000000000000J1 /* Project object */;
 }
