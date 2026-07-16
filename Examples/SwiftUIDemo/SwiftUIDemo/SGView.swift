@@ -29,137 +29,127 @@ struct PrettyDataPoint {
     var alignment:Alignment = .leading
 }
 
-struct SGView: UIViewRepresentable {
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    func makeUIView(context: Context) -> SwiftGridView {
-        let gridView = SwiftGridView()
-        gridView.dataSource = context.coordinator
-        gridView.delegate = context.coordinator
-        
-        // Register Cells/Views
-        gridView.register(PrettyView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier())
-        gridView.register(PrettyCell.self, forCellWithReuseIdentifier: PrettyCell.reuseIdentifier())
-        
-        return gridView
-    }
-    
-    func updateUIView(_ uiView: SwiftGridView, context: Context) {
-        // Do Nothing?
-    }
-    
-    class Coordinator: NSObject, SwiftGridViewDataSource, SwiftGridViewDelegate {
-        
-        var grid: SGView
-        var headers = [PrettyDataPoint]()
-        var countries = [PECountry]()
-        
-        init(_ swiftGridView: SGView) {
-            self.grid = swiftGridView
-            
-            // Init Header Data
-            self.headers.append(PrettyDataPoint(title: "Country", width: 150, alignment: .leading))
-            self.headers.append(PrettyDataPoint(title: "Capital", width: 150, alignment: .leading))
-            self.headers.append(PrettyDataPoint(title: "Currency", width: 140, alignment: .leading))
-            self.headers.append(PrettyDataPoint(title: "Phone", width: 120, alignment: .center))
-            self.headers.append(PrettyDataPoint(title: "TLD", width: 150, alignment: .leading))
-            self.headers.append(PrettyDataPoint(title: "Population", width: 120, alignment: .trailing))
-            self.headers.append(PrettyDataPoint(title: "Area", width: 100, alignment: .trailing))
+/// Provides the grid content, exactly like a UIKit datasource/delegate would.
+@MainActor
+final class PrettyGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridViewDelegate {
 
-            // Init Row Data
-            let plistFile = Bundle.main.path(forResource: "countries", ofType: "plist")!
-            let countriesData = NSArray(contentsOfFile: plistFile)!
-            
-            for countryDetails in countriesData as! [[String:Any]] {
-                self.countries.append(PECountry(dictionary: countryDetails))
-            }
+    var headers = [PrettyDataPoint]()
+    var countries = [PECountry]()
+
+    init() {
+        // Init Header Data
+        self.headers.append(PrettyDataPoint(title: "Country", width: 150, alignment: .leading))
+        self.headers.append(PrettyDataPoint(title: "Capital", width: 150, alignment: .leading))
+        self.headers.append(PrettyDataPoint(title: "Currency", width: 140, alignment: .leading))
+        self.headers.append(PrettyDataPoint(title: "Phone", width: 120, alignment: .center))
+        self.headers.append(PrettyDataPoint(title: "TLD", width: 150, alignment: .leading))
+        self.headers.append(PrettyDataPoint(title: "Population", width: 120, alignment: .trailing))
+        self.headers.append(PrettyDataPoint(title: "Area", width: 100, alignment: .trailing))
+
+        // Init Row Data
+        let plistFile = Bundle.main.path(forResource: "countries", ofType: "plist")!
+        let countriesData = NSArray(contentsOfFile: plistFile)!
+
+        for countryDetails in countriesData as! [[String:Any]] {
+            self.countries.append(PECountry(dictionary: countryDetails))
         }
-        
-        
-        // MARK - SwiftGridViewDataSource Methods
-        
-        func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
-            
-            1
-        }
-        
-        func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
-            
-            self.headers.count
-        }
-        
-        func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
-            
-            1
-        }
-        
-        func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
-            
-            self.countries.count
-        }
-        
-        func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
-            let header = self.headers[indexPath.sgColumn]
-            let country = self.countries[indexPath.sgRow]
-            let cell = dataGridView.dequeueReusableCellWithReuseIdentifier(PrettyCell.reuseIdentifier(), forIndexPath: indexPath) as! PrettyCell
-            
-            switch indexPath.sgColumn {
-            case 0:
-                cell.configureFor("\(country.name)", and: header)
-            case 1:
-                cell.configureFor("\(country.capital)", and: header)
-            case 2:
-                cell.configureFor("\(country.currency)", and: header)
-            case 3:
-                cell.configureFor("\(country.phone)", and: header)
-            case 4:
-                cell.configureFor("\(country.tld)", and: header)
-            case 5:
-                if country.population < 0 {
-                    cell.configureFor("-", and: header)
-                } else {
-                    cell.configureFor("\(country.population)", and: header)
-                }
-            case 6:
-                if country.area < 0 {
-                    cell.configureFor("-", and: header)
-                } else {
-                    cell.configureFor("\(country.area)", and: header)
-                }
-            default:
+    }
+
+
+    // MARK: - SwiftGridViewDataSource Methods
+
+    func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
+
+        1
+    }
+
+    func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
+
+        self.headers.count
+    }
+
+    func numberOfFrozenColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
+
+        1
+    }
+
+    func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
+
+        self.countries.count
+    }
+
+    func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
+        let header = self.headers[indexPath.sgColumn]
+        let country = self.countries[indexPath.sgRow]
+        let cell = dataGridView.dequeueReusableCellWithReuseIdentifier(PrettyCell.reuseIdentifier(), forIndexPath: indexPath) as! PrettyCell
+
+        switch indexPath.sgColumn {
+        case 0:
+            cell.configureFor("\(country.name)", and: header)
+        case 1:
+            cell.configureFor("\(country.capital)", and: header)
+        case 2:
+            cell.configureFor("\(country.currency)", and: header)
+        case 3:
+            cell.configureFor("\(country.phone)", and: header)
+        case 4:
+            cell.configureFor("\(country.tld)", and: header)
+        case 5:
+            if country.population < 0 {
                 cell.configureFor("-", and: header)
+            } else {
+                cell.configureFor("\(country.population)", and: header)
             }
-            
-            return cell
+        case 6:
+            if country.area < 0 {
+                cell.configureFor("-", and: header)
+            } else {
+                cell.configureFor("\(country.area)", and: header)
+            }
+        default:
+            cell.configureFor("-", and: header)
         }
-        
-        func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView {
-            let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier(), atColumn: column) as! PrettyView
-            
-            headerView.configureFor(self.headers[column])
-            
-            return headerView
-        }
-        
-        func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
-            
-            self.headers[columnIndex].width
-        }
-        
-        
-        // MARK - SwiftGridViewDelegate Methods
-        
-        func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-            
-            45
-        }
-        
-        func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
-            
-            70
+
+        return cell
+    }
+
+    func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: Int) -> SwiftGridReusableView {
+        let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier(), atColumn: column) as! PrettyView
+
+        headerView.configureFor(self.headers[column])
+
+        return headerView
+    }
+
+
+    // MARK: - SwiftGridViewDelegate Methods
+
+    func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat {
+
+        self.headers[columnIndex].width
+    }
+
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+
+        45
+    }
+
+    func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
+
+        70
+    }
+}
+
+/// Uses the library's `SwiftGrid` SwiftUI wrapper directly.
+struct SGView: View {
+
+    @StateObject private var model = PrettyGridModel()
+
+    var body: some View {
+        SwiftGrid(dataSource: model, delegate: model) { gridView in
+            // Register Cells/Views
+            gridView.register(PrettyView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier())
+            gridView.register(PrettyCell.self, forCellWithReuseIdentifier: PrettyCell.reuseIdentifier())
         }
     }
 }
