@@ -1,42 +1,25 @@
-# OS X
+# macOS
 .DS_Store
 
 # Xcode
-build/
 DerivedData/
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata
-*.xccheckout
+xcuserdata/
 *.xcuserstate
-profile
+*.xccheckout
 *.moved-aside
 *.xcscmblueprint
-*.hmap
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
 
 # Playgrounds
 timeline.xctimeline
 playground.xcworkspace
 
-# Swift Package Manager
-# Packages/
-# *.xcodeproj
-.swiftpm
-.build/
-# Package.pins
-# Package.resolved
-
-# CocoaPods
-# Pods/
-
-# Carthage
-Carthage/Build
+# Documentation build output
+.docc-build/

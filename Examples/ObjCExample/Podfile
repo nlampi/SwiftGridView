@@ -1,9 +1,0 @@
-project 'ObjCExample.xcodeproj/'
-platform :ios, '12.0'
-
-target 'ObjCExample' do
-  use_frameworks!
-
-  pod 'SwiftGridView', :path => '../../SwiftGridView.podspec'
-
-end
