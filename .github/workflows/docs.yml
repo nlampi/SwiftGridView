@@ -47,6 +47,11 @@ jobs:
           <html><head><meta http-equiv="refresh" content="0; url=/SwiftGridView/documentation/swiftgridview/"></head></html>
           EOF
 
+      # Keep the long-standing demo GIF URLs (/SwiftGridView/BasicDemo.gif etc.)
+      # resolving from the deployed site.
+      - name: Copy demo assets
+        run: cp docs/assets/*.gif site/
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
