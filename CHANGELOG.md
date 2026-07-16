@@ -2,6 +2,24 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [1.0.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.0.0) (Unreleased)
+Major modernization release. **Breaking changes** — see the migration notes below.
+
+### Breaking
+- **Pure-Swift API**: the `SwiftGridViewDataSource` and `SwiftGridViewDelegate` protocols are no longer `@objc`. Formerly-`optional` methods now have default implementations: feature toggles (frozen rows/columns, column groupings, header/footer heights) default to "off", and view-providing methods (`gridHeaderViewForColumn`, `sectionHeaderCellAtIndexPath`, etc.) `fatalError` if the corresponding feature is enabled without implementing them. Objective-C consumers are no longer supported.
+- **iOS 15+ / Swift 6**: minimum deployment target raised from iOS 12 to iOS 15; the package builds in Swift 6 language mode with the public API `@MainActor`-isolated.
+- **SPM only**: CocoaPods support removed (podspec deleted). Install via Swift Package Manager.
+- `SwiftGridElementKindSectionHeader`/`SectionFooter` are now literal constants matching `UICollectionView.elementKindSectionHeader`/`Footer` (same values as before).
+
+### Added
+- **SwiftUI support**: new `SwiftGrid` view (a `UIViewRepresentable` wrapping `SwiftGridView`) ships in the library.
+- Swift Testing test suite running headless on the iOS Simulator.
+- GitHub Actions CI: build & test, strict swift-format lint, DocC deployment to GitHub Pages, and tag-triggered releases.
+
+### Changed
+- Documentation is now generated with DocC instead of jazzy. Existing documentation URLs (`/Classes/*.html` etc.) are replaced by DocC paths (`/documentation/swiftgridview/...`) without redirects.
+- Examples reduced to two (UIKit `SwiftGridExample` and `SwiftUIDemo`), both consuming the package via local SPM path reference.
+
 ## [0.7.8](https://github.com/nlampi/SwiftGridView/releases/tag/0.7.8) (2025-02-13)
 Fixed broken documentation.
 
