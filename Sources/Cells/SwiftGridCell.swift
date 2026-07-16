@@ -28,23 +28,23 @@ import UIKit
 open class SwiftGridCell: UICollectionViewCell {
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
         self.backgroundColor = UIColor.clear
     }
-    
+
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
         self.backgroundColor = UIColor.clear
     }
-    
+
     /**
      Returns the reuse identifier string to be used for the cell. Override to provide a custom identifier.
-     
+
      - Returns: String identifier for the cell.
     */
     open class func reuseIdentifier() -> String {
-        
+
         return "SwiftGridCellReuseId"
     }
 }

@@ -24,31 +24,30 @@ import SwiftGridView
 
 @MainActor
 final class SGMockBasicDataSource: SwiftGridViewDataSource {
-    
+
     let sections: Int = 3
     let columns: Int = 5
     let rowCounts: [Int] = [5, 10, 15]
-    
-    
+
     func numberOfSectionsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
-        
+
         return self.sections
     }
-    
+
     func numberOfColumnsInDataGridView(_ dataGridView: SwiftGridView) -> Int {
-        
+
         return self.columns
     }
-    
+
     func dataGridView(_ dataGridView: SwiftGridView, numberOfRowsInSection section: Int) -> Int {
-        
+
         return self.rowCounts[section]
     }
-    
+
     func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
         let cell = dataGridView.dequeueReusableCellWithReuseIdentifier(SwiftGridTestCell.reuseIdentifier(), forIndexPath: indexPath)
-        
+
         return cell
     }
-    
+
 }
