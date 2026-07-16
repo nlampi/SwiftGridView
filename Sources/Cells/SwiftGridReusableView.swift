@@ -27,12 +27,13 @@ import UIKit
 /**
  The `SwiftGridReusableViewDelegate` is used for passing selection and highlighting events through to the data grid.
  */
+@MainActor
 public protocol SwiftGridReusableViewDelegate: AnyObject {
     /**
      Called when the reusable view is selected.
      
      - Parameter reusableView: The reusable view instance.
-     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     - Parameter indexPath: The swift grid view index path of the passed reusable view.
      */
     func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: IndexPath)
     
@@ -40,7 +41,7 @@ public protocol SwiftGridReusableViewDelegate: AnyObject {
      Called when the reusable view is deselected.
      
      - Parameter reusableView: The reusable view instance.
-     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     - Parameter indexPath: The swift grid view index path of the passed reusable view.
      */
     func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: IndexPath)
     
@@ -48,7 +49,7 @@ public protocol SwiftGridReusableViewDelegate: AnyObject {
      Called when the reusable view is highlighted.
      
      - Parameter reusableView: The reusable view instance.
-     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     - Parameter indexPath: The swift grid view index path of the passed reusable view.
      */
     func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didHighlightViewAtIndexPath indexPath: IndexPath)
     
@@ -56,7 +57,7 @@ public protocol SwiftGridReusableViewDelegate: AnyObject {
      Called when the reusable view is unhighlighted.
      
      - Parameter reusableView: The reusable view instance.
-     - Parameter indexpath: The swift grid view index path of the passed reusable view.
+     - Parameter indexPath: The swift grid view index path of the passed reusable view.
      */
     func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: IndexPath)
 }

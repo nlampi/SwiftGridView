@@ -1,4 +1,4 @@
-// SwiftGridView.swift
+// SwiftGridViewDelegate.swift
 // Copyright (c) 2016 - Present Nathan Lampi (http://nathanlampi.com/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,174 +22,221 @@
 import Foundation
 import UIKit
 
-
 // MARK: - SwiftGridViewDelegate
 
 /**
  The `SwiftGridViewDelegate` protocol is used much like a UICollectionView or UITableView delegate for handling interactions and sizing of the data grid.
+
+ Methods with default implementations are optional. Height methods default to `0`, which disables the corresponding header or footer.
+ Selection callbacks default to doing nothing.
  */
-@objc public protocol SwiftGridViewDelegate {
-    
+@MainActor
+public protocol SwiftGridViewDelegate: AnyObject {
+
     // MARK: Sizing
-    
+
     /**
      Returns the width of the specified column in the data grid.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter columnIndex: Current column index.
      - Returns: Width to be used for all views and cells in the provided column.
      */
     func dataGridView(_ dataGridView: SwiftGridView, widthOfColumnAtIndex columnIndex: Int) -> CGFloat
-    
+
     /**
      Returns the height of the specified row in the data grid.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the row. Section and Row are provided values, Column is ignored.
      - Returns: Height to be used for all cells in the provided row.
      */
     func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat
-    
-    
+
     // MARK: Header Methods
-    
+
     /**
-     Returns the height of the header views in the data grid.
-     
+     Returns the height of the header views in the data grid. Defaults to `0` (no grid header).
+
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the grid header.
      */
-    @objc optional func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
-    
+    func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
+
     /**
      Called when a header view is selected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a header view is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the header.  Column is the provided value, Row and Section are ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a grouped header view is selected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
+     - Parameter columnGrouping: Current grouping.
      - Parameter index: Grouped header index.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int)
+
     /**
      Called when a grouped header view is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
+     - Parameter columnGrouping: Current grouping.
      - Parameter index: Grouped header index.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int)
-    
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int)
+
     // MARK: Footer Methods
-    
+
     /**
-     Returns the height of the footer views in the data grid.
-     
+     Returns the height of the footer views in the data grid. Defaults to `0` (no grid footer).
+
      - Parameter dataGridView: The swift grid view instance.
      - Returns: Height to be used for all views in the grid footer.
      */
-    @objc optional func heightForGridFooterInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
-    
+    func heightForGridFooterInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat
+
     /**
-     Called when a footer view is deselected.
-     
+     Called when a footer view is selected.
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a footer view is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the footer.  Column is the provided value, Row and Section are ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: IndexPath)
-    
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: IndexPath)
+
     // MARK: Section Header Methods
-    
+
     /**
-     Returns the height of the header views in the provided data grid section.
-     
+     Returns the height of the header views in the provided data grid section. Defaults to `0` (no section header).
+
      - Parameter dataGridView: The swift grid view instance.
+     - Parameter section: Current section index.
      - Returns: Height to be used for all views in the section's header.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat
-    
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat
+
     /**
      Called when a section header view is selected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a section header view is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section header.  Section and Column are provided, Row is ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath)
-    
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath)
+
     // MARK: Section Footer Methods
-    
+
     /**
-     Returns the height of the footer views in the provided data grid section.
-     
+     Returns the height of the footer views in the provided data grid section. Defaults to `0` (no section footer).
+
      - Parameter dataGridView: The swift grid view instance.
+     - Parameter section: Current section index.
      - Returns: Height to be used for all views in the section's footer.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat
-    
+    func dataGridView(_ dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat
+
     /**
      Called when a section footer view is selected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a section footer view is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the section footer.  Section and Column are provided, Row is ignored.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath)
-    
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath)
+
     // MARK: Cell Methods
-    
+
     /**
      Called when a cell is selected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the selected cell.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath)
-    
+    func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath)
+
     /**
      Called when a cell is deselected.
-     
+
      - Parameter dataGridView: The swift grid view instance.
      - Parameter indexPath: Current Swift Grid index path for the deselected cell.
      */
-    @objc optional func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath)
+    func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath)
+}
+
+// MARK: - Default Implementations
+
+extension SwiftGridViewDelegate {
+
+    public func heightForGridHeaderInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
+        return 0
+    }
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectHeaderAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectHeaderAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectGroupedHeader columnGrouping: [Int], at index: Int) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectGroupedHeader columnGrouping: [Int], at index: Int) {}
+
+    public func heightForGridFooterInDataGridView(_ dataGridView: SwiftGridView) -> CGFloat {
+        return 0
+    }
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectFooterAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectFooterAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, heightOfHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionHeaderAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionHeaderAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, heightOfFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectSectionFooterAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectSectionFooterAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath) {}
 }

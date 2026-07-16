@@ -22,7 +22,8 @@
 import Foundation
 import SwiftGridView
 
-class SGMockBasicDataSource : SwiftGridViewDataSource {
+@MainActor
+final class SGMockBasicDataSource: SwiftGridViewDataSource {
     
     let sections: Int = 3
     let columns: Int = 5
