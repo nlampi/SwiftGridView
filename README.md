@@ -90,6 +90,7 @@ Version 1.0 is a breaking release:
 
 - **CocoaPods is no longer supported.** Remove `pod 'SwiftGridView'` from your Podfile and add the package via SPM instead.
 - **The protocols are pure Swift.** Remove `@objc` from your conformances. Formerly-`optional` methods now have default implementations — delete any you implemented only to satisfy the compiler. View-providing methods (`gridHeaderViewForColumn`, `sectionHeaderCellAtIndexPath`, ...) crash with a clear message if you enable a feature without implementing them, matching the old behavior.
+- **Set `dataSource` and `delegate` in code, not in Interface Builder.** Because the protocols are now pure Swift, these properties can no longer be connected as storyboard/XIB outlets. If you wired them in IB, remove those connections and assign `grid.dataSource = self` / `grid.delegate = self` in code instead (a leftover IB outlet raises `NSUnknownKeyException` at load).
 - **The minimum deployment target is iOS 15** and the API is `@MainActor`-isolated. Objective-C consumers are not supported.
 
 See the [1.0.0 changelog entry](./CHANGELOG.md) for the full list.
