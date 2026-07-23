@@ -39,7 +39,7 @@ struct ContentView: View {
                 VStack {
                     SGView()
                 }
-                .navigationBarTitle(Text("Pretty Grid"))
+                .navigationTitle("SwiftGridView")
                 .padding(.top, 10)
             }
         }
