@@ -38,6 +38,11 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         super.viewDidLoad()
         
         // Do any additional setup after loading the view, typically from a nib.
+        // The datasource and delegate are wired in code: SwiftGridView's pure-Swift
+        // protocols cannot be connected as Interface Builder outlets.
+        self.dataGridView.dataSource = self
+        self.dataGridView.delegate = self
+
         self.dataGridView.allowsSelection = true
         self.dataGridView.allowsMultipleSelection = true
         self.dataGridView.rowSelectionEnabled = true
@@ -209,7 +214,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     // Header / Footer Views
-    func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: NSInteger) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: Int) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: column) as! BasicTextReusableView
         
         if(reloadOverride) {
@@ -246,7 +251,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         return view;
     }
     
-    func dataGridView(_ dataGridView: SwiftGridView, gridFooterViewForColumn column: NSInteger) -> SwiftGridReusableView {
+    func dataGridView(_ dataGridView: SwiftGridView, gridFooterViewForColumn column: Int) -> SwiftGridReusableView {
         let view = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier(), atColumn: column) as! BasicTextReusableView
         
         if(reloadOverride) {

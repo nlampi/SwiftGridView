@@ -7,6 +7,7 @@ Major modernization release. **Breaking changes** — see the migration notes be
 
 ### Breaking
 - **Pure-Swift API**: the `SwiftGridViewDataSource` and `SwiftGridViewDelegate` protocols are no longer `@objc`. Formerly-`optional` methods now have default implementations: feature toggles (frozen rows/columns, column groupings, header/footer heights) default to "off", and view-providing methods (`gridHeaderViewForColumn`, `sectionHeaderCellAtIndexPath`, etc.) `fatalError` if the corresponding feature is enabled without implementing them. Objective-C consumers are no longer supported.
+- **`dataSource`/`delegate` can no longer be Interface Builder outlets**: as a consequence of the pure-Swift protocols, assign them in code (`grid.dataSource = self`). A leftover storyboard/XIB outlet connection raises `NSUnknownKeyException` at load.
 - **iOS 15+ / Swift 6**: minimum deployment target raised from iOS 12 to iOS 15; the package builds in Swift 6 language mode with the public API `@MainActor`-isolated.
 - **SPM only**: CocoaPods support removed (podspec deleted). Install via Swift Package Manager.
 - `SwiftGridElementKindSectionHeader`/`SectionFooter` are now literal constants matching `UICollectionView.elementKindSectionHeader`/`Footer` (same values as before).
