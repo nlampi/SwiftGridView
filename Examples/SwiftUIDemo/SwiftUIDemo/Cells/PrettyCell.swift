@@ -71,7 +71,23 @@ class PrettyCell : SwiftGridCell {
     }
     
     static override func reuseIdentifier() -> String {
-        
+
         "PrettyRowCellReuseID"
     }
+}
+
+/// Bridges the UIKit grid cell into a SwiftUI preview.
+private struct PrettyCellPreview: UIViewRepresentable {
+    func makeUIView(context: Context) -> PrettyCell {
+        let cell = PrettyCell(frame: .zero)
+        cell.configureFor("Andorra", and: PrettyDataPoint(title: "Country", width: 200))
+        return cell
+    }
+
+    func updateUIView(_ uiView: PrettyCell, context: Context) {}
+}
+
+#Preview("PrettyCell") {
+    PrettyCellPreview()
+        .frame(width: 200, height: 45)
 }
