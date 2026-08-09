@@ -63,7 +63,23 @@ class PrettyView : SwiftGridReusableView {
     // MARK: - Reuse
     
     override open class func reuseIdentifier() -> String {
-        
+
         return "prettyHeaderViewReuseID"
     }
+}
+
+/// Bridges the UIKit reusable view into a SwiftUI preview.
+private struct PrettyViewPreview: UIViewRepresentable {
+    func makeUIView(context: Context) -> PrettyView {
+        let view = PrettyView(frame: .zero)
+        view.configureFor(PrettyDataPoint(title: "Country", width: 200))
+        return view
+    }
+
+    func updateUIView(_ uiView: PrettyView, context: Context) {}
+}
+
+#Preview("PrettyView") {
+    PrettyViewPreview()
+        .frame(width: 200, height: 60)
 }
