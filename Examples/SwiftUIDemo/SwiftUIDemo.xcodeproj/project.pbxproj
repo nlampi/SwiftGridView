@@ -15,11 +15,11 @@
 		8A47F2E22440FBE300607BBD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A47F2E02440FBE300607BBD /* LaunchScreen.storyboard */; };
 		8A47F2EB2440FC1D00607BBD /* SwiftGridView in Frameworks */ = {isa = PBXBuildFile; productRef = 8A47F2EA2440FC1D00607BBD /* SwiftGridView */; };
 		8A47F2ED2440FC6800607BBD /* SGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2EC2440FC6800607BBD /* SGView.swift */; };
-		8A47F2F32440FC7600607BBD /* PrettyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2EF2440FC7600607BBD /* PrettyView.swift */; };
-		8A47F2F42440FC7600607BBD /* PrettyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F02440FC7600607BBD /* PrettyCell.swift */; };
-		8A47F2F52440FC7600607BBD /* PrettyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F12440FC7600607BBD /* PrettyHeaderView.swift */; };
-		8A47F2F62440FC7600607BBD /* PrettyContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F22440FC7600607BBD /* PrettyContentView.swift */; };
-		8A47F2FC2440FD7500607BBD /* PECountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2FA2440FD7500607BBD /* PECountry.swift */; };
+		8A47F2F32440FC7600607BBD /* DemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2EF2440FC7600607BBD /* DemoView.swift */; };
+		8A47F2F42440FC7600607BBD /* DemoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F02440FC7600607BBD /* DemoCell.swift */; };
+		8A47F2F52440FC7600607BBD /* DemoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F12440FC7600607BBD /* DemoHeaderView.swift */; };
+		8A47F2F62440FC7600607BBD /* DemoContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2F22440FC7600607BBD /* DemoContentView.swift */; };
+		8A47F2FC2440FD7500607BBD /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A47F2FA2440FD7500607BBD /* Country.swift */; };
 		8A47F2FD2440FD7500607BBD /* countries.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A47F2FB2440FD7500607BBD /* countries.plist */; };
 /* End PBXBuildFile section */
 
@@ -33,11 +33,11 @@
 		8A47F2E12440FBE300607BBD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A47F2E32440FBE300607BBD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A47F2EC2440FC6800607BBD /* SGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SGView.swift; sourceTree = "<group>"; };
-		8A47F2EF2440FC7600607BBD /* PrettyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyView.swift; sourceTree = "<group>"; };
-		8A47F2F02440FC7600607BBD /* PrettyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyCell.swift; sourceTree = "<group>"; };
-		8A47F2F12440FC7600607BBD /* PrettyHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyHeaderView.swift; sourceTree = "<group>"; };
-		8A47F2F22440FC7600607BBD /* PrettyContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrettyContentView.swift; sourceTree = "<group>"; };
-		8A47F2FA2440FD7500607BBD /* PECountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PECountry.swift; sourceTree = "<group>"; };
+		8A47F2EF2440FC7600607BBD /* DemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoView.swift; sourceTree = "<group>"; };
+		8A47F2F02440FC7600607BBD /* DemoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCell.swift; sourceTree = "<group>"; };
+		8A47F2F12440FC7600607BBD /* DemoHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoHeaderView.swift; sourceTree = "<group>"; };
+		8A47F2F22440FC7600607BBD /* DemoContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoContentView.swift; sourceTree = "<group>"; };
+		8A47F2FA2440FD7500607BBD /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		8A47F2FB2440FD7500607BBD /* countries.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = countries.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,10 +96,10 @@
 		8A47F2EE2440FC7600607BBD /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8A47F2EF2440FC7600607BBD /* PrettyView.swift */,
-				8A47F2F02440FC7600607BBD /* PrettyCell.swift */,
-				8A47F2F12440FC7600607BBD /* PrettyHeaderView.swift */,
-				8A47F2F22440FC7600607BBD /* PrettyContentView.swift */,
+				8A47F2EF2440FC7600607BBD /* DemoView.swift */,
+				8A47F2F02440FC7600607BBD /* DemoCell.swift */,
+				8A47F2F12440FC7600607BBD /* DemoHeaderView.swift */,
+				8A47F2F22440FC7600607BBD /* DemoContentView.swift */,
 				8A47F2F92440FD7500607BBD /* Data */,
 			);
 			path = Cells;
@@ -108,7 +108,7 @@
 		8A47F2F92440FD7500607BBD /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				8A47F2FA2440FD7500607BBD /* PECountry.swift */,
+				8A47F2FA2440FD7500607BBD /* Country.swift */,
 				8A47F2FB2440FD7500607BBD /* countries.plist */,
 			);
 			name = Data;
@@ -193,13 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A47F2F62440FC7600607BBD /* PrettyContentView.swift in Sources */,
-				8A47F2FC2440FD7500607BBD /* PECountry.swift in Sources */,
-				8A47F2F52440FC7600607BBD /* PrettyHeaderView.swift in Sources */,
+				8A47F2F62440FC7600607BBD /* DemoContentView.swift in Sources */,
+				8A47F2FC2440FD7500607BBD /* Country.swift in Sources */,
+				8A47F2F52440FC7600607BBD /* DemoHeaderView.swift in Sources */,
 				8A47F2ED2440FC6800607BBD /* SGView.swift in Sources */,
-				8A47F2F42440FC7600607BBD /* PrettyCell.swift in Sources */,
+				8A47F2F42440FC7600607BBD /* DemoCell.swift in Sources */,
 				8A47F2D62440FBE200607BBD /* AppDelegate.swift in Sources */,
-				8A47F2F32440FC7600607BBD /* PrettyView.swift in Sources */,
+				8A47F2F32440FC7600607BBD /* DemoView.swift in Sources */,
 				8A47F2D82440FBE200607BBD /* SceneDelegate.swift in Sources */,
 				8A47F2DA2440FBE200607BBD /* ContentView.swift in Sources */,
 			);
@@ -347,7 +347,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridView.PrettyExample.SwiftUIDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridView.Example.SwiftUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -366,7 +366,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridView.PrettyExample.SwiftUIDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nlampi.SwiftGridView.Example.SwiftUIDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

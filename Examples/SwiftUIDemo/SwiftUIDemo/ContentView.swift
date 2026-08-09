@@ -34,7 +34,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color("PrettyBlue")
+                Color("DemoBlue")
                 .edgesIgnoringSafeArea(.all)
                 VStack {
                     SGView()

@@ -23,7 +23,7 @@
 import SwiftUI
 import SwiftGridView
 
-struct PrettyDataPoint {
+struct DemoColumn {
     var title:String
     var width:CGFloat
     var alignment:Alignment = .leading
@@ -31,27 +31,27 @@ struct PrettyDataPoint {
 
 /// Provides the grid content, exactly like a UIKit datasource/delegate would.
 @MainActor
-final class PrettyGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridViewDelegate {
+final class DemoGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridViewDelegate {
 
-    var headers = [PrettyDataPoint]()
-    var countries = [PECountry]()
+    var headers = [DemoColumn]()
+    var countries = [Country]()
 
     init() {
         // Init Header Data
-        self.headers.append(PrettyDataPoint(title: "Country", width: 150, alignment: .leading))
-        self.headers.append(PrettyDataPoint(title: "Capital", width: 150, alignment: .leading))
-        self.headers.append(PrettyDataPoint(title: "Currency", width: 140, alignment: .leading))
-        self.headers.append(PrettyDataPoint(title: "Phone", width: 120, alignment: .center))
-        self.headers.append(PrettyDataPoint(title: "TLD", width: 150, alignment: .leading))
-        self.headers.append(PrettyDataPoint(title: "Population", width: 120, alignment: .trailing))
-        self.headers.append(PrettyDataPoint(title: "Area", width: 100, alignment: .trailing))
+        self.headers.append(DemoColumn(title: "Country", width: 150, alignment: .leading))
+        self.headers.append(DemoColumn(title: "Capital", width: 150, alignment: .leading))
+        self.headers.append(DemoColumn(title: "Currency", width: 140, alignment: .leading))
+        self.headers.append(DemoColumn(title: "Phone", width: 120, alignment: .center))
+        self.headers.append(DemoColumn(title: "TLD", width: 150, alignment: .leading))
+        self.headers.append(DemoColumn(title: "Population", width: 120, alignment: .trailing))
+        self.headers.append(DemoColumn(title: "Area", width: 100, alignment: .trailing))
 
         // Init Row Data
         let plistFile = Bundle.main.path(forResource: "countries", ofType: "plist")!
         let countriesData = NSArray(contentsOfFile: plistFile)!
 
         for countryDetails in countriesData as! [[String:Any]] {
-            self.countries.append(PECountry(dictionary: countryDetails))
+            self.countries.append(Country(dictionary: countryDetails))
         }
     }
 
@@ -81,7 +81,7 @@ final class PrettyGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGri
     func dataGridView(_ dataGridView: SwiftGridView, cellAtIndexPath indexPath: IndexPath) -> SwiftGridCell {
         let header = self.headers[indexPath.sgColumn]
         let country = self.countries[indexPath.sgRow]
-        let cell = dataGridView.dequeueReusableCellWithReuseIdentifier(PrettyCell.reuseIdentifier(), forIndexPath: indexPath) as! PrettyCell
+        let cell = dataGridView.dequeueReusableCellWithReuseIdentifier(DemoCell.reuseIdentifier(), forIndexPath: indexPath) as! DemoCell
 
         switch indexPath.sgColumn {
         case 0:
@@ -114,7 +114,7 @@ final class PrettyGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGri
     }
 
     func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: Int) -> SwiftGridReusableView {
-        let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier(), atColumn: column) as! PrettyView
+        let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: DemoView.reuseIdentifier(), atColumn: column) as! DemoView
 
         headerView.configureFor(self.headers[column])
 
@@ -143,13 +143,13 @@ final class PrettyGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGri
 /// Uses the library's `SwiftGrid` SwiftUI wrapper directly.
 struct SGView: View {
 
-    @StateObject private var model = PrettyGridModel()
+    @StateObject private var model = DemoGridModel()
 
     var body: some View {
         SwiftGrid(dataSource: model, delegate: model) { gridView in
             // Register Cells/Views
-            gridView.register(PrettyView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: PrettyView.reuseIdentifier())
-            gridView.register(PrettyCell.self, forCellWithReuseIdentifier: PrettyCell.reuseIdentifier())
+            gridView.register(DemoView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: DemoView.reuseIdentifier())
+            gridView.register(DemoCell.self, forCellWithReuseIdentifier: DemoCell.reuseIdentifier())
         }
     }
 }
