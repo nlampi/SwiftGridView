@@ -12,6 +12,10 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 
+# Xcode per-user/environment workspace state
+**/xcshareddata/IDEWorkspaceChecks.plist
+**/xcshareddata/WorkspaceSettings.xcsettings
+
 # Swift Package Manager
 .build/
 .swiftpm/
