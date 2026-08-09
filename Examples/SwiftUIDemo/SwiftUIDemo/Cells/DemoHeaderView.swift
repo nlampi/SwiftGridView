@@ -1,5 +1,5 @@
 //
-// PrettyContentView.swift
+// DemoHeaderView.swift
 // Copyright (c) 2016 - Present Nathan Lampi (http://nathanlampi.com/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,37 +22,30 @@
 
 import SwiftUI
 
-struct PrettyContentView: View {
+struct DemoHeaderView: View {
     var mainText: String
-    var alignment: Alignment
     
     var body: some View {
+        
         VStack() {
             Spacer()
             HStack() {
-                if self.alignment != .leading {
-                    Spacer()
-                }
-                
                 Text(self.mainText)
-                    .font(.system(size: 12))
-                    .lineLimit(1)
+                    .font(.system(size: 18))
+                    .foregroundColor(.white)
                     .padding(.horizontal, 10)
-                
-                if self.alignment != .trailing {
-                    Spacer()
-                }
+                Spacer()
             }
             Spacer()
         }
+        .background(Color("DemoBlue"))
     }
 }
 
-struct PrettyContentView_Previews: PreviewProvider {
+struct DemoHeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        PrettyContentView(
-            mainText: "Example",
-            alignment: .leading
+        DemoHeaderView(
+            mainText: "Example"
         )
     }
 }

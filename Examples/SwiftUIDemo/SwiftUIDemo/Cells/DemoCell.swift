@@ -1,5 +1,5 @@
 //
-// PrettyView.swift
+// DemoCell.swift
 // Copyright (c) 2016 - Present Nathan Lampi (http://nathanlampi.com/)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,9 +23,10 @@
 import SwiftUI
 import SwiftGridView
 
-class PrettyView : SwiftGridReusableView {
-    var mainHost: UIHostingController<PrettyHeaderView>?
-    
+
+class DemoCell : SwiftGridCell {
+    var mainHost: UIHostingController<DemoContentView>?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,7 +40,7 @@ class PrettyView : SwiftGridReusableView {
     }
     
     func configureDefaults() {
-        let mainView = PrettyHeaderView(mainText: "")
+        let mainView = DemoContentView(mainText: "", alignment: .leading)
         mainHost = UIHostingController(rootView: mainView)
         mainHost!.view.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(mainHost!.view)
@@ -55,31 +56,38 @@ class PrettyView : SwiftGridReusableView {
     
     // MARK: - Public Methods
     
-    func configureFor(_ columnSettings:PrettyDataPoint) {
-        mainHost?.rootView.mainText = columnSettings.title
+    func configureFor(_ text:String, and columnSettings:DemoColumn) {
+        mainHost?.rootView.mainText = text
+        mainHost?.rootView.alignment = columnSettings.alignment
     }
     
     
     // MARK: - Reuse
     
-    override open class func reuseIdentifier() -> String {
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        mainHost?.rootView.alignment = .leading
+    }
+    
+    static override func reuseIdentifier() -> String {
 
-        return "prettyHeaderViewReuseID"
+        "DemoRowCellReuseID"
     }
 }
 
-/// Bridges the UIKit reusable view into a SwiftUI preview.
-private struct PrettyViewPreview: UIViewRepresentable {
-    func makeUIView(context: Context) -> PrettyView {
-        let view = PrettyView(frame: .zero)
-        view.configureFor(PrettyDataPoint(title: "Country", width: 200))
-        return view
+/// Bridges the UIKit grid cell into a SwiftUI preview.
+private struct DemoCellPreview: UIViewRepresentable {
+    func makeUIView(context: Context) -> DemoCell {
+        let cell = DemoCell(frame: .zero)
+        cell.configureFor("Andorra", and: DemoColumn(title: "Country", width: 200))
+        return cell
     }
 
-    func updateUIView(_ uiView: PrettyView, context: Context) {}
+    func updateUIView(_ uiView: DemoCell, context: Context) {}
 }
 
-#Preview("PrettyView") {
-    PrettyViewPreview()
-        .frame(width: 200, height: 60)
+#Preview("DemoCell") {
+    DemoCellPreview()
+        .frame(width: 200, height: 45)
 }
