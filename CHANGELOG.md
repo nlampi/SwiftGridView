@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 --- 
-## [1.0.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.0.0) (Unreleased)
+## [1.0.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.0.0) (2026-08-12)
 Major modernization release. **Breaking changes** — see the migration notes below.
 
 ### Breaking
