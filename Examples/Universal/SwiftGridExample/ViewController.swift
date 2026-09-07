@@ -54,6 +54,10 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.dataGridView.alwaysBounceHorizontal = false
         self.dataGridView.alwaysBounceVertical = false
         self.dataGridView.pinchExpandEnabled = true
+        self.dataGridView.zoomAxis = .both
+        self.dataGridView.minimumZoomScale = 0.75
+        self.dataGridView.maximumZoomScale = 2.0
+        self.dataGridView.zoomSpeed = 0.5
         
         // Register Basic Cell types
         self.dataGridView.register(BasicTextCell.self, forCellWithReuseIdentifier:BasicTextCell.reuseIdentifier())

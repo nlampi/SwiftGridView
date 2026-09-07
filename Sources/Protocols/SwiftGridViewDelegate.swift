@@ -194,6 +194,33 @@ public protocol SwiftGridViewDelegate: AnyObject {
      - Parameter indexPath: Current Swift Grid index path for the deselected cell.
      */
     func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath)
+
+    // MARK: - Zoom
+
+    /**
+     Called when a pinch to zoom gesture begins.
+
+     - Parameter dataGridView: The data grid view instance.
+     */
+    func dataGridViewWillBeginZooming(_ dataGridView: SwiftGridView)
+
+    /**
+     Called whenever the zoom scale changes, whether from a pinch gesture or from
+     setting `zoomScale` directly. Cell content is not scaled by the grid: use
+     this to resize fonts and other content alongside it.
+
+     - Parameter dataGridView: The data grid view instance.
+     - Parameter zoomScale: The new zoom scale.
+     */
+    func dataGridView(_ dataGridView: SwiftGridView, didChangeZoomScale zoomScale: CGFloat)
+
+    /**
+     Called when a pinch to zoom gesture ends or is cancelled.
+
+     - Parameter dataGridView: The data grid view instance.
+     - Parameter scale: The zoom scale settled on.
+     */
+    func dataGridView(_ dataGridView: SwiftGridView, didEndZoomingAtScale scale: CGFloat)
 }
 
 // MARK: - Default Implementations
@@ -239,4 +266,10 @@ extension SwiftGridViewDelegate {
     public func dataGridView(_ dataGridView: SwiftGridView, didSelectCellAtIndexPath indexPath: IndexPath) {}
 
     public func dataGridView(_ dataGridView: SwiftGridView, didDeselectCellAtIndexPath indexPath: IndexPath) {}
+
+    public func dataGridViewWillBeginZooming(_ dataGridView: SwiftGridView) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didChangeZoomScale zoomScale: CGFloat) {}
+
+    public func dataGridView(_ dataGridView: SwiftGridView, didEndZoomingAtScale scale: CGFloat) {}
 }
