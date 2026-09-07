@@ -266,7 +266,7 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
         }
     }
 
-    /// Pinch to expand increases the size of the columns. Experimental feature.
+    /// Enables pinch to zoom the grid, and a two finger tap to reset the zoom to 1.0.
     open var pinchExpandEnabled: Bool = false {
         didSet {
             if (!pinchExpandEnabled) {
@@ -277,6 +277,55 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
                 sgTwoTapGestureRecognizer.numberOfTouchesRequired = 2
                 collectionView.addGestureRecognizer(sgTwoTapGestureRecognizer)
             }
+        }
+    }
+
+    /**
+     Which measurements a zoom applies to. Defaults to `.horizontal`, scaling
+     column widths only; use `.both` for spreadsheet style zoom that scales row
+     heights as well.
+     */
+    open var zoomAxis: SwiftGridZoomAxis {
+        set(zoomAxis) {
+            sgCollectionViewLayout.zoomAxis = zoomAxis
+        }
+        get {
+            return sgCollectionViewLayout.zoomAxis
+        }
+    }
+
+    /// Smallest zoom scale a pinch can reach. Default is 0.35.
+    open var minimumZoomScale: CGFloat = 0.35
+
+    /// Largest zoom scale a pinch can reach. Default is 5.0.
+    open var maximumZoomScale: CGFloat = 5.0
+
+    /**
+     Multiplier applied to the change in a pinch before it reaches the zoom
+     scale. Values below 1.0 make zooming less sensitive; 1.0, the default,
+     tracks the gesture exactly.
+     */
+    open var zoomSpeed: CGFloat = 1.0
+
+    /**
+     Discrete scales the zoom snaps to while pinching, which avoids the jitter
+     of a continuously changing layout. Empty by default, meaning the zoom is
+     continuous. Values outside `minimumZoomScale...maximumZoomScale` are
+     ignored.
+     */
+    open var zoomStops: [CGFloat] = []
+
+    /**
+     Current zoom scale of the grid. Setting it clamps to
+     `minimumZoomScale...maximumZoomScale` and notifies the delegate; it does
+     not snap to `zoomStops`, which only apply to pinching.
+     */
+    open var zoomScale: CGFloat {
+        set(zoomScale) {
+            applyZoomScale(clampedZoomScale(zoomScale), anchor: nil)
+        }
+        get {
+            return sgCollectionViewLayout.zoomScale
         }
     }
 
@@ -371,6 +420,19 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
      */
     open func reloadCellsAtIndexPaths(_ indexPaths: [IndexPath], animated: Bool) {
         reloadCellsAtIndexPaths(indexPaths, animated: animated, completion: nil)
+    }
+
+    /**
+     Recalculates the grid layout without reloading data from the dataSource.
+     Call after changing sizing the delegate reports (row heights or column
+     widths) to have the change take effect.
+     */
+    open func invalidateLayout() {
+        // The total column width is cached here, not in the layout, so it has to
+        // be dropped for the delegate's new widths to be picked up.
+        _sgColumnWidth = 0
+
+        sgCollectionViewLayout.recalculateLayoutSize()
     }
 
     /**
@@ -635,22 +697,106 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     // MARK: Private Pinch Recognizer
 
     @objc internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
-        if (recognizer.numberOfTouches != 2) {
+        switch recognizer.state {
+        case .began:
+            delegate?.dataGridViewWillBeginZooming(self)
+        case .changed:
+            guard recognizer.numberOfTouches == 2 else {
 
-            return
-        }
+                return
+            }
 
-        if (recognizer.scale > 0.35 && recognizer.scale < 5) {
+            // `scale` is relative to the start of the gesture, so apply it as a
+            // delta against the current zoom and reset it. Without this the grid
+            // would snap back to 1.0 at the start of every pinch.
+            let delta: CGFloat = ((recognizer.scale - 1.0) * zoomSpeed) + 1.0
+            recognizer.scale = 1.0
 
-            sgCollectionViewLayout.zoomScale = recognizer.scale
+            let proposed = snappedZoomScale(clampedZoomScale(zoomScale * delta))
+            guard proposed != zoomScale else {
+
+                return
+            }
+
+            applyZoomScale(proposed, anchor: recognizer.location(in: collectionView))
+        case .ended, .cancelled, .failed:
+            delegate?.dataGridView(self, didEndZoomingAtScale: zoomScale)
+        default:
+            break
         }
     }
 
     @objc internal func handleTwoFingerTapGesture(_ recognizer: UITapGestureRecognizer) {
 
-        if (sgCollectionViewLayout.zoomScale != 1.0) {
-            sgCollectionViewLayout.zoomScale = 1.0
+        if (zoomScale != 1.0) {
+            applyZoomScale(clampedZoomScale(1.0), anchor: nil)
         }
+    }
+
+    // MARK: Private Zoom Handling
+
+    /// Limits a scale to the configured zoom range.
+    fileprivate func clampedZoomScale(_ scale: CGFloat) -> CGFloat {
+
+        return min(max(scale, minimumZoomScale), maximumZoomScale)
+    }
+
+    /// Snaps a scale to the nearest usable entry in `zoomStops`, if any.
+    fileprivate func snappedZoomScale(_ scale: CGFloat) -> CGFloat {
+        let usableStops = zoomStops.filter { $0 >= minimumZoomScale && $0 <= maximumZoomScale }
+
+        guard let closest = usableStops.min(by: { abs($0 - scale) < abs($1 - scale) }) else {
+
+            return scale
+        }
+
+        return closest
+    }
+
+    /**
+     Applies a zoom scale and notifies the delegate.
+     - Parameter scale: The new zoom scale, already clamped.
+     - Parameter anchor: Point in collectionView coordinates to keep visually
+       fixed, or nil to leave the content offset alone.
+     */
+    fileprivate func applyZoomScale(_ scale: CGFloat, anchor: CGPoint?) {
+        let previousScale = sgCollectionViewLayout.zoomScale
+
+        guard scale != previousScale else {
+
+            return
+        }
+
+        sgCollectionViewLayout.zoomScale = scale
+
+        if let anchor = anchor {
+            let ratio = scale / previousScale
+            let offset = collectionView.contentOffset
+            // The anchor sits at `anchor - offset` within the viewport; keep it
+            // there once the content it points at has moved to `anchor * ratio`.
+            var adjusted = offset
+
+            if zoomAxis.scalesHorizontally {
+                adjusted.x = anchor.x * ratio - (anchor.x - offset.x)
+            }
+
+            if zoomAxis.scalesVertically {
+                adjusted.y = anchor.y * ratio - (anchor.y - offset.y)
+            }
+
+            collectionView.contentOffset = boundedContentOffset(adjusted)
+        }
+
+        delegate?.dataGridView(self, didChangeZoomScale: scale)
+    }
+
+    /// Keeps a content offset within the scrollable area.
+    fileprivate func boundedContentOffset(_ offset: CGPoint) -> CGPoint {
+        let contentSize = sgCollectionViewLayout.collectionViewContentSize
+        let maxX = max(contentSize.width - collectionView.bounds.width, 0)
+        let maxY = max(contentSize.height - collectionView.bounds.height, 0)
+
+        return CGPoint(x: min(max(offset.x, 0), maxX), y: min(max(offset.y, 0), maxY))
     }
 
     // MARK: - Private conversion Methods

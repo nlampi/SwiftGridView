@@ -2,6 +2,27 @@
 All notable changes to this project will be documented in this file.
 
 --- 
+## [1.1.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.1.0) (Unreleased)
+Pinch to zoom overhaul ([#34](https://github.com/nlampi/SwiftGridView/issues/34)). Backwards compatible: zoom still scales column widths only unless `zoomAxis` is changed.
+
+### Added
+- `zoomAxis` (`SwiftGridZoomAxis`) selects what a zoom scales: column widths (`.horizontal`, the default, matching 1.0.0 behavior), row heights (`.vertical`), or both together (`.both`) for spreadsheet style zooming. The axis also exposes `scalesHorizontally` and `scalesVertically`.
+- `zoomScale` is now readable and settable on `SwiftGridView`, so a zoom level can be restored or driven programmatically.
+- `minimumZoomScale` and `maximumZoomScale` replace the hard-coded 0.35 and 5.0 limits.
+- `zoomSpeed` dampens how quickly a pinch changes the zoom.
+- `zoomStops` snaps the zoom to discrete scales while pinching, avoiding a continuously relayed out grid.
+- `invalidateLayout()` recalculates sizing from the delegate without reloading data from the dataSource.
+- `SwiftGridViewDelegate` gains `dataGridViewWillBeginZooming(_:)`, `dataGridView(_:didChangeZoomScale:)` and `dataGridView(_:didEndZoomingAtScale:)`, all with default implementations. Use `didChangeZoomScale` to scale cell content, which the grid does not scale itself.
+
+### Fixed
+- Zoom is cumulative across gestures. `UIPinchGestureRecognizer.scale` is relative to the start of each gesture, so every new pinch previously snapped the grid back to 1.0.
+- Pinching beyond the zoom limits clamps to them instead of being ignored, which made the grid appear to stop responding.
+- Zooming keeps the content under the pinch anchored, rather than growing from the origin.
+- The pinch handler now follows the gesture's state, so a zoom is no longer applied from a stale `.possible` or `.ended` recognizer.
+
+### Changed
+- Pinch to zoom is no longer documented as experimental.
+
 ## [1.0.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.0.0) (2026-08-12)
 Major modernization release. **Breaking changes** — see the migration notes below.
 

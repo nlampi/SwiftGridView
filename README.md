@@ -57,7 +57,8 @@ Swift Grid View supports many of the expected features for a data grid in an eas
 - Grouped Headers
 - SwiftUI support via the `SwiftGrid` view
 - Swift 6 strict-concurrency ready: pure-Swift, `@MainActor`-isolated API
-- Pinch to expand size (experimental)
+- Pinch to zoom, with configurable limits, speed, discrete stops and a selectable
+  axis (`zoomAxis`): column widths, row heights, or both for spreadsheet style zooming
 
 <img src="docs/assets/FrozenColRowDemo.gif" width=600 />
 
