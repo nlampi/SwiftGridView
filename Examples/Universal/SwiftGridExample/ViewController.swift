@@ -34,6 +34,16 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     var rowCountIncrease: Int = 15
     let columnGroupings: [[Int]] = [[2,4], [6,9]] /// Columns are grouped by start and end column index.
     
+    /// Base point size the cell and header text is drawn at before zooming.
+    let baseFontSize: CGFloat = 17.0
+    /// Current zoom scale, mirrored from the grid so newly dequeued cells can be
+    /// drawn at the right size. The grid scales its own geometry but leaves cell
+    /// content alone, so the font scaling below is the host's job.
+    var zoomScale: CGFloat = 1.0
+    
+    private var zoomLabel: UILabel!
+    private var axisControl: UISegmentedControl!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,11 +63,15 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.dataGridView.showsVerticalScrollIndicator = true
         self.dataGridView.alwaysBounceHorizontal = false
         self.dataGridView.alwaysBounceVertical = false
+        
+        // Pinch to zoom. Two finger tap resets the zoom to 1.0.
         self.dataGridView.pinchExpandEnabled = true
         self.dataGridView.zoomAxis = .both
         self.dataGridView.minimumZoomScale = 0.75
         self.dataGridView.maximumZoomScale = 2.0
         self.dataGridView.zoomSpeed = 0.5
+        // Snap to quarter steps. Comment out for a continuous zoom.
+        self.dataGridView.zoomStops = [0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
         
         // Register Basic Cell types
         self.dataGridView.register(BasicTextCell.self, forCellWithReuseIdentifier:BasicTextCell.reuseIdentifier())
@@ -74,6 +88,86 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         // Register Footer views
         self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindSectionFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
         self.dataGridView.register(BasicTextReusableView.self, forSupplementaryViewOfKind: SwiftGridElementKindFooter, withReuseIdentifier: BasicTextReusableView.reuseIdentifier())
+        
+        self.setupZoomControls()
+    }
+    
+    
+    // MARK: - Zoom Controls
+    
+    /// Overlays a zoom readout and an axis picker on top of the grid, so the
+    /// zoom behavior can be exercised on device without a rebuild.
+    private func setupZoomControls() {
+        self.zoomLabel = UILabel()
+        self.zoomLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.zoomLabel.textAlignment = .center
+        self.zoomLabel.textColor = UIColor.white
+        self.zoomLabel.font = UIFont.monospacedDigitSystemFont(ofSize: 16, weight: .medium)
+        self.zoomLabel.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        self.zoomLabel.layer.cornerRadius = 18
+        self.zoomLabel.layer.masksToBounds = true
+        self.zoomLabel.isHidden = true
+        self.view.addSubview(self.zoomLabel)
+        
+        self.axisControl = UISegmentedControl(items: ["Horizontal", "Vertical", "Both"])
+        self.axisControl.translatesAutoresizingMaskIntoConstraints = false
+        self.axisControl.selectedSegmentIndex = 2
+        self.axisControl.backgroundColor = UIColor.systemBackground
+        self.axisControl.addTarget(self, action: #selector(didChangeZoomAxis(_:)), for: .valueChanged)
+        self.view.addSubview(self.axisControl)
+        
+        NSLayoutConstraint.activate([
+            self.zoomLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.zoomLabel.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
+            self.zoomLabel.widthAnchor.constraint(equalToConstant: 140),
+            self.zoomLabel.heightAnchor.constraint(equalToConstant: 36),
+            
+            self.axisControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            self.axisControl.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -44)
+        ])
+    }
+    
+    @objc private func didChangeZoomAxis(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            self.dataGridView.zoomAxis = .horizontal
+        case 1:
+            self.dataGridView.zoomAxis = .vertical
+        default:
+            self.dataGridView.zoomAxis = .both
+        }
+
+        // The effective content scale depends on the axis as well as the zoom
+        // scale. Changing the axis leaves zoomScale untouched, so no zoom
+        // callback arrives and the fonts have to be refreshed here.
+        self.applyZoomedFontToVisibleViews()
+    }
+    
+    /// Font size for the current zoom. Only the vertical axis changes the row
+    /// height, so text is scaled with the zoom only when rows grow with it.
+    private var zoomedFont: UIFont {
+        let scale = self.dataGridView.zoomAxis.scalesVertically ? self.zoomScale : 1.0
+        
+        return UIFont.systemFont(ofSize: self.baseFontSize * scale)
+    }
+    
+    /// Applies the current zoom font to a cell or supplementary view. Newly
+    /// dequeued views need this too, not just the ones already on screen.
+    private func applyZoomedFont(to view: UIView) {
+        (view as? ZoomScalableText)?.zoomableLabel?.font = self.zoomedFont
+    }
+    
+    private func applyZoomedFontToVisibleViews() {
+        for cell in self.dataGridView.visibleCells {
+            self.applyZoomedFont(to: cell)
+        }
+        
+        for kind in [SwiftGridElementKindHeader, SwiftGridElementKindFooter, SwiftGridElementKindGroupedHeader,
+                     SwiftGridElementKindSectionHeader, SwiftGridElementKindSectionFooter] {
+            for view in self.dataGridView.collectionView.visibleSupplementaryViews(ofKind: kind) {
+                self.applyZoomedFont(to: view)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -195,6 +289,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             
             textCell.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
             
+            self.applyZoomedFont(to: textCell)
             cell = textCell
         } else {
             let nibCell: BasicNibCell = dataGridView.dequeueReusableCellWithReuseIdentifier(BasicNibCell.reuseIdentifier(), forIndexPath: indexPath) as! BasicNibCell
@@ -211,6 +306,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             
             nibCell.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
             
+            self.applyZoomedFont(to: nibCell)
             cell = nibCell
         }
         
@@ -232,6 +328,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         }
         
         view.textLabel.text = "HCol: (\(column))"
+        self.applyZoomedFont(to: view)
         
         return view
     }
@@ -251,6 +348,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         
         view.textLabel.textAlignment = .center
         view.textLabel.text = "Grouping [\(columnGrouping[0]), \(columnGrouping[1])]"
+        self.applyZoomedFont(to: view)
         
         return view;
     }
@@ -269,6 +367,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         }
         
         view.textLabel.text = "FCol: (\(column))"
+        self.applyZoomedFont(to: view)
         
         return view
     }
@@ -292,6 +391,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             
             textView.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
             
+            self.applyZoomedFont(to: textView)
             view = textView
         } else {
             let nibView: BasicNibReusableView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindSectionHeader, withReuseIdentifier: BasicNibReusableView.reuseIdentifier(), forIndexPath: indexPath) as! BasicNibReusableView
@@ -308,6 +408,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             
             nibView.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
             
+            self.applyZoomedFont(to: nibView)
             view = nibView
         }
         
@@ -328,6 +429,7 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         }
         
         view.textLabel.text = "(\(indexPath.sgSection), \(indexPath.sgColumn), \(indexPath.sgRow))"
+        self.applyZoomedFont(to: view)
         
         return view
     }
@@ -432,5 +534,52 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         
         return 75.0
     }
+    
+    
+    // MARK: - SwiftGridViewDelegate Zoom
+    
+    func dataGridViewWillBeginZooming(_ dataGridView: SwiftGridView) {
+        self.zoomLabel.isHidden = false
+        self.view.bringSubviewToFront(self.zoomLabel)
+    }
+    
+    func dataGridView(_ dataGridView: SwiftGridView, didChangeZoomScale zoomScale: CGFloat) {
+        self.zoomScale = zoomScale
+        self.zoomLabel.text = String(format: "Zoom: %.0f%%", zoomScale * 100)
+        
+        // The grid scales its own geometry; the content inside the cells is the
+        // host's to scale.
+        self.applyZoomedFontToVisibleViews()
+    }
+    
+    func dataGridView(_ dataGridView: SwiftGridView, didEndZoomingAtScale scale: CGFloat) {
+        NSLog("Zoom ended at scale: \(scale)")
+        self.zoomLabel.isHidden = true
+    }
+}
+
+
+// MARK: - Zoomable Text Content
+
+/// Lets the zoom reach the label of every text bearing view the example vends,
+/// whichever concrete type it happens to be.
+protocol ZoomScalableText: AnyObject {
+    var zoomableLabel: UILabel? { get }
+}
+
+extension BasicTextCell: ZoomScalableText {
+    var zoomableLabel: UILabel? { self.textLabel }
+}
+
+extension BasicNibCell: ZoomScalableText {
+    var zoomableLabel: UILabel? { self.textLabel }
+}
+
+extension BasicTextReusableView: ZoomScalableText {
+    var zoomableLabel: UILabel? { self.textLabel }
+}
+
+extension BasicNibReusableView: ZoomScalableText {
+    var zoomableLabel: UILabel? { self.textLabel }
 }
 
