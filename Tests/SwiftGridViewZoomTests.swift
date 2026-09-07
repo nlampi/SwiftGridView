@@ -61,36 +61,81 @@ private func makeZoomFixture() -> ZoomFixture {
 /// Stands in for a live pinch: `state`, `numberOfTouches` and `location(in:)` are
 /// all driven by the touch sequence on a real recognizer, and a recognizer built
 /// outside one reports `.possible` with zero touches.
+///
+/// `scale` models UIKit faithfully, including the rebasing an assignment does:
+/// the real recognizer reports the separation relative to the gesture's start,
+/// and writing to `scale` moves that reference point. A handler that resets
+/// `scale` therefore sees only small deltas afterwards, which a stub returning a
+/// fixed number would hide.
 private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
-    private let touches: Int
-    private let stubbedState: UIGestureRecognizer.State
-    private let stubbedLocation: CGPoint
+    var stubState: UIGestureRecognizer.State
+    var stubTouches: Int
+    var stubLocation: CGPoint
+
+    /// Current finger separation over the separation when the pinch began.
+    var fingerScale: CGFloat
+    private var scaleBaseline: CGFloat = 1.0
 
     init(scale: CGFloat = 1.0, state: UIGestureRecognizer.State = .changed, touches: Int = 2, location: CGPoint = .zero) {
-        self.touches = touches
-        self.stubbedState = state
-        self.stubbedLocation = location
+        self.fingerScale = scale
+        self.stubState = state
+        self.stubTouches = touches
+        self.stubLocation = location
         super.init(target: nil, action: nil)
-        self.scale = scale
     }
 
-    override var numberOfTouches: Int {
+    override var scale: CGFloat {
+        get {
 
-        return self.touches
+            return self.fingerScale / self.scaleBaseline
+        }
+        set {
+            self.scaleBaseline = newValue == 0 ? 1.0 : self.fingerScale / newValue
+        }
     }
 
     override var state: UIGestureRecognizer.State {
         get {
 
-            return self.stubbedState
+            return self.stubState
         }
         set {}
     }
 
+    override var numberOfTouches: Int {
+
+        return self.stubTouches
+    }
+
     override func location(in view: UIView?) -> CGPoint {
 
-        return self.stubbedLocation
+        return self.stubLocation
     }
+}
+
+/// Drives a full pinch the way UIKit does: a `.began`, one `.changed` per
+/// sampled finger position, then an `.ended`. Tests must not fire a bare
+/// `.changed`, since the zoom is derived from where the gesture began.
+@MainActor
+private func pinch(_ grid: SwiftGridView, through scales: [CGFloat], at location: CGPoint = .zero) {
+    // A single recognizer for the whole gesture: UIKit reuses one, and the
+    // handler's reading of `scale` depends on that continuity.
+    let recognizer = StubPinchGestureRecognizer(state: .began, location: location)
+    grid.handlePinchGesture(recognizer)
+
+    recognizer.stubState = .changed
+    for scale in scales {
+        recognizer.fingerScale = scale
+        grid.handlePinchGesture(recognizer)
+    }
+
+    recognizer.stubState = .ended
+    grid.handlePinchGesture(recognizer)
+}
+
+@MainActor
+private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoint = .zero) {
+    pinch(grid, through: [scale], at: location)
 }
 
 // MARK: - Pinch Zoom
@@ -114,25 +159,76 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         let grid = fixture.grid
         let originalWidth = fixture.contentSize.width
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0))
+        pinch(grid, to: 2.0)
         #expect(grid.zoomScale == 2.0)
         #expect(fixture.contentSize.width == originalWidth * 2)
 
-        // A fresh gesture starts from `scale == 2` again; the grid must build on
+        // A fresh gesture reports `scale` from 1 again; the grid must build on
         // the zoom it already has rather than resetting to it.
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0))
+        pinch(grid, to: 2.0)
         #expect(grid.zoomScale == 4.0)
         #expect(fixture.contentSize.width == originalWidth * 4)
+    }
+
+    /// Regression for zoom sticking on device: with stops configured, the small
+    /// per-event deltas of a slow pinch were discarded whenever snapping rounded
+    /// back to the current stop, so the zoom could never leave it.
+    @Test func aSlowPinchStillReachesTheNextStop() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomStops = [0.75, 1.0, 1.25, 1.5, 1.75, 2.0]
+        grid.zoomSpeed = 0.5
+
+        // Many small steps, none of which alone spans the gap to the next stop.
+        let steps = stride(from: 1.02, through: 1.60, by: 0.02).map { CGFloat($0) }
+        pinch(grid, through: steps)
+
+        #expect(grid.zoomScale == 1.25)
+    }
+
+    /// The same, pinching back down out of the minimum.
+    @Test func aSlowPinchEscapesTheMinimumZoom() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.minimumZoomScale = 0.75
+        grid.zoomStops = [0.75, 1.0, 1.25, 1.5]
+        grid.zoomScale = 0.75
+
+        let steps = stride(from: 1.02, through: 1.50, by: 0.02).map { CGFloat($0) }
+        pinch(grid, through: steps)
+
+        #expect(grid.zoomScale > 0.75)
+    }
+
+    /// Within one gesture the scale maps onto the zoom once; it must not compound
+    /// per event, which would make a slow pinch zoom further than a fast one.
+    @Test func oneGestureAppliesItsScaleOnlyOnce() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+
+        pinch(grid, through: [1.2, 1.5, 1.8, 2.0])
+
+        #expect(grid.zoomScale == 2.0)
+    }
+
+    @Test func pinchesWithMoreThanTwoTouchesStillZoom() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+
+        grid.handlePinchGesture(StubPinchGestureRecognizer(state: .began))
+        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0, state: .changed, touches: 3))
+
+        #expect(grid.zoomScale == 2.0)
     }
 
     @Test func pinchingBeyondTheLimitsClampsInsteadOfStopping() {
         let fixture = makeZoomFixture()
         let grid = fixture.grid
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 20.0))
+        pinch(grid, to: 20.0)
         #expect(grid.zoomScale == grid.maximumZoomScale)
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 0.001))
+        pinch(grid, to: 0.001)
         #expect(grid.zoomScale == grid.minimumZoomScale)
     }
 
@@ -142,10 +238,10 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         grid.minimumZoomScale = 0.75
         grid.maximumZoomScale = 2.0
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 10.0))
+        pinch(grid, to: 10.0)
         #expect(grid.zoomScale == 2.0)
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 0.01))
+        pinch(grid, to: 0.01)
         #expect(grid.zoomScale == 0.75)
     }
 
@@ -155,7 +251,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         grid.zoomSpeed = 0.5
 
         // A 2x pinch at half speed is a 1.5x zoom.
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0))
+        pinch(grid, to: 2.0)
 
         #expect(grid.zoomScale == 1.5)
     }
@@ -165,11 +261,11 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         let grid = fixture.grid
         grid.zoomStops = [0.75, 1.0, 1.5, 2.0]
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 1.8))
+        pinch(grid, to: 1.8)
         #expect(grid.zoomScale == 2.0)
 
         grid.zoomScale = 1.0
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 1.3))
+        pinch(grid, to: 1.3)
         #expect(grid.zoomScale == 1.5)
     }
 
@@ -179,7 +275,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         grid.maximumZoomScale = 2.0
         grid.zoomStops = [1.0, 2.0, 8.0]
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 10.0))
+        pinch(grid, to: 10.0)
 
         #expect(grid.zoomScale == 2.0)
     }
@@ -188,7 +284,8 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         let fixture = makeZoomFixture()
         let grid = fixture.grid
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0, touches: 1))
+        grid.handlePinchGesture(StubPinchGestureRecognizer(state: .began))
+        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0, state: .changed, touches: 1))
 
         #expect(grid.zoomScale == 1.0)
     }
@@ -201,7 +298,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
 
         // Content point 200 sits 100pt into the viewport; at 2x it moves to 400,
         // so the offset has to follow it to 300 to keep it under the fingers.
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0, location: CGPoint(x: 200, y: 0)))
+        pinch(grid, to: 2.0, at: CGPoint(x: 200, y: 0))
 
         #expect(grid.collectionView.contentOffset.x == 300)
     }
@@ -211,7 +308,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         let grid = fixture.grid
 
         // Anchoring at the far edge would push the offset past the content.
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 5.0, location: CGPoint(x: 600, y: 0)))
+        pinch(grid, to: 5.0, at: CGPoint(x: 600, y: 0))
 
         let maxX = fixture.contentSize.width - grid.collectionView.bounds.width
         #expect(grid.collectionView.contentOffset.x >= 0)
@@ -223,7 +320,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         let grid = fixture.grid
         let originalWidth = fixture.contentSize.width
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 3.0))
+        pinch(grid, to: 3.0)
         #expect(fixture.contentSize.width != originalWidth)
 
         grid.handleTwoFingerTapGesture(UITapGestureRecognizer())
@@ -328,7 +425,7 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         grid.setContentOffset(CGPoint(x: 100, y: 100), animated: false)
         grid.layoutIfNeeded()
 
-        grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 2.0, location: CGPoint(x: 200, y: 200)))
+        pinch(grid, to: 2.0, at: CGPoint(x: 200, y: 200))
 
         // The horizontal offset is untouched; the vertical one follows the anchor.
         #expect(grid.collectionView.contentOffset.x == 100)
@@ -342,6 +439,43 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         #expect(SwiftGridZoomAxis.vertical.scalesVertically)
         #expect(SwiftGridZoomAxis.both.scalesHorizontally)
         #expect(SwiftGridZoomAxis.both.scalesVertically)
+    }
+
+    /// Reported from the example app: after zooming, switching the axis left the
+    /// headers and footers at the old size while the cells took the new one.
+    @Test func changingTheAxisResizesCellsAndSupplementaryViewsTogether() throws {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let layout = grid.collectionView.collectionViewLayout
+        let path = IndexPath(item: 0, section: 0)
+
+        func heights() throws -> (cell: CGFloat, header: CGFloat, footer: CGFloat, sectionHeader: CGFloat) {
+            (
+                try #require(layout.layoutAttributesForItem(at: path)).frame.height,
+                try #require(layout.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindHeader, at: path)).frame.height,
+                try #require(layout.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindFooter, at: path)).frame.height,
+                try #require(layout.layoutAttributesForSupplementaryView(ofKind: SwiftGridElementKindSectionHeader, at: path)).frame.height
+            )
+        }
+
+        let base = try heights()
+
+        grid.zoomAxis = .both
+        grid.zoomScale = 2.0
+        let zoomed = try heights()
+        #expect(zoomed.cell == base.cell * 2)
+        #expect(zoomed.header == base.header * 2)
+        #expect(zoomed.footer == base.footer * 2)
+        #expect(zoomed.sectionHeader == base.sectionHeader * 2)
+
+        // Back to a horizontal axis: every kind must return to its base height
+        // together, not just the cells.
+        grid.zoomAxis = .horizontal
+        let restored = try heights()
+        #expect(restored.cell == base.cell)
+        #expect(restored.header == base.header)
+        #expect(restored.footer == base.footer)
+        #expect(restored.sectionHeader == base.sectionHeader)
     }
 
     @Test func changingTheAxisReappliesTheCurrentZoom() {
@@ -401,9 +535,32 @@ private final class StubPinchGestureRecognizer: UIPinchGestureRecognizer {
         #expect(fixture.delegate.scales(for: "zoomDidChange") == [grid.maximumZoomScale])
     }
 
+    /// reloadData resets the layout's zoom, which a host scaling its own cell
+    /// content needs to hear about.
+    @Test func reloadingDataReportsTheZoomReset() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomScale = 2.0
+
+        grid.reloadData()
+        grid.layoutIfNeeded()
+
+        #expect(grid.zoomScale == 1.0)
+        #expect(fixture.delegate.scales(for: "zoomDidChange") == [2.0, 1.0])
+    }
+
+    @Test func reloadingDataAtIdentityDoesNotNotify() {
+        let fixture = makeZoomFixture()
+
+        fixture.grid.reloadData()
+
+        #expect(fixture.delegate.scales(for: "zoomDidChange").isEmpty)
+    }
+
     @Test func unchangedPinchesDoNotNotifyTheDelegate() {
         let fixture = makeZoomFixture()
 
+        fixture.grid.handlePinchGesture(StubPinchGestureRecognizer(state: .began))
         fixture.grid.handlePinchGesture(StubPinchGestureRecognizer(scale: 1.0, state: .changed))
 
         #expect(fixture.delegate.scales(for: "zoomDidChange").isEmpty)
