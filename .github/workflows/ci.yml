@@ -29,7 +29,35 @@ jobs:
           xcodebuild test \
             -scheme SwiftGridView \
             -destination "platform=iOS Simulator,id=$SIMULATOR_UDID" \
+            -enableCodeCoverage YES \
+            -resultBundlePath TestResults.xcresult \
             | tail -100
+
+      # Reports library line coverage in the job summary and fails if it drops
+      # below the floor. Raise MINIMUM_COVERAGE when coverage climbs; never
+      # lower it to make a red build green.
+      - name: Report code coverage
+        env:
+          MINIMUM_COVERAGE: "90"
+        run: |
+          set -o pipefail
+          REPORT=$(xcrun xccov view --report --json TestResults.xcresult)
+          TARGET=$(echo "$REPORT" | jq '.targets[] | select(.name == "SwiftGridView")')
+          PERCENT=$(echo "$TARGET" | jq -r '.lineCoverage * 100 | . * 100 | round / 100')
+
+          {
+            echo "## Code coverage: ${PERCENT}% (floor ${MINIMUM_COVERAGE}%)"
+            echo
+            echo "| File | Coverage | Lines |"
+            echo "| --- | --- | --- |"
+            echo "$TARGET" | jq -r '.files[]
+              | "| \(.name) | \(.lineCoverage * 100 | . * 100 | round / 100)% | \(.coveredLines)/\(.executableLines) |"'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+          if [ "$(echo "$PERCENT < $MINIMUM_COVERAGE" | bc -l)" -eq 1 ]; then
+            echo "Coverage ${PERCENT}% is below the ${MINIMUM_COVERAGE}% floor" >&2
+            exit 1
+          fi
 
   lint:
     name: swift-format (strict)

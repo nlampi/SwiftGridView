@@ -27,3 +27,6 @@ playground.xcworkspace
 
 # Documentation build output
 .docc-build/
+
+# Coverage result bundles from local `xcodebuild test -resultBundlePath`
+TestResults.xcresult/
