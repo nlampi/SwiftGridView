@@ -75,6 +75,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     fileprivate lazy var sgTwoTapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer.init(
         target: self, action: #selector(SwiftGridView.handleTwoFingerTapGesture(_:)))
 
+    /// Zoom scale when the current pinch began. `UIPinchGestureRecognizer.scale`
+    /// is relative to that moment, so the zoom is derived from the two together
+    /// rather than accumulated one event at a time: clamping or snapping a step
+    /// must not throw away the finger movement that produced it.
+    fileprivate var sgZoomScaleAtGestureStart: CGFloat = 1.0
+
     fileprivate var _sgSectionCount: Int = 0
     fileprivate var sgSectionCount: Int {
         get {
@@ -284,6 +290,11 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
      Which measurements a zoom applies to. Defaults to `.horizontal`, scaling
      column widths only; use `.both` for spreadsheet style zoom that scales row
      heights as well.
+
+     Setting this re-lays out the grid at the current `zoomScale`. It does not
+     change `zoomScale`, so no zoom callback is sent: a host that scales its own
+     cell content should refresh that content after changing the axis, since the
+     effective scale depends on both.
      */
     open var zoomAxis: SwiftGridZoomAxis {
         set(zoomAxis) {
@@ -385,6 +396,11 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
      Reloads all data for the `SwiftGridView`
      */
     open func reloadData(_ resetSize: Bool = true) {
+        // Resetting the size drops the zoom back to 1.0. Track it so the
+        // delegate is told, otherwise a host scaling its own cell content by
+        // the zoom scale would be left out of sync with the grid.
+        let previousZoomScale = sgCollectionViewLayout.zoomScale
+
         _sgSectionCount = 0
         _sgColumnCount = 0
         _sgColumnWidth = 0
@@ -410,6 +426,10 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
             }
 
             collectionView.setContentOffset(contentOffset, animated: false)
+        }
+
+        if sgCollectionViewLayout.zoomScale != previousZoomScale {
+            delegate?.dataGridView(self, didChangeZoomScale: sgCollectionViewLayout.zoomScale)
         }
     }
 
@@ -699,20 +719,23 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     @objc internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
         switch recognizer.state {
         case .began:
+            sgZoomScaleAtGestureStart = zoomScale
             delegate?.dataGridViewWillBeginZooming(self)
         case .changed:
-            guard recognizer.numberOfTouches == 2 else {
+            // A pinch can carry more than two touches; fewer means a finger was
+            // lifted and the scale is no longer meaningful.
+            guard recognizer.numberOfTouches >= 2 else {
 
                 return
             }
 
-            // `scale` is relative to the start of the gesture, so apply it as a
-            // delta against the current zoom and reset it. Without this the grid
-            // would snap back to 1.0 at the start of every pinch.
-            let delta: CGFloat = ((recognizer.scale - 1.0) * zoomSpeed) + 1.0
-            recognizer.scale = 1.0
+            // Map the gesture straight onto a zoom: `scale` is relative to where
+            // the pinch began, so the whole movement is represented every time.
+            // Nothing is accumulated here, which is what lets a clamped or
+            // snapped step be revisited as the fingers keep moving.
+            let damped: CGFloat = ((recognizer.scale - 1.0) * zoomSpeed) + 1.0
+            let proposed = snappedZoomScale(clampedZoomScale(sgZoomScaleAtGestureStart * damped))
 
-            let proposed = snappedZoomScale(clampedZoomScale(zoomScale * delta))
             guard proposed != zoomScale else {
 
                 return
