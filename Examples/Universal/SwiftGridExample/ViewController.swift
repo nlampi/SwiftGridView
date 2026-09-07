@@ -114,7 +114,30 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
         self.axisControl.selectedSegmentIndex = 2
         self.axisControl.backgroundColor = UIColor.systemBackground
         self.axisControl.addTarget(self, action: #selector(didChangeZoomAxis(_:)), for: .valueChanged)
-        self.view.addSubview(self.axisControl)
+        
+        // Names the picker, which is otherwise an unlabelled control floating
+        // over the grid.
+        let axisCaption = UILabel()
+        axisCaption.translatesAutoresizingMaskIntoConstraints = false
+        axisCaption.text = "Pinch to zoom \u{2014} axis"
+        axisCaption.textAlignment = .center
+        axisCaption.font = UIFont.preferredFont(forTextStyle: .caption1)
+        axisCaption.textColor = UIColor.secondaryLabel
+        
+        let axisStack = UIStackView(arrangedSubviews: [axisCaption, self.axisControl])
+        axisStack.translatesAutoresizingMaskIntoConstraints = false
+        axisStack.axis = .vertical
+        axisStack.spacing = 6
+        
+        // A backing panel keeps the caption legible wherever it lands over the
+        // grid, and makes the pair read as one overlaid control.
+        let axisPanel = UIView()
+        axisPanel.translatesAutoresizingMaskIntoConstraints = false
+        axisPanel.backgroundColor = UIColor.secondarySystemBackground
+        axisPanel.layer.cornerRadius = 12
+        axisPanel.layer.masksToBounds = true
+        axisPanel.addSubview(axisStack)
+        self.view.addSubview(axisPanel)
         
         NSLayoutConstraint.activate([
             self.zoomLabel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
@@ -122,8 +145,15 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
             self.zoomLabel.widthAnchor.constraint(equalToConstant: 140),
             self.zoomLabel.heightAnchor.constraint(equalToConstant: 36),
             
-            self.axisControl.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.axisControl.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -44)
+            axisStack.topAnchor.constraint(equalTo: axisPanel.topAnchor, constant: 8),
+            axisStack.bottomAnchor.constraint(equalTo: axisPanel.bottomAnchor, constant: -8),
+            axisStack.leadingAnchor.constraint(equalTo: axisPanel.leadingAnchor, constant: 10),
+            axisStack.trailingAnchor.constraint(equalTo: axisPanel.trailingAnchor, constant: -10),
+            
+            axisPanel.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+            // Leaves the picker itself where it already sits, clear of the
+            // home indicator.
+            axisPanel.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -36)
         ])
     }
     
