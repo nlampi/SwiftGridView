@@ -739,6 +739,117 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
     }
 }
 
+// MARK: - Selection During a Zoom
+
+/// A pinch is easy to land a stray third finger in, which would otherwise select
+/// whatever it came down on.
+@MainActor
+@Suite struct SwiftGridViewZoomSelectionTests {
+
+    private func beginPinch(_ grid: SwiftGridView) -> StubPinchGestureRecognizer {
+        let recognizer = StubPinchGestureRecognizer(state: .began)
+        grid.handlePinchGesture(recognizer)
+
+        return recognizer
+    }
+
+    @Test func cellsAreNotSelectableWhilePinching() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let itemPath = IndexPath(item: 0, section: 0)
+
+        #expect(grid.collectionView(grid.collectionView, shouldSelectItemAt: itemPath))
+
+        let recognizer = beginPinch(grid)
+        #expect(!grid.collectionView(grid.collectionView, shouldSelectItemAt: itemPath))
+        #expect(!grid.collectionView(grid.collectionView, shouldHighlightItemAt: itemPath))
+
+        recognizer.stubState = .ended
+        grid.handlePinchGesture(recognizer)
+
+        #expect(grid.collectionView(grid.collectionView, shouldSelectItemAt: itemPath))
+    }
+
+    @Test func aCancelledPinchRestoresSelection() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let itemPath = IndexPath(item: 0, section: 0)
+
+        let recognizer = beginPinch(grid)
+        recognizer.stubState = .cancelled
+        grid.handlePinchGesture(recognizer)
+
+        #expect(grid.collectionView(grid.collectionView, shouldSelectItemAt: itemPath))
+    }
+
+    /// A reusable view toggles itself before telling the grid, so refusing the
+    /// change has to put the view back rather than just ignore it.
+    @Test func aStrayTouchOnAHeaderIsRefusedAndLeavesNoTrace() throws {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let indexPath = IndexPath(forSGRow: 0, atColumn: 0, inSection: 0)
+        let header = try #require(grid.supplementaryView(ofElementKind: SwiftGridElementKindSectionHeader, at: indexPath))
+
+        _ = beginPinch(grid)
+
+        header.touchesBegan([], with: nil)
+        header.touchesEnded([], with: nil)
+
+        #expect(!header.selected, "the view must not be left looking selected")
+        #expect(!header.highlighted)
+        #expect(grid.selectedIndexPathsForSupplementaryView(ofElementKind: SwiftGridElementKindSectionHeader).isEmpty)
+        #expect(fixture.delegate.indexPaths(for: "didSelectSectionHeader").isEmpty)
+    }
+
+    /// Selection made before the pinch survives it.
+    @Test func aPinchDoesNotClearAnExistingSelection() throws {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let indexPath = IndexPath(forSGRow: 0, atColumn: 0, inSection: 0)
+        grid.selectHeaderAtIndexPath(indexPath)
+
+        let header = try #require(grid.supplementaryView(ofElementKind: SwiftGridElementKindHeader, at: indexPath))
+        header.selected = true
+
+        _ = beginPinch(grid)
+        header.touchesBegan([], with: nil)
+        header.touchesEnded([], with: nil)
+
+        #expect(header.selected, "the view goes back to what the grid holds, not to unselected")
+        #expect(grid.selectedIndexPathsForSupplementaryView(ofElementKind: SwiftGridElementKindHeader) == [indexPath])
+    }
+
+    @Test func selectionDuringZoomCanBeAllowed() throws {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.allowsSelectionDuringZoom = true
+        let indexPath = IndexPath(forSGRow: 0, atColumn: 0, inSection: 0)
+        let header = try #require(grid.supplementaryView(ofElementKind: SwiftGridElementKindSectionHeader, at: indexPath))
+
+        _ = beginPinch(grid)
+
+        #expect(grid.collectionView(grid.collectionView, shouldSelectItemAt: IndexPath(item: 0, section: 0)))
+
+        header.touchesBegan([], with: nil)
+        header.touchesEnded([], with: nil)
+
+        #expect(header.selected)
+        #expect(grid.selectedIndexPathsForSupplementaryView(ofElementKind: SwiftGridElementKindSectionHeader) == [indexPath])
+    }
+
+    /// Programmatic selection is not a stray finger.
+    @Test func programmaticSelectionStillWorksWhilePinching() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let indexPath = IndexPath(forSGRow: 0, atColumn: 0, inSection: 0)
+
+        _ = beginPinch(grid)
+        grid.selectCellAtIndexPath(indexPath, animated: false)
+
+        #expect(grid.indexPathsForSelectedItems == [indexPath])
+    }
+}
+
 // MARK: - invalidateLayout
 
 @MainActor
