@@ -595,6 +595,26 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
 
     /// Reported from the example app: after zooming, switching the axis left the
     /// headers and footers at the old size while the cells took the new one.
+    /// Zoomed measurements are rounded to whole points, deliberately: fractional
+    /// frames put text and cell seams off the pixel grid. Every other zoom test
+    /// uses an integral scale, where rounding is invisible, so this is the only
+    /// thing pinning that choice.
+    @Test func zoomedFramesLandOnWholePoints() throws {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        let layout = grid.collectionView.collectionViewLayout
+        let path = IndexPath(item: 0, section: 0)
+
+        grid.zoomAxis = .both
+        grid.zoomScale = 1.337
+
+        let frame = try #require(layout.layoutAttributesForItem(at: path)).frame
+
+        // 100pt column and 50pt row from the fixture's delegate.
+        #expect(frame.width == 134, "round(100 * 1.337)")
+        #expect(frame.height == 67, "round(50 * 1.337)")
+    }
+
     @Test func changingTheAxisResizesCellsAndSupplementaryViewsTogether() throws {
         let fixture = makeZoomFixture()
         let grid = fixture.grid
