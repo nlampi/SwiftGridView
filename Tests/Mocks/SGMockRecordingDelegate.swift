@@ -77,7 +77,12 @@ final class SGMockRecordingDelegate: SwiftGridViewDelegate {
         return self.columnWidth
     }
 
+    /// Counts how often the layout asks for a row height, so a test can tell
+    /// whether the content height was rebuilt or reused.
+    private(set) var rowHeightCallCount = 0
+
     func dataGridView(_ dataGridView: SwiftGridView, heightOfRowAtIndexPath indexPath: IndexPath) -> CGFloat {
+        self.rowHeightCallCount += 1
 
         return self.rowHeight
     }

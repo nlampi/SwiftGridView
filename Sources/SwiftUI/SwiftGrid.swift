@@ -54,6 +54,12 @@ import UIKit
 
  `configure` precedes `update` in the initializer so that a lone trailing closure still means `configure`.
 
+ A changed `reloadToken` reloads from inside the SwiftUI update, and a reload reports the zoom reset it
+ performs through `dataGridView(_:didChangeZoomScale:)`. That callback therefore arrives mid update: a
+ delegate that publishes from it would be mutating observable state while SwiftUI is rendering. Keep such
+ a delegate's zoom handling to plain stored properties and views it updates directly, or defer the publish
+ to the next runloop turn.
+
  Assign properties in `update`; do not perform actions. SwiftUI updates a view many times, for state
  changes that have nothing to do with the grid, and anything that accumulates or interrupts repeats every
  time: `reloadData()` would discard the scroll position and zoom on each pass, changing the selection
