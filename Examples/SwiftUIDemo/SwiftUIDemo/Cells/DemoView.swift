@@ -55,8 +55,14 @@ class DemoView : SwiftGridReusableView {
     
     // MARK: - Public Methods
     
-    func configureFor(_ columnSettings:DemoColumn) {
+    func configureFor(_ columnSettings:DemoColumn, textScale:CGFloat = 1.0) {
         mainHost?.rootView.mainText = columnSettings.title
+        mainHost?.rootView.textScale = textScale
+    }
+
+    /// See `DemoCell.applyTextScale(_:)`.
+    func applyTextScale(_ textScale:CGFloat) {
+        mainHost?.rootView.textScale = textScale
     }
     
     

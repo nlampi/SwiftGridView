@@ -25,6 +25,9 @@ import SwiftUI
 struct DemoContentView: View {
     var mainText: String
     var alignment: Alignment
+    /// Scales the text with the grid's zoom. The grid scales its own geometry,
+    /// but the content inside a cell belongs to the host.
+    var textScale: CGFloat = 1.0
     
     var body: some View {
         VStack() {
@@ -35,7 +38,7 @@ struct DemoContentView: View {
                 }
                 
                 Text(self.mainText)
-                    .font(.system(size: 12))
+                    .font(.system(size: 12 * self.textScale))
                     .lineLimit(1)
                     .padding(.horizontal, 10)
                 

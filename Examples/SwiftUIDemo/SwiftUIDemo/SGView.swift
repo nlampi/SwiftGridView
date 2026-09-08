@@ -36,6 +36,26 @@ final class DemoGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridV
     var headers = [DemoColumn]()
     var countries = [Country]()
 
+    /// Bound to the picker in `SGView` and pushed onto the grid from the
+    /// `update` closure. Published, so changing it re-runs the SwiftUI update
+    /// that applies it.
+    @Published var zoomAxis: SwiftGridZoomAxis = .both {
+        didSet {
+            self.refreshTextScale()
+        }
+    }
+
+    /// Scale applied to cell text. Only a zoom that grows the rows should grow
+    /// the text, so this follows the axis as well as the zoom scale.
+    private(set) var textScale: CGFloat = 1.0
+    private var zoomScale: CGFloat = 1.0
+    /// Set from the `update` closure. Weak: the grid is owned by SwiftUI.
+    private weak var gridView: SwiftGridView?
+
+    func adopt(_ gridView: SwiftGridView) {
+        self.gridView = gridView
+    }
+
     init() {
         // Init Header Data
         self.headers.append(DemoColumn(title: "Country", width: 150, alignment: .leading))
@@ -85,29 +105,29 @@ final class DemoGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridV
 
         switch indexPath.sgColumn {
         case 0:
-            cell.configureFor("\(country.name)", and: header)
+            cell.configureFor("\(country.name)", and: header, textScale: self.textScale)
         case 1:
-            cell.configureFor("\(country.capital)", and: header)
+            cell.configureFor("\(country.capital)", and: header, textScale: self.textScale)
         case 2:
-            cell.configureFor("\(country.currency)", and: header)
+            cell.configureFor("\(country.currency)", and: header, textScale: self.textScale)
         case 3:
-            cell.configureFor("\(country.phone)", and: header)
+            cell.configureFor("\(country.phone)", and: header, textScale: self.textScale)
         case 4:
-            cell.configureFor("\(country.tld)", and: header)
+            cell.configureFor("\(country.tld)", and: header, textScale: self.textScale)
         case 5:
             if country.population < 0 {
-                cell.configureFor("-", and: header)
+                cell.configureFor("-", and: header, textScale: self.textScale)
             } else {
-                cell.configureFor("\(country.population)", and: header)
+                cell.configureFor("\(country.population)", and: header, textScale: self.textScale)
             }
         case 6:
             if country.area < 0 {
-                cell.configureFor("-", and: header)
+                cell.configureFor("-", and: header, textScale: self.textScale)
             } else {
-                cell.configureFor("\(country.area)", and: header)
+                cell.configureFor("\(country.area)", and: header, textScale: self.textScale)
             }
         default:
-            cell.configureFor("-", and: header)
+            cell.configureFor("-", and: header, textScale: self.textScale)
         }
 
         return cell
@@ -116,7 +136,7 @@ final class DemoGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridV
     func dataGridView(_ dataGridView: SwiftGridView, gridHeaderViewForColumn column: Int) -> SwiftGridReusableView {
         let headerView = dataGridView.dequeueReusableSupplementaryViewOfKind(SwiftGridElementKindHeader, withReuseIdentifier: DemoView.reuseIdentifier(), atColumn: column) as! DemoView
 
-        headerView.configureFor(self.headers[column])
+        headerView.configureFor(self.headers[column], textScale: self.textScale)
 
         return headerView
     }
@@ -138,6 +158,46 @@ final class DemoGridModel: ObservableObject, SwiftGridViewDataSource, SwiftGridV
 
         70
     }
+
+    func dataGridView(_ dataGridView: SwiftGridView, didChangeZoomScale zoomScale: CGFloat) {
+        self.zoomScale = zoomScale
+        self.refreshTextScale()
+    }
+
+
+    // MARK: - Zoom Content Scaling
+
+    /// Recomputes the text scale and pushes it into the views already on screen.
+    /// Called for a zoom change and for an axis change, which does not report a
+    /// zoom change because the scale itself has not moved.
+    private func refreshTextScale() {
+        let updated = self.zoomAxis.scalesVertically ? self.zoomScale : 1.0
+
+        guard updated != self.textScale else {
+
+            return
+        }
+
+        self.textScale = updated
+        self.rescaleVisibleContent()
+    }
+
+    /// The grid holds the views, so the host reaches them through it. Cells
+    /// dequeued later pick the scale up in `cellAtIndexPath`.
+    private func rescaleVisibleContent() {
+        guard let gridView = self.gridView else {
+
+            return
+        }
+
+        for case let cell as DemoCell in gridView.visibleCells {
+            cell.applyTextScale(self.textScale)
+        }
+
+        for case let view as DemoView in gridView.collectionView.visibleSupplementaryViews(ofKind: SwiftGridElementKindHeader) {
+            view.applyTextScale(self.textScale)
+        }
+    }
 }
 
 /// Uses the library's `SwiftGrid` SwiftUI wrapper directly.
@@ -146,10 +206,33 @@ struct SGView: View {
     @StateObject private var model = DemoGridModel()
 
     var body: some View {
-        SwiftGrid(dataSource: model, delegate: model) { gridView in
-            // Register Cells/Views
-            gridView.register(DemoView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: DemoView.reuseIdentifier())
-            gridView.register(DemoCell.self, forCellWithReuseIdentifier: DemoCell.reuseIdentifier())
+        VStack(spacing: 8) {
+            // Pinch the grid to zoom, two finger tap to reset. The picker drives
+            // the grid purely through SwiftUI state.
+            Picker("Zoom axis", selection: $model.zoomAxis) {
+                Text("Horizontal").tag(SwiftGridZoomAxis.horizontal)
+                Text("Vertical").tag(SwiftGridZoomAxis.vertical)
+                Text("Both").tag(SwiftGridZoomAxis.both)
+            }
+            .pickerStyle(.segmented)
+            .padding(.horizontal, 10)
+
+            SwiftGrid(dataSource: model, delegate: model) { gridView in
+                // Runs once: register cells and reusable views.
+                gridView.register(DemoView.self, forSupplementaryViewOfKind: SwiftGridElementKindHeader, withReuseIdentifier: DemoView.reuseIdentifier())
+                gridView.register(DemoCell.self, forCellWithReuseIdentifier: DemoCell.reuseIdentifier())
+            } update: { gridView in
+                // Runs on every SwiftUI update: assign properties driven by
+                // state. Assignments only, and writing the same value again
+                // does nothing, so repeating this is free.
+                gridView.pinchExpandEnabled = true
+                gridView.zoomAxis = model.zoomAxis
+                gridView.minimumZoomScale = 0.75
+                gridView.maximumZoomScale = 2.0
+                gridView.zoomSpeed = 0.5
+
+                model.adopt(gridView)
+            }
         }
     }
 }
