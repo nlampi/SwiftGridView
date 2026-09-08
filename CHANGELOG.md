@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 --- 
-## [1.1.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.1.0) (Unreleased)
+## [1.1.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.1.0) (2026-09-08)
 Pinch to zoom overhaul ([#34](https://github.com/nlampi/SwiftGridView/issues/34)). Backwards compatible: zoom still scales column widths only unless `zoomAxis` is changed.
 
 ### Added
@@ -20,6 +20,9 @@ Pinch to zoom overhaul ([#34](https://github.com/nlampi/SwiftGridView/issues/34)
 - Pinching beyond the zoom limits clamps to them instead of being ignored, which made the grid appear to stop responding.
 - Zooming keeps the content under the pinch anchored, rather than growing from the origin.
 - The pinch handler now follows the gesture's state, so a zoom is no longer applied from a stale `.possible` or `.ended` recognizer.
+- A pinch no longer sticks at the zoom limits or on a `zoomStops` entry. Movement behind a step that clamping or snapping rejected was discarded, so a slow pinch could never accumulate enough to leave a stop, while a fast one occasionally cleared it in a single event.
+- A pinch carrying more than two touches keeps zooming. Resting a third finger mid-pinch used to stop it dead.
+- `reloadData()` reports the zoom reset it performs through `dataGridView(_:didChangeZoomScale:)`, so a host scaling its own cell content is no longer left out of sync with the grid.
 
 ### Changed
 - Pinch to zoom is no longer documented as experimental.
