@@ -393,8 +393,10 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
         #expect(grid.collectionView.contentOffset.y == -60)
     }
 
-    /// A reload moves the zoom out from under a pinch in flight.
-    @Test func aReloadMidPinchDoesNotJumpBack() {
+    /// A reload moves the zoom out from under a pinch in flight. The fingers have
+    /// already moved by then, so their travel must be measured from the reload
+    /// rather than from where the gesture began.
+    @Test func aReloadMidPinchDoesNotStepTheZoom() {
         let fixture = makeZoomFixture()
         let grid = fixture.grid
         grid.zoomScale = 2.0
@@ -402,15 +404,53 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
         let recognizer = StubPinchGestureRecognizer(state: .began)
         grid.handlePinchGesture(recognizer)
 
+        recognizer.stubState = .changed
+        recognizer.fingerScale = 1.5
+        grid.handlePinchGesture(recognizer)
+        #expect(grid.zoomScale == 3.0)
+
         grid.reloadData()
         grid.layoutIfNeeded()
         #expect(grid.zoomScale == 1.0)
 
-        recognizer.stubState = .changed
-        recognizer.fingerScale = 1.0
+        // Fingers held still across the reload: the zoom must hold still too.
+        grid.handlePinchGesture(recognizer)
+        #expect(grid.zoomScale == 1.0, "a stationary pinch must not move the zoom after a reload")
+
+        // And carry on from there rather than from the original start.
+        recognizer.fingerScale = 3.0
+        grid.handlePinchGesture(recognizer)
+        #expect(grid.zoomScale == 2.0, "further travel measures from the reload")
+    }
+
+    /// The same correction covers a host moving the zoom during a pinch.
+    @Test func aProgrammaticZoomMidPinchIsMeasuredFrom() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+
+        let recognizer = StubPinchGestureRecognizer(state: .began)
         grid.handlePinchGesture(recognizer)
 
-        #expect(grid.zoomScale == 1.0, "the gesture must measure from the post-reload zoom")
+        recognizer.stubState = .changed
+        recognizer.fingerScale = 2.0
+        grid.handlePinchGesture(recognizer)
+        #expect(grid.zoomScale == 2.0)
+
+        grid.zoomScale = 1.0
+
+        grid.handlePinchGesture(recognizer)
+        #expect(grid.zoomScale == 1.0, "a stationary pinch must not undo the host's change")
+    }
+
+    /// Configuring a grid before its dataSource must not lay it out.
+    @Test func limitsCanBeSetBeforeTheDataSource() {
+        let grid = SwiftGridView(frame: CGRect(x: 0, y: 0, width: 320, height: 480))
+
+        grid.minimumZoomScale = 1.5
+        grid.maximumZoomScale = 3.0
+
+        #expect(grid.minimumZoomScale == 1.5)
+        #expect(grid.maximumZoomScale == 3.0)
     }
 
     @Test func narrowingTheLimitsBringsTheZoomBackInRange() {
