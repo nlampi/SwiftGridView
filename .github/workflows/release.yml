@@ -15,10 +15,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create release with generated notes
+      # The changelog entry describes the release in terms of what changed for a
+      # consumer, which generated notes cannot do. Failing when the tagged
+      # version has no entry is deliberate: a release with no notes, or with the
+      # wrong ones, is worse than a tag that has to be redone.
+      - name: Extract release notes from the changelog
+        run: |
+          NOTES=$(awk -v v="$GITHUB_REF_NAME" '
+            BEGIN { prefix = "## [" v "]" }
+            !found && substr($0, 1, length(prefix)) == prefix { found = 1; next }
+            found && substr($0, 1, 4) == "## [" { exit }
+            found { print }
+          ' CHANGELOG.md | sed '/./,$!d')
+
+          if [ -z "$NOTES" ]; then
+            echo "CHANGELOG.md has no '## [$GITHUB_REF_NAME]' entry" >&2
+            exit 1
+          fi
+
+          printf '%s\n' "$NOTES" > release-notes.md
+
+      - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
             --title "$GITHUB_REF_NAME" \
-            --generate-notes
+            --notes-file release-notes.md
