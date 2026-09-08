@@ -79,6 +79,10 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     /// is relative to that moment, so the zoom is derived from the two together
     /// rather than accumulated one event at a time: clamping or snapping a step
     /// must not throw away the finger movement that produced it.
+    /// Whether a pinch is in flight, which suppresses selection unless the grid
+    /// is configured to allow it.
+    fileprivate var sgIsZooming: Bool = false
+
     fileprivate var sgZoomScaleAtGestureStart: CGFloat = 1.0
     /// `recognizer.scale` when that baseline was taken. The gesture is measured
     /// relative to this, so the baseline can be retaken mid pinch.
@@ -169,6 +173,16 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /// When enabled, multiple cells can be selected. If row selection is enabled, then multiple rows can be selected.
     open var allowsMultipleSelection: Bool = false
+
+    /**
+     Whether cells and supplementary views can be selected while a pinch is in
+     flight. Defaults to false: a pinch is easy to land a third finger in, and
+     that stray touch would otherwise select whatever it came down on.
+
+     Selection made before the pinch began is left alone, and programmatic
+     selection is unaffected.
+     */
+    open var allowsSelectionDuringZoom: Bool = false
 
     /// If row selection is enabled, then entire rows will be selected rather than individual cells. This applies to section headers/footers in addition to rows.
     open var rowSelectionEnabled: Bool = false
@@ -744,6 +758,7 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     @objc internal func handlePinchGesture(_ recognizer: UIPinchGestureRecognizer) {
         switch recognizer.state {
         case .began:
+            sgIsZooming = true
             sgZoomScaleAtGestureStart = zoomScale
             sgGestureScaleAtBaseline = recognizer.scale
             sgZoomScaleLastAppliedByPinch = zoomScale
@@ -792,6 +807,7 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
             applyZoomScale(proposed, anchor: recognizer.location(in: collectionView))
             sgZoomScaleLastAppliedByPinch = proposed
         case .ended, .cancelled, .failed:
+            sgIsZooming = false
             delegate?.dataGridView(self, didEndZoomingAtScale: zoomScale)
         default:
             break
@@ -803,6 +819,26 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
         if (zoomScale != 1.0) {
             applyZoomScale(clampedZoomScale(1.0), anchor: nil)
         }
+    }
+
+    /// Whether a touch should be allowed to change the selection right now.
+    fileprivate var suppressesSelectionForZoom: Bool {
+
+        return sgIsZooming && !allowsSelectionDuringZoom
+    }
+
+    /**
+     Puts a reusable view back to the selection the grid holds for it.
+
+     A `SwiftGridReusableView` toggles itself before telling its delegate, so
+     refusing the change here would otherwise leave it looking selected while the
+     grid does not consider it so.
+     */
+    fileprivate func restoreTrackedSelection(of reusableView: SwiftGridReusableView) {
+        let tracked = selectedIndexPathsForSupplementaryView(ofElementKind: reusableView.elementKind)
+
+        reusableView.selected = tracked.contains(reusableView.indexPath)
+        reusableView.highlighted = false
     }
 
     // MARK: Private Zoom Handling
@@ -948,6 +984,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /// Internal to SwiftGridView, do not use
     open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didSelectViewAtIndexPath indexPath: IndexPath) {
+        guard !suppressesSelectionForZoom else {
+            restoreTrackedSelection(of: reusableView)
+
+            return
+        }
+
         switch (reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
             selectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
@@ -989,6 +1031,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /// Internal to SwiftGridView, do not use
     open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didDeselectViewAtIndexPath indexPath: IndexPath) {
+        guard !suppressesSelectionForZoom else {
+            restoreTrackedSelection(of: reusableView)
+
+            return
+        }
+
         switch (reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
             deselectReusableViewOfKind(reusableView.elementKind, atIndexPath: reusableView.indexPath as IndexPath)
@@ -1030,6 +1078,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /// Internal to SwiftGridView, do not use
     open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didHighlightViewAtIndexPath indexPath: IndexPath) {
+        guard !suppressesSelectionForZoom else {
+            restoreTrackedSelection(of: reusableView)
+
+            return
+        }
+
         switch (reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
 
@@ -1056,6 +1110,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /// Internal to SwiftGridView, do not use
     open func swiftGridReusableView(_ reusableView: SwiftGridReusableView, didUnhighlightViewAtIndexPath indexPath: IndexPath) {
+        guard !suppressesSelectionForZoom else {
+            restoreTrackedSelection(of: reusableView)
+
+            return
+        }
+
         switch (reusableView.elementKind) {
         case SwiftGridElementKindSectionHeader:
 
@@ -1444,6 +1504,18 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
             let itemPath = reverseIndexPathConversion(sgPath)
             collectionView.cellForItem(at: itemPath)?.isHighlighted = highlighted
         }
+    }
+
+    /// Internal to SwiftGridView, do not use
+    open func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+
+        return !suppressesSelectionForZoom
+    }
+
+    /// Internal to SwiftGridView, do not use
+    open func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+
+        return !suppressesSelectionForZoom
     }
 
     /// Internal to SwiftGridView, do not use
