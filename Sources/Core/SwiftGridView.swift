@@ -80,6 +80,12 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     /// rather than accumulated one event at a time: clamping or snapping a step
     /// must not throw away the finger movement that produced it.
     fileprivate var sgZoomScaleAtGestureStart: CGFloat = 1.0
+    /// `recognizer.scale` when that baseline was taken. The gesture is measured
+    /// relative to this, so the baseline can be retaken mid pinch.
+    fileprivate var sgGestureScaleAtBaseline: CGFloat = 1.0
+    /// Zoom scale this class last applied from a pinch. A difference from the
+    /// current zoom means something else moved it.
+    fileprivate var sgZoomScaleLastAppliedByPinch: CGFloat = 1.0
 
     fileprivate var _sgSectionCount: Int = 0
     fileprivate var sgSectionCount: Int {
@@ -322,9 +328,14 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     }
 
     /**
-     Multiplier applied to the change in a pinch before it reaches the zoom
-     scale. Values below 1.0 make zooming less sensitive; 1.0, the default,
-     tracks the gesture exactly.
+     Exponent applied to a pinch before it reaches the zoom scale. Values below
+     1.0 make zooming less sensitive: at 0.5 the zoom follows the square root of
+     the gesture, so a 2x pinch is a 1.41x zoom and a 4x pinch a 2x zoom. 1.0,
+     the default, tracks the gesture exactly.
+
+     An exponent rather than a multiplier keeps damping symmetric, since scale is
+     a ratio: pinching by k and by 1/k give reciprocal zooms, and both ends of
+     the zoom range stay reachable.
      */
     open var zoomSpeed: CGFloat = 1.0
 
@@ -441,11 +452,6 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
             collectionView.setContentOffset(contentOffset, animated: false)
         }
-
-        // A pinch in flight measures from the scale it began at. The reset above
-        // moved that out from under it, so rebase it or the next event would jump
-        // back to the pre-reload zoom.
-        sgZoomScaleAtGestureStart = sgCollectionViewLayout.zoomScale
 
         if sgCollectionViewLayout.zoomScale != previousZoomScale {
             delegate?.dataGridView(self, didChangeZoomScale: sgCollectionViewLayout.zoomScale)
@@ -739,6 +745,8 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
         switch recognizer.state {
         case .began:
             sgZoomScaleAtGestureStart = zoomScale
+            sgGestureScaleAtBaseline = recognizer.scale
+            sgZoomScaleLastAppliedByPinch = zoomScale
             delegate?.dataGridViewWillBeginZooming(self)
         case .changed:
             // A pinch can carry more than two touches; fewer means a finger was
@@ -748,9 +756,19 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
                 return
             }
 
-            guard recognizer.scale > 0 else {
+            guard recognizer.scale > 0, sgGestureScaleAtBaseline > 0 else {
 
                 return
+            }
+
+            // If the zoom moved out from under the gesture, from a reload or a
+            // host setting zoomScale, take the baseline again. Otherwise the
+            // fingers would still be measured against the zoom they started
+            // from and the next event would step away from where it now is.
+            if zoomScale != sgZoomScaleLastAppliedByPinch {
+                sgZoomScaleAtGestureStart = zoomScale
+                sgGestureScaleAtBaseline = recognizer.scale
+                sgZoomScaleLastAppliedByPinch = zoomScale
             }
 
             // Map the gesture straight onto a zoom: `scale` is relative to where
@@ -763,7 +781,7 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
             // it is unbounded pinching out but cannot fall below `1 - zoomSpeed`
             // pinching in, which puts low zoom scales out of reach. An exponent is
             // symmetric, since pinching by k and by 1/k give reciprocal results.
-            let damped: CGFloat = pow(recognizer.scale, zoomSpeed)
+            let damped: CGFloat = pow(recognizer.scale / sgGestureScaleAtBaseline, zoomSpeed)
             let proposed = snappedZoomScale(clampedZoomScale(sgZoomScaleAtGestureStart * damped))
 
             guard proposed != zoomScale else {
@@ -772,6 +790,7 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
             }
 
             applyZoomScale(proposed, anchor: recognizer.location(in: collectionView))
+            sgZoomScaleLastAppliedByPinch = proposed
         case .ended, .cancelled, .failed:
             delegate?.dataGridView(self, didEndZoomingAtScale: zoomScale)
         default:
@@ -788,8 +807,19 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     // MARK: Private Zoom Handling
 
-    /// Brings the current zoom back inside the limits after they change.
+    /**
+     Brings the current zoom back inside the limits after they change.
+
+     Applying a zoom lays the grid out, which reads from the dataSource and
+     delegate, so this waits until both are set. Configuring limits on a fresh
+     grid is inert, as it was before the limits constrained anything.
+     */
     fileprivate func constrainZoomScaleToLimits() {
+        guard dataSource != nil, delegate != nil else {
+
+            return
+        }
+
         applyZoomScale(clampedZoomScale(zoomScale), anchor: nil)
     }
 
