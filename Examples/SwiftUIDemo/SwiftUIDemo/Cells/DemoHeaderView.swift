@@ -24,6 +24,8 @@ import SwiftUI
 
 struct DemoHeaderView: View {
     var mainText: String
+    /// See `DemoContentView.textScale`.
+    var textScale: CGFloat = 1.0
     
     var body: some View {
         
@@ -31,7 +33,10 @@ struct DemoHeaderView: View {
             Spacer()
             HStack() {
                 Text(self.mainText)
-                    .font(.system(size: 18))
+                    .font(.system(size: 18 * self.textScale))
+                    // A vertical zoom grows the text but not the column, so the
+                    // header has to truncate rather than wrap, as the cells do.
+                    .lineLimit(1)
                     .foregroundColor(.white)
                     .padding(.horizontal, 10)
                 Spacer()

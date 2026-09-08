@@ -56,9 +56,16 @@ class DemoCell : SwiftGridCell {
     
     // MARK: - Public Methods
     
-    func configureFor(_ text:String, and columnSettings:DemoColumn) {
+    func configureFor(_ text:String, and columnSettings:DemoColumn, textScale:CGFloat = 1.0) {
         mainHost?.rootView.mainText = text
         mainHost?.rootView.alignment = columnSettings.alignment
+        mainHost?.rootView.textScale = textScale
+    }
+
+    /// Rescales the hosted content in place, for cells already on screen when
+    /// the zoom changes. Assigning rootView is what re-renders it.
+    func applyTextScale(_ textScale:CGFloat) {
+        mainHost?.rootView.textScale = textScale
     }
     
     
