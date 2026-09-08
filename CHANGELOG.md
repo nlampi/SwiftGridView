@@ -12,6 +12,7 @@ Pinch to zoom overhaul ([#34](https://github.com/nlampi/SwiftGridView/issues/34)
 - `zoomSpeed` dampens how quickly a pinch changes the zoom.
 - `zoomStops` snaps the zoom to discrete scales while pinching, avoiding a continuously relayed out grid.
 - `invalidateLayout()` recalculates sizing from the delegate without reloading data from the dataSource.
+- `SwiftGrid` gains an `update` closure, run on every SwiftUI update after any reload, so grid properties can be driven from SwiftUI state. `configure` still runs once at creation, and a lone trailing closure still means `configure`.
 - `SwiftGridViewDelegate` gains `dataGridViewWillBeginZooming(_:)`, `dataGridView(_:didChangeZoomScale:)` and `dataGridView(_:didEndZoomingAtScale:)`, all with default implementations. Use `didChangeZoomScale` to scale cell content, which the grid does not scale itself.
 
 ### Fixed

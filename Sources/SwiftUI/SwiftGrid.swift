@@ -39,6 +39,30 @@ import UIKit
      gridView.register(MyCell.self, forCellWithReuseIdentifier: MyCell.reuseIdentifier())
  }
  ```
+
+ Use `update` to drive grid properties from SwiftUI state. It runs on every SwiftUI update, after any
+ reload, so the settings it applies survive a `reloadData()`.
+
+ ```swift
+ SwiftGrid(dataSource: model, delegate: model) { gridView in
+     gridView.register(MyCell.self, forCellWithReuseIdentifier: MyCell.reuseIdentifier())
+ } update: { gridView in
+     gridView.pinchExpandEnabled = true
+     gridView.zoomAxis = zoomAxis  // some @State the user can change
+ }
+ ```
+
+ `configure` precedes `update` in the initializer so that a lone trailing closure still means `configure`.
+
+ Assign properties in `update`; do not perform actions. SwiftUI updates a view many times, for state
+ changes that have nothing to do with the grid, and anything that accumulates or interrupts repeats every
+ time: `reloadData()` would discard the scroll position and zoom on each pass, changing the selection
+ would fight the user, and adding a gesture recognizer would add another one. Plain assignments such as
+ `zoomAxis` are safe to repeat because writing the same value again does nothing.
+
+ Take care with properties the user also drives by gesture. Writing `zoomScale` from state on every update
+ fights a pinch unless that state is kept current from `dataGridView(_:didChangeZoomScale:)`, since the
+ stale value is reapplied on the next update.
  */
 public struct SwiftGrid: UIViewRepresentable {
 
@@ -46,6 +70,7 @@ public struct SwiftGrid: UIViewRepresentable {
     private let delegate: SwiftGridViewDelegate?
     private let reloadToken: AnyHashable?
     private let configure: ((SwiftGridView) -> Void)?
+    private let update: ((SwiftGridView) -> Void)?
 
     /**
      Creates a SwiftUI data grid.
@@ -54,17 +79,20 @@ public struct SwiftGrid: UIViewRepresentable {
      - Parameter delegate: Object providing sizing and receiving interaction callbacks. Retained for the lifetime of the view.
      - Parameter reloadToken: Optional change marker. When a SwiftUI update sees a different value than the previous one, the grid calls `reloadData()`.
      - Parameter configure: Called once after the underlying `SwiftGridView` is created. Register cells and reusable views here.
+     - Parameter update: Called on every SwiftUI update, after any reload. Assign grid properties driven by SwiftUI state here; see the type documentation for what does not belong in it.
      */
     public init(
         dataSource: SwiftGridViewDataSource,
         delegate: SwiftGridViewDelegate? = nil,
         reloadToken: AnyHashable? = nil,
-        configure: ((SwiftGridView) -> Void)? = nil
+        configure: ((SwiftGridView) -> Void)? = nil,
+        update: ((SwiftGridView) -> Void)? = nil
     ) {
         self.dataSource = dataSource
         self.delegate = delegate
         self.reloadToken = reloadToken
         self.configure = configure
+        self.update = update
     }
 
     public func makeCoordinator() -> Coordinator {
@@ -86,6 +114,10 @@ public struct SwiftGrid: UIViewRepresentable {
             context.coordinator.reloadToken = reloadToken
             gridView.reloadData()
         }
+
+        // After the reload: reloadData resets grid state, including the zoom, so
+        // applying here keeps what the caller asked for as the final word.
+        update?(gridView)
     }
 
     /// Retains the datasource and delegate on behalf of the grid, which references them weakly.

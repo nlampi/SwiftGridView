@@ -60,6 +60,69 @@ import UIKit
         #expect(coordinator.delegate === delegate)
     }
 
+    /// The update closure is the only way SwiftUI state can reach a grid property:
+    /// configure runs once, and updateUIView otherwise only reloads.
+    @Test func updateClosureAppliesStateOnEveryUpdate() throws {
+        let dataSource = SGMockFeatureRichDataSource()
+        dataSource.frozenColumns = 0
+        dataSource.frozenRowsPerSection = 0
+        let delegate = SGMockBasicDelegate()
+
+        func makeRootView(axis: SwiftGridZoomAxis) -> SwiftGrid {
+            SwiftGrid(dataSource: dataSource, delegate: delegate) { gridView in
+                gridView.register(SwiftGridTestCell.self, forCellWithReuseIdentifier: SwiftGridTestCell.reuseIdentifier())
+            } update: { gridView in
+                gridView.zoomAxis = axis
+            }
+        }
+
+        let host = UIHostingController(rootView: makeRootView(axis: .horizontal))
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        window.rootViewController = host
+        window.isHidden = false
+        window.layoutIfNeeded()
+
+        let gridView = try #require(findGridView(in: host.view))
+        #expect(gridView.zoomAxis == .horizontal)
+
+        host.rootView = makeRootView(axis: .both)
+        window.layoutIfNeeded()
+
+        #expect(gridView.zoomAxis == .both)
+    }
+
+    /// reloadData resets grid state, so the closure has to run after it or the
+    /// caller's settings would be silently dropped on every reload.
+    @Test func updateClosureSurvivesAReload() throws {
+        let dataSource = SGMockFeatureRichDataSource()
+        dataSource.frozenColumns = 0
+        dataSource.frozenRowsPerSection = 0
+        let delegate = SGMockBasicDelegate()
+
+        func makeRootView(reloadToken: Int) -> SwiftGrid {
+            SwiftGrid(dataSource: dataSource, delegate: delegate, reloadToken: reloadToken) { gridView in
+                gridView.register(SwiftGridTestCell.self, forCellWithReuseIdentifier: SwiftGridTestCell.reuseIdentifier())
+            } update: { gridView in
+                gridView.zoomScale = 2.0
+            }
+        }
+
+        let host = UIHostingController(rootView: makeRootView(reloadToken: 1))
+        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 390, height: 844))
+        window.rootViewController = host
+        window.isHidden = false
+        window.layoutIfNeeded()
+
+        let gridView = try #require(findGridView(in: host.view))
+        #expect(gridView.zoomScale == 2.0)
+
+        // A reload resets the zoom to 1.0; the closure must reapply afterwards.
+        host.rootView = makeRootView(reloadToken: 2)
+        window.layoutIfNeeded()
+
+        #expect(gridView.zoomScale == 2.0)
+    }
+
     @Test func hostedGridConfiguresDisplaysAndReloadsOnTokenChange() throws {
         let dataSource = SGMockFeatureRichDataSource()
         dataSource.frozenColumns = 0
@@ -68,6 +131,8 @@ import UIKit
         let box = ConfigureBox()
 
         func makeRootView(reloadToken: Int) -> SwiftGrid {
+            // Deliberately the bare trailing closure form: it must keep binding to
+            // configure now that a second closure parameter exists.
             SwiftGrid(dataSource: dataSource, delegate: delegate, reloadToken: reloadToken) { gridView in
                 box.callCount += 1
                 gridView.register(SwiftGridTestCell.self, forCellWithReuseIdentifier: SwiftGridTestCell.reuseIdentifier())
