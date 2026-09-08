@@ -59,6 +59,31 @@ jobs:
             exit 1
           fi
 
+  examples:
+    name: Build examples (iOS Simulator)
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: SwiftGridExample
+            project: Examples/Universal/SwiftGridExample.xcodeproj
+          - name: SwiftUIDemo
+            project: Examples/SwiftUIDemo/SwiftUIDemo.xcodeproj
+    steps:
+      - uses: actions/checkout@v4
+
+      # A generic destination builds against the simulator SDK without needing a
+      # booted device, so this needs none of the simulator selection the tests do.
+      - name: Build ${{ matrix.name }}
+        run: |
+          set -o pipefail
+          xcodebuild build \
+            -project "${{ matrix.project }}" \
+            -scheme "${{ matrix.name }}" \
+            -destination "generic/platform=iOS Simulator" \
+            | tail -50
+
   lint:
     name: swift-format (strict)
     runs-on: macos-latest
