@@ -209,12 +209,22 @@ struct SGView: View {
         VStack(spacing: 8) {
             // Pinch the grid to zoom, two finger tap to reset. The picker drives
             // the grid purely through SwiftUI state.
-            Picker("Zoom axis", selection: $model.zoomAxis) {
-                Text("Horizontal").tag(SwiftGridZoomAxis.horizontal)
-                Text("Vertical").tag(SwiftGridZoomAxis.vertical)
-                Text("Both").tag(SwiftGridZoomAxis.both)
+            HStack(spacing: 8) {
+                Spacer()
+
+                Text("Zoom axis")
+                    .font(.caption)
+                    .foregroundColor(.white)
+
+                Picker("Zoom axis", selection: $model.zoomAxis) {
+                    Text("Horizontal").tag(SwiftGridZoomAxis.horizontal)
+                    Text("Vertical").tag(SwiftGridZoomAxis.vertical)
+                    Text("Both").tag(SwiftGridZoomAxis.both)
+                }
+                .pickerStyle(.segmented)
+                .labelsHidden()
+                .frame(width: 230)
             }
-            .pickerStyle(.segmented)
             .padding(.horizontal, 10)
 
             SwiftGrid(dataSource: model, delegate: model) { gridView in
