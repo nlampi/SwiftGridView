@@ -305,11 +305,21 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
         }
     }
 
-    /// Smallest zoom scale a pinch can reach. Default is 0.35.
-    open var minimumZoomScale: CGFloat = 0.35
+    /// Smallest zoom scale the grid can reach. Narrowing the range brings the
+    /// current `zoomScale` back inside it. Default is 0.35.
+    open var minimumZoomScale: CGFloat = 0.35 {
+        didSet {
+            constrainZoomScaleToLimits()
+        }
+    }
 
-    /// Largest zoom scale a pinch can reach. Default is 5.0.
-    open var maximumZoomScale: CGFloat = 5.0
+    /// Largest zoom scale the grid can reach. Narrowing the range brings the
+    /// current `zoomScale` back inside it. Default is 5.0.
+    open var maximumZoomScale: CGFloat = 5.0 {
+        didSet {
+            constrainZoomScaleToLimits()
+        }
+    }
 
     /**
      Multiplier applied to the change in a pinch before it reaches the zoom
@@ -394,6 +404,10 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
     /**
      Reloads all data for the `SwiftGridView`
+
+     Resetting the size returns the zoom to 1.0, reported through
+     `dataGridView(_:didChangeZoomScale:)` so a host scaling its own cell content
+     can follow. That callback is sent synchronously, before this returns.
      */
     open func reloadData(_ resetSize: Bool = true) {
         // Resetting the size drops the zoom back to 1.0. Track it so the
@@ -427,6 +441,11 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
 
             collectionView.setContentOffset(contentOffset, animated: false)
         }
+
+        // A pinch in flight measures from the scale it began at. The reset above
+        // moved that out from under it, so rebase it or the next event would jump
+        // back to the pre-reload zoom.
+        sgZoomScaleAtGestureStart = sgCollectionViewLayout.zoomScale
 
         if sgCollectionViewLayout.zoomScale != previousZoomScale {
             delegate?.dataGridView(self, didChangeZoomScale: sgCollectionViewLayout.zoomScale)
@@ -729,11 +748,22 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
                 return
             }
 
+            guard recognizer.scale > 0 else {
+
+                return
+            }
+
             // Map the gesture straight onto a zoom: `scale` is relative to where
             // the pinch began, so the whole movement is represented every time.
             // Nothing is accumulated here, which is what lets a clamped or
             // snapped step be revisited as the fingers keep moving.
-            let damped: CGFloat = ((recognizer.scale - 1.0) * zoomSpeed) + 1.0
+            //
+            // Damping is applied as an exponent rather than a multiplier on the
+            // difference from 1. Scale is a ratio, so a linear damping is lopsided:
+            // it is unbounded pinching out but cannot fall below `1 - zoomSpeed`
+            // pinching in, which puts low zoom scales out of reach. An exponent is
+            // symmetric, since pinching by k and by 1/k give reciprocal results.
+            let damped: CGFloat = pow(recognizer.scale, zoomSpeed)
             let proposed = snappedZoomScale(clampedZoomScale(sgZoomScaleAtGestureStart * damped))
 
             guard proposed != zoomScale else {
@@ -757,6 +787,11 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
     }
 
     // MARK: Private Zoom Handling
+
+    /// Brings the current zoom back inside the limits after they change.
+    fileprivate func constrainZoomScaleToLimits() {
+        applyZoomScale(clampedZoomScale(zoomScale), anchor: nil)
+    }
 
     /// Limits a scale to the configured zoom range.
     fileprivate func clampedZoomScale(_ scale: CGFloat) -> CGFloat {
@@ -807,19 +842,42 @@ open class SwiftGridView: UIView, UICollectionViewDataSource, UICollectionViewDe
                 adjusted.y = anchor.y * ratio - (anchor.y - offset.y)
             }
 
-            collectionView.contentOffset = boundedContentOffset(adjusted)
+            collectionView.contentOffset = boundedContentOffset(
+                adjusted, clampingX: zoomAxis.scalesHorizontally, clampingY: zoomAxis.scalesVertically)
         }
 
         delegate?.dataGridView(self, didChangeZoomScale: scale)
     }
 
-    /// Keeps a content offset within the scrollable area.
-    fileprivate func boundedContentOffset(_ offset: CGPoint) -> CGPoint {
-        let contentSize = sgCollectionViewLayout.collectionViewContentSize
-        let maxX = max(contentSize.width - collectionView.bounds.width, 0)
-        let maxY = max(contentSize.height - collectionView.bounds.height, 0)
+    /**
+     Keeps a content offset within the scrollable area.
 
-        return CGPoint(x: min(max(offset.x, 0), maxX), y: min(max(offset.y, 0), maxY))
+     The bounds are the scroll view's, not the content's: with a content inset,
+     from a navigation bar for instance, the resting offset is negative rather
+     than zero, and clamping to zero would jerk the content by the inset.
+
+     - Parameter clampingX: Whether to bound the horizontal offset. Only the axes
+       the zoom actually moved should be bounded, or an untouched offset that is
+       legitimately outside the range, mid bounce, would be dragged into it.
+     */
+    fileprivate func boundedContentOffset(_ offset: CGPoint, clampingX: Bool, clampingY: Bool) -> CGPoint {
+        let contentSize = sgCollectionViewLayout.collectionViewContentSize
+        let inset = collectionView.adjustedContentInset
+        var bounded = offset
+
+        if clampingX {
+            let minX = -inset.left
+            let maxX = max(contentSize.width + inset.right - collectionView.bounds.width, minX)
+            bounded.x = min(max(offset.x, minX), maxX)
+        }
+
+        if clampingY {
+            let minY = -inset.top
+            let maxY = max(contentSize.height + inset.bottom - collectionView.bounds.height, minY)
+            bounded.y = min(max(offset.y, minY), maxY)
+        }
+
+        return bounded
     }
 
     // MARK: - Private conversion Methods

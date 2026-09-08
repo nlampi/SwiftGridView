@@ -135,8 +135,10 @@ class SwiftGridLayout: UICollectionViewLayout {
     var zoomAxis: SwiftGridZoomAxis = .horizontal {
         didSet {
             if oldValue != zoomAxis && _zoomScale != 1.0 {
-                // Re-apply the current zoom against the new axis.
-                zoomScale = _zoomScale
+                // Re-apply the current zoom against the new axis. The height has
+                // to be rebuilt whichever way the axis moved, so this cannot go
+                // through the zoomScale setter.
+                self.recalculateLayoutSize(recomputingHeight: true)
             }
         }
     }
@@ -150,7 +152,7 @@ class SwiftGridLayout: UICollectionViewLayout {
         set(zoomScale) {
             _zoomScale = zoomScale
 
-            self.recalculateLayoutSize()
+            self.recalculateLayoutSize(recomputingHeight: self.zoomAxis.scalesVertically)
         }
     }
 
@@ -158,16 +160,27 @@ class SwiftGridLayout: UICollectionViewLayout {
 
     /**
      Rebuilds the cached content size at the current zoom scale and invalidates
-     the layout, without discarding the zoom. Sizing is re-read from the delegate,
-     so this picks up changed row heights and column widths.
+     the layout, without discarding the zoom.
+
+     - Parameter recomputingHeight: Whether to rebuild the height from the
+       delegate. That walks every row of every section, so it is skipped when
+       nothing can have changed a height: a zoom on a purely horizontal axis
+       repeats at gesture rate and only ever scales widths.
      */
-    func recalculateLayoutSize() {
+    func recalculateLayoutSize(recomputingHeight: Bool = true) {
         self.resetCachedParameters(false)
 
-        // The cached size has to be discarded rather than carried over: with a
-        // vertical zoom axis the height is built from zoom-modified heights.
-        _sgLayoutSize = CGSize.zero
-        let totalHeight: CGFloat = self.sgLayoutSize.height
+        let totalHeight: CGFloat
+
+        if recomputingHeight || _sgLayoutSize.equalTo(CGSize.zero) {
+            // Discard the cached size rather than carry it over: with a vertical
+            // axis the height is built from zoom-modified heights.
+            _sgLayoutSize = CGSize.zero
+            totalHeight = self.sgLayoutSize.height
+        } else {
+            totalHeight = _sgLayoutSize.height
+        }
+
         let widthScale: CGFloat = self.zoomAxis.scalesHorizontally ? _zoomScale : 1.0
         let totalWidth: CGFloat = self.layoutDelegate.collectionView(self.collectionView!, totalColumnWidthForLayout: self) * widthScale
         _sgLayoutSize = CGSize(width: totalWidth, height: totalHeight)

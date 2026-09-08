@@ -250,10 +250,10 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
         let grid = fixture.grid
         grid.zoomSpeed = 0.5
 
-        // A 2x pinch at half speed is a 1.5x zoom.
-        pinch(grid, to: 2.0)
+        // Half speed applies the gesture as its square root: a 4x pinch is a 2x zoom.
+        pinch(grid, to: 4.0)
 
-        #expect(grid.zoomScale == 1.5)
+        #expect(grid.zoomScale == 2.0)
     }
 
     @Test func zoomSnapsToConfiguredStops() {
@@ -313,6 +313,118 @@ private func pinch(_ grid: SwiftGridView, to scale: CGFloat, at location: CGPoin
         let maxX = fixture.contentSize.width - grid.collectionView.bounds.width
         #expect(grid.collectionView.contentOffset.x >= 0)
         #expect(grid.collectionView.contentOffset.x <= maxX)
+    }
+
+    /// A horizontal zoom cannot change any height, so rebuilding the content
+    /// height row by row on every gesture event is pure cost.
+    @Test func aHorizontalZoomReusesTheCachedHeight() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+
+        let beforeHorizontal = fixture.delegate.rowHeightCallCount
+        grid.zoomScale = 2.0
+        let horizontalCalls = fixture.delegate.rowHeightCallCount - beforeHorizontal
+
+        grid.zoomAxis = .both
+        let beforeVertical = fixture.delegate.rowHeightCallCount
+        grid.zoomScale = 3.0
+        let verticalCalls = fixture.delegate.rowHeightCallCount - beforeVertical
+
+        #expect(horizontalCalls == 0, "a horizontal zoom must reuse the cached height")
+        #expect(verticalCalls > 0, "a vertical zoom has to rebuild it")
+    }
+
+    /// Damping used to be linear on the difference from 1, which floored a
+    /// pinch in at `start * (1 - zoomSpeed)` while leaving pinching out
+    /// unbounded, putting the low end of the range out of reach.
+    @Test func dampingReachesBothEndsOfTheRange() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.minimumZoomScale = 0.75
+        grid.maximumZoomScale = 2.0
+        grid.zoomSpeed = 0.5
+
+        pinch(grid, to: 100.0)
+        #expect(grid.zoomScale == 2.0)
+
+        // From the top of the range, one pinch in must still reach the bottom.
+        pinch(grid, to: 0.001)
+        #expect(grid.zoomScale == 0.75)
+    }
+
+    @Test func dampingIsSymmetricAboutIdentity() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomSpeed = 0.5
+
+        pinch(grid, to: 4.0)
+        #expect(grid.zoomScale == 2.0)
+
+        // The reciprocal gesture undoes it exactly.
+        pinch(grid, to: 0.25)
+        #expect(grid.zoomScale == 1.0)
+    }
+
+    /// The anchored offset is bounded by the scroll view, which a content inset
+    /// moves: clamping to zero would jerk the content by the inset.
+    @Test func anchoringRespectsTheContentInset() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.collectionView.contentInset = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+        grid.setContentOffset(CGPoint(x: -40, y: 0), animated: false)
+        grid.layoutIfNeeded()
+
+        pinch(grid, to: 2.0, at: CGPoint(x: 0, y: 0))
+
+        #expect(grid.collectionView.contentOffset.x == -40)
+    }
+
+    /// Only the axes the zoom moved may be bounded.
+    @Test func aHorizontalZoomLeavesTheVerticalOffsetAlone() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomAxis = .horizontal
+        grid.collectionView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+        grid.setContentOffset(CGPoint(x: 0, y: -60), animated: false)
+        grid.layoutIfNeeded()
+
+        pinch(grid, to: 2.0, at: CGPoint(x: 100, y: 100))
+
+        #expect(grid.collectionView.contentOffset.y == -60)
+    }
+
+    /// A reload moves the zoom out from under a pinch in flight.
+    @Test func aReloadMidPinchDoesNotJumpBack() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomScale = 2.0
+
+        let recognizer = StubPinchGestureRecognizer(state: .began)
+        grid.handlePinchGesture(recognizer)
+
+        grid.reloadData()
+        grid.layoutIfNeeded()
+        #expect(grid.zoomScale == 1.0)
+
+        recognizer.stubState = .changed
+        recognizer.fingerScale = 1.0
+        grid.handlePinchGesture(recognizer)
+
+        #expect(grid.zoomScale == 1.0, "the gesture must measure from the post-reload zoom")
+    }
+
+    @Test func narrowingTheLimitsBringsTheZoomBackInRange() {
+        let fixture = makeZoomFixture()
+        let grid = fixture.grid
+        grid.zoomScale = 4.0
+
+        grid.maximumZoomScale = 2.0
+        #expect(grid.zoomScale == 2.0)
+
+        grid.zoomScale = 0.5
+        grid.minimumZoomScale = 1.0
+        #expect(grid.zoomScale == 1.0)
+        #expect(fixture.delegate.scales(for: "zoomDidChange") == [4.0, 2.0, 0.5, 1.0])
     }
 
     @Test func twoFingerTapResetsTheZoom() {
