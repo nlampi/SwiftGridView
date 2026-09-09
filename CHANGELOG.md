@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 --- 
-## [1.1.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.1.0) (2026-09-08)
+## [1.1.0](https://github.com/nlampi/SwiftGridView/releases/tag/1.1.0) (2026-09-09)
 Pinch to zoom overhaul ([#34](https://github.com/nlampi/SwiftGridView/issues/34)). Backwards compatible: zoom still scales column widths only unless `zoomAxis` is changed.
 
 ### Added
