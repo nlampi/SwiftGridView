@@ -574,6 +574,10 @@ class ViewController: UIViewController, SwiftGridViewDataSource, SwiftGridViewDe
     }
     
     func dataGridView(_ dataGridView: SwiftGridView, didChangeZoomScale zoomScale: CGFloat) {
+        // Also reports the two finger tap reset, which is not a pinch and so
+        // sends no begin/end pair.
+        NSLog("Zoom changed to scale: \(zoomScale)")
+
         self.zoomScale = zoomScale
         self.zoomLabel.text = String(format: "Zoom: %.0f%%", zoomScale * 100)
         
